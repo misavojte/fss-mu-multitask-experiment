@@ -14,7 +14,7 @@
 		"editor.formatOnSave": true
 	},
 	"prettier.configPath": "./.prettierrc",
-  "prettier.documentSelectors": ["**/*.svelte"],
+    "prettier.documentSelectors": ["**/*.svelte"],
 	"editor.formatOnPaste": true,
 	"editor.quickSuggestions": {
 		"other": true,
