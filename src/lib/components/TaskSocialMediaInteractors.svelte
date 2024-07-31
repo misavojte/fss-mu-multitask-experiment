@@ -6,7 +6,7 @@
 	}>;
 </script>
 
-<div class="grid grid-cols-2 w-full gap-4">
+<div class="grid grid-cols-2 w-full gap-4 p-4">
 	{#each socialMediaButtons as { text, id }, i}
 		<TaskSocialMediaButton {id} {text} on:click />
 	{/each}

@@ -4,7 +4,7 @@
 	export let id: string;
 	const dispatch = createEventDispatcher();
 	const handleClick = () => {
-		dispatch('click', { id });
+		dispatch('click', { id, timestamp: Date.now() });
 	};
 </script>
 

@@ -1,0 +1,106 @@
+import type { Meta, StoryObj } from '@storybook/svelte';
+import TaskSocialMedia from './TaskSocialMedia.svelte';
+
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+const meta = {
+	title: 'Experiment/TaskSocialMedia',
+	component: TaskSocialMedia,
+	tags: ['autodocs'],
+	argTypes: {
+		socialMediaButtons: {
+			control: 'object',
+			defaultValue: [
+				{
+					text: 'Share',
+					id: 'share'
+				},
+				{
+					text: 'Like',
+					id: 'like'
+				},
+				{
+					text: 'Comment',
+					id: 'comment'
+				},
+				{
+					text: 'Save',
+					id: 'save'
+				}
+			]
+		},
+		socialMediaStimuli: {
+			control: 'object',
+			defaultValue: [
+				{
+					id: '1',
+					src: '/task/3/1.png'
+				}
+			]
+		}
+	}
+} satisfies Meta<TaskSocialMedia>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {
+	args: {
+		socialMediaButtons: [
+			{
+				text: 'Share',
+				id: 'share'
+			},
+			{
+				text: 'Like',
+				id: 'like'
+			},
+			{
+				text: 'Comment',
+				id: 'comment'
+			},
+			{
+				text: 'Save',
+				id: 'save'
+			}
+		],
+		socialMediaStimuli: [
+			{
+				id: '1',
+				src: '/task/3/1.png'
+			}
+		]
+	}
+};
+
+export const QuickInspect: Story = {
+	args: {
+		socialMediaButtons: [
+			{
+				text: 'Share',
+				id: 'share'
+			},
+			{
+				text: 'Like',
+				id: 'like'
+			},
+			{
+				text: 'Comment',
+				id: 'comment'
+			},
+			{
+				text: 'Save',
+				id: 'save'
+			}
+		],
+		socialMediaStimuli: [
+			{
+				id: '1',
+				src: '/task/3/1.png'
+			}
+		],
+		initialDelay: 1000,
+		stimulusMaxDuration: 2000
+	}
+};
