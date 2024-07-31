@@ -7,6 +7,7 @@
 	} | null = null;
 	export let width: number = 300;
 	export let height: number = 500;
+	export let noStimulusMessage: string = 'No stimulus available';
 
 	const dispatch = createEventDispatcher();
 	let src: string | null = null;
@@ -35,7 +36,7 @@
 			out:fly={{ y: height, duration: 500, opacity: 1 }}
 			in:fly={{ y: -height, duration: 500, opacity: 1 }}
 		>
-			<p class="text-gray-500">No stimulus available</p>
+			<p class="text-gray-500">{noStimulusMessage}</p>
 		</div>
 	{/if}
 	{#if src !== null}
