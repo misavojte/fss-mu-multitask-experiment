@@ -22,14 +22,18 @@ type RootTranslation = {
 	 * T​h​i​s​ ​i​s​ ​a​ ​f​o​o​t​e​r​ ​t​e​x​t
 	 */
 	footerText: string
-	/**
-	 * P​ř​e​d​c​h​o​z​í​ ​s​e​k​c​e
-	 */
-	questionBatteryBack: string
-	/**
-	 * P​ř​e​s​k​o​č​i​t​ ​n​a​ ​d​a​l​š​í​ ​s​e​k​c​i
-	 */
-	questionBatteryNext: string
+	question: {
+		battery: {
+			/**
+			 * P​ř​e​d​c​h​o​z​í​ ​s​e​k​c​e
+			 */
+			back: string
+			/**
+			 * P​ř​e​s​k​o​č​i​t​ ​n​a​ ​d​a​l​š​í​ ​s​e​k​c​i
+			 */
+			next: string
+		}
+	}
 }
 
 export type TranslationFunctions = {
@@ -41,14 +45,18 @@ export type TranslationFunctions = {
 	 * This is a footer text
 	 */
 	footerText: () => LocalizedString
-	/**
-	 * Předchozí sekce
-	 */
-	questionBatteryBack: () => LocalizedString
-	/**
-	 * Přeskočit na další sekci
-	 */
-	questionBatteryNext: () => LocalizedString
+	question: {
+		battery: {
+			/**
+			 * Předchozí sekce
+			 */
+			back: () => LocalizedString
+			/**
+			 * Přeskočit na další sekci
+			 */
+			next: () => LocalizedString
+		}
+	}
 }
 
 export type Formatters = {}

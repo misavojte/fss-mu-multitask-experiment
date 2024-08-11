@@ -102,14 +102,14 @@
 			on:click={handleGoBack}
 			disabled={$progressStore === 0}
 		>
-			{$LL.questionBatteryBack()}
+			{$LL.question.battery.back()}
 		</button>
 		<button
 			class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
 			on:click={handleOnInput}
 			disabled={shouldSkipBeDisabled}
 		>
-			{$LL.questionBatteryNext()}
+			{$LL.question.battery.next()}
 		</button>
 	</div>
 </div>

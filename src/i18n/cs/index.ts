@@ -4,8 +4,12 @@ const cs = {
 	// TODO: your translations go here
 	HI: 'Hi {name:string}! Please leave a star if you like this project: https://github.com/ivanhofer/typesafe-i18n',
 	footerText: 'This is a footer text',
-	questionBatteryBack: 'Předchozí sekce',
-	questionBatteryNext: 'Přeskočit na další sekci'
+	question: {
+		battery: {
+			back: 'Předchozí sekce',
+			next: 'Přeskočit na další sekci'
+		}
+	}
 } satisfies BaseTranslation;
 
 export default cs;
