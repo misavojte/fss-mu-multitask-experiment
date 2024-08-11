@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import InterfaceFooter from './InterfaceFooter.svelte';
-import { initI18n } from '../../locale';
+import { setLocale } from '../../i18n/i18n-svelte';
+import { loadLocale } from '../../i18n/i18n-util.sync';
 
-initI18n();
+loadLocale('cs');
+setLocale('cs');
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {

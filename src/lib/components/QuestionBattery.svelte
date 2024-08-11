@@ -6,12 +6,9 @@
 	import InterfaceProgress from './InterfaceProgress.svelte';
 	import QuestionTypeText from './QuestionTypeText.svelte';
 	import QuestionTypeInstruction from './QuestionTypeInstruction.svelte';
+	import LL from '../../i18n/i18n-svelte';
 
 	export let questions: IQuestionBattery;
-	export let locale: {
-		back: string;
-		next: string;
-	};
 
 	const progressStore = writable(0);
 	const dispatch = createEventDispatcher();
@@ -105,14 +102,14 @@
 			on:click={handleGoBack}
 			disabled={$progressStore === 0}
 		>
-			{locale.back}
+			{$LL.questionBatteryBack()}
 		</button>
 		<button
 			class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
 			on:click={handleOnInput}
 			disabled={shouldSkipBeDisabled}
 		>
-			{locale.next}
+			{$LL.questionBatteryNext()}
 		</button>
 	</div>
 </div>

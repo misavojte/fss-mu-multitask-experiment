@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import QuestionBattery from './QuestionBattery.svelte';
+import { setLocale } from '../../i18n/i18n-svelte';
+import { loadLocale } from '../../i18n/i18n-util.sync';
+
+loadLocale('cs');
+setLocale('cs');
 
 const defaultValue = [
 	{

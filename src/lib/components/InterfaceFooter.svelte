@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import LL from '../../i18n/i18n-svelte';
 	import { base } from '$app/paths';
 
 	const currentYear = new Date().getFullYear();
@@ -9,7 +9,7 @@
 	<div class="container mx-auto py-4 px-5 gap-4 flex flex-wrap flex-col sm:flex-row">
 		<img src="{base}/logo.png" alt="Logo" class="h-8 w-auto" />
 		<p class="text-xs text-neutral-500 sm:ml-auto sm:mt-0 mt-2 sm:text-left">
-			{$_('footer.text')}
+			{$LL.footerText()}
 		</p>
 		<p class="text-xs text-neutral-500 sm:ml-auto sm:mt-0 mt-2 sm:text-left">© {currentYear}</p>
 	</div>
