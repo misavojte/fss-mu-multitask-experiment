@@ -23,24 +23,29 @@ export interface StartQuestionEntryObject {
 export interface IQuestionConfigBase {
 	id: string;
 	type: string;
+	headingText: string;
 	required: boolean;
 }
 
 export interface IQuestionConfigSelect extends IQuestionConfigBase {
 	type: 'select';
-	options: string[];
+	options: readonly {
+		id: string;
+		text: string;
+	}[];
 }
 
-export interface IQuestionConfigEmail extends IQuestionConfigBase {
-	type: 'email';
+export interface IQuestionConfigText extends IQuestionConfigBase {
+	type: 'text';
+	confirmText: string;
 }
 
-export interface IQuestionConfigNumber extends IQuestionConfigBase {
-	type: 'number';
+export interface IQuestionConfigInstruction extends IQuestionConfigBase {
+	type: 'instruction';
+	paragraphs: readonly string[];
+	confirmText: string;
 }
 
-export type IQuestionConfig = (
-	| IQuestionConfigSelect
-	| IQuestionConfigEmail
-	| IQuestionConfigNumber
-)[];
+export type IQuestion = IQuestionConfigSelect | IQuestionConfigText | IQuestionConfigInstruction;
+
+export type IQuestionBattery = readonly IQuestion[];

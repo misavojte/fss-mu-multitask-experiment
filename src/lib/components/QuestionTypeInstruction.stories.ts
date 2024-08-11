@@ -18,7 +18,8 @@ const meta = {
 					'This is a question instruction.',
 					'This is a question instruction.',
 					'This is a question instruction.'
-				]
+				],
+				type: 'instruction'
 			}
 		},
 		value: {
@@ -42,8 +43,10 @@ export const Default: Story = {
 				'This is a question instruction.',
 				'This is a question instruction.',
 				'This is a question instruction.'
-			]
-		},
+			],
+			required: true,
+			type: 'instruction'
+		} as const,
 		value: ''
 	}
 };
