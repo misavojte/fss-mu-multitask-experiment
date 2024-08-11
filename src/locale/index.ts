@@ -1,8 +1,9 @@
-import { init, register } from 'svelte-i18n';
+import { addMessages, init, register } from 'svelte-i18n';
 
 export const initI18n = () => {
 	// Register translations
 	register('cs', () => import('./cs.json'));
+	addMessages('cs');
 	// Initialize the i18n library in the application
 	init({
 		initialLocale: 'cs',
