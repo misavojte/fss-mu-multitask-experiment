@@ -23,6 +23,36 @@ type RootTranslation = {
 	 */
 	footerText: string
 	question: {
+		'1': {
+			/**
+			 * V​í​t​e​j​t​e​ ​v​ ​e​H​e​a​l​t​h​ ​E​x​p​e​r​i​m​e​n​t​u
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+		}
+		'2': {
+			/**
+			 * J​a​k​ ​s​e​ ​d​n​e​s​ ​c​í​t​í​t​e​?
+			 */
+			heading: string
+			/**
+			 * P​o​t​v​r​d​i​t
+			 */
+			confirm: string
+		}
+		'3': {
+			/**
+			 * J​a​k​ ​s​e​ ​z​í​t​r​a​ ​b​u​d​e​t​e​ ​c​í​t​i​t​?
+			 */
+			heading: string
+			/**
+			 * P​o​t​v​r​d​i​t
+			 */
+			confirm: string
+		}
 		battery: {
 			/**
 			 * P​ř​e​d​c​h​o​z​í​ ​s​e​k​c​e
@@ -46,6 +76,36 @@ export type TranslationFunctions = {
 	 */
 	footerText: () => LocalizedString
 	question: {
+		'1': {
+			/**
+			 * Vítejte v eHealth Experimentu
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+		}
+		'2': {
+			/**
+			 * Jak se dnes cítíte?
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Potvrdit
+			 */
+			confirm: () => LocalizedString
+		}
+		'3': {
+			/**
+			 * Jak se zítra budete cítit?
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Potvrdit
+			 */
+			confirm: () => LocalizedString
+		}
 		battery: {
 			/**
 			 * Předchozí sekce
