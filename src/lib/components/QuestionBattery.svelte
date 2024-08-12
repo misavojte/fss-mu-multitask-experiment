@@ -72,7 +72,9 @@
 	<div class="flex flex-col justify-center items-center row-span-2 w-full">
 		<InterfaceProgress currentValue={$progressStore} maxValue={questions.length} />
 	</div>
-	<div class="justify-center items-center relative grid grid-rows-1 grid-cols-1 overflow-hidden">
+	<div
+		class="justify-center items-center relative grid grid-rows-1 grid-cols-1 overflow-hidden grow"
+	>
 		{#each questionSingleArray as question (question.id)}
 			<div
 				in:fly={{ delay: 500, x: inAnimationXValue() }}

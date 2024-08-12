@@ -5,8 +5,6 @@
 
 	loadLocale('cs');
 	setLocale('cs');
-
-	export const prerender = true;
 </script>
 
 <slot />

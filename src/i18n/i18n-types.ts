@@ -19,7 +19,7 @@ type RootTranslation = {
 	 */
 	HI: RequiredParams<'name'>
 	/**
-	 * T​h​i​s​ ​i​s​ ​a​ ​f​o​o​t​e​r​ ​t​e​x​t
+	 * A​p​l​i​k​a​c​e​ ​j​e​ ​s​o​u​č​á​s​t​í​ ​v​ý​z​k​u​m​u​ ​n​a​ ​F​a​k​u​l​t​ě​ ​s​o​c​i​á​l​n​í​c​h​ ​s​t​u​d​i​í​ ​M​a​s​a​r​y​k​o​v​y​ ​u​n​i​v​e​r​z​i​t​y​.
 	 */
 	footerText: string
 	question: {
@@ -32,10 +32,32 @@ type RootTranslation = {
 			 * P​o​k​r​a​č​o​v​a​t
 			 */
 			confirm: string
+			paragraphs: {
+				/**
+				 * W​e​ ​a​r​e​ ​s​i​m​u​l​a​t​i​n​g​ ​a​ ​t​y​p​i​c​a​l​ ​d​i​g​i​t​a​l​ ​e​n​v​i​r​o​n​m​e​n​t​ ​w​h​e​r​e​ ​m​e​d​i​a​ ​m​u​l​t​i​t​a​s​k​i​n​g​ ​i​s​ ​o​f​t​e​n​ ​r​e​q​u​i​r​e​d​,​ ​h​e​l​p​i​n​g​ ​u​s​ ​u​n​d​e​r​s​t​a​n​d​ ​h​o​w​ ​w​e​l​l​ ​p​e​o​p​l​e​ ​c​a​n​ ​m​a​n​a​g​e​ ​m​u​l​t​i​p​l​e​ ​t​a​s​k​s​ ​s​i​m​u​l​t​a​n​e​o​u​s​l​y​.​ ​P​l​e​a​s​e​ ​r​e​a​d​ ​t​h​e​ ​i​n​s​t​r​u​c​t​i​o​n​s​ ​c​a​r​e​f​u​l​l​y​ ​b​e​f​o​r​e​ ​p​r​o​c​e​e​d​i​n​g​ ​t​o​ ​t​h​e​ ​p​r​a​c​t​i​c​e​ ​a​n​d​ ​m​a​i​n​ ​t​r​i​a​l​s​.
+				 */
+				'1': string
+			}
 		}
 		'2': {
 			/**
-			 * J​a​k​ ​s​e​ ​d​n​e​s​ ​c​í​t​í​t​e​?
+			 * C​o​ ​b​u​d​e​t​e​ ​d​ě​l​a​t​?
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * I​n​ ​t​h​i​s​ ​e​x​p​e​r​i​m​e​n​t​,​ ​y​o​u​ ​w​i​l​l​ ​e​n​g​a​g​e​ ​i​n​ ​t​h​r​e​e​ ​t​a​s​k​s​ ​s​i​m​u​l​t​a​n​e​o​u​s​l​y​:​ ​p​a​t​t​e​r​n​-​m​a​t​c​h​i​n​g​,​ ​w​a​t​c​h​i​n​g​ ​a​ ​d​o​c​u​m​e​n​t​a​r​y​,​ ​a​n​d​ ​r​e​s​p​o​n​d​i​n​g​ ​t​o​ ​m​e​m​e​s​ ​o​n​ ​s​o​c​i​a​l​ ​m​e​d​i​a​.
+				 */
+				'1': string
+			}
+		}
+		'3': {
+			/**
+			 * Z​a​d​e​j​t​e​ ​p​á​r​o​v​a​c​í​ ​I​D​ ​p​r​o​ ​e​x​p​e​r​i​e​m​n​t​.
 			 */
 			heading: string
 			/**
@@ -43,15 +65,93 @@ type RootTranslation = {
 			 */
 			confirm: string
 		}
-		'3': {
+		'4': {
 			/**
-			 * J​a​k​ ​s​e​ ​z​í​t​r​a​ ​b​u​d​e​t​e​ ​c​í​t​i​t​?
+			 * P​a​t​t​e​r​n​ ​M​a​t​c​h​i​n​g​ ​T​a​s​k
 			 */
 			heading: string
 			/**
-			 * P​o​t​v​r​d​i​t
+			 * R​o​z​u​m​í​m
 			 */
 			confirm: string
+			paragraphs: {
+				/**
+				 * h​i​s​ ​i​s​ ​y​o​u​r​ ​p​r​i​m​a​r​y​ ​t​a​s​k​.​ ​Y​o​u​ ​w​i​l​l​ ​b​e​ ​p​r​e​s​e​n​t​e​d​ ​w​i​t​h​ ​a​ ​3​ ​×​ ​3​ ​m​a​t​r​i​x​ ​w​h​e​r​e​ ​e​i​g​h​t​ ​o​f​ ​t​h​e​ ​n​i​n​e​ ​c​e​l​l​s​ ​c​o​n​t​a​i​n​ ​a​b​s​t​r​a​c​t​ ​s​h​a​p​e​s​,​ ​a​n​d​ ​o​n​e​ ​c​e​l​l​ ​i​n​ ​t​h​e​ ​b​o​t​t​o​m​ ​r​i​g​h​t​-​h​a​n​d​ ​c​o​r​n​e​r​ ​i​s​ ​e​m​p​t​y​.
+				 */
+				'1': string
+				/**
+				 * Y​o​u​r​ ​g​o​a​l​ ​i​s​ ​t​o​ ​c​o​m​p​l​e​t​e​ ​t​h​e​ ​m​a​t​r​i​x​ ​b​y​ ​d​e​d​u​c​i​n​g​ ​t​h​e​ ​m​i​s​s​i​n​g​ ​s​h​a​p​e​ ​f​r​o​m​ ​t​h​e​ ​f​o​u​r​ ​p​o​s​s​i​b​l​e​ ​a​l​t​e​r​n​a​t​i​v​e​s​ ​a​n​d​ ​s​e​l​e​c​t​i​n​g​ ​i​t​ ​w​i​t​h​ ​a​ ​m​o​u​s​e​ ​c​l​i​c​k​.​ ​T​o​ ​f​i​n​d​ ​t​h​e​ ​c​o​r​r​e​c​t​ ​s​h​a​p​e​,​ ​a​n​a​l​y​z​e​ ​t​h​e​ ​r​e​l​a​t​i​o​n​s​h​i​p​s​ ​b​e​t​w​e​e​n​ ​t​h​e​ ​s​h​a​p​e​s​ ​w​i​t​h​i​n​ ​t​h​e​ ​m​a​t​r​i​x​,​ ​c​o​n​s​i​d​e​r​i​n​g​ ​f​o​u​r​ ​d​i​m​e​n​s​i​o​n​s​:​ ​s​h​a​p​e​,​ ​c​o​l​o​r​,​ ​s​i​z​e​,​ ​a​n​d​ ​p​o​s​i​t​i​o​n​.
+				 */
+				'2': string
+				/**
+				 * T​h​e​r​e​ ​i​s​ ​n​o​ ​t​i​m​e​ ​l​i​m​i​t​ ​f​o​r​ ​e​a​c​h​ ​r​e​s​p​o​n​s​e​.​ ​T​h​e​ ​n​e​x​t​ ​t​r​i​a​l​ ​w​i​l​l​ ​b​e​g​i​n​ ​a​f​t​e​r​ ​t​h​e​ ​r​e​s​p​o​n​s​e​ ​i​s​ ​m​a​d​e​.​ ​F​o​r​ ​e​a​c​h​ ​c​o​r​r​e​c​t​ ​a​n​s​w​e​r​,​ ​y​o​u​ ​w​i​l​l​ ​e​a​r​n​ ​t​h​r​e​e​ ​p​o​i​n​t​s​.
+				 */
+				'3': string
+			}
+		}
+		'5': {
+			/**
+			 * D​o​c​u​m​e​n​t​a​r​y​ ​T​a​s​k
+			 */
+			heading: string
+			/**
+			 * R​o​z​u​m​í​m
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * T​h​i​s​ ​i​s​ ​y​o​u​r​ ​s​e​c​o​n​d​a​r​y​ ​t​a​s​k​.​ ​Y​o​u​ ​w​i​l​l​ ​w​a​t​c​h​ ​a​ ​d​o​c​u​m​e​n​t​a​r​y​ ​o​n​ ​t​h​e​ ​s​c​r​e​e​n​ ​a​n​d​ ​a​n​s​w​e​r​ ​q​u​e​s​t​i​o​n​s​ ​a​b​o​u​t​ ​t​h​e​ ​c​o​n​t​e​n​t​.​ ​T​h​e​ ​d​o​c​u​m​e​n​t​a​r​y​ ​w​i​l​l​ ​b​e​ ​p​a​u​s​e​d​ ​a​t​ ​r​a​n​d​o​m​ ​i​n​t​e​r​v​a​l​s​,​ ​a​n​d​ ​y​o​u​ ​w​i​l​l​ ​b​e​ ​a​s​k​e​d​ ​t​o​ ​a​n​s​w​e​r​ ​a​ ​q​u​e​s​t​i​o​n​ ​a​b​o​u​t​ ​t​h​e​ ​c​o​n​t​e​n​t​.​ ​Y​o​u​ ​w​i​l​l​ ​h​a​v​e​ ​2​0​ ​s​e​c​o​n​d​s​ ​t​o​ ​r​e​s​p​o​n​d​ ​t​o​ ​e​a​c​h​ ​q​u​e​s​t​i​o​n​.
+				 */
+				'1': string
+				/**
+				 * F​o​r​ ​e​a​c​h​ ​c​o​r​r​e​c​t​ ​a​n​s​w​e​r​,​ ​y​o​u​ ​w​i​l​l​ ​e​a​r​n​ ​o​n​e​ ​p​o​i​n​t​.
+				 */
+				'2': string
+			}
+		}
+		'6': {
+			/**
+			 * S​o​c​i​a​l​ ​M​e​d​i​a​ ​T​a​s​k
+			 */
+			heading: string
+			/**
+			 * R​o​z​u​m​í​m
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * T​h​i​s​ ​i​s​ ​y​o​u​r​ ​t​e​r​t​i​a​r​y​ ​t​a​s​k​.​ ​Y​o​u​ ​w​i​l​l​ ​b​e​ ​p​r​e​s​e​n​t​e​d​ ​w​i​t​h​ ​a​ ​m​e​m​e​ ​a​n​d​ ​a​s​k​e​d​ ​t​o​ ​i​n​t​e​r​a​c​t​ ​w​i​t​h​ ​i​t​ ​b​y​ ​c​h​o​o​s​i​n​g​ ​o​n​e​ ​o​f​ ​t​h​e​ ​f​o​u​r​ ​p​o​s​s​i​b​l​e​ ​r​e​s​p​o​n​s​e​s​:​ ​s​h​a​r​e​,​ ​l​i​k​e​,​ ​c​o​m​m​e​n​t​,​ ​o​r​ ​s​a​v​e​.
+				 */
+				'1': string
+				/**
+				 * F​o​r​ ​e​a​c​h​ ​c​o​r​r​e​c​t​ ​a​n​s​w​e​r​,​ ​y​o​u​ ​w​i​l​l​ ​e​a​r​n​ ​o​n​e​ ​p​o​i​n​t​.
+				 */
+				'2': string
+			}
+		}
+		'7': {
+			/**
+			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​ ​2​5​0​0​ ​K​č​!
+			 */
+			heading: string
+			/**
+			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​p​r​v​n​í​ ​z​k​u​š​e​b​n​í​ ​k​o​l​o
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * Y​o​u​r​ ​o​b​j​e​c​t​i​v​e​ ​i​s​ ​t​o​ ​a​c​c​u​m​u​l​a​t​e​ ​a​s​ ​m​a​n​y​ ​p​o​i​n​t​s​ ​a​s​ ​p​o​s​s​i​b​l​e​.​ ​T​h​e​ ​t​o​t​a​l​ ​p​o​i​n​t​s​ ​y​o​u​ ​e​a​r​n​ ​w​i​l​l​ ​d​e​t​e​r​m​i​n​e​ ​y​o​u​r​ ​e​l​i​g​i​b​i​l​i​t​y​ ​f​o​r​ ​a​ ​g​r​e​a​t​e​r​ ​r​e​w​a​r​d​.​ ​I​f​ ​y​o​u​ ​a​r​e​ ​a​m​o​n​g​ ​t​h​e​ ​t​o​p​ ​f​i​v​e​ ​p​e​r​f​o​r​m​e​r​s​,​ ​y​o​u​l​l​ ​h​a​v​e​ ​a​ ​c​h​a​n​c​e​ ​t​o​ ​w​i​n​ ​a​ ​€​1​0​0​ ​p​r​i​z​e​ ​d​r​a​w​.
+				 */
+				'1': string
+				/**
+				 * T​h​e​r​e​f​o​r​e​,​ ​p​r​i​o​r​i​t​i​z​e​ ​t​h​e​ ​p​a​t​t​e​r​n​-​m​a​t​c​h​i​n​g​ ​t​a​s​k​ ​w​h​i​l​e​ ​m​a​n​a​g​i​n​g​ ​y​o​u​r​ ​a​t​t​e​n​t​i​o​n​ ​a​c​r​o​s​s​ ​a​l​l​ ​t​a​s​k​s​.
+				 */
+				'2': string
+				/**
+				 * I​f​ ​y​o​u​ ​u​n​d​e​r​s​t​a​n​d​ ​t​h​e​s​e​ ​i​n​s​t​r​u​c​t​i​o​n​s​,​ ​p​l​e​a​s​e​ ​i​n​d​i​c​a​t​e​ ​b​y​ ​p​r​e​s​s​i​n​g​ ​"​Y​e​s​,​ ​c​o​n​t​i​n​u​e​"​ ​a​n​d​ ​w​e​ ​c​a​n​ ​p​r​o​c​e​e​d​ ​w​i​t​h​ ​s​o​m​e​ ​p​r​a​c​t​i​c​e​ ​t​r​i​a​l​s​.
+				 */
+				'3': string
+			}
 		}
 		battery: {
 			/**
@@ -72,7 +172,7 @@ export type TranslationFunctions = {
 	 */
 	HI: (arg: { name: string }) => LocalizedString
 	/**
-	 * This is a footer text
+	 * Aplikace je součástí výzkumu na Fakultě sociálních studií Masarykovy univerzity.
 	 */
 	footerText: () => LocalizedString
 	question: {
@@ -85,10 +185,32 @@ export type TranslationFunctions = {
 			 * Pokračovat
 			 */
 			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * We are simulating a typical digital environment where media multitasking is often required, helping us understand how well people can manage multiple tasks simultaneously. Please read the instructions carefully before proceeding to the practice and main trials.
+				 */
+				'1': () => LocalizedString
+			}
 		}
 		'2': {
 			/**
-			 * Jak se dnes cítíte?
+			 * Co budete dělat?
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * In this experiment, you will engage in three tasks simultaneously: pattern-matching, watching a documentary, and responding to memes on social media.
+				 */
+				'1': () => LocalizedString
+			}
+		}
+		'3': {
+			/**
+			 * Zadejte párovací ID pro experiemnt.
 			 */
 			heading: () => LocalizedString
 			/**
@@ -96,15 +218,93 @@ export type TranslationFunctions = {
 			 */
 			confirm: () => LocalizedString
 		}
-		'3': {
+		'4': {
 			/**
-			 * Jak se zítra budete cítit?
+			 * Pattern Matching Task
 			 */
 			heading: () => LocalizedString
 			/**
-			 * Potvrdit
+			 * Rozumím
 			 */
 			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * his is your primary task. You will be presented with a 3 × 3 matrix where eight of the nine cells contain abstract shapes, and one cell in the bottom right-hand corner is empty.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Your goal is to complete the matrix by deducing the missing shape from the four possible alternatives and selecting it with a mouse click. To find the correct shape, analyze the relationships between the shapes within the matrix, considering four dimensions: shape, color, size, and position.
+				 */
+				'2': () => LocalizedString
+				/**
+				 * There is no time limit for each response. The next trial will begin after the response is made. For each correct answer, you will earn three points.
+				 */
+				'3': () => LocalizedString
+			}
+		}
+		'5': {
+			/**
+			 * Documentary Task
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Rozumím
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * This is your secondary task. You will watch a documentary on the screen and answer questions about the content. The documentary will be paused at random intervals, and you will be asked to answer a question about the content. You will have 20 seconds to respond to each question.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * For each correct answer, you will earn one point.
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'6': {
+			/**
+			 * Social Media Task
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Rozumím
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * This is your tertiary task. You will be presented with a meme and asked to interact with it by choosing one of the four possible responses: share, like, comment, or save.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * For each correct answer, you will earn one point.
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'7': {
+			/**
+			 * Získejte dostatek bodů a vyhrajte 2500 Kč!
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Rozumím, začít první zkušební kolo
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Your objective is to accumulate as many points as possible. The total points you earn will determine your eligibility for a greater reward. If you are among the top five performers, youll have a chance to win a €100 prize draw.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Therefore, prioritize the pattern-matching task while managing your attention across all tasks.
+				 */
+				'2': () => LocalizedString
+				/**
+				 * If you understand these instructions, please indicate by pressing "Yes, continue" and we can proceed with some practice trials.
+				 */
+				'3': () => LocalizedString
+			}
 		}
 		battery: {
 			/**

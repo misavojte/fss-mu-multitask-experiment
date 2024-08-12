@@ -19,7 +19,7 @@
 	};
 </script>
 
-<Question questionText={question.headingText}>
+<Question questionText={question.headingText} isRequired={question.required}>
 	<form class="flex flex-col gap-4" on:submit|preventDefault={handleOptionChange}>
 		{#if question.type === 'text'}
 			<input
@@ -52,7 +52,7 @@
 		<input
 			type="submit"
 			value={question.confirmText}
-			class="bg-blue-500 text-white rounded-lg p-4 mt-4 cursor-pointer"
+			class="bg-blue-500 text-white rounded-lg w-fit mx-auto p-4 mt-4 cursor-pointer"
 		/>
 	</form>
 </Question>
