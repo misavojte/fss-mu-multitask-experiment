@@ -14,7 +14,7 @@
 	export let videoDocumentarySrc: string;
 </script>
 
-<div class="w-full h-full flex gap-4 p-4 justify-center items-start box-border">
+<div class="w-full h-full flex gap-4 p-4 justify-center items-start box-border max-h-screen">
 	<TaskSocialMedia
 		socialMediaButtons={[
 			{ text: 'Like', id: 'like' },

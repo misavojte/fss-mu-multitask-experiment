@@ -1,5 +1,7 @@
 <script lang="ts">
 	export let videoDocumentarySrc: string;
+	export let width: number = 400;
+	export let height: number = 300;
 	export let hideAllControls: boolean = false;
 	export let autoplay: boolean = false;
 	export let muted: boolean = false;
@@ -12,7 +14,9 @@
 		{autoplay}
 		preload="metadata"
 		{muted}
-		class="absolute h-full object-cover"
+		class="h-full object-cover"
+		{width}
+		{height}
 	>
 		<track kind="captions" src={videoDocumentarySrc} srclang="en" label="English" default />
 	</video>
