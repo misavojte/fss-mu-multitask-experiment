@@ -1,7 +1,10 @@
 import type { Readable } from 'svelte/store';
 
-export const waitForCondition = (store: Readable<boolean>, maxTimeout: number): Promise<void> => {
-	return new Promise((resolve, reject) => {
+export const waitForCondition = (
+	store: Readable<boolean>,
+	maxTimeout: number
+): Promise<boolean> => {
+	return new Promise((resolve) => {
 		// Initialize `unsubscribe` to an empty function
 		let unsubscribe: () => void = () => {};
 
@@ -9,14 +12,14 @@ export const waitForCondition = (store: Readable<boolean>, maxTimeout: number): 
 		unsubscribe = store.subscribe((value) => {
 			if (value) {
 				unsubscribe(); // Unsubscribe and resolve if condition is met
-				resolve();
+				resolve(true);
 			}
 		});
 
-		// Timeout to reject the promise if the condition is not met in time
+		// Timeout to resolve with `false` if condition is not met
 		setTimeout(() => {
 			unsubscribe();
-			reject(new Error('timeout waiting for condition for: ' + maxTimeout));
+			resolve(false);
 		}, maxTimeout);
 	});
 };

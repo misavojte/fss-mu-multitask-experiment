@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { waitForCondition, waitForTimeout } from '$lib/utils/waitForCondition';
+	import { writable } from 'svelte/store';
 	import TaskSocialMediaInteractors from './TaskSocialMediaInteractors.svelte';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
@@ -20,39 +22,39 @@
 
 	const stimulusHeight = width * stimulusAspectRatio;
 
+	const wasClicked = writable(false);
+
 	let stimulus: { src: string; id: string } | null = null; // always begin with no stimulus
 
-	let timeout: number | null = null;
-	let alreadyPickedStimuliIndexes: number[] = [];
-
-	const shuffledStimuli = socialMediaStimuli.slice().sort(() => Math.random() - 0.5);
-	let currentStimulusIndex = 0;
+	const shuffledStimuli = socialMediaStimuli.sort(() => Math.random() - 0.5);
 
 	const handleSocialMediaInteractorsClick = (
 		event: CustomEvent<{ id: string; timestamp: number }>
 	) => {
+		if (!stimulus) return;
 		dispatch('clickSocialMediaInteractors', event.detail);
+		wasClicked.set(true);
 	};
 
 	onMount(() => {
-		triggerNext(initialDelay);
+		logic();
 	});
 
-	const triggerNext = (delay: number) => {
-		timeout = window.setTimeout(() => {
-			if (currentStimulusIndex < shuffledStimuli.length) {
-				stimulus = shuffledStimuli[currentStimulusIndex];
-				dispatch('stimulusShown');
-				timeout = window.setTimeout(() => {
-					stimulus = null;
-					dispatch('stimulusHidden');
-					currentStimulusIndex++;
-					triggerNext(0);
-				}, stimulusMaxDuration);
-			} else {
-				dispatch('allStimuliShown');
+	const logic = async () => {
+		for await (const loopStimulus of shuffledStimuli) {
+			await waitForTimeout(initialDelay);
+			wasClicked.set(false);
+			stimulus = loopStimulus;
+			dispatch('stimulusShown');
+			const wasClickedWithinTime = await waitForCondition(wasClicked, stimulusMaxDuration);
+			if (!wasClickedWithinTime) {
+				dispatch('timeoutSocialMediaInteractors');
 			}
-		}, delay);
+			stimulus = null;
+			dispatch('stimulusHidden');
+		}
+
+		dispatch('allStimuliShown');
 	};
 </script>
 

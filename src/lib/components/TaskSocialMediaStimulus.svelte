@@ -7,7 +7,7 @@
 	} | null = null;
 	export let width: number = 300;
 	export let height: number = 500;
-	export let noStimulusMessage: string = 'No stimulus available';
+	export let noStimulusMessage: string = 'No stimulus shown';
 
 	const dispatch = createEventDispatcher();
 	let src: string | null = null;
