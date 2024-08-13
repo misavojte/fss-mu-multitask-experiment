@@ -6,6 +6,8 @@
 	import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
 	import InterfaceFooter from '$lib/components/InterfaceFooter.svelte';
 	import Task from '$lib/components/Task.svelte';
+	import { base } from '$app/paths';
+	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
 
 	let show = false;
 
@@ -75,6 +77,25 @@
 		}
 	];
 
+	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
+
+	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
+	const videoDocumentarySrc = base + '/video/video.mp4';
+	const socialMediaStimuli = [
+		{
+			id: '1',
+			src: base + '/task/3/1.png'
+		},
+		{
+			id: '2',
+			src: base + '/task/3/2.png'
+		},
+		{
+			id: '3',
+			src: base + '/task/3/3.png'
+		}
+	];
+
 	const questionsService = new TimestampQuestionServiceMock();
 </script>
 
@@ -84,6 +105,6 @@
 		<InterfaceFooter />
 	{/if}
 	{#if show}
-		<Task />
+		<Task {patternMatchingObjects} {socialMediaStimuli} {videoDocumentarySrc} />
 	{/if}
 </div>
