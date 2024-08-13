@@ -13,7 +13,11 @@ const patternMatchingService = new TaskPatternMatchingServiceBase();
 const meta = {
 	title: 'Experiment/Task',
 	component: Task,
-	tags: ['autodocs']
+	tags: ['autodocs'],
+	parameters: {
+		// More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
+		layout: 'fullscreen'
+	}
 } satisfies Meta<Task>;
 
 export default meta;
