@@ -57,7 +57,7 @@
 </script>
 
 <div
-	class="grid w-full border border-gray-200 box-border rounded-2xl overflow-hidden pt-8"
+	class="grid w-full border border-gray-200 box-border rounded-2xl overflow-hidden pt-8 shrink-0"
 	style="width: {width}px;"
 >
 	<TaskSocialMediaStimulus {stimulus} {width} height={stimulusHeight} />
