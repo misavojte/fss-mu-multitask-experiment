@@ -4,14 +4,14 @@
 
 	export let patternMatchingObject: ITaskPatternMatchingObject;
 
-	const shuffledResponses = patternMatchingObject.responses.sort(() => Math.random() - 0.5);
+	$: shuffledResponses = patternMatchingObject.responses.sort(() => Math.random() - 0.5);
 
 	const dispatch = createEventDispatcher();
 
 	const handleResponseClick = (id: string) => {
 		const response = patternMatchingObject.responses.find((response) => response.id === id);
 		if (!response) throw new Error('Response not found');
-		dispatch('patternMatchingResponseClicked', response);
+		dispatch('patternMatchingResponseClicked', id);
 	};
 </script>
 

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	export let videoDocumentarySrc: string;
+	export let width: number = 400;
+	export let height: number = 300;
 	export let hideAllControls: boolean = false;
 	export let autoplay: boolean = false;
 	export let muted: boolean = false;
@@ -13,7 +15,9 @@
 		{autoplay}
 		preload="metadata"
 		{muted}
-		class="absolute h-full object-cover"
+		class="h-full object-cover"
+		{width}
+		{height}
 	>
 		<track kind="captions" src={base + videoDocumentarySrc} srclang="en" label="English" default />
 		<input type="hidden" value={base} />
