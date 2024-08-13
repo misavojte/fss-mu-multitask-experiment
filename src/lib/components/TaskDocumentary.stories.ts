@@ -34,6 +34,15 @@ export const DefaultVideo: Story = {
 	}
 };
 
+export const DefaultVideoMuted: Story = {
+	args: {
+		videoDocumentarySrc: '/video/video.mp4',
+		hideAllControls: true,
+		autoplay: true,
+		muted: true
+	}
+};
+
 export const AllowedControls: Story = {
 	args: {
 		videoDocumentarySrc: '/video/video.mp4',

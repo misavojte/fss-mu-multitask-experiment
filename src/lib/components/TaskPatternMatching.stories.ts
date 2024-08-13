@@ -15,9 +15,9 @@ const meta = {
 	component: TaskPatternMatching,
 	tags: ['autodocs'],
 	argTypes: {
-		patternMatchingObject: {
+		patternMatchingObjects: {
 			control: 'object',
-			defaultValue: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()[0]
+			defaultValue: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()
 		}
 	}
 } satisfies Meta<TaskPatternMatching>;
@@ -28,6 +28,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
 	args: {
-		patternMatchingObject: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()[0]
+		patternMatchingObjects: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()
 	}
 };

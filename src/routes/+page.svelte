@@ -5,6 +5,9 @@
 	import { LL } from '../i18n/i18n-svelte';
 	import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
 	import InterfaceFooter from '$lib/components/InterfaceFooter.svelte';
+	import Task from '$lib/components/Task.svelte';
+
+	let show = false;
 
 	let questions: IQuestionBattery = [
 		{
@@ -76,6 +79,11 @@
 </script>
 
 <div class="w-screen h-screen grow overflow-hidden p-4 container mx-auto flex flex-col gap-4">
-	<QuestionManager {questions} {questionsService} />
-	<InterfaceFooter />
+	{#if !show}
+		<QuestionManager {questions} {questionsService} on:questionnaireDone={() => (show = true)} />
+		<InterfaceFooter />
+	{/if}
+	{#if show}
+		<Task />
+	{/if}
 </div>

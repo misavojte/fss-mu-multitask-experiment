@@ -1,9 +1,13 @@
 <script>
+	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
 	import TaskDocumentary from './TaskDocumentary.svelte';
+	import TaskPatternMatching from './TaskPatternMatching.svelte';
 	import TaskSocialMedia from './TaskSocialMedia.svelte';
+
+	const taskPatternMatchingService = new TaskPatternMatchingServiceBase();
 </script>
 
-<div class="w-screen h-screen flex gap-4 p-4 justify-center items-start">
+<div class="w-screen h-screen flex gap-4 p-4 justify-center items-start box-border">
 	<TaskSocialMedia
 		socialMediaButtons={[
 			{ text: 'Like', id: 'like' },
@@ -26,12 +30,15 @@
 			}
 		]}
 	/>
-	<div class="flex flex-col gap-4 w-full h-full items-center">
-		<div class="w-1/2 h-1/2 bg-gray-200"></div>
+	<div class="flex flex-col gap-16 w-full h-full items-center">
+		<TaskPatternMatching
+			patternMatchingObjects={taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()}
+		/>
 		<TaskDocumentary
 			videoDocumentarySrc={'/video/video.mp4'}
 			hideAllControls={true}
 			autoplay={true}
+			muted={true}
 		/>
 	</div>
 </div>

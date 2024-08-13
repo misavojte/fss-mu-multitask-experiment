@@ -1,12 +1,16 @@
 <script lang="ts">
 	import { type IQuestionBattery, type ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import QuestionBattery from './QuestionBattery.svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let questionsService: ITimestampQuestionService;
 	export let questions: IQuestionBattery;
 
 	const handleQuestionnaireDone = (data: any) => {
 		promise = questionsService.saveQuestions(data);
+		dispatch('questionnaireDone');
 	};
 
 	let promise: Promise<void> | null = null;

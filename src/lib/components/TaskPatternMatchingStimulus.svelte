@@ -15,7 +15,7 @@
 	};
 </script>
 
-<div class="flex flex-col gap-4 w-full h-full items-center">
+<div class="flex flex-col gap-4 w-auto h-full items-center border p-4">
 	<div class="object-cover h-auto custom-container">
 		<img
 			src={patternMatchingObject.matrixSrc}
