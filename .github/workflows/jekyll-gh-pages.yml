@@ -40,10 +40,19 @@ jobs:
       - name: Build with SvelteKit
         run: npm run build
 
-      - name: Upload artifact
+      - name: Move SvelteKit build to artifact directory
+        run: mv build _site
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Move Storybook to subdirectory within artifact
+        run: mv storybook-static _site/storybook
+
+      - name: Upload combined artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: _site  # Uploads the directory with both SvelteKit and Storybook
 
   # Deployment job
   deploy:
@@ -56,3 +65,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+          
