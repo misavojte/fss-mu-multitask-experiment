@@ -3,6 +3,7 @@
 	import TaskDocumentary from './TaskDocumentary.svelte';
 	import TaskPatternMatching from './TaskPatternMatching.svelte';
 	import TaskSocialMedia from './TaskSocialMedia.svelte';
+	import { base } from '$app/paths';
 
 	const taskPatternMatchingService = new TaskPatternMatchingServiceBase();
 </script>
@@ -18,15 +19,15 @@
 		socialMediaStimuli={[
 			{
 				id: '1',
-				src: '/task/3/1.png'
+				src: base + 'task/3/1.png'
 			},
 			{
 				id: '2',
-				src: '/task/3/2.png'
+				src: base + 'task/3/2.png'
 			},
 			{
 				id: '3',
-				src: '/task/3/3.png'
+				src: base + 'task/3/3.png'
 			}
 		]}
 	/>
@@ -35,7 +36,7 @@
 			patternMatchingObjects={taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()}
 		/>
 		<TaskDocumentary
-			videoDocumentarySrc={'/video/video.mp4'}
+			videoDocumentarySrc={base + 'video/video.mp4'}
 			hideAllControls={true}
 			autoplay={true}
 			muted={true}

@@ -8,7 +8,7 @@
 
 <div class="w-full h-full flex relative items-center justify-center">
 	<video
-		src={videoDocumentarySrc}
+		src={base + videoDocumentarySrc}
 		controls={!hideAllControls}
 		{autoplay}
 		preload="metadata"

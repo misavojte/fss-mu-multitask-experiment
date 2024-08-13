@@ -33,15 +33,15 @@ const meta = {
 			defaultValue: [
 				{
 					id: '1',
-					src: '/task/3/1.png'
+					src: 'task/3/1.png'
 				},
 				{
 					id: '2',
-					src: '/task/3/2.png'
+					src: 'task/3/2.png'
 				},
 				{
 					id: '3',
-					src: '/task/3/3.png'
+					src: 'task/3/3.png'
 				}
 			]
 		}
@@ -76,15 +76,15 @@ export const Default: Story = {
 		socialMediaStimuli: [
 			{
 				id: '1',
-				src: '/task/3/1.png'
+				src: 'task/3/1.png'
 			},
 			{
 				id: '2',
-				src: '/task/3/2.png'
+				src: 'task/3/2.png'
 			},
 			{
 				id: '3',
-				src: '/task/3/3.png'
+				src: 'task/3/3.png'
 			}
 		]
 	}
@@ -113,15 +113,15 @@ export const QuickInspect: Story = {
 		socialMediaStimuli: [
 			{
 				id: '1',
-				src: '/task/3/1.png'
+				src: 'task/3/1.png'
 			},
 			{
 				id: '2',
-				src: '/task/3/2.png'
+				src: 'task/3/2.png'
 			},
 			{
 				id: '3',
-				src: '/task/3/3.png'
+				src: 'task/3/3.png'
 			}
 		],
 		initialDelay: 1000,

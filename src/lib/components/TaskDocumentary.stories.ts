@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const DefaultVideo: Story = {
 	args: {
-		videoDocumentarySrc: '/video/video.mp4',
+		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: true,
 		autoplay: true
 	}
@@ -36,7 +36,7 @@ export const DefaultVideo: Story = {
 
 export const DefaultVideoMuted: Story = {
 	args: {
-		videoDocumentarySrc: '/video/video.mp4',
+		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: true,
 		autoplay: true,
 		muted: true
@@ -45,7 +45,7 @@ export const DefaultVideoMuted: Story = {
 
 export const AllowedControls: Story = {
 	args: {
-		videoDocumentarySrc: '/video/video.mp4',
+		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: false,
 		autoplay: false
 	}
