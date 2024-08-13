@@ -2,9 +2,12 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
+import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
 
 loadLocale('cs');
 setLocale('cs');
+
+const patternMatchingService = new TaskPatternMatchingServiceBase();
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -19,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
 	args: {
-		socialMediaStimuli : [
+		socialMediaStimuli: [
 			{
 				id: '1',
 				src: 'task/3/1.png'
@@ -33,5 +36,7 @@ export const Default: Story = {
 				src: 'task/3/3.png'
 			}
 		],
-
+		patternMatchingObjects: patternMatchingService.getTaskPatternMatchingObjectsForPractice(),
+		videoDocumentarySrc: 'video/video.mp4'
+	}
 };
