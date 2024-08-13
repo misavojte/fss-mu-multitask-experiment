@@ -7,7 +7,7 @@
 	const taskPatternMatchingService = new TaskPatternMatchingServiceBase();
 </script>
 
-<div class="w-screen h-screen flex gap-4 p-4 justify-center items-start box-border">
+<div class="w-full h-full flex gap-4 p-4 justify-center items-start box-border">
 	<TaskSocialMedia
 		socialMediaButtons={[
 			{ text: 'Like', id: 'like' },
