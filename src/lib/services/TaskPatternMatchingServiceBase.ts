@@ -2,17 +2,22 @@ import type {
 	ITaskPatternMatching,
 	ITaskPatternMatchingObject
 } from '$lib/interfaces/ITaskPatternMatching';
-import { base } from '$app/paths';
 
 export class TaskPatternMatchingServiceBase implements ITaskPatternMatching {
+	private base: string;
+
+	constructor(base: string = '') {
+		this.base = base;
+	}
+
 	public getTaskPatternMatchingObject(id: string): ITaskPatternMatchingObject {
 		// assuming that id is in "N_ssN" format
 		const idParts = id.split('_');
-		const matrixSrc = base + `task/1/tf1_${idParts[0]}_M_${idParts[1]}.jpeg`;
-		const T1Src = base + `task/1/tf1_${idParts[0]}_T1_${idParts[1]}_md.jpeg`;
-		const T2Src = base + `task/1/tf1_${idParts[0]}_T2_${idParts[1]}_md.jpeg`;
-		const T3Src = base + `task/1/tf1_${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
-		const T4Src = base + `task/1/tf1_${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
+		const matrixSrc = this.base + `task/1/tf1_${idParts[0]}_M_${idParts[1]}.jpeg`;
+		const T1Src = this.base + `task/1/tf1_${idParts[0]}_T1_${idParts[1]}_md.jpeg`;
+		const T2Src = this.base + `task/1/tf1_${idParts[0]}_T2_${idParts[1]}_md.jpeg`;
+		const T3Src = this.base + `task/1/tf1_${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
+		const T4Src = this.base + `task/1/tf1_${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
 		return {
 			id: '1',
 			matrixSrc,
