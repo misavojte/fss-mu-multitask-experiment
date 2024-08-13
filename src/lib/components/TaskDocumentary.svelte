@@ -16,5 +16,6 @@
 		class="absolute h-full object-cover"
 	>
 		<track kind="captions" src={base + videoDocumentarySrc} srclang="en" label="English" default />
+		<input type="hidden" value={base} />
 	</video>
 </div>
