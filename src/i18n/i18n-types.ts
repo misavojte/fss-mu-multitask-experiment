@@ -22,6 +22,14 @@ type RootTranslation = {
 	 * A​p​l​i​k​a​c​e​ ​j​e​ ​s​o​u​č​á​s​t​í​ ​v​ý​z​k​u​m​u​ ​n​a​ ​F​a​k​u​l​t​ě​ ​s​o​c​i​á​l​n​í​c​h​ ​s​t​u​d​i​í​ ​M​a​s​a​r​y​k​o​v​y​ ​u​n​i​v​e​r​z​i​t​y​.
 	 */
 	footerText: string
+	/**
+	 * N​a​č​í​t​á​n​í
+	 */
+	loading: string
+	/**
+	 * P​r​o​s​í​m​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​a​p​l​i​k​a​c​e​.
+	 */
+	pleaseWait: string
 	question: {
 		'1': {
 			/**
@@ -175,6 +183,14 @@ export type TranslationFunctions = {
 	 * Aplikace je součástí výzkumu na Fakultě sociálních studií Masarykovy univerzity.
 	 */
 	footerText: () => LocalizedString
+	/**
+	 * Načítání
+	 */
+	loading: () => LocalizedString
+	/**
+	 * Prosím čekejte na načtení aplikace.
+	 */
+	pleaseWait: () => LocalizedString
 	question: {
 		'1': {
 			/**

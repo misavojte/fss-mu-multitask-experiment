@@ -4,6 +4,8 @@ const cs = {
 	// TODO: your translations go here
 	HI: 'Hi {name:string}! Please leave a star if you like this project: https://github.com/ivanhofer/typesafe-i18n',
 	footerText: 'Aplikace je součástí výzkumu na Fakultě sociálních studií Masarykovy univerzity.',
+	loading: 'Načítání',
+	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	question: {
 		battery: {
 			back: 'Předchozí sekce',
