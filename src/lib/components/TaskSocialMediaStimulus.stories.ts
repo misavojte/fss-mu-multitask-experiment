@@ -27,12 +27,48 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Null: Story = {
 	args: {
-		stimulus: null
+		stimulus: null,
+		socialMediaButtons: [
+			{
+				text: 'Share',
+				id: 'share'
+			},
+			{
+				text: 'Like',
+				id: 'like'
+			},
+			{
+				text: 'Comment',
+				id: 'comment'
+			},
+			{
+				text: 'Save',
+				id: 'save'
+			}
+		]
 	}
 };
 
 export const Default: Story = {
 	args: {
-		stimulus: null
+		stimulus: null,
+		socialMediaButtons: [
+			{
+				text: 'Share',
+				id: 'share'
+			},
+			{
+				text: 'Like',
+				id: 'like'
+			},
+			{
+				text: 'Comment',
+				id: 'comment'
+			},
+			{
+				text: 'Save',
+				id: 'save'
+			}
+		]
 	}
 };

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { waitForCondition, waitForTimeout } from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
-	import TaskSocialMediaInteractors from './TaskSocialMediaInteractors.svelte';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
 
@@ -62,6 +61,11 @@
 	class="grid w-full border border-gray-200 box-border rounded-2xl overflow-hidden pt-8 shrink-0"
 	style="width: {width}px;"
 >
-	<TaskSocialMediaStimulus {stimulus} {width} height={stimulusHeight} />
-	<TaskSocialMediaInteractors {socialMediaButtons} on:click={handleSocialMediaInteractorsClick} />
+	<TaskSocialMediaStimulus
+		{socialMediaButtons}
+		{stimulus}
+		{width}
+		height={stimulusHeight}
+		on:click={handleSocialMediaInteractorsClick}
+	/>
 </div>
