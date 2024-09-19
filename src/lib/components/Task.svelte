@@ -40,17 +40,17 @@
 	export let positionYSocial: number = 20;
 
 	/**
-	 * The position of the pattern matching task on the x-axis in pixels.
+	 * The width of the social media task.
 	 */
 	export let widthSocial: number = 300;
 
 	/**
-	 * The position of the pattern matching task on the x-axis in pixels.
+	 * The height of the social media task, excluding the interactors.
 	 */
 	export let heightSocialImage: number = 350;
 
 	/**
-	 * The position of the pattern matching task on the x-axis in pixels.
+	 * The height of the social media task interactors.
 	 */
 	export let heightSocialOptions: number = 150;
 
@@ -65,6 +65,16 @@
 	export let positionYPattern: number = 20;
 
 	/**
+	 * The width of the pattern matching task.
+	 */
+	export let widthPattern: number = 600;
+
+	/**
+	 * The height of the pattern matching task.
+	 */
+	export let heightPattern: number = 600;
+
+	/**
 	 * The position of the documentary task on the x-axis in pixels.
 	 */
 	export let positionXDocumentary: number = 400;
@@ -73,6 +83,16 @@
 	 * The position of the documentary task on the y-axis in pixels.
 	 */
 	export let positionYDocumentary: number = 800;
+
+	/**
+	 * The width of the documentary task.
+	 */
+	export let widthDocumentary: number = 500;
+
+	/**
+	 * The height of the documentary task.
+	 */
+	export let heightDocumentary: number = 300;
 
 	/**
 	 * The height of the social media task.
@@ -124,16 +144,23 @@
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
-			style="top: {positionYPattern}px; left: {positionXPattern}px;"
+			style="top: {positionYPattern}px; left: {positionXPattern}px; width: {widthPattern}px; height: {heightPattern}px;"
 		>
 			<TaskPatternMatching {patternMatchingObjects} />
 		</div>
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
-			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px;"
+			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px; width: {widthDocumentary}px; height: {heightDocumentary}px;"
 		>
-			<TaskDocumentary {videoDocumentarySrc} hideAllControls={true} autoplay={true} muted={true} />
+			<TaskDocumentary
+				{videoDocumentarySrc}
+				hideAllControls={true}
+				autoplay={true}
+				muted={true}
+				width={widthDocumentary}
+				height={heightDocumentary}
+			/>
 		</div>
 	{/await}
 </div>
