@@ -178,11 +178,11 @@ type RootTranslation = {
 			heading: string
 			options: {
 				/**
-				 * N​e​,​ ​p​r​o​j​í​t​ ​i​n​s​t​r​u​k​c​e​ ​z​n​o​v​u
+				 * A​n​o​,​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t
 				 */
 				'0': string
 				/**
-				 * A​n​o​,​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t
+				 * N​e​,​ ​p​o​t​ř​e​b​u​j​i​ ​z​o​p​a​k​o​v​a​t​ ​p​r​a​x​i
 				 */
 				'1': string
 			}
@@ -355,11 +355,11 @@ export type TranslationFunctions = {
 			heading: () => LocalizedString
 			options: {
 				/**
-				 * Ne, projít instrukce znovu
+				 * Ano, pokračovat na ostrý test
 				 */
 				'0': () => LocalizedString
 				/**
-				 * Ano, pokračovat na ostrý test
+				 * Ne, potřebuji zopakovat praxi
 				 */
 				'1': () => LocalizedString
 			}

@@ -7,6 +7,7 @@
 	import QuestionTypeText from './QuestionTypeText.svelte';
 	import QuestionTypeInstruction from './QuestionTypeInstruction.svelte';
 	import LL from '../../i18n/i18n-svelte';
+	import QuestionTypeSelect from './QuestionTypeSelect.svelte';
 
 	export let questions: IQuestionBattery;
 	export let showProgress: boolean = true;
@@ -110,6 +111,13 @@
 				{/if}
 				{#if question.type === 'instruction'}
 					<QuestionTypeInstruction
+						{question}
+						on:input={handleOnInput}
+						bind:value={questionValues[$progressStore].value}
+					/>
+				{/if}
+				{#if question.type === 'select'}
+					<QuestionTypeSelect
 						{question}
 						on:input={handleOnInput}
 						bind:value={questionValues[$progressStore].value}

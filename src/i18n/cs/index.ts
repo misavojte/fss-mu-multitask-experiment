@@ -66,8 +66,8 @@ const cs = {
 		'ap-1': {
 			heading: 'Je Vám vše jasné?',
 			options: {
-				0: 'Ne, projít instrukce znovu',
-				1: 'Ano, pokračovat na ostrý test'
+				0: 'Ano, pokračovat na ostrý test',
+				1: 'Ne, potřebuji zopakovat praxi'
 			}
 		}
 	}

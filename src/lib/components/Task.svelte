@@ -148,6 +148,7 @@
 			<TaskSocialMedia
 				heightImage={heightSocialImage}
 				heightInteractors={heightSocialOptions}
+				width={widthSocial}
 				socialMediaButtons={[
 					{ text: 'Like', id: 'like' },
 					{ text: 'Share', id: 'share' },

@@ -8,7 +8,7 @@
 
 	export let questionsService: ITimestampQuestionService;
 
-	let showProgress: boolean = false;
+	$: showProgress = false;
 
 	const dispatch = createEventDispatcher();
 
@@ -53,19 +53,24 @@
 
 	const handlePreliminaryQuestionnaireDone = async (data: any) => {
 		dispatch('loading');
+		console.log('loading');
 		await questionsService.saveQuestions(data);
+		console.log('done');
 		dispatch('startTrial');
 	};
 
 	const handleQuestionnaireDone = async (data: any) => {
 		dispatch('loading');
+		console.log('loading');
 		await questionsService.saveQuestions(data);
+		console.log('done');
 		dispatch('startPractice');
 	};
 
-	const handleQuestionnaireAnswer = (data: any) => {
+	const handleQuestionnaireAnswer = (data: CustomEvent) => {
 		// if ap-1, switch to showProgress
-		if (data.id === 'ap-1') {
+		console.log(data.detail);
+		if (data.detail.id === 'ap-1') {
 			showProgress = true;
 		}
 	};
@@ -75,7 +80,8 @@
 	<QuestionManager
 		{questions}
 		{questionsService}
-		on:preliminaryQuestionnaireDone={handlePreliminaryQuestionnaireDone}
+		{showProgress}
+		on:questionnairePreliminaryEnd={handlePreliminaryQuestionnaireDone}
 		on:questionnaireDone={handleQuestionnaireDone}
 		on:questionnaireAnswer={handleQuestionnaireAnswer}
 	/>
