@@ -3,6 +3,7 @@
 	import { writable } from 'svelte/store';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
+	import InterfaceFrame from './InterfaceFrame.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -17,7 +18,7 @@
 	export let initialDelay: number = 20000;
 	export let stimulusMaxDuration: number = 20000;
 	export let width: number = 300;
-	export let heightImage: number = 500;
+	export let heightImage: number = 522;
 	export let heightInteractors: number = 150;
 
 	const wasClicked = writable(false);
@@ -56,15 +57,13 @@
 	};
 </script>
 
-<div
-	class="grid w-full border border-gray-200 box-border rounded-2xl overflow-hidden pt-8 shrink-0"
-	style="width: {width}px;"
->
+<InterfaceFrame {width} height={heightImage + heightInteractors}>
 	<TaskSocialMediaStimulus
 		{socialMediaButtons}
 		{stimulus}
 		{width}
 		{heightInteractors}
+		{heightImage}
 		on:click={handleSocialMediaInteractorsClick}
 	/>
-</div>
+</InterfaceFrame>

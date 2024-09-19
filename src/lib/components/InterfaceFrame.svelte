@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let frameColor: string = '#333333'; // Default frame color
 	export let width: number = 300; // Default width in pixels
-	export let height: number = 600; // Default height in pixels
+	export let height: number = 650; // Default height in pixels
 	export let showBezels: boolean = true; // Show decorative bezels by default
+	export let borderWidth: number = 14; // Default border width in pixels
 
 	// Calculate bezel positions and sizes based on the width and height
 	const bezel1Top = height * (72 / 600);
@@ -15,13 +16,13 @@
 	const bezel3Height = height * (46 / 600);
 	const bezel4Height = height * (64 / 600);
 
-	const bezelWidth = 3 * (width / 300);
+	const bezelWidthValue = 3 * (width / 300);
 	const bezelLeftOffset = -17 * (width / 300);
 	const bezelRightOffset = -17 * (width / 300);
 
-	// Inner content dimensions accounting for borders
-	const innerWidth = width - 28; // Subtract border sizes (14px on each side)
-	const innerHeight = height - 28;
+	// External dimensions including border width
+	const externalWidth = width + 2 * borderWidth; // Add border sizes (borderWidth on each side)
+	const externalHeight = height + 2 * borderWidth;
 </script>
 
 <div
@@ -29,8 +30,9 @@
 	style="
     background-color: {frameColor};
     border-color: {frameColor};
-    width: {width}px;
-    height: {height}px;"
+    border-width: {borderWidth}px;
+    width: {externalWidth}px;
+    height: {externalHeight}px;"
 >
 	{#if showBezels}
 		<!-- Left Bezels -->
@@ -38,27 +40,27 @@
 			class="bezel left-bezel"
 			style="
         --frame-color: {frameColor};
-        --bezel-width: {bezelWidth}px;
+        --bezel-width: {bezelWidthValue}px;
         --bezel-left-offset: {bezelLeftOffset}px;
-        top: {bezel1Top}px;
+        top: {bezel1Top + borderWidth}px;
         height: {bezel1Height}px;"
 		></div>
 		<div
 			class="bezel left-bezel"
 			style="
         --frame-color: {frameColor};
-        --bezel-width: {bezelWidth}px;
+        --bezel-width: {bezelWidthValue}px;
         --bezel-left-offset: {bezelLeftOffset}px;
-        top: {bezel2Top}px;
+        top: {bezel2Top + borderWidth}px;
         height: {bezel2Height}px;"
 		></div>
 		<div
 			class="bezel left-bezel"
 			style="
         --frame-color: {frameColor};
-        --bezel-width: {bezelWidth}px;
+        --bezel-width: {bezelWidthValue}px;
         --bezel-left-offset: {bezelLeftOffset}px;
-        top: {bezel3Top}px;
+        top: {bezel3Top + borderWidth}px;
         height: {bezel3Height}px;"
 		></div>
 		<!-- Right Bezel -->
@@ -66,22 +68,21 @@
 			class="bezel right-bezel"
 			style="
         --frame-color: {frameColor};
-        --bezel-width: {bezelWidth}px;
+        --bezel-width: {bezelWidthValue}px;
         --bezel-right-offset: {bezelRightOffset}px;
-        top: {bezel4Top}px;
+        top: {bezel4Top + borderWidth}px;
         height: {bezel4Height}px;"
 		></div>
 	{/if}
-
-	<!-- Screen Content -->
-	<slot>
-		<div
-			class="screen"
-			style="
-      width: {innerWidth}px;
-      height: {innerHeight}px;
+	<div
+		class="screen"
+		style="
+      width: {width}px;
+      height: {height}px;
       background-color: white;"
-		>
+	>
+		<!-- Screen Content -->
+		<slot>
 			<img
 				src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/mockup-1-light.png"
 				class="dark:hidden"
@@ -94,13 +95,12 @@
 				style="width: 100%; height: 100%;"
 				alt=""
 			/>
-		</div>
-	</slot>
+		</slot>
+	</div>
 </div>
 
 <style>
 	.device-frame {
-		border-width: 14px;
 		border-style: solid;
 		border-radius: 2.5rem;
 	}
@@ -115,12 +115,12 @@
 		border-radius: 0.5rem;
 	}
 	.left-bezel {
-		left: var(--bezel-left-offset);
+		left: calc(var(--bezel-left-offset));
 		border-top-left-radius: 0.5rem;
 		border-bottom-left-radius: 0.5rem;
 	}
 	.right-bezel {
-		right: var(--bezel-right-offset);
+		right: calc(var(--bezel-right-offset));
 		border-top-right-radius: 0.5rem;
 		border-bottom-right-radius: 0.5rem;
 	}

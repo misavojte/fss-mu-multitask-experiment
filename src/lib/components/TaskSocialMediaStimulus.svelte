@@ -34,10 +34,7 @@
 	$: totalHeight = heightImage + heightInteractors;
 </script>
 
-<div
-	class="w-full relative overflow-hidden border-t border-b border-gray-200"
-	style="width: {width}px; height: {totalHeight}px;"
->
+<div class="w-full relative overflow-hidden" style="width: {width}px; height: {totalHeight}px;">
 	{#if src === null}
 		<div
 			class="absolute flex items-center justify-center w-full h-full bg-gray-50"

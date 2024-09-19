@@ -47,7 +47,7 @@
 	/**
 	 * The height of the social media task, excluding the interactors.
 	 */
-	export let heightSocialImage: number = 350;
+	export let heightSocialImage: number = 522;
 
 	/**
 	 * The height of the social media task interactors.
@@ -57,7 +57,7 @@
 	/**
 	 * The position of the pattern matching task on the x-axis in pixels.
 	 */
-	export let positionXPattern: number = 400;
+	export let positionXPattern: number = 425;
 
 	/**
 	 * The position of the pattern matching task on the y-axis in pixels.
@@ -67,7 +67,7 @@
 	/**
 	 * The width of the pattern matching task.
 	 */
-	export let widthPattern: number = 600;
+	export let widthPattern: number = 700;
 
 	/**
 	 * The height of the pattern matching task.
@@ -77,12 +77,12 @@
 	/**
 	 * The position of the documentary task on the x-axis in pixels.
 	 */
-	export let positionXDocumentary: number = 400;
+	export let positionXDocumentary: number = 500;
 
 	/**
 	 * The position of the documentary task on the y-axis in pixels.
 	 */
-	export let positionYDocumentary: number = 800;
+	export let positionYDocumentary: number = 690;
 
 	/**
 	 * The width of the documentary task.
@@ -146,7 +146,7 @@
 			transition:fade={{ duration: 300 }}
 			style="top: {positionYPattern}px; left: {positionXPattern}px; width: {widthPattern}px; height: {heightPattern}px;"
 		>
-			<TaskPatternMatching {patternMatchingObjects} />
+			<TaskPatternMatching {patternMatchingObjects} width={widthPattern} height={heightPattern} />
 		</div>
 		<div
 			class="absolute"
