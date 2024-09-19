@@ -142,7 +142,7 @@
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
-			style="top: {positionYSocial}px; left: {positionXSocial}px; width: {widthSocial}px; height: {heightSocial}px;"
+			style="top: {positionYSocial}px; left: {positionXSocial}px;"
 		>
 			<TaskSocialMedia
 				heightImage={heightSocialImage}
@@ -161,14 +161,14 @@
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
-			style="top: {positionYPattern}px; left: {positionXPattern}px; width: {widthPattern}px; height: {heightPattern}px;"
+			style="top: {positionYPattern}px; left: {positionXPattern}px;"
 		>
 			<TaskPatternMatching {patternMatchingObjects} width={widthPattern} height={heightPattern} />
 		</div>
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
-			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px; width: {widthDocumentary}px; height: {heightDocumentary}px;"
+			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
 		>
 			<TaskDocumentary
 				{videoDocumentarySrc}
