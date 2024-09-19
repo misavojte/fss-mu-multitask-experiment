@@ -29,6 +29,56 @@
 	 */
 	export let height: string = '100vh';
 
+	/**
+	 * The position of the social media task on the x-axis in pixels.
+	 */
+	export let positionXSocial: number = 20;
+
+	/**
+	 * The position of the social media task on the y-axis in pixels.
+	 */
+	export let positionYSocial: number = 20;
+
+	/**
+	 * The position of the pattern matching task on the x-axis in pixels.
+	 */
+	export let widthSocial: number = 300;
+
+	/**
+	 * The position of the pattern matching task on the x-axis in pixels.
+	 */
+	export let heightSocialImage: number = 350;
+
+	/**
+	 * The position of the pattern matching task on the x-axis in pixels.
+	 */
+	export let heightSocialOptions: number = 150;
+
+	/**
+	 * The position of the pattern matching task on the x-axis in pixels.
+	 */
+	export let positionXPattern: number = 400;
+
+	/**
+	 * The position of the pattern matching task on the y-axis in pixels.
+	 */
+	export let positionYPattern: number = 20;
+
+	/**
+	 * The position of the documentary task on the x-axis in pixels.
+	 */
+	export let positionXDocumentary: number = 400;
+
+	/**
+	 * The position of the documentary task on the y-axis in pixels.
+	 */
+	export let positionYDocumentary: number = 800;
+
+	/**
+	 * The height of the social media task.
+	 */
+	$: heightSocial = heightSocialImage + heightSocialOptions;
+
 	const preloadMediaArray: MediaPreloadSource[] = [
 		{
 			type: 'video' as const,
@@ -55,10 +105,13 @@
 		</div>
 	{:then a}
 		<div
-			class="w-full h-full flex gap-4 p-4 justify-center items-start box-border max-h-screen absolute top-0 left-0"
+			class="absolute"
 			transition:fade={{ duration: 300 }}
+			style="top: {positionYSocial}px; left: {positionXSocial}px; width: {widthSocial}px; height: {heightSocial}px;"
 		>
 			<TaskSocialMedia
+				heightImage={heightSocialImage}
+				heightInteractors={heightSocialOptions}
 				socialMediaButtons={[
 					{ text: 'Like', id: 'like' },
 					{ text: 'Share', id: 'share' },
@@ -67,15 +120,20 @@
 				]}
 				{socialMediaStimuli}
 			/>
-			<div class="flex flex-col gap-16 w-full h-full items-center">
-				<TaskPatternMatching {patternMatchingObjects} />
-				<TaskDocumentary
-					{videoDocumentarySrc}
-					hideAllControls={true}
-					autoplay={true}
-					muted={true}
-				/>
-			</div>
+		</div>
+		<div
+			class="absolute"
+			transition:fade={{ duration: 300 }}
+			style="top: {positionYPattern}px; left: {positionXPattern}px;"
+		>
+			<TaskPatternMatching {patternMatchingObjects} />
+		</div>
+		<div
+			class="absolute"
+			transition:fade={{ duration: 300 }}
+			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px;"
+		>
+			<TaskDocumentary {videoDocumentarySrc} hideAllControls={true} autoplay={true} muted={true} />
 		</div>
 	{/await}
 </div>

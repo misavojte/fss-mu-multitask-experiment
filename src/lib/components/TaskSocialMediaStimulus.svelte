@@ -7,7 +7,7 @@
 		id: string;
 	} | null = null;
 	export let width: number = 300;
-	export let height: number = 500;
+	export let heightImage: number = 500;
 	export let heightInteractors: number = 150;
 	export let noStimulusMessage: string = 'No stimulus shown';
 	export let socialMediaButtons: Array<{
@@ -31,7 +31,7 @@
 		}
 	}
 
-	$: totalHeight = height + heightInteractors;
+	$: totalHeight = heightImage + heightInteractors;
 </script>
 
 <div

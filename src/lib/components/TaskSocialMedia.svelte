@@ -17,9 +17,8 @@
 	export let initialDelay: number = 20000;
 	export let stimulusMaxDuration: number = 20000;
 	export let width: number = 300;
-	export let stimulusAspectRatio: number = 1.5;
-
-	const stimulusHeight = width * stimulusAspectRatio;
+	export let heightImage: number = 500;
+	export let heightInteractors: number = 150;
 
 	const wasClicked = writable(false);
 
@@ -65,7 +64,7 @@
 		{socialMediaButtons}
 		{stimulus}
 		{width}
-		height={stimulusHeight}
+		{heightInteractors}
 		on:click={handleSocialMediaInteractorsClick}
 	/>
 </div>
