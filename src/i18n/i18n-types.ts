@@ -171,6 +171,22 @@ type RootTranslation = {
 			 */
 			next: string
 		}
+		'ap-1': {
+			/**
+			 * J​e​ ​V​á​m​ ​v​š​e​ ​j​a​s​n​é​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * N​e​,​ ​p​r​o​j​í​t​ ​i​n​s​t​r​u​k​c​e​ ​z​n​o​v​u
+				 */
+				'0': string
+				/**
+				 * A​n​o​,​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t
+				 */
+				'1': string
+			}
+		}
 	}
 }
 
@@ -331,6 +347,22 @@ export type TranslationFunctions = {
 			 * Přeskočit na další sekci
 			 */
 			next: () => LocalizedString
+		}
+		'ap-1': {
+			/**
+			 * Je Vám vše jasné?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Ne, projít instrukce znovu
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Ano, pokračovat na ostrý test
+				 */
+				'1': () => LocalizedString
+			}
 		}
 	}
 }

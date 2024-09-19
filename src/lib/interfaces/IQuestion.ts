@@ -25,11 +25,12 @@ export interface IQuestionConfigBase {
 	type: string;
 	headingText: string;
 	required: boolean;
+	preliminaryEndAnswer?: string;
 }
 
 export interface IQuestionConfigSelect extends IQuestionConfigBase {
 	type: 'select';
-	options: string[];
+	options: readonly string[];
 }
 
 export interface IQuestionConfigText extends IQuestionConfigBase {

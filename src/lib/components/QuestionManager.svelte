@@ -7,6 +7,8 @@
 
 	export let questionsService: ITimestampQuestionService;
 	export let questions: IQuestionBattery;
+	export let showProgress: boolean = true;
+	export let showSkip: boolean = false;
 
 	const handleQuestionnaireDone = (data: any) => {
 		promise = questionsService.saveQuestions(data);
@@ -34,10 +36,14 @@
 	{:else}
 		<QuestionBattery
 			{questions}
+			{showProgress}
+			{showSkip}
 			on:questionnaireDone={handleQuestionnaireDone}
 			on:questionnaireStart={() => questionsService.startQuestions()}
-			on:questionnaireAnswer={(e) =>
-				questionsService.saveTimestampQuestion(e.detail.id, e.detail.value)}
+			on:questionnaireAnswer={(e) => {
+				questionsService.saveTimestampQuestion(e.detail.id, e.detail.value);
+				dispatch('questionnaireAnswered', e.detail);
+			}}
 		/>
 	{/if}
 </div>

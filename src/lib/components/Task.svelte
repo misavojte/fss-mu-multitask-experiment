@@ -7,6 +7,7 @@
 	import { fade } from 'svelte/transition';
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
+	import { createEventDispatcher } from 'svelte';
 
 	export let socialMediaStimuli: Array<{
 		src: string;
@@ -163,7 +164,12 @@
 			transition:fade={{ duration: 300 }}
 			style="top: {positionYPattern}px; left: {positionXPattern}px;"
 		>
-			<TaskPatternMatching {patternMatchingObjects} width={widthPattern} height={heightPattern} />
+			<TaskPatternMatching
+				{patternMatchingObjects}
+				width={widthPattern}
+				height={heightPattern}
+				on:patternMatchingCompleted
+			/>
 		</div>
 		<div
 			class="absolute"

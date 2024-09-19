@@ -78,7 +78,6 @@
 	];
 
 	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
-
 	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
 	const videoDocumentarySrc = base + '/video/video.mp4';
 	const socialMediaStimuli = [
