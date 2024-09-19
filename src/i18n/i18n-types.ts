@@ -27,7 +27,7 @@ type RootTranslation = {
 	 */
 	loading: string
 	/**
-	 * P​r​o​s​í​m​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​a​p​l​i​k​a​c​e​.
+	 * P​r​o​s​í​m​,​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​d​a​t​.
 	 */
 	pleaseWait: string
 	question: {
@@ -188,7 +188,7 @@ export type TranslationFunctions = {
 	 */
 	loading: () => LocalizedString
 	/**
-	 * Prosím čekejte na načtení aplikace.
+	 * Prosím, čekejte na načtení dat.
 	 */
 	pleaseWait: () => LocalizedString
 	question: {

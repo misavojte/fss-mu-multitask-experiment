@@ -99,10 +99,12 @@
 	const questionsService = new TimestampQuestionServiceMock();
 </script>
 
-<div class="w-screen h-screen grow overflow-hidden p-4 container mx-auto flex flex-col gap-4">
+<div class="w-screen h-screen grow overflow-hidden flex flex-col gap-4 items-center justify-center">
 	{#if !show}
-		<QuestionManager {questions} {questionsService} on:questionnaireDone={() => (show = true)} />
-		<InterfaceFooter />
+		<div class="w-full h-full p-8 mx-auto flex flex-col gap-8">
+			<QuestionManager {questions} {questionsService} on:questionnaireDone={() => (show = true)} />
+			<InterfaceFooter />
+		</div>
 	{/if}
 	{#if show}
 		<Task {patternMatchingObjects} {socialMediaStimuli} {videoDocumentarySrc} />

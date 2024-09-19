@@ -32,12 +32,12 @@
 	/**
 	 * The position of the social media task on the x-axis in pixels.
 	 */
-	export let positionXSocial: number = 20;
+	export let positionXSocial: number = 380;
 
 	/**
 	 * The position of the social media task on the y-axis in pixels.
 	 */
-	export let positionYSocial: number = 20;
+	export let positionYSocial: number = 10;
 
 	/**
 	 * The width of the social media task.
@@ -57,42 +57,57 @@
 	/**
 	 * The position of the pattern matching task on the x-axis in pixels.
 	 */
-	export let positionXPattern: number = 425;
+	export let positionXPattern: number = 825;
 
 	/**
 	 * The position of the pattern matching task on the y-axis in pixels.
 	 */
-	export let positionYPattern: number = 20;
+	export let positionYPattern: number = 10;
 
 	/**
 	 * The width of the pattern matching task.
 	 */
-	export let widthPattern: number = 700;
+	export let widthPattern: number = 650;
 
 	/**
 	 * The height of the pattern matching task.
 	 */
-	export let heightPattern: number = 600;
+	export let heightPattern: number = 550;
 
 	/**
 	 * The position of the documentary task on the x-axis in pixels.
 	 */
-	export let positionXDocumentary: number = 500;
+	export let positionXDocumentary: number = 910;
 
 	/**
 	 * The position of the documentary task on the y-axis in pixels.
 	 */
-	export let positionYDocumentary: number = 690;
+	export let positionYDocumentary: number = 630;
 
 	/**
 	 * The width of the documentary task.
 	 */
-	export let widthDocumentary: number = 500;
+	export let widthDocumentary: number = 450;
 
 	/**
 	 * The height of the documentary task.
 	 */
-	export let heightDocumentary: number = 300;
+	export let heightDocumentary: number = 250;
+
+	/**
+	 * Muted state of the documentary task.
+	 */
+	export let muted: boolean = true;
+
+	/**
+	 * The initial delay before the first social media task is shown.
+	 */
+	export let socialInitialDelay: number = 20000;
+
+	/**
+	 * The maximum duration of the social media task.
+	 */
+	export let socialStimulusMaxDuration: number = 20000;
 
 	/**
 	 * The height of the social media task.
@@ -113,7 +128,7 @@
 </script>
 
 <div
-	class="flex gap-4 p-4 justify-center items-start box-border max-h-screen relative"
+	class="flex justify-center items-start box-border max-h-screen relative"
 	style="width: {width}; height: {height};"
 >
 	{#await loadPromise}
@@ -139,6 +154,8 @@
 					{ text: 'Dislike', id: 'dislike' }
 				]}
 				{socialMediaStimuli}
+				initialDelay={socialInitialDelay}
+				stimulusMaxDuration={socialStimulusMaxDuration}
 			/>
 		</div>
 		<div
@@ -157,7 +174,7 @@
 				{videoDocumentarySrc}
 				hideAllControls={true}
 				autoplay={true}
-				muted={true}
+				{muted}
 				width={widthDocumentary}
 				height={heightDocumentary}
 			/>

@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class="relative mx-auto device-frame"
+	class="relative mx-auto device-frame shadow-md"
 	style="
     background-color: {frameColor};
     border-color: {frameColor};
