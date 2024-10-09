@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
 
 	import AppQuestionsPrePractice from '$lib/components/AppQuestionsPrePractice.svelte';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
+	import { TimestampQuestionServiceIDB } from '$lib/services/TimestampQuestionServiceIDB';
 
 	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' = 'questions-1';
-	let loading = false;
 
-	const questionsService = new TimestampQuestionServiceMock();
+	const sessionId = new Date().getTime() + '-' + Math.floor(1000 + Math.random() * 9000);
+	const questionsService = new TimestampQuestionServiceIDB(sessionId);
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -24,26 +24,17 @@
 		duration: 400 // Duration of the transition (adjust as needed)
 	};
 
-	const triggerLoading = () => {
-		loading = true;
-	};
-
 	const triggerPractice = () => {
-		loading = false;
 		stage = 'practice';
 	};
 
 	const triggerQuestions2 = () => {
-		loading = false;
 		stage = 'questions-2';
 	};
 
 	const triggerTrial = () => {
-		loading = false;
 		stage = 'trial';
 	};
-
-	const sessionId = new Date().getTime() + '-' + Math.floor(1000 + Math.random() * 9000);
 
 	onMount(() => {
 		saveActionLog({
@@ -71,11 +62,7 @@
 	{#if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPrePractice
-				{questionsService}
-				on:startPractice={triggerPractice}
-				on:loading={triggerLoading}
-			/>
+			<AppQuestionsPrePractice {questionsService} on:startPractice={triggerPractice} />
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -85,7 +72,6 @@
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPostPractice
 				{questionsService}
-				on:loading={triggerLoading}
 				on:startPractice={triggerPractice}
 				on:startTrial={triggerTrial}
 			/>
