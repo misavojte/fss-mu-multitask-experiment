@@ -8,6 +8,8 @@
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
 	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+	import { onDestroy, onMount } from 'svelte';
+	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
 
 	let show = false;
 
@@ -97,6 +99,26 @@
 	];
 
 	const questionsService = new TimestampQuestionServiceMock();
+
+	const sessionId = new Date().getTime() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+	onMount(() => {
+		saveActionLog({
+			sessionId: sessionId,
+			type: 'page',
+			timestamp: new Date().toISOString(),
+			value: 'start'
+		});
+	});
+
+	onDestroy(() => {
+		saveActionLog({
+			sessionId: sessionId,
+			type: 'page',
+			timestamp: new Date().toISOString(),
+			value: 'end'
+		});
+	});
 </script>
 
 <div class="w-screen h-screen grow overflow-hidden p-4 container mx-auto flex flex-col gap-4">
