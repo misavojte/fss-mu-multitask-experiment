@@ -20,7 +20,7 @@
 			required: true
 		},
 		{
-			id: '3',
+			id: 'linking',
 			headingText: $LL.question[3].heading(),
 			confirmText: $LL.question[3].confirm(),
 			type: 'text',
@@ -77,8 +77,6 @@
 	];
 
 	const handleQuestionnaireDone = async (data: any) => {
-		dispatch('loading');
-		await questionsService.saveQuestions(data);
 		dispatch('startPractice');
 	};
 </script>
