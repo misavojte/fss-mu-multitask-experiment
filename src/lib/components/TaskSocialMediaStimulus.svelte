@@ -7,9 +7,9 @@
 		id: string;
 	} | null = null;
 	export let width: number = 300;
-	export let height: number = 500;
+	export let heightImage: number = 500;
 	export let heightInteractors: number = 150;
-	export let noStimulusMessage: string = 'No stimulus shown';
+	export let noStimulusMessage: string = 'Žádné novinky k zobrazení';
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
@@ -31,16 +31,16 @@
 		}
 	}
 
-	$: totalHeight = height + heightInteractors;
+	$: totalHeight = heightImage + heightInteractors;
 </script>
 
 <div
-	class="w-full relative overflow-hidden border-t border-b border-gray-200"
+	class="w-full relative overflow-hidden bg-gray-200"
 	style="width: {width}px; height: {totalHeight}px;"
 >
 	{#if src === null}
 		<div
-			class="absolute flex items-center justify-center w-full h-full bg-gray-50"
+			class="absolute flex items-center justify-center w-full h-full cursor-not-allowed"
 			out:fly={{ y: totalHeight, duration: 500, opacity: 1 }}
 			in:fly={{ y: -totalHeight, duration: 500, opacity: 1 }}
 		>
@@ -49,11 +49,15 @@
 	{/if}
 	{#if src !== null}
 		<div
-			class="flex flex-col items-center justify-center w-full h-full bg-gray-50"
+			class="flex flex-col items-center justify-center w-full h-full"
 			out:fly={{ y: totalHeight, duration: 500, opacity: 1 }}
 			in:fly={{ y: -totalHeight, duration: 500, opacity: 1 }}
 		>
-			<img {src} alt="Stimulus" class="object-cover w-full h-full" />
+			<img
+				{src}
+				alt="Stimulus"
+				class="object-cover w-full h-full bg-gray-100 rounded-3xl border border-gray-300"
+			/>
 			<TaskSocialMediaInteractors {socialMediaButtons} height={heightInteractors} on:click />
 		</div>
 	{/if}

@@ -27,7 +27,7 @@ type RootTranslation = {
 	 */
 	loading: string
 	/**
-	 * P​r​o​s​í​m​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​a​p​l​i​k​a​c​e​.
+	 * P​r​o​s​í​m​,​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​d​a​t​.
 	 */
 	pleaseWait: string
 	question: {
@@ -171,6 +171,22 @@ type RootTranslation = {
 			 */
 			next: string
 		}
+		'ap-1': {
+			/**
+			 * J​e​ ​V​á​m​ ​v​š​e​ ​j​a​s​n​é​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * A​n​o​,​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t
+				 */
+				'0': string
+				/**
+				 * N​e​,​ ​p​o​t​ř​e​b​u​j​i​ ​z​o​p​a​k​o​v​a​t​ ​p​r​a​x​i
+				 */
+				'1': string
+			}
+		}
 	}
 }
 
@@ -188,7 +204,7 @@ export type TranslationFunctions = {
 	 */
 	loading: () => LocalizedString
 	/**
-	 * Prosím čekejte na načtení aplikace.
+	 * Prosím, čekejte na načtení dat.
 	 */
 	pleaseWait: () => LocalizedString
 	question: {
@@ -331,6 +347,22 @@ export type TranslationFunctions = {
 			 * Přeskočit na další sekci
 			 */
 			next: () => LocalizedString
+		}
+		'ap-1': {
+			/**
+			 * Je Vám vše jasné?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Ano, pokračovat na ostrý test
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Ne, potřebuji zopakovat praxi
+				 */
+				'1': () => LocalizedString
+			}
 		}
 	}
 }

@@ -62,6 +62,13 @@ const cs = {
 				2: 'Therefore, prioritize the pattern-matching task while managing your attention across all tasks.',
 				3: 'If you understand these instructions, please indicate by pressing "Yes, continue" and we can proceed with some practice trials.'
 			}
+		},
+		'ap-1': {
+			heading: 'Je Vám vše jasné?',
+			options: {
+				0: 'Ano, pokračovat na ostrý test',
+				1: 'Ne, potřebuji zopakovat praxi'
+			}
 		}
 	}
 } satisfies BaseTranslation;

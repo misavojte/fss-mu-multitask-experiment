@@ -3,8 +3,13 @@
 	import { writable } from 'svelte/store';
 	import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import InterfaceFrame from './InterfaceFrame.svelte';
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
+
+	export let width: number = 300;
+
+	export let height: number = 300;
 
 	const patternMatchingObjectIndex = writable(0);
 	const dispatch = createEventDispatcher();
@@ -25,9 +30,9 @@
 	};
 </script>
 
-<div class="max-w-screen-sm">
+<InterfaceFrame {width} {height} showBezels={false}>
 	<TaskPatternMatchingStimulus
 		on:patternMatchingResponseClicked={handlePatternMatchingResponseClicked}
 		patternMatchingObject={patternMatchingObjects[$patternMatchingObjectIndex]}
 	/>
-</div>
+</InterfaceFrame>
