@@ -1,9 +1,7 @@
 <script lang="ts">
 	import {
 		getCancellableAsync,
-		waitForCondition,
 		waitForConditionCancellable,
-		waitForTimeout,
 		waitForTimeoutCancellable
 	} from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
