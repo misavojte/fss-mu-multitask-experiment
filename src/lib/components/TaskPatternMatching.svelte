@@ -2,7 +2,7 @@
 	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
 	import { writable } from 'svelte/store';
 	import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
@@ -25,10 +25,10 @@
 		patternMatchingObjectIndex.update((index) => index + 1);
 	};
 
-	// dispatch on change of patternMatchingObjectIndex
-	patternMatchingObjectIndex.subscribe((index) => {
-		alert('patternMatchingNext' + patternMatchingObjects[index].id);
-		dispatch('patternMatchingNext', patternMatchingObjects[index].id);
+	$: dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
+
+	onMount(() => {
+		dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
 	});
 </script>
 

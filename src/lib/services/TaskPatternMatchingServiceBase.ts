@@ -19,7 +19,7 @@ export class TaskPatternMatchingServiceBase implements ITaskPatternMatching {
 		const T3Src = this.base + `task/1/tf1_${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
 		const T4Src = this.base + `task/1/tf1_${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
 		return {
-			id: '1',
+			id: id,
 			matrixSrc,
 			responses: [
 				{
