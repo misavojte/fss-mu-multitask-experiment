@@ -7,7 +7,7 @@ export class TimestampQuestionServiceIDB implements ITimestampQuestionService {
 		this.sessionId = sessionId;
 	}
 
-	async saveQuestions(entry: unknown): Promise<void> {
+	async saveQuestions(): Promise<void> {
 		saveActionLog({
 			timestamp: new Date().toISOString(),
 			sessionId: this.sessionId,

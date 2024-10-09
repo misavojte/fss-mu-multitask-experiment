@@ -31,7 +31,10 @@
 		event: CustomEvent<{ id: string; timestamp: number }>
 	) => {
 		if (!stimulus) return;
-		dispatch('clickSocialMediaInteractors', event.detail);
+		dispatch('socialMediaInteractorsClick', {
+			buttonId: event.detail.id,
+			timestamp: event.detail.timestamp
+		});
 		wasClicked.set(true);
 	};
 
@@ -44,16 +47,19 @@
 			await waitForTimeout(initialDelay);
 			wasClicked.set(false);
 			stimulus = loopStimulus;
-			dispatch('stimulusShown');
+			dispatch('socialMediaInteractorsShow', {
+				id: loopStimulus.id,
+				timestamp: Date.now()
+			});
 			const wasClickedWithinTime = await waitForCondition(wasClicked, stimulusMaxDuration);
 			if (!wasClickedWithinTime) {
-				dispatch('timeoutSocialMediaInteractors');
+				dispatch('socialMediaInteractorsTimeout');
 			}
 			stimulus = null;
-			dispatch('stimulusHidden');
+			dispatch('socialMediaInteractorsHidden');
 		}
 
-		dispatch('allStimuliShown');
+		dispatch('socialMediaInteractorsCompleted');
 	};
 </script>
 
