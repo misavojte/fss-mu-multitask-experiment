@@ -1,8 +1,12 @@
 <script lang="ts">
-	import { waitForCondition, waitForTimeout } from '$lib/utils/waitForCondition';
+	import {
+		getCancellableAsync,
+		waitForConditionCancellable,
+		waitForTimeoutCancellable
+	} from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 
 	const dispatch = createEventDispatcher();
@@ -31,29 +35,45 @@
 		event: CustomEvent<{ id: string; timestamp: number }>
 	) => {
 		if (!stimulus) return;
-		dispatch('clickSocialMediaInteractors', event.detail);
+		dispatch('socialMediaInteractorsClick', {
+			buttonId: event.detail.id,
+			timestamp: event.detail.timestamp
+		});
 		wasClicked.set(true);
 	};
 
+	const abortController = new AbortController();
+
 	onMount(() => {
-		logic();
+		getCancellableAsync(logic, abortController.signal);
+	});
+
+	onDestroy(() => {
+		abortController.abort('TaskSocialMedia was destroyed');
 	});
 
 	const logic = async () => {
 		for await (const loopStimulus of shuffledStimuli) {
-			await waitForTimeout(initialDelay);
+			await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			wasClicked.set(false);
 			stimulus = loopStimulus;
-			dispatch('stimulusShown');
-			const wasClickedWithinTime = await waitForCondition(wasClicked, stimulusMaxDuration);
-			if (!wasClickedWithinTime) {
-				dispatch('timeoutSocialMediaInteractors');
+			dispatch('socialMediaInteractorsShow', {
+				id: loopStimulus.id,
+				timestamp: Date.now()
+			});
+			try {
+				await waitForConditionCancellable(wasClicked, stimulusMaxDuration, abortController.signal);
+			} catch (error) {
+				if (error === 'TaskSocialMedia was destroyed') {
+					return; // stop the task, no logging
+				}
+				dispatch('socialMediaInteractorsTimeout');
 			}
 			stimulus = null;
-			dispatch('stimulusHidden');
+			dispatch('socialMediaInteractorsHidden');
 		}
 
-		dispatch('allStimuliShown');
+		dispatch('socialMediaInteractorsCompleted');
 	};
 </script>
 

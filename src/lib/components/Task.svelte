@@ -2,12 +2,16 @@
 	import TaskDocumentary from './TaskDocumentary.svelte';
 	import TaskPatternMatching from './TaskPatternMatching.svelte';
 	import TaskSocialMedia from './TaskSocialMedia.svelte';
-	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
+	import type {
+		ATaskPatternMatchingHandler,
+		ITaskPatternMatchingObject
+	} from '$lib/interfaces/ITaskPatternMatching';
 	import { preloadMedia, type MediaPreloadSource } from '$lib/utils/preloadMedia';
 	import { fade } from 'svelte/transition';
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
-	import { createEventDispatcher } from 'svelte';
+	import { onDestroy, onMount, createEventDispatcher } from 'svelte';
+	import App from './App.svelte';
 
 	export let socialMediaStimuli: Array<{
 		src: string;
@@ -110,10 +114,7 @@
 	 */
 	export let socialStimulusMaxDuration: number = 20000;
 
-	/**
-	 * The height of the social media task.
-	 */
-	$: heightSocial = heightSocialImage + heightSocialOptions;
+	export let taskHandler: ATaskPatternMatchingHandler;
 
 	const preloadMediaArray: MediaPreloadSource[] = [
 		{
@@ -125,7 +126,23 @@
 			src
 		}))
 	];
+
+	const dispatch = createEventDispatcher();
 	const loadPromise = Promise.all([preloadMedia(preloadMediaArray), waitForTimeout(500)]); // Simulate loading time
+
+	const handleEnd = () => {
+		console.log('Task ended');
+		dispatch('taskEnd');
+	};
+
+	onMount(() => {
+		taskHandler.addOnEndHandler(handleEnd);
+		console.log('Task started', taskHandler);
+	});
+
+	onDestroy(() => {
+		taskHandler.removeOnEndHandler();
+	});
 </script>
 
 <div
@@ -158,6 +175,21 @@
 				{socialMediaStimuli}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
+				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
+					taskHandler
+				)}
+				on:socialMediaInteractorsShow={taskHandler.handleSocialMediaInteractorsShow.bind(
+					taskHandler
+				)}
+				on:socialMediaInteractorsHidden={taskHandler.handleSocialMediaInteractorsHidden.bind(
+					taskHandler
+				)}
+				on:socialMediaInteractorsTimeout={taskHandler.handleSocialMediaInteractorsTimeout.bind(
+					taskHandler
+				)}
+				on:socialMediaInteractorsClick={taskHandler.handleSocialMediaInteractorsClick.bind(
+					taskHandler
+				)}
 			/>
 		</div>
 		<div
@@ -169,7 +201,9 @@
 				{patternMatchingObjects}
 				width={widthPattern}
 				height={heightPattern}
-				on:patternMatchingCompleted
+				on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
+				on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
+				on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
 			/>
 		</div>
 		<div

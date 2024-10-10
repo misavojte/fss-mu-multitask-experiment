@@ -54,7 +54,6 @@
 	const handlePreliminaryQuestionnaireDone = async (data: any) => {
 		dispatch('loading');
 		console.log('loading');
-		await questionsService.saveQuestions(data);
 		console.log('done');
 		dispatch('startTrial');
 	};
@@ -62,7 +61,6 @@
 	const handleQuestionnaireDone = async (data: any) => {
 		dispatch('loading');
 		console.log('loading');
-		await questionsService.saveQuestions(data);
 		console.log('done');
 		dispatch('startPractice');
 	};
