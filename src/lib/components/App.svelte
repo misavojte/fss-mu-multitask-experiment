@@ -1,17 +1,13 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-
 	import AppQuestionsPrePractice from '$lib/components/AppQuestionsPrePractice.svelte';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
-	import { onDestroy, onMount } from 'svelte';
-	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 
 	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' = 'questions-1';
 
-	export let sessionId: string;
 	export let questionsService: ITimestampQuestionService;
 	export let taskHandler: ATaskPatternMatchingHandler;
 
@@ -37,24 +33,6 @@
 	const triggerTrial = () => {
 		stage = 'trial';
 	};
-
-	onMount(() => {
-		saveActionLog({
-			sessionId: sessionId,
-			type: 'page',
-			timestamp: new Date().toISOString(),
-			value: 'start'
-		});
-	});
-
-	onDestroy(() => {
-		saveActionLog({
-			sessionId: sessionId,
-			type: 'page',
-			timestamp: new Date().toISOString(),
-			value: 'end'
-		});
-	});
 </script>
 
 <!-- Add 'relative' to make the parent container the positioning context -->
