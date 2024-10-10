@@ -29,5 +29,6 @@
 	{patternMatchingObjects}
 	{socialMediaStimuli}
 	{videoDocumentarySrc}
+	socialInitialDelay={5000}
 	on:taskEnd
 />
