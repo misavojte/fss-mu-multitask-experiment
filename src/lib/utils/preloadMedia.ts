@@ -21,7 +21,7 @@ export const loadImage = (src: string): Promise<LoadResult> =>
 export const loadVideo = (src: string): Promise<LoadResult> =>
 	new Promise((resolve, reject) => {
 		const video = document.createElement('video');
-		video.onloadeddata = () => resolve({ src, type: 'video' });
+		video.oncanplaythrough = () => resolve({ src, type: 'video' });
 		video.onerror = () => reject(new Error(`Failed to preload video: ${src}`));
 		video.src = src;
 		video.load();
@@ -29,7 +29,7 @@ export const loadVideo = (src: string): Promise<LoadResult> =>
 
 export const preloadMedia = (
 	srcs: readonly MediaPreloadSource[],
-	concurrencyLimit: number = 3
+	concurrencyLimit: number = 50
 ): Promise<LoadResult[]> => {
 	const loadMedia = ({ type, src }: MediaPreloadSource): Promise<LoadResult> => {
 		if (type === 'img') {

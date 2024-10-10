@@ -5,8 +5,10 @@
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
+	import AppEnd from './AppEnd.svelte';
+	import AppTaskTrial from './AppTaskTrial.svelte';
 
-	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' = 'questions-1';
+	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'questions-1';
 
 	export let questionsService: ITimestampQuestionService;
 	export let taskHandler: ATaskPatternMatchingHandler;
@@ -58,7 +60,11 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPractice on:taskEnd={() => (stage = 'questions-2')} {taskHandler} />
+			<AppTaskTrial on:taskEnd={() => (stage = 'end')} {taskHandler} />
+		</div>
+	{:else if stage === 'end'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppEnd />
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">

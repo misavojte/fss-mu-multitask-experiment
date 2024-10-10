@@ -11,7 +11,6 @@
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
 	import { onDestroy, onMount, createEventDispatcher } from 'svelte';
-	import App from './App.svelte';
 
 	export let socialMediaStimuli: Array<{
 		src: string;
@@ -26,13 +25,13 @@
 	 * The width of the task container.
 	 * @default '100vw'
 	 */
-	export let width: string = '100vw';
+	export let width: string = '1920px';
 
 	/**
 	 * The height of the task container.
 	 * @default '100vh'
 	 */
-	export let height: string = '100vh';
+	export let height: string = '920px';
 
 	/**
 	 * The position of the social media task on the x-axis in pixels.
@@ -47,17 +46,17 @@
 	/**
 	 * The width of the social media task.
 	 */
-	export let widthSocial: number = 300;
+	export let widthSocial: number = 348;
 
 	/**
 	 * The height of the social media task, excluding the interactors.
 	 */
-	export let heightSocialImage: number = 522;
+	export let heightSocialImage: number = 495;
 
 	/**
 	 * The height of the social media task interactors.
 	 */
-	export let heightSocialOptions: number = 150;
+	export let heightSocialOptions: number = 200;
 
 	/**
 	 * The position of the pattern matching task on the x-axis in pixels.
@@ -82,7 +81,7 @@
 	/**
 	 * The position of the documentary task on the x-axis in pixels.
 	 */
-	export let positionXDocumentary: number = 910;
+	export let positionXDocumentary: number = 825;
 
 	/**
 	 * The position of the documentary task on the y-axis in pixels.
@@ -92,7 +91,7 @@
 	/**
 	 * The width of the documentary task.
 	 */
-	export let widthDocumentary: number = 450;
+	export let widthDocumentary: number = 650;
 
 	/**
 	 * The height of the documentary task.
@@ -118,13 +117,21 @@
 
 	const preloadMediaArray: MediaPreloadSource[] = [
 		{
+			type: 'img' as const,
+			src: patternMatchingObjects[0].matrixSrc
+		},
+		...patternMatchingObjects[0].responses.map((obj) => ({
+			type: 'img' as const,
+			src: obj.src
+		})),
+		{
 			type: 'video' as const,
 			src: videoDocumentarySrc
 		},
-		...socialMediaStimuli.map(({ src }) => ({
+		{
 			type: 'img' as const,
-			src
-		}))
+			src: socialMediaStimuli[0].src
+		}
 	];
 
 	const dispatch = createEventDispatcher();

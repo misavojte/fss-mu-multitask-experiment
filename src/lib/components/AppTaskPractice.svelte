@@ -24,10 +24,12 @@
 	];
 </script>
 
-<Task
-	{taskHandler}
-	{patternMatchingObjects}
-	{socialMediaStimuli}
-	{videoDocumentarySrc}
-	on:taskEnd
-/>
+<div class="flex flex-col items-center justify-center w-screen h-screen">
+	<Task
+		{taskHandler}
+		{patternMatchingObjects}
+		{socialMediaStimuli}
+		{videoDocumentarySrc}
+		on:taskEnd
+	/>
+</div>
