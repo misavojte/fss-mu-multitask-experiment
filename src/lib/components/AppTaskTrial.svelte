@@ -4,22 +4,18 @@
 	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
 
 	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
-	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
+	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForTest();
 	const videoDocumentarySrc = base + '/video/video.mp4';
-	const socialMediaStimuli = [
-		{
-			id: '1',
-			src: base + '/task/3/1.png'
-		},
-		{
-			id: '2',
-			src: base + '/task/3/2.png'
-		},
-		{
-			id: '3',
-			src: base + '/task/3/3.png'
-		}
-	];
+
+	const socialMediaStimuliAS = Array.from({ length: 16 }, (_, i) => ({
+		id: `AS_Image ${i + 1}`,
+		src: `${base}/task/3/test/AS_Image ${i + 1}.PNG`
+	}));
+	const socialMediaStimuliNS = Array.from({ length: 16 }, (_, i) => ({
+		id: `NS_Image ${i + 1}`,
+		src: `${base}/task/3/test/NS_Image ${i + 1}.PNG`
+	}));
+	const socialMediaStimuli = socialMediaStimuliAS.concat(socialMediaStimuliNS);
 </script>
 
 <Task
