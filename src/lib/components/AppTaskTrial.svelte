@@ -25,5 +25,5 @@
 	{patternMatchingObjects}
 	{socialMediaStimuli}
 	{videoDocumentarySrc}
-	on:patternMatchingCompleted
+	on:taskEnd
 />
