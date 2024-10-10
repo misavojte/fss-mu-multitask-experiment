@@ -16,9 +16,9 @@
 	const bezel3Height = height * (46 / 600);
 	const bezel4Height = height * (64 / 600);
 
-	const bezelWidthValue = 3 * (width / 300);
-	const bezelLeftOffset = -17 * (width / 300);
-	const bezelRightOffset = -17 * (width / 300);
+	const bezelWidthValue = (width + borderWidth) / 80;
+	const bezelLeftOffset = -borderWidth - bezelWidthValue;
+	const bezelRightOffset = -borderWidth - bezelWidthValue;
 
 	// External dimensions including border width
 	const externalWidth = width + 2 * borderWidth; // Add border sizes (borderWidth on each side)

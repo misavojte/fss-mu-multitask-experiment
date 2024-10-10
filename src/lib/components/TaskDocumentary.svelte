@@ -10,7 +10,7 @@
 </script>
 
 <InterfaceFrame {width} {height} showBezels={false}>
-	<div class="w-full h-full flex relative items-center justify-center">
+	<div class="w-full h-full flex relative items-center justify-center cursor-not-allowed">
 		<video
 			src={videoDocumentarySrc}
 			controls={!hideAllControls}

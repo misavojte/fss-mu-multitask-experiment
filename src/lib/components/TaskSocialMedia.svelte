@@ -21,8 +21,8 @@
 	}>;
 	export let initialDelay: number = 20000;
 	export let stimulusMaxDuration: number = 20000;
-	export let width: number = 300;
-	export let heightImage: number = 522;
+	export let width: number = 522;
+	export let heightImage: number = 743;
 	export let heightInteractors: number = 150;
 
 	const wasClicked = writable(false);
