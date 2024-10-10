@@ -2,7 +2,9 @@
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
 	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 
+	export let taskHandler: ATaskPatternMatchingHandler;
 	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
 	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
 	const videoDocumentarySrc = base + '/video/video.mp4';
@@ -23,8 +25,9 @@
 </script>
 
 <Task
+	{taskHandler}
 	{patternMatchingObjects}
 	{socialMediaStimuli}
 	{videoDocumentarySrc}
-	on:patternMatchingCompleted
+	on:taskEnd
 />

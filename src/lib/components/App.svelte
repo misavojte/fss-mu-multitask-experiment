@@ -1,17 +1,15 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-
 	import AppQuestionsPrePractice from '$lib/components/AppQuestionsPrePractice.svelte';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
-	import { onDestroy, onMount } from 'svelte';
-	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
-	import { TimestampQuestionServiceIDB } from '$lib/services/TimestampQuestionServiceIDB';
+	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 
 	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' = 'questions-1';
 
-	const sessionId = new Date().getTime() + '-' + Math.floor(1000 + Math.random() * 9000);
-	const questionsService = new TimestampQuestionServiceIDB(sessionId);
+	export let questionsService: ITimestampQuestionService;
+	export let taskHandler: ATaskPatternMatchingHandler;
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -35,24 +33,6 @@
 	const triggerTrial = () => {
 		stage = 'trial';
 	};
-
-	onMount(() => {
-		saveActionLog({
-			sessionId: sessionId,
-			type: 'page',
-			timestamp: new Date().toISOString(),
-			value: 'start'
-		});
-	});
-
-	onDestroy(() => {
-		saveActionLog({
-			sessionId: sessionId,
-			type: 'page',
-			timestamp: new Date().toISOString(),
-			value: 'end'
-		});
-	});
 </script>
 
 <!-- Add 'relative' to make the parent container the positioning context -->
@@ -66,7 +46,7 @@
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPractice on:patternMatchingCompleted={triggerQuestions2} />
+			<AppTaskPractice on:taskEnd={triggerQuestions2} {taskHandler} />
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -78,7 +58,7 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPractice on:patternMatchingCompleted={() => (stage = 'questions-2')} />
+			<AppTaskPractice on:taskEnd={() => (stage = 'questions-2')} {taskHandler} />
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
