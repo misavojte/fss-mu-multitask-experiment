@@ -10,14 +10,14 @@ export class TaskPatternMatchingServiceBase implements ITaskPatternMatching {
 		this.base = base;
 	}
 
-	public getTaskPatternMatchingObject(id: string): ITaskPatternMatchingObject {
+	public getTaskPatternMatchingObject(id: string, base: string = ''): ITaskPatternMatchingObject {
 		// assuming that id is in "N_ssN" format
 		const idParts = id.split('_');
-		const matrixSrc = this.base + `task/1/tf1_${idParts[0]}_M_${idParts[1]}.jpeg`;
-		const T1Src = this.base + `task/1/tf1_${idParts[0]}_T1_${idParts[1]}_md.jpeg`;
-		const T2Src = this.base + `task/1/tf1_${idParts[0]}_T2_${idParts[1]}_md.jpeg`;
-		const T3Src = this.base + `task/1/tf1_${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
-		const T4Src = this.base + `task/1/tf1_${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
+		const matrixSrc = base + `${idParts[0]}_M_${idParts[1]}.jpeg`;
+		const T1Src = base + `${idParts[0]}_T1_${idParts[1]}_md.jpeg`;
+		const T2Src = base + `${idParts[0]}_T2_${idParts[1]}_md.jpeg`;
+		const T3Src = base + `${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
+		const T4Src = base + `${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
 		return {
 			id: '1',
 			matrixSrc,
@@ -44,10 +44,13 @@ export class TaskPatternMatchingServiceBase implements ITaskPatternMatching {
 
 	public getTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObject[] {
 		const ids = ['1_ss3', '3_ss2', '35_ss1'];
-		return ids.map((id) => this.getTaskPatternMatchingObject(id));
+		const base = this.base + 'task/1/practice/tf1_';
+		return ids.map((id) => this.getTaskPatternMatchingObject(id, base));
 	}
 
 	public getTaskPatternMatchingObjectsForTest(): ITaskPatternMatchingObject[] {
-		throw new Error('Method not implemented.');
+		const ids = ['1_ss3', '3_ss2', '35_ss1'];
+		const base = this.base + 'task/1/test/tf1_';
+		return ids.map((id) => this.getTaskPatternMatchingObject(id, base));
 	}
 }
