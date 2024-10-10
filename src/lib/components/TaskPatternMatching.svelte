@@ -4,6 +4,7 @@
 	import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
+	import { preloadMedia } from '$lib/utils/preloadMedia';
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
@@ -23,12 +24,32 @@
 			return;
 		}
 		patternMatchingObjectIndex.update((index) => index + 1);
+		preloadNextPatternMatchingImages($patternMatchingObjectIndex);
+	};
+
+	const preloadNextPatternMatchingImages = (index: number) => {
+		const nextIndex = index + 1;
+		if (nextIndex < patternMatchingObjects.length) {
+			const nextPatternMatchingObject = patternMatchingObjects[nextIndex];
+			const media = [
+				{
+					type: 'img' as const,
+					src: nextPatternMatchingObject.matrixSrc
+				},
+				...nextPatternMatchingObject.responses.map((response) => ({
+					type: 'img' as const,
+					src: response.src
+				}))
+			];
+			preloadMedia(media);
+		}
 	};
 
 	$: dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
 
 	onMount(() => {
 		dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
+		preloadNextPatternMatchingImages($patternMatchingObjectIndex);
 	});
 </script>
 
