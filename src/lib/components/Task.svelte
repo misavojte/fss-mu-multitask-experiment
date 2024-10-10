@@ -11,7 +11,6 @@
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
 	import { onDestroy, onMount, createEventDispatcher } from 'svelte';
-	import App from './App.svelte';
 
 	export let socialMediaStimuli: Array<{
 		src: string;
@@ -117,6 +116,14 @@
 	export let taskHandler: ATaskPatternMatchingHandler;
 
 	const preloadMediaArray: MediaPreloadSource[] = [
+		{
+			type: 'img' as const,
+			src: patternMatchingObjects[0].matrixSrc
+		},
+		...patternMatchingObjects[0].responses.map((obj) => ({
+			type: 'img' as const,
+			src: obj.src
+		})),
 		{
 			type: 'video' as const,
 			src: videoDocumentarySrc
