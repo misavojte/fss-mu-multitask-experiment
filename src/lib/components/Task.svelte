@@ -128,10 +128,10 @@
 			type: 'video' as const,
 			src: videoDocumentarySrc
 		},
-		...socialMediaStimuli.map(({ src }) => ({
+		{
 			type: 'img' as const,
-			src
-		}))
+			src: socialMediaStimuli[0].src
+		}
 	];
 
 	const dispatch = createEventDispatcher();

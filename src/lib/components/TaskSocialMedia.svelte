@@ -8,6 +8,7 @@
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
+	import { preloadMedia } from '$lib/utils/preloadMedia';
 
 	const dispatch = createEventDispatcher();
 
@@ -52,6 +53,14 @@
 		abortController.abort('TaskSocialMedia was destroyed');
 	});
 
+	const preloadNextStimulusImage = (index: number) => {
+		const nextIndex = index + 1;
+		if (nextIndex < shuffledStimuli.length) {
+			const nextStimulus = shuffledStimuli[nextIndex];
+			preloadMedia([{ type: 'img', src: nextStimulus.src }]);
+		}
+	};
+
 	const logic = async () => {
 		for await (const loopStimulus of shuffledStimuli) {
 			await waitForTimeoutCancellable(initialDelay, abortController.signal);
@@ -71,8 +80,8 @@
 			}
 			stimulus = null;
 			dispatch('socialMediaInteractorsHidden');
+			preloadNextStimulusImage(shuffledStimuli.indexOf(loopStimulus));
 		}
-
 		dispatch('socialMediaInteractorsCompleted');
 	};
 </script>
