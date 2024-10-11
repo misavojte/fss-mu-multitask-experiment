@@ -29,6 +29,7 @@
 		{patternMatchingObjects}
 		{socialMediaStimuli}
 		{videoDocumentarySrc}
+		muted={false}
 		on:taskEnd
 	/>
 </div>
