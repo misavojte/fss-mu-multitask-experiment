@@ -9,6 +9,7 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
+	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 
 	const dispatch = createEventDispatcher();
 
@@ -63,6 +64,7 @@
 
 	const logic = async () => {
 		for await (const loopStimulus of shuffledStimuli) {
+			socialMediaButtons = fisherYatesShuffle(socialMediaButtons);
 			await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			wasClicked.set(false);
 			stimulus = loopStimulus;

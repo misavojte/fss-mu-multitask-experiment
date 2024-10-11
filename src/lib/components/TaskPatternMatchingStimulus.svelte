@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
+	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { createEventDispatcher } from 'svelte';
 
 	export let patternMatchingObject: ITaskPatternMatchingObject;
 
-	$: shuffledResponses = patternMatchingObject.responses.sort(() => Math.random() - 0.5);
+	$: shuffledResponses = fisherYatesShuffle(patternMatchingObject.responses);
 
 	const dispatch = createEventDispatcher();
 
