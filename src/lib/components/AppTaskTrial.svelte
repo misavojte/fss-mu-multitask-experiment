@@ -10,7 +10,7 @@
 	const patternMatchingObjects = fisherYatesShuffle(
 		patternMatchingService.getTaskPatternMatchingObjectsForTest()
 	);
-	const videoDocumentarySrc = base + '/video/video.mp4';
+	const videoDocumentarySrc = base + '/video/trial.mp4';
 
 	const socialMediaStimuliAS = Array.from({ length: 16 }, (_, i) => ({
 		id: `AS_Image ${i + 1}`,
