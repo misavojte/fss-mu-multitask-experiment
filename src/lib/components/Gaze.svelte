@@ -4,5 +4,7 @@
 
 	export let gazeManager: GazeManager;
 
+	let stage: 'connect' | 'validate' | 'check' = 'connect';
+
 	const dispatch = createEventDispatcher();
 </script>

@@ -3,13 +3,12 @@
 	import GazeConnectButton from './GazeConnectButton.svelte';
 	import GazeConnectSelect from './GazeConnectSelect.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { Heading } from 'flowbite-svelte';
 
 	export let gazeManager: GazeManager;
 
 	let isLoading = false;
 	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
-	let error: null | string = 'aa';
+	let error: null | string = null;
 
 	const configs: Record<'gazepoint' | 'dummy', GazeInputConfig> = {
 		gazepoint: {
