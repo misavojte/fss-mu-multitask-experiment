@@ -174,3 +174,12 @@ function logsToCSV(logs: Gaze[]): string {
 	// Join header and rows to form the final CSV string
 	return [header, ...rows].join('\n');
 }
+
+export async function deleteGazesBySessionId(sessionId: string): Promise<void> {
+	try {
+		await db.gazes.where('sessionId').equals(sessionId).delete();
+		console.log('Gazes deleted for session:', sessionId);
+	} catch (error) {
+		console.error('Failed to delete gazes:', error);
+	}
+}

@@ -115,3 +115,12 @@ function logsToCSV(logs: ActionLog[]): string {
 	// Join header and rows to form the final CSV string
 	return [header, ...rows].join('\n');
 }
+
+export async function deleteActionLogsBySessionId(sessionId: string): Promise<void> {
+	try {
+		await db.actionLogs.where('sessionId').equals(sessionId).delete();
+		console.log('Action logs deleted for session:', sessionId);
+	} catch (error) {
+		console.error('Failed to delete action logs:', error);
+	}
+}
