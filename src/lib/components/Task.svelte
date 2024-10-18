@@ -11,6 +11,7 @@
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
 	import { onDestroy, onMount, createEventDispatcher } from 'svelte';
+	import Intersecter from './Intersecter.svelte';
 
 	export let socialMediaStimuli: Array<{
 		src: string;
@@ -169,63 +170,69 @@
 			transition:fade={{ duration: 300 }}
 			style="top: {positionYSocial}px; left: {positionXSocial}px;"
 		>
-			<TaskSocialMedia
-				heightImage={heightSocialImage}
-				heightInteractors={heightSocialOptions}
-				width={widthSocial}
-				socialMediaButtons={[
-					{ text: 'Like', id: 'like' },
-					{ text: 'Share', id: 'share' },
-					{ text: 'Ignore', id: 'save' },
-					{ text: 'Dislike', id: 'dislike' }
-				]}
-				{socialMediaStimuli}
-				initialDelay={socialInitialDelay}
-				stimulusMaxDuration={socialStimulusMaxDuration}
-				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
-					taskHandler
-				)}
-				on:socialMediaInteractorsShow={taskHandler.handleSocialMediaInteractorsShow.bind(
-					taskHandler
-				)}
-				on:socialMediaInteractorsHidden={taskHandler.handleSocialMediaInteractorsHidden.bind(
-					taskHandler
-				)}
-				on:socialMediaInteractorsTimeout={taskHandler.handleSocialMediaInteractorsTimeout.bind(
-					taskHandler
-				)}
-				on:socialMediaInteractorsClick={taskHandler.handleSocialMediaInteractorsClick.bind(
-					taskHandler
-				)}
-			/>
+			<Intersecter id="task-social-media">
+				<TaskSocialMedia
+					heightImage={heightSocialImage}
+					heightInteractors={heightSocialOptions}
+					width={widthSocial}
+					socialMediaButtons={[
+						{ text: 'Like', id: 'like' },
+						{ text: 'Share', id: 'share' },
+						{ text: 'Ignore', id: 'save' },
+						{ text: 'Dislike', id: 'dislike' }
+					]}
+					{socialMediaStimuli}
+					initialDelay={socialInitialDelay}
+					stimulusMaxDuration={socialStimulusMaxDuration}
+					on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
+						taskHandler
+					)}
+					on:socialMediaInteractorsShow={taskHandler.handleSocialMediaInteractorsShow.bind(
+						taskHandler
+					)}
+					on:socialMediaInteractorsHidden={taskHandler.handleSocialMediaInteractorsHidden.bind(
+						taskHandler
+					)}
+					on:socialMediaInteractorsTimeout={taskHandler.handleSocialMediaInteractorsTimeout.bind(
+						taskHandler
+					)}
+					on:socialMediaInteractorsClick={taskHandler.handleSocialMediaInteractorsClick.bind(
+						taskHandler
+					)}
+				/>
+			</Intersecter>
 		</div>
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
 			style="top: {positionYPattern}px; left: {positionXPattern}px;"
 		>
-			<TaskPatternMatching
-				{patternMatchingObjects}
-				width={widthPattern}
-				height={heightPattern}
-				on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
-				on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
-				on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
-			/>
+			<Intersecter id="task-pattern-matching">
+				<TaskPatternMatching
+					{patternMatchingObjects}
+					width={widthPattern}
+					height={heightPattern}
+					on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
+					on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
+					on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
+				/>
+			</Intersecter>
 		</div>
 		<div
 			class="absolute"
 			transition:fade={{ duration: 300 }}
 			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
 		>
-			<TaskDocumentary
-				{videoDocumentarySrc}
-				hideAllControls={true}
-				autoplay={true}
-				{muted}
-				width={widthDocumentary}
-				height={heightDocumentary}
-			/>
+			<Intersecter id="task-documentary">
+				<TaskDocumentary
+					{videoDocumentarySrc}
+					hideAllControls={true}
+					autoplay={true}
+					{muted}
+					width={widthDocumentary}
+					height={heightDocumentary}
+				/>
+			</Intersecter>
 		</div>
 	{/await}
 </div>

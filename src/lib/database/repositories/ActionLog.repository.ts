@@ -34,7 +34,7 @@ export async function getActionLogsBySessionId(sessionId: string): Promise<Actio
 export async function getUniqueSessionIds(): Promise<string[]> {
 	try {
 		// Use Dexie's `orderBy` and `uniqueKeys` to get unique session IDs directly
-		const sessionIds = await db.actionLogs.orderBy('sessionId').uniqueKeys();
+		const sessionIds = await db.actionLogs.orderBy('sessionId').reverse().uniqueKeys();
 		return sessionIds as string[];
 	} catch (error) {
 		console.error('Failed to fetch unique session IDs:', error);

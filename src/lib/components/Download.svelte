@@ -5,15 +5,27 @@
 		getQuestionnaireLinkingValue,
 		getUniqueSessionIds
 	} from '$lib/database/repositories/ActionLog.repository';
+	import { getAllGazesAsCSV, getGazesAsCSV } from '$lib/database/repositories/Gaze.repository';
 
 	const parseSessionIdToDate = (sessionId: string) => {
 		const timestamp = parseInt(sessionId.split('-')[0]);
 		return new Date(timestamp).toLocaleString();
 	};
 
-	const downloadStringAsCsv = async (filename: string, sessionId: string) => {
+	const downloadActionsStringAsCsv = async (filename: string, sessionId: string) => {
 		const string =
 			sessionId === 'all' ? await getAllActionLogsAsCSV() : await getActionLogsAsCSV(sessionId);
+		const blob = new Blob([string], { type: 'text/csv' });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = filename;
+		a.click();
+		URL.revokeObjectURL(url);
+	};
+
+	const downloadGazesStringAsCsv = async (filename: string, sessionId: string) => {
+		const string = sessionId === 'all' ? await getAllGazesAsCSV() : await getGazesAsCSV(sessionId);
 		const blob = new Blob([string], { type: 'text/csv' });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement('a');
@@ -29,9 +41,15 @@
 	<div class="flex flex-row gap-4 mb-8">
 		<button
 			class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-			on:click={() => downloadStringAsCsv('allSessions.csv', 'all')}
+			on:click={() => downloadActionsStringAsCsv('multitask_action_allSessions.csv', 'all')}
 		>
-			Download All
+			Download Actions
+		</button>
+		<button
+			class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+			on:click={() => downloadGazesStringAsCsv('multitask_gaze_allSessions.csv', 'all')}
+		>
+			Download Gazes
 		</button>
 	</div>
 	{#await getUniqueSessionIds()}
@@ -44,7 +62,7 @@
 				<p>Session ID</p>
 				<p>Date</p>
 				<p>User</p>
-				<p></p>
+				<p>Download</p>
 			</li>
 			{#each sessionIds as sessionId}
 				<li class="grid grid-cols-4 gap-8 last:border-b-0 border-b p-3 text-gray-700 items-center">
@@ -68,9 +86,17 @@
 					<div class="ml-auto">
 						<button
 							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-							on:click={() => downloadStringAsCsv('multitask' + sessionId + '.csv', sessionId)}
+							on:click={() =>
+								downloadActionsStringAsCsv('multitask_action_' + sessionId + '.csv', sessionId)}
 						>
-							Download
+							Actions
+						</button>
+						<button
+							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+							on:click={() =>
+								downloadGazesStringAsCsv('multitask_gaze_' + sessionId + '.csv', sessionId)}
+						>
+							Gaze
 						</button>
 					</div>
 				</li>

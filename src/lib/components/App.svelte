@@ -10,6 +10,9 @@
 	import { GazeManager } from '@473783/develex-core';
 	import AppGaze from './AppGaze.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
+	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
+	import { onDestroy, onMount, setContext } from 'svelte';
+	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -18,6 +21,7 @@
 	export let questionsService: ITimestampQuestionService;
 	export let taskHandler: ATaskPatternMatchingHandler;
 	export let connectLogger: IConnectLogger;
+	export let gazeSaver: IGazeSaver;
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -45,6 +49,20 @@
 	const triggerQuestions1 = () => {
 		stage = 'questions-1';
 	};
+
+	const onIntersect = (entry: AcceptedIntersect) => {
+		gazeSaver.saveGazeInteraction(entry);
+	};
+
+	setContext('gazeManager', gazeManager);
+
+	onMount(() => {
+		gazeManager.on('intersect', onIntersect);
+	});
+
+	onDestroy(() => {
+		gazeManager.off('intersect', onIntersect);
+	});
 </script>
 
 <!-- Add 'relative' to make the parent container the positioning context -->
