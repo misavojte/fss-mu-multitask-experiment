@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { GazeManager } from '@473783/develex-core';
 	import { createEventDispatcher } from 'svelte';
-	import GazeValidate from './GazeValidate.svelte';
-	import GazeConnect from './GazeConnect.svelte';
+	import GazeValidate from '$lib/components/GazeValidate.svelte';
+	import GazeConnect from '$lib/components/GazeConnect.svelte';
 	import { fade } from 'svelte/transition';
-	import GazeCheck from './GazeCheck.svelte';
+	import GazeCheck from '$lib/components/GazeCheck.svelte';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
 	export let gazeManager: GazeManager;
+	export let connectLogger: IConnectLogger;
 
 	let stage: 'connect' | 'validate' | 'check' = 'connect';
 
@@ -44,11 +46,15 @@
 			class="absolute top-0 w-full h-full flex flex-col items-center justify-center"
 			transition:fade
 		>
-			<GazeConnect {gazeManager} on:trackerConnected={() => (stage = 'validate')} />
+			<GazeConnect {connectLogger} {gazeManager} on:trackerConnected={() => (stage = 'validate')} />
 		</div>
 	{:else if stage === 'validate'}
 		<div class="absolute w-full h-full flex flex-col items-center justify-center" transition:fade>
-			<GazeValidate {gazeManager} on:gazeValidationDone={handleGazeValidationDone} />
+			<GazeValidate
+				{connectLogger}
+				{gazeManager}
+				on:gazeValidationDone={handleGazeValidationDone}
+			/>
 		</div>
 	{:else if stage === 'check'}
 		<div class="absolute w-full h-full flex flex-col items-center justify-center" transition:fade>

@@ -3,8 +3,10 @@
 	import GazeValidateCross from './GazeValidateCross.svelte';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
 	export let gazeManager: GazeManager;
+	export let connectLogger: IConnectLogger;
 
 	let stage: 'topleft' | 'middle' | 'bottomright' = 'topleft';
 
@@ -33,7 +35,7 @@
 	} = {
 		validationDuration: 1000,
 		onValidation: (result) => {
-			console.log('Validation result:', result);
+			connectLogger.logValidation(result.accuracy, result.precision, result.gazeDataPoints.length);
 			if (stage === 'topleft') {
 				saveResult('topleft', result);
 				stage = 'middle';

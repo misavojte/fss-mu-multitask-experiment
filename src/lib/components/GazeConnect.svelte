@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { GazeInputConfig, GazeManager } from '@473783/develex-core';
-	import GazeConnectButton from './GazeConnectButton.svelte';
-	import GazeConnectSelect from './GazeConnectSelect.svelte';
+	import GazeConnectButton from '$lib/components/GazeConnectButton.svelte';
+	import GazeConnectSelect from '$lib/components/GazeConnectSelect.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
-	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
 	export let gazeManager: GazeManager;
+	export let connectLogger: IConnectLogger;
+
 	const isLoading = writable(false);
 
 	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
@@ -35,35 +37,33 @@
 		e: CustomEvent<{ windowObject: Window; mouseEventObject: MouseEvent }>
 	) => {
 		error = null;
-		saveActionLog({
-			type: 'gaze_connect',
-			data: {
-				tracker: selected
-			},
-			timestamp: new Date().toISOString()
-		};
+		connectLogger.logInit();
 		gazeManager.createInput(configs[selected]);
 		$isLoading = true;
 		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
 		gazeManager
 			.connect()
 			.then(async () => {
+				connectLogger.logConnect();
 				if (selected === 'dummy') {
 					await waitForTimeout(750);
 				}
 				gazeManager
 					.start()
 					.then(() => {
+						connectLogger.logStart();
 						dispatch('trackerConnected');
 					})
 					.catch((e: unknown) => {
 						error = (e as Error).message;
 						$isLoading = false;
+						connectLogger.logError(error);
 					});
 			})
 			.catch((e: unknown) => {
 				error = (e as Error).message;
 				$isLoading = false;
+				connectLogger.logError(error);
 			});
 	};
 </script>

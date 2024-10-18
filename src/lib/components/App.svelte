@@ -5,10 +5,11 @@
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppEnd from './AppEnd.svelte';
-	import AppTaskTrial from './AppTaskTrial.svelte';
+	import AppEnd from '$lib/components/AppEnd.svelte';
+	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
 	import { GazeManager } from '@473783/develex-core';
 	import AppGaze from './AppGaze.svelte';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -16,6 +17,7 @@
 
 	export let questionsService: ITimestampQuestionService;
 	export let taskHandler: ATaskPatternMatchingHandler;
+	export let connectLogger: IConnectLogger;
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -51,7 +53,7 @@
 >
 	{#if stage === 'connect'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppGaze {gazeManager} on:continue={triggerQuestions1} />
+			<AppGaze {connectLogger} {gazeManager} on:continue={triggerQuestions1} />
 		</div>
 	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
