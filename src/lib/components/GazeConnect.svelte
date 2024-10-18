@@ -3,10 +3,12 @@
 	import GazeConnectButton from './GazeConnectButton.svelte';
 	import GazeConnectSelect from './GazeConnectSelect.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { waitForTimeout } from '$lib/utils/waitForCondition';
+	import { writable } from 'svelte/store';
 
 	export let gazeManager: GazeManager;
+	const isLoading = writable(false);
 
-	let isLoading = false;
 	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
 	let error: null | string = null;
 
@@ -28,21 +30,32 @@
 
 	const dispatch = createEventDispatcher();
 
-	const handleConnect = (
+	const handleConnect = async (
 		e: CustomEvent<{ windowObject: Window; mouseEventObject: MouseEvent }>
 	) => {
 		error = null;
 		gazeManager.createInput(configs[selected]);
-		isLoading = true;
+		$isLoading = true;
+		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
 		gazeManager
 			.connect()
-			.then(() => {
-				isLoading = false;
-				dispatch('trackerConnected');
+			.then(async () => {
+				if (selected === 'dummy') {
+					await waitForTimeout(750);
+				}
+				gazeManager
+					.start()
+					.then(() => {
+						dispatch('trackerConnected');
+					})
+					.catch((e: unknown) => {
+						error = (e as Error).message;
+						$isLoading = false;
+					});
 			})
 			.catch((e: unknown) => {
 				error = (e as Error).message;
-				isLoading = false;
+				$isLoading = false;
 			});
 	};
 </script>
@@ -50,7 +63,7 @@
 <div class="flex flex-col gap-8 w-80">
 	<div class="w-full flex flex-col gap-2 items-start">
 		<GazeConnectSelect bind:selected />
-		<GazeConnectButton {isLoading} on:connect={handleConnect} />
+		<GazeConnectButton isLoading={$isLoading} on:connect={handleConnect} />
 	</div>
 	<div class="relative w-full">
 		{#if error}
