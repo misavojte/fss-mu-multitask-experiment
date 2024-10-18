@@ -55,5 +55,8 @@
 		"extends": [
 			"plugin:storybook/recommended"
 		]
+	},
+	"dependencies": {
+		"@473783/develex-core": "^0.1.1"
 	}
 }
