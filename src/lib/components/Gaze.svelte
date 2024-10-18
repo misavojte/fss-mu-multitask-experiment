@@ -3,7 +3,6 @@
 	import { createEventDispatcher } from 'svelte';
 	import GazeValidate from './GazeValidate.svelte';
 	import GazeConnect from './GazeConnect.svelte';
-	import { applyAction } from '$app/forms';
 	import { fade } from 'svelte/transition';
 	import GazeCheck from './GazeCheck.svelte';
 

@@ -5,6 +5,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { waitForTimeout } from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
+	import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
 
 	export let gazeManager: GazeManager;
 	const isLoading = writable(false);
@@ -34,6 +35,13 @@
 		e: CustomEvent<{ windowObject: Window; mouseEventObject: MouseEvent }>
 	) => {
 		error = null;
+		saveActionLog({
+			type: 'gaze_connect',
+			data: {
+				tracker: selected
+			},
+			timestamp: new Date().toISOString()
+		};
 		gazeManager.createInput(configs[selected]);
 		$isLoading = true;
 		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
