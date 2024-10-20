@@ -64,10 +64,11 @@
 
 	const logic = async () => {
 		for await (const loopStimulus of shuffledStimuli) {
-			socialMediaButtons = fisherYatesShuffle(socialMediaButtons);
+			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
 			await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			wasClicked.set(false);
 			stimulus = loopStimulus;
+			audioElement.play();
 			dispatch('socialMediaInteractorsShow', {
 				id: loopStimulus.id,
 				timestamp: Date.now()
@@ -86,6 +87,8 @@
 		}
 		dispatch('socialMediaInteractorsCompleted');
 	};
+
+	let audioElement: HTMLAudioElement;
 </script>
 
 <InterfaceFrame {width} height={heightImage + heightInteractors}>
@@ -96,5 +99,12 @@
 		{heightInteractors}
 		{heightImage}
 		on:click={handleSocialMediaInteractorsClick}
+	/>
+	<audio
+		src="/notification.mp3"
+		preload="auto"
+		class="hidden"
+		autoplay={false}
+		bind:this={audioElement}
 	/>
 </InterfaceFrame>
