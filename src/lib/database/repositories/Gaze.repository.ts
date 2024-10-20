@@ -64,7 +64,6 @@ export async function saveGazeInteraction(
 export async function saveGaze(log: Omit<Gaze, 'id'>): Promise<void> {
 	try {
 		await db.gazes.add(log);
-		console.log('Action log saved:', log);
 	} catch (error) {
 		console.error('Failed to save action log:', error);
 	}
