@@ -34,7 +34,7 @@ export async function getActionLogsBySessionId(sessionId: string): Promise<Actio
 export async function getUniqueSessionIds(): Promise<string[]> {
 	try {
 		// Use Dexie's `orderBy` and `uniqueKeys` to get unique session IDs directly
-		const sessionIds = await db.actionLogs.orderBy('sessionId').uniqueKeys();
+		const sessionIds = await db.actionLogs.orderBy('sessionId').reverse().uniqueKeys();
 		return sessionIds as string[];
 	} catch (error) {
 		console.error('Failed to fetch unique session IDs:', error);
@@ -114,4 +114,13 @@ function logsToCSV(logs: ActionLog[]): string {
 
 	// Join header and rows to form the final CSV string
 	return [header, ...rows].join('\n');
+}
+
+export async function deleteActionLogsBySessionId(sessionId: string): Promise<void> {
+	try {
+		await db.actionLogs.where('sessionId').equals(sessionId).delete();
+		console.log('Action logs deleted for session:', sessionId);
+	} catch (error) {
+		console.error('Failed to delete action logs:', error);
+	}
 }

@@ -1,5 +1,4 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+name: Deploy GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -33,6 +32,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'  # Specify the version of Node.js you need
+
+      - name: Set npm config for GitLab registry
+        run: |
+          npm config set -- //gitlab.ics.muni.cz/:_authToken=${{ secrets.CI_JOB_TOKEN }}
+          npm config set @473783:registry=https://gitlab.ics.muni.cz/api/v4/projects/7015/packages/npm/
 
       - name: Install dependencies
         run: npm install

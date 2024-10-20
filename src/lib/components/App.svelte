@@ -5,13 +5,23 @@
 	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppEnd from './AppEnd.svelte';
-	import AppTaskTrial from './AppTaskTrial.svelte';
+	import AppEnd from '$lib/components/AppEnd.svelte';
+	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
+	import { GazeManager } from '@473783/develex-core';
+	import AppGaze from './AppGaze.svelte';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
+	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
+	import { onDestroy, onMount, setContext } from 'svelte';
+	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
 
-	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'questions-1';
+	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
+
+	const gazeManager = new GazeManager();
 
 	export let questionsService: ITimestampQuestionService;
 	export let taskHandler: ATaskPatternMatchingHandler;
+	export let connectLogger: IConnectLogger;
+	export let gazeSaver: IGazeSaver;
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -35,13 +45,35 @@
 	const triggerTrial = () => {
 		stage = 'trial';
 	};
+
+	const triggerQuestions1 = () => {
+		stage = 'questions-1';
+	};
+
+	const onIntersect = (entry: AcceptedIntersect) => {
+		gazeSaver.saveGazeInteraction(entry);
+	};
+
+	setContext('gazeManager', gazeManager);
+
+	onMount(() => {
+		gazeManager.on('intersect', onIntersect);
+	});
+
+	onDestroy(() => {
+		gazeManager.off('intersect', onIntersect);
+	});
 </script>
 
 <!-- Add 'relative' to make the parent container the positioning context -->
 <div
 	class="w-screen h-screen grow overflow-hidden flex flex-col gap-4 items-center justify-center relative"
 >
-	{#if stage === 'questions-1'}
+	{#if stage === 'connect'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppGaze {connectLogger} {gazeManager} on:continue={triggerQuestions1} />
+		</div>
+	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPrePractice {questionsService} on:startPractice={triggerPractice} />
