@@ -15,7 +15,7 @@
 			src={videoDocumentarySrc}
 			controls={!hideAllControls}
 			{autoplay}
-			preload="metadata"
+			preload="auto"
 			{muted}
 			class="h-full object-cover"
 			{width}

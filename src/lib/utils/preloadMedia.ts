@@ -21,9 +21,15 @@ export const loadImage = (src: string): Promise<LoadResult> =>
 export const loadVideo = (src: string): Promise<LoadResult> =>
 	new Promise((resolve, reject) => {
 		const video = document.createElement('video');
-		video.oncanplaythrough = () => resolve({ src, type: 'video' });
+		video.muted = true; // Mute the video to prevent autoplay policy
 		video.onerror = () => reject(new Error(`Failed to preload video: ${src}`));
 		video.src = src;
+		video.oncanplay = () => {
+			video.play().then(() => {
+				video.pause();
+				resolve({ src, type: 'video' });
+			});
+		};
 		video.load();
 	});
 
