@@ -31,5 +31,6 @@
 		{videoDocumentarySrc}
 		muted={false}
 		on:taskEnd
+		socialInitialDelay={17000}
 	/>
 </div>

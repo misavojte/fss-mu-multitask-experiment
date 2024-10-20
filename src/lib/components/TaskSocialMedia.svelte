@@ -64,6 +64,7 @@
 
 	const logic = async () => {
 		for await (const loopStimulus of shuffledStimuli) {
+			console.log('loopStimulusDelay', initialDelay);
 			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
 			await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			wasClicked.set(false);

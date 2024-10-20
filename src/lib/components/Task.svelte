@@ -87,7 +87,7 @@
 	/**
 	 * The position of the documentary task on the y-axis in pixels.
 	 */
-	export let positionYDocumentary: number = 630;
+	export let positionYDocumentary: number = 640;
 
 	/**
 	 * The width of the documentary task.
@@ -95,9 +95,9 @@
 	export let widthDocumentary: number = 650;
 
 	/**
-	 * The height of the documentary task.
+	 * The height of the documentary task. 16:9 aspect ratio is recommended.
 	 */
-	export let heightDocumentary: number = 250;
+	export let heightDocumentary: number = 366;
 
 	/**
 	 * Muted state of the documentary task.

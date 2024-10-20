@@ -31,6 +31,7 @@
 		{socialMediaStimuli}
 		{videoDocumentarySrc}
 		muted={false}
+		socialInitialDelay={5000}
 		on:taskEnd
 	/>
 </div>
