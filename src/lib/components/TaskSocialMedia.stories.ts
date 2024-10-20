@@ -28,7 +28,24 @@ const meta = {
 				}
 			]
 		},
-		socialMediaStimuli: {
+		socialMediaStimuliAS: {
+			control: 'object',
+			defaultValue: [
+				{
+					id: '1',
+					src: 'task/3/1.png'
+				},
+				{
+					id: '2',
+					src: 'task/3/2.png'
+				},
+				{
+					id: '3',
+					src: 'task/3/3.png'
+				}
+			]
+		},
+		socialMediaStimuliNS: {
 			control: 'object',
 			defaultValue: [
 				{
@@ -73,7 +90,21 @@ export const Default: Story = {
 				id: 'save'
 			}
 		],
-		socialMediaStimuli: [
+		socialMediaStimuliAS: [
+			{
+				id: '1',
+				src: 'task/3/1.png'
+			},
+			{
+				id: '2',
+				src: 'task/3/2.png'
+			},
+			{
+				id: '3',
+				src: 'task/3/3.png'
+			}
+		],
+		socialMediaStimuliNS: [
 			{
 				id: '1',
 				src: 'task/3/1.png'
@@ -110,7 +141,21 @@ export const QuickInspect: Story = {
 				id: 'save'
 			}
 		],
-		socialMediaStimuli: [
+		socialMediaStimuliAS: [
+			{
+				id: '1',
+				src: 'task/3/1.png'
+			},
+			{
+				id: '2',
+				src: 'task/3/2.png'
+			},
+			{
+				id: '3',
+				src: 'task/3/3.png'
+			}
+		],
+		socialMediaStimuliNS: [
 			{
 				id: '1',
 				src: 'task/3/1.png'
