@@ -10,6 +10,7 @@
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
+	import { base } from '$app/paths';
 
 	const dispatch = createEventDispatcher();
 
@@ -201,7 +202,7 @@
 			on:click={handleSocialMediaInteractorsClick}
 		/>
 		<audio
-			src="/notification.mp3"
+			src={`${base}/notification.mp3`}
 			preload="auto"
 			class="hidden"
 			autoplay={false}
