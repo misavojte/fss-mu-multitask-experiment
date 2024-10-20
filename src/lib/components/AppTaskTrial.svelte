@@ -20,14 +20,14 @@
 		id: `NS_Image ${i + 1}`,
 		src: `${base}/task/3/test/NS_Image ${i + 1}.PNG`
 	}));
-	const socialMediaStimuli = fisherYatesShuffle(socialMediaStimuliAS.concat(socialMediaStimuliNS));
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
 	<Task
 		{taskHandler}
 		{patternMatchingObjects}
-		{socialMediaStimuli}
+		{socialMediaStimuliNS}
+		{socialMediaStimuliAS}
 		{videoDocumentarySrc}
 		muted={false}
 		on:taskEnd

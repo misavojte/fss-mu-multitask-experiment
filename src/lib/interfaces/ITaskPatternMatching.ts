@@ -33,4 +33,6 @@ export abstract class ATaskPatternMatchingHandler {
 	abstract handleSocialMediaInteractorsHidden(): void;
 	abstract handleSocialMediaInteractorsTimeout(): void;
 	abstract handleSocialMediaInteractorsCompleted(): void;
+	abstract handleLoadStart(): void;
+	abstract handleLoadFinish(): void;
 }

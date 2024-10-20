@@ -26,4 +26,10 @@ export class getTaskPatternMatchingHandlerMock extends ATaskPatternMatchingHandl
 	handleSocialMediaInteractorsCompleted() {
 		console.log('handleSocialMediaInteractorsCompleted');
 	}
+	handleLoadStart() {
+		console.log('handleLoadStart');
+	}
+	handleLoadFinish() {
+		console.log('handleLoadFinish');
+	}
 }

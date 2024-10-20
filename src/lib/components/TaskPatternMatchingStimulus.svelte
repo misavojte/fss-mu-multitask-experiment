@@ -14,6 +14,18 @@
 		if (!response) throw new Error('Response not found');
 		dispatch('patternMatchingResponseClicked', id);
 	};
+
+	let imageLoadedStatus = {
+		main: false,
+		T1: false,
+		T2: false,
+		T3: false,
+		T4: false
+	};
+	const handleLoad = (id: 'main' | 'T1' | 'T2' | 'T3' | 'T4') => {
+		imageLoadedStatus[id] = true;
+		if (Object.values(imageLoadedStatus).every((status) => status)) dispatch('loaded');
+	};
 </script>
 
 <div class="flex flex-col gap-4 w-auto h-full items-center border p-4">
@@ -22,6 +34,7 @@
 			src={patternMatchingObject.matrixSrc}
 			alt="Pattern matching task"
 			class="object-cover w-full h-auto"
+			on:load={() => handleLoad('main')}
 		/>
 	</div>
 	<div class="flex gap-4 w-full justify-center">
@@ -34,6 +47,7 @@
 					src={response.src}
 					alt="Pattern matching task"
 					class="w-full peer transition-all hover:opacity-75"
+					on:load={() => handleLoad(response.id)}
 				/>
 			</button>
 		{/each}
