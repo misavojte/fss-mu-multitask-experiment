@@ -13,7 +13,7 @@
 	const isLoading = writable(false);
 
 	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
-	let error: null | string = null;
+	let error = writable<string[]>([]);
 
 	const configs: Record<'gazepoint' | 'dummy', GazeInputConfig> = {
 		gazepoint: {
@@ -36,35 +36,28 @@
 	const handleConnect = async (
 		e: CustomEvent<{ windowObject: Window; mouseEventObject: MouseEvent }>
 	) => {
-		error = null;
+		error.set([]);
 		connectLogger.logInit();
 		gazeManager.createInput(configs[selected]);
 		$isLoading = true;
 		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
-		gazeManager
-			.connect()
-			.then(async () => {
-				connectLogger.logConnect();
-				if (selected === 'dummy') {
-					await waitForTimeout(750);
-				}
-				gazeManager
-					.start()
-					.then(() => {
-						connectLogger.logStart();
-						dispatch('trackerConnected');
-					})
-					.catch((e: unknown) => {
-						error = (e as Error).message;
-						$isLoading = false;
-						connectLogger.logError(error);
-					});
-			})
-			.catch((e: unknown) => {
-				error = (e as Error).message;
-				$isLoading = false;
-				connectLogger.logError(error);
-			});
+		try {
+			await gazeManager.connect();
+			console.log('Connected');
+			connectLogger.logConnect();
+			if (selected === 'dummy') {
+				await waitForTimeout(750);
+			}
+			await gazeManager.start();
+			connectLogger.logStart();
+			dispatch('trackerConnected');
+		} catch (e: unknown) {
+			console.error(e);
+			const message = JSON.stringify(e as Error);
+			$error.push(message);
+			connectLogger.logError(message);
+			$isLoading = false;
+		}
 	};
 </script>
 
@@ -74,11 +67,13 @@
 		<GazeConnectButton isLoading={$isLoading} on:connect={handleConnect} />
 	</div>
 	<div class="relative w-full">
-		{#if error}
+		{#if $error.length > 0}
 			<div
 				class="bg-red-100 text-red-800 p-2 rounded text-left absolute top-0 left-0 w-full text-xs"
 			>
-				{error}
+				{#each $error as message}
+					<p>{message}</p>
+				{/each}
 			</div>
 		{/if}
 	</div>

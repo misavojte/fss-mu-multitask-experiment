@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
 	import { writable } from 'svelte/store';
-	import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import TaskPatternMatchingStimulus from '$lib/components/TaskPatternMatchingStimulus.svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
+	import { getCancellableAsync, waitForConditionCancellable } from '$lib/utils/waitForCondition';
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
@@ -12,19 +13,22 @@
 
 	export let height: number = 300;
 
+	export let hasStarted: boolean = true;
+	const hasStartedStore = writable(hasStarted);
+	const hasRespondedToCurrent = writable(false);
+	$: {
+		if (hasStarted) {
+			hasStartedStore.set(true);
+		}
+	}
+
 	const patternMatchingObjectIndex = writable(0);
 	const dispatch = createEventDispatcher();
 
 	const handlePatternMatchingResponseClicked = (event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>) => {
 		// const isCorrect = event.detail === 'T1'; //
 		dispatch('patternMatchingResponse', event.detail);
-		if ($patternMatchingObjectIndex === patternMatchingObjects.length - 1) {
-			// End of task
-			dispatch('patternMatchingCompleted');
-			return;
-		}
-		patternMatchingObjectIndex.update((index) => index + 1);
-		preloadNextPatternMatchingImages($patternMatchingObjectIndex);
+		hasRespondedToCurrent.set(true);
 	};
 
 	const preloadNextPatternMatchingImages = (index: number) => {
@@ -45,16 +49,41 @@
 		}
 	};
 
-	$: dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
+	let wasLoaded = false;
+	const handleLoaded = () => {
+		if (wasLoaded) return;
+		wasLoaded = true;
+		dispatch('loaded');
+	};
+
+	const abortController = new AbortController();
+	const logic = async () => {
+		await waitForConditionCancellable(hasStartedStore, 0, abortController.signal);
+		// iterate through patternMatchingObjects
+		for await (const patternMatchingObject of patternMatchingObjects) {
+			dispatch('patternMatchingNext', patternMatchingObject.id);
+			preloadNextPatternMatchingImages($patternMatchingObjectIndex);
+			await waitForConditionCancellable(hasRespondedToCurrent, 0, abortController.signal);
+			hasRespondedToCurrent.set(false);
+			if ($patternMatchingObjectIndex !== patternMatchingObjects.length - 1) {
+				patternMatchingObjectIndex.set($patternMatchingObjectIndex + 1);
+			}
+		}
+		dispatch('patternMatchingCompleted');
+	};
 
 	onMount(() => {
-		dispatch('patternMatchingNext', patternMatchingObjects[$patternMatchingObjectIndex].id);
-		preloadNextPatternMatchingImages($patternMatchingObjectIndex);
+		getCancellableAsync(logic, abortController.signal);
+	});
+
+	onDestroy(() => {
+		abortController.abort('TaskPatternMatching was destroyed');
 	});
 </script>
 
 <InterfaceFrame {width} {height} showBezels={false}>
 	<TaskPatternMatchingStimulus
+		on:loaded={handleLoaded}
 		on:patternMatchingResponseClicked={handlePatternMatchingResponseClicked}
 		patternMatchingObject={patternMatchingObjects[$patternMatchingObjectIndex]}
 	/>

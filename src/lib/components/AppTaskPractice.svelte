@@ -8,7 +8,7 @@
 	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
 	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
 	const videoDocumentarySrc = base + '/video/video.mp4';
-	const socialMediaStimuli = [
+	const socialMediaStimuliNS = [
 		{
 			id: '1',
 			src: base + '/task/3/1.png'
@@ -22,15 +22,21 @@
 			src: base + '/task/3/3.png'
 		}
 	];
+	const socialMediaStimuliAS = [] as Array<{
+		id: string;
+		src: string;
+	}>; // No AS stimuli for practice
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
 	<Task
 		{taskHandler}
 		{patternMatchingObjects}
-		{socialMediaStimuli}
+		{socialMediaStimuliNS}
+		{socialMediaStimuliAS}
 		{videoDocumentarySrc}
 		muted={false}
+		socialInitialDelay={5000}
 		on:taskEnd
 	/>
 </div>

@@ -15,7 +15,7 @@ const meta = {
 			control: 'boolean',
 			defaultValue: false
 		},
-		autoplay: {
+		play: {
 			control: 'boolean',
 			defaultValue: false
 		}
@@ -30,7 +30,7 @@ export const DefaultVideo: Story = {
 	args: {
 		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: true,
-		autoplay: true
+		play: true
 	}
 };
 
@@ -38,7 +38,7 @@ export const DefaultVideoMuted: Story = {
 	args: {
 		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: true,
-		autoplay: true,
+		play: true,
 		muted: true
 	}
 };
@@ -47,6 +47,6 @@ export const AllowedControls: Story = {
 	args: {
 		videoDocumentarySrc: 'video/video.mp4',
 		hideAllControls: false,
-		autoplay: false
+		play: false
 	}
 };

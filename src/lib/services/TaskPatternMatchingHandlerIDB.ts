@@ -82,4 +82,22 @@ export class TaskPatternMatchingHandlerIDB extends ATaskPatternMatchingHandler {
 			value: ''
 		});
 	}
+	handleLoadStart(): void {
+		console.log('handleLoadStart');
+		saveActionLog({
+			timestamp: new Date().toISOString(),
+			sessionId: this.sessionId,
+			type: 'task-load-start',
+			value: ''
+		});
+	}
+	handleLoadFinish(): void {
+		console.log('handleLoadFinish');
+		saveActionLog({
+			timestamp: new Date().toISOString(),
+			sessionId: this.sessionId,
+			type: 'task-load-finish',
+			value: ''
+		});
+	}
 }

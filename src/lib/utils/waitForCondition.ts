@@ -63,7 +63,7 @@ export const waitForCondition = (
 			unsubscribers.push(instantFailStore.subscribe(onFail));
 		}
 
-		setTimeout(onTimeout, maxTimeout);
+		if (maxTimeout > 0) setTimeout(onTimeout, maxTimeout);
 	});
 };
 

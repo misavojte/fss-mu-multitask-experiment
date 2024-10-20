@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { fly } from 'svelte/transition';
+	import { fade, type TransitionConfig } from 'svelte/transition';
 	import TaskSocialMediaInteractors from './TaskSocialMediaInteractors.svelte';
+	import { cubicOut } from 'svelte/easing';
 	export let stimulus: {
 		src: string;
 		id: string;
@@ -32,6 +33,21 @@
 	}
 
 	$: totalHeight = heightImage + heightInteractors;
+
+	function fadeZoom(node: HTMLElement, params: { duration?: number } = {}): TransitionConfig {
+		const { duration = 300 } = params;
+
+		return {
+			duration,
+			css: (t: number) => {
+				const eased = cubicOut(t);
+				return `
+          opacity: ${eased};
+          transform: scale(${0.5 + 0.5 * eased});
+        `;
+			}
+		};
+	}
 </script>
 
 <div
@@ -41,8 +57,8 @@
 	{#if src === null}
 		<div
 			class="absolute flex items-center justify-center w-full h-full cursor-not-allowed"
-			out:fly={{ y: totalHeight, duration: 500, opacity: 1 }}
-			in:fly={{ y: -totalHeight, duration: 500, opacity: 1 }}
+			out:fade={{ duration: 200 }}
+			in:fade={{ duration: 200 }}
 		>
 			<p class="text-gray-500">{noStimulusMessage}</p>
 		</div>
@@ -50,8 +66,8 @@
 	{#if src !== null}
 		<div
 			class="flex flex-col items-center justify-center w-full h-full"
-			out:fly={{ y: totalHeight, duration: 500, opacity: 1 }}
-			in:fly={{ y: -totalHeight, duration: 500, opacity: 1 }}
+			out:fade={{ duration: 200 }}
+			in:fadeZoom
 		>
 			<img
 				{src}
