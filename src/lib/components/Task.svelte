@@ -24,15 +24,13 @@
 
 	/**
 	 * The width of the task container.
-	 * @default '100vw'
 	 */
-	export let width: string = '1920px';
+	export let width: number = 1920;
 
 	/**
 	 * The height of the task container.
-	 * @default '100vh'
 	 */
-	export let height: string = '920px';
+	export let height: number = 1040;
 
 	/**
 	 * The position of the social media task on the x-axis in pixels.
@@ -142,10 +140,18 @@
 		console.log('Task ended');
 		dispatch('taskEnd');
 	};
-
+	let mainElement: HTMLDivElement;
 	onMount(() => {
 		taskHandler.addOnEndHandler(handleEnd);
-		console.log('Task started', taskHandler);
+		// Scale the task to fit the parent element if it is smaller than the task
+		const parentElement = mainElement.parentElement;
+		if (parentElement) {
+			const parentHeight = parentElement.clientHeight;
+			if (parentHeight < height) {
+				const scaleFactor = parentHeight / height;
+				mainElement.style.transform = `scale(${scaleFactor})`;
+			}
+		}
 	});
 
 	onDestroy(() => {
@@ -154,8 +160,9 @@
 </script>
 
 <div
-	class="flex justify-center items-start box-border max-h-screen relative"
-	style="width: {width}; height: {height};"
+	class="flex justify-center items-start box-border absolute"
+	style="width: {width}px; height: {height}px;"
+	bind:this={mainElement}
 >
 	{#await loadPromise}
 		<div
