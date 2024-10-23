@@ -59,7 +59,11 @@
 			headingText: $LL.question[6].heading(),
 			confirmText: $LL.question[6].confirm(),
 			type: 'instruction',
-			paragraphs: [get(LL).question[6].paragraphs[1](), get(LL).question[6].paragraphs[2]()],
+			paragraphs: [
+				get(LL).question[6].paragraphs[1](),
+				get(LL).question[6].paragraphs[2](),
+				get(LL).question[6].paragraphs[3]()
+			],
 			required: true
 		},
 		{
@@ -67,11 +71,7 @@
 			headingText: $LL.question[7].heading(),
 			confirmText: $LL.question[7].confirm(),
 			type: 'instruction',
-			paragraphs: [
-				get(LL).question[7].paragraphs[1](),
-				get(LL).question[7].paragraphs[2](),
-				get(LL).question[7].paragraphs[3]()
-			],
+			paragraphs: [get(LL).question[7].paragraphs[1](), get(LL).question[7].paragraphs[2]()],
 			required: true
 		}
 	];

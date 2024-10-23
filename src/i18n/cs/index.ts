@@ -12,55 +12,90 @@ const cs = {
 			next: 'Přeskočit na další sekci'
 		},
 		1: {
-			heading: 'Vítejte v eHealth Experimentu',
+			heading: 'Vítejte v Multitasking experimentu',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'We are simulating a typical digital environment where media multitasking is often required, helping us understand how well people can manage multiple tasks simultaneously. Please read the instructions carefully before proceeding to the practice and main trials.'
+				1: 'Simulujeme typické digitální prostředí, kde je často vyžadován takzvaný “multitasking”, což nám pomůže pochopit, jak dobře lidé zvládají více úkolů současně. Předtím, než přejdete k cvičným úkolům a samotné multitaskingové úloze, si pečlivě přečtěte pokyny.'
 			}
 		},
 		2: {
-			heading: 'Co budete dělat?',
+			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'In this experiment, you will engage in three tasks simultaneously: pattern-matching, watching a documentary, and responding to memes on social media.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Na dalších snímcích následující podrobnější instrukce.'
+			}
+		},
+		'2b': {
+			heading: 'Pokyny ke studii',
+			confirm: 'Pokračovat',
+			paragraphs: {
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
 			}
 		},
 		3: {
-			heading: 'Zadejte párovací ID pro experiemnt.',
+			heading: 'Nejprve zadejte párovací ID pro experiemnt.',
 			confirm: 'Potvrdit'
 		},
 		4: {
-			heading: 'Pattern Matching Task',
+			heading: 'Úkol 1: Výběr vhodného tvaru',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'his is your primary task. You will be presented with a 3 × 3 matrix where eight of the nine cells contain abstract shapes, and one cell in the bottom right-hand corner is empty.',
-				2: 'Your goal is to complete the matrix by deducing the missing shape from the four possible alternatives and selecting it with a mouse click. To find the correct shape, analyze the relationships between the shapes within the matrix, considering four dimensions: shape, color, size, and position.',
-				3: 'There is no time limit for each response. The next trial will begin after the response is made. For each correct answer, you will earn three points.'
+				1: 'Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.',
+				2: 'Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.',
+				3: 'Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte tři body.'
+			}
+		},
+		'4b': {
+			heading: 'Úkol 1: Výběr vhodného tvaru',
+			confirm: 'Rozumím',
+			paragraphs: {
+				1: 'Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.',
+				2: 'Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.',
+				3: 'Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte jeden bod.'
 			}
 		},
 		5: {
-			heading: 'Documentary Task',
+			heading: 'Úkol 2: Sledování dokumentu',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'This is your secondary task. You will watch a documentary on the screen and answer questions about the content. The documentary will be paused at random intervals, and you will be asked to answer a question about the content. You will have 20 seconds to respond to each question.',
-				2: 'For each correct answer, you will earn one point.'
+				1: 'Zatímco se soustředíte na úkol shody vzorů, musíte také sledovat dokumentární video. Výběr vhodného tvaru je vaším hlavním úkolem a očekáváme, že většina vaší pozornosti bude věnována právě jemu. Přesto byste měli pravidelně přepínat/přesouvat svou pozornost na video.',
+				2: 'Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.'
+			}
+		},
+		'5b': {
+			heading: 'Úkol 2: Sledování dokumentu',
+			confirm: 'Rozumím',
+			paragraphs: {
+				1: 'Zatímco se soustředíte na úkol shody vzorů, musíte také pečlivě sledovat dokumentární video.',
+				2: 'Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.'
 			}
 		},
 		6: {
-			heading: 'Social Media Task',
+			heading: 'Úkol 3: Reakce na příspěvky na sociální síti',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'This is your tertiary task. You will be presented with a meme and asked to interact with it by choosing one of the four possible responses: share, like, comment, or save.',
-				2: 'For each correct answer, you will earn one point.'
+				1: 'Mimo výše uvedené úkoly budete plnit ještě jeden úkol. Pro tento experiment jsme vytvořili fiktivní sociální síť (Chitralok), která funguje podobně jako Instagram. Na této platformě dostanete anonymní účet. Během experimentu vám systém bude zobrazovat různé příspěvky na této síti (složené z textu a obrázků), které se budou objevovat na obrazovce, doprovázené zvukem upozornění. Pod každým příspěvkem bude označen jeden z vašich kontaktů na této platformě. Na každý příspěvek máte možnost reagovat čtyřmi způsoby:',
+				2: `•	Líbí se mi: Vyjadřujete, že příspěvek schvalujete.
+•	Nelíbí se mi: Vyjadřujete, že příspěvek neschvalujete.
+•	Sdílet: Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
+•	Nahlásit: Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.`,
+				3: 'Vaším úkolem je reagovat na tyto příspěvky výběrem jedné ze čtyř možností pomocí myši: líbí se mi, nelíbí se mi, sdílet nebo nahlásit. Vaše volba bude veřejně viditelná ostatním účastníkům studie, což simuluje skutečné prostředí sociálních médií. Každá odpověď na příspěvek vám přinese jeden bod.'
 			}
 		},
 		7: {
-			heading: 'Získejte dostatek bodů a vyhrajte 2500 Kč!',
-			confirm: 'Rozumím, začít první zkušební kolo',
+			heading: 'Získejte dostatek bodů a vyhrajte 2500 Kč',
+			confirm: 'Rozumím, začít zácviřnou úlohu',
 			paragraphs: {
-				1: 'Your objective is to accumulate as many points as possible. The total points you earn will determine your eligibility for a greater reward. If you are among the top five performers, youll have a chance to win a €100 prize draw.',
-				2: 'Therefore, prioritize the pattern-matching task while managing your attention across all tasks.',
-				3: 'If you understand these instructions, please indicate by pressing "Yes, continue" and we can proceed with some practice trials.'
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Celkový počet bodů, které získáte, určí vaši šanci na to získat dodatečnou  odměnu. Pokud budete patřit mezi pět nejlepších účastníků, budete mít šanci vyhrát v losování hlavní cenu 2500,- Kč.',
+				2: 'Vzhledem k tomu, že za úkol na hledání vhodného tvaru je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.'
+			}
+		},
+		'7b': {
+			heading: 'Získejte dostatek bodů a vyhrajte 2500 Kč',
+			confirm: 'Rozumím, začít zácviřnou úlohu',
+			paragraphs: {
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Celkový počet bodů, které získáte, určí vaši šanci na to získat dodatečnou  odměnu. Pokud budete patřit mezi pět nejlepších účastníků, budete mít šanci vyhrát v losování hlavní cenu 2500,- Kč.',
+				2: 'Proto se soustřeďte na všechny úkoly a získejte maximální počet bodů.'
 			}
 		},
 		'ap-1': {
