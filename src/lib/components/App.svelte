@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
-	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import AppEnd from '$lib/components/AppEnd.svelte';
@@ -14,6 +13,8 @@
 	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
 	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
 	import AppQuestionsPrePracticeA from '$lib/components/AppQuestionsPrePracticeA.svelte';
+	import AppQuestionsPostPracticeA from '$lib/components/AppQuestionsPostPracticeA.svelte';
+	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -91,11 +92,19 @@
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostPractice
-				{questionsService}
-				on:startPractice={triggerPractice}
-				on:startTrial={triggerTrial}
-			/>
+			{#if variant === 'prioritize'}
+				<AppQuestionsPostPracticeA
+					{questionsService}
+					on:startPractice={triggerPractice}
+					on:startTrial={triggerTrial}
+				/>
+			{:else if variant === 'even'}
+				<AppQuestionsPostPracticeB
+					{questionsService}
+					on:startPractice={triggerPractice}
+					on:startTrial={triggerTrial}
+				/>
+			{/if}
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
