@@ -46,6 +46,8 @@
 		{videoDocumentarySrc}
 		muted={false}
 		socialInitialDelay={5000}
+		socialBetweenDelay={15000}
+		socialStimulusMaxDuration={15000}
 		on:taskEnd
 	/>
 </div>

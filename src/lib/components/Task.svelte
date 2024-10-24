@@ -126,12 +126,14 @@
 	/**
 	 * The initial delay before the first social media task is shown.
 	 */
-	export let socialInitialDelay: number = 20000;
+	export let socialInitialDelay: number = 5000;
 
 	/**
 	 * The maximum duration of the social media task.
 	 */
-	export let socialStimulusMaxDuration: number = 20000;
+	export let socialStimulusMaxDuration: number = 15000;
+
+	export let socialBetweenDelay: number = 15000;
 
 	export let taskHandler: ATaskPatternMatchingHandler;
 
@@ -242,6 +244,7 @@
 				{socialMediaStimuliNS}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
+				betweenDelay={socialBetweenDelay}
 				{hasStarted}
 				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
 					taskHandler
