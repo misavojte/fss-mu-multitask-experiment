@@ -66,7 +66,7 @@
 			headingText: $LL.question['7'].heading(),
 			confirmText: $LL.question['7'].confirm(),
 			type: 'instruction',
-			paragraphs: [get(LL).question['7'].paragraphs[1](), get(LL).question['7b'].paragraphs[2]()],
+			paragraphs: [get(LL).question['7'].paragraphs[1](), get(LL).question['7'].paragraphs[2]()],
 			required: true
 		}
 	];
