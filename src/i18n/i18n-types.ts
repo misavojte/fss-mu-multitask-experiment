@@ -270,6 +270,62 @@ type RootTranslation = {
 				'1': string
 			}
 		}
+		'pt-1': {
+			/**
+			 * D​o​b​r​á​ ​p​r​á​c​e​!
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * N​y​n​í​ ​p​r​o​s​í​m​ ​z​o​d​p​o​v​ě​z​t​e​ ​n​á​s​l​e​d​u​j​í​c​í​ ​o​t​á​z​k​y​ ​t​ý​k​a​j​í​c​í​ ​s​e​ ​i​n​f​o​r​m​a​c​í​ ​u​v​e​d​e​n​ý​c​h​ ​v​ ​d​o​k​u​m​e​n​t​á​r​n​í​m​ ​v​i​d​e​u​.
+				 */
+				'0': string
+			}
+		}
+		'pt-2': {
+			/**
+			 * C​o​ ​z​p​ů​s​o​b​i​l​o​ ​s​e​s​u​v​ ​p​ů​d​y​ ​n​a​ ​s​v​a​z​í​c​h​ ​u​ ​o​b​c​e​ ​B​u​k​o​v​e​c​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * V​y​t​r​v​a​l​é​ ​p​ř​í​v​a​l​o​v​é​ ​d​e​š​t​ě
+				 */
+				'0': string
+				/**
+				 * L​o​k​á​l​n​í​ ​z​e​m​ě​t​ř​e​s​e​n​í
+				 */
+				'1': string
+				/**
+				 * S​i​l​n​ý​ ​v​í​t​r
+				 */
+				'2': string
+			}
+		}
+		'pt-3': {
+			/**
+			 * J​a​k​ý​ ​t​y​p​ ​k​v​ě​t​i​n​y​ ​j​e​ ​r​o​s​n​a​t​k​a​ ​o​k​r​o​u​h​l​i​s​t​á​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * M​a​s​o​ž​r​a​v​k​a
+				 */
+				'0': string
+				/**
+				 * K​v​ě​t​i​n​a​ ​t​ř​í​d​y​ ​l​i​p​n​i​c​o​v​i​t​é
+				 */
+				'1': string
+				/**
+				 * C​e​l​o​r​o​č​n​ě​ ​z​e​l​e​n​ý​ ​k​e​ř
+				 */
+				'2': string
+			}
+		}
 	}
 }
 
@@ -528,6 +584,62 @@ export type TranslationFunctions = {
 				 * Ne, potřebuji zopakovat praxi
 				 */
 				'1': () => LocalizedString
+			}
+		}
+		'pt-1': {
+			/**
+			 * Dobrá práce!
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.
+				 */
+				'0': () => LocalizedString
+			}
+		}
+		'pt-2': {
+			/**
+			 * Co způsobilo sesuv půdy na svazích u obce Bukovec?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Vytrvalé přívalové deště
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Lokální zemětřesení
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Silný vítr
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'pt-3': {
+			/**
+			 * Jaký typ květiny je rosnatka okrouhlistá?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Masožravka
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Květina třídy lipnicovité
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Celoročně zelený keř
+				 */
+				'2': () => LocalizedString
 			}
 		}
 	}

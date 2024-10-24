@@ -1,3 +1,4 @@
+import { P } from 'flowbite-svelte';
 import type { BaseTranslation } from '../i18n-types';
 
 const cs = {
@@ -103,6 +104,29 @@ const cs = {
 			options: {
 				0: 'Ano, pokračovat na ostrý test',
 				1: 'Ne, potřebuji zopakovat praxi'
+			}
+		},
+		'pt-1': {
+			heading: 'Dobrá práce!',
+			confirm: 'Pokračovat',
+			paragraphs: {
+				0: 'Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.'
+			}
+		},
+		'pt-2': {
+			heading: 'Co způsobilo sesuv půdy na svazích u obce Bukovec?',
+			options: {
+				0: 'Vytrvalé přívalové deště',
+				1: 'Lokální zemětřesení',
+				2: 'Silný vítr'
+			}
+		},
+		'pt-3': {
+			heading: 'Jaký typ květiny je rosnatka okrouhlistá?',
+			options: {
+				0: 'Masožravka',
+				1: 'Květina třídy lipnicovité',
+				2: 'Celoročně zelený keř'
 			}
 		}
 	}
