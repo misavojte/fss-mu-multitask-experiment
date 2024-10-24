@@ -43,5 +43,6 @@
 		socialInitialDelay={15000}
 		socialBetweenDelay={15000}
 		socialStimulusMaxDuration={15000}
+		endScenario={'timeout'}
 	/>
 </div>

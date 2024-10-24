@@ -48,6 +48,7 @@
 		socialInitialDelay={5000}
 		socialBetweenDelay={15000}
 		socialStimulusMaxDuration={15000}
+		endScenario={'pattern-timeout'}
 		on:taskEnd
 	/>
 </div>
