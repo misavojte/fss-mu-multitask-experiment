@@ -59,6 +59,7 @@
 	const abortController = new AbortController();
 	const logic = async () => {
 		await waitForConditionCancellable(hasStartedStore, 0, abortController.signal);
+		$patternMatchingObjectIndex = 0;
 		// iterate through patternMatchingObjects
 		for await (const patternMatchingObject of patternMatchingObjects) {
 			dispatch('patternMatchingNext', patternMatchingObject.id);
