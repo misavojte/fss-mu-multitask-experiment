@@ -15,6 +15,8 @@
 	import AppQuestionsPrePracticeA from '$lib/components/AppQuestionsPrePracticeA.svelte';
 	import AppQuestionsPostPracticeA from '$lib/components/AppQuestionsPostPracticeA.svelte';
 	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
+	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
+	import { goto } from '$app/navigation';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -112,7 +114,12 @@
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppEnd />
+			<AppQuestionsPostTrial
+				{questionsService}
+				on:finish={() => {
+					goto('/download');
+				}}
+			/>
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
