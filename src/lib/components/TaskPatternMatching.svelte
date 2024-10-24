@@ -59,6 +59,7 @@
 	const abortController = new AbortController();
 	const logic = async () => {
 		await waitForConditionCancellable(hasStartedStore, 0, abortController.signal);
+		$patternMatchingObjectIndex = 0;
 		// iterate through patternMatchingObjects
 		for await (const patternMatchingObject of patternMatchingObjects) {
 			dispatch('patternMatchingNext', patternMatchingObject.id);
@@ -72,8 +73,14 @@
 		dispatch('patternMatchingCompleted');
 	};
 
+	const infiniteLoopLogic = async () => {
+		while (!abortController.signal.aborted) {
+			await getCancellableAsync(logic, abortController.signal);
+		}
+	};
+
 	onMount(() => {
-		getCancellableAsync(logic, abortController.signal);
+		getCancellableAsync(infiniteLoopLogic, abortController.signal);
 	});
 
 	onDestroy(() => {

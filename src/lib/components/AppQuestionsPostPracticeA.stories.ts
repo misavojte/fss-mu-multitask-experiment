@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import AppQuestionsPostPractice from './AppQuestionsPostPractice.svelte';
+import AppQuestionsPostPractice from './AppQuestionsPostPracticeA.svelte';
 import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
 
 const questionsService = new TimestampQuestionServiceMock();
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-	title: 'App/AppQuestionsPostPractice',
+	title: 'App/AppQuestionsPostPracticeA',
 	component: AppQuestionsPostPractice,
 	tags: ['autodocs'],
 	argTypes: {}

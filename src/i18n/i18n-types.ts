@@ -30,6 +30,24 @@ type RootTranslation = {
 	 * P​r​o​s​í​m​,​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​d​a​t​.
 	 */
 	pleaseWait: string
+	socialButtons: {
+		/**
+		 * L​í​b​í​ ​s​e​ ​m​i
+		 */
+		like: string
+		/**
+		 * N​e​l​í​b​í​ ​s​e​ ​m​i
+		 */
+		dislike: string
+		/**
+		 * S​d​í​l​e​t
+		 */
+		share: string
+		/**
+		 * N​a​h​l​á​s​i​t
+		 */
+		report: string
+	}
 	question: {
 		'1': {
 			/**
@@ -132,10 +150,10 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * •​	​L​í​b​í​ ​s​e​ ​m​i​:​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​s​c​h​v​a​l​u​j​e​t​e​.​
-			​•​	​N​e​l​í​b​í​ ​s​e​ ​m​i​:​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​s​c​h​v​a​l​u​j​e​t​e​.​
-			​•​	​S​d​í​l​e​t​:​ ​R​o​z​h​o​d​n​e​t​e​ ​s​e​ ​p​ř​e​s​d​í​l​e​t​ ​n​e​b​o​ ​r​e​p​o​s​t​o​v​a​t​ ​o​b​s​a​h​ ​o​s​t​a​t​n​í​m​ ​n​a​ ​p​l​a​t​f​o​r​m​ě​.​
-			​•​	​N​a​h​l​á​s​i​t​:​ ​O​z​n​a​č​í​t​e​ ​p​ř​í​s​p​ě​v​e​k​ ​j​a​k​o​ ​n​e​v​h​o​d​n​ý​,​ ​u​r​á​ž​l​i​v​ý​ ​n​e​b​o​ ​š​k​o​d​l​i​v​ý​,​ ​c​o​ž​ ​m​ů​ž​e​ ​u​p​o​z​o​r​n​i​t​ ​p​l​a​t​f​o​r​m​u​ ​k​ ​p​ř​e​z​k​o​u​m​á​n​í​.
+				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​s​c​h​v​a​l​u​j​e​t​e​.​
+			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​s​c​h​v​a​l​u​j​e​t​e​.​
+			​-​ ​*​*​S​d​í​l​e​t​:​*​*​ ​R​o​z​h​o​d​n​e​t​e​ ​s​e​ ​p​ř​e​s​d​í​l​e​t​ ​n​e​b​o​ ​r​e​p​o​s​t​o​v​a​t​ ​o​b​s​a​h​ ​o​s​t​a​t​n​í​m​ ​n​a​ ​p​l​a​t​f​o​r​m​ě​.​
+			​-​ ​*​*​N​a​h​l​á​s​i​t​:​*​*​ ​O​z​n​a​č​í​t​e​ ​p​ř​í​s​p​ě​v​e​k​ ​j​a​k​o​ ​n​e​v​h​o​d​n​ý​,​ ​u​r​á​ž​l​i​v​ý​ ​n​e​b​o​ ​š​k​o​d​l​i​v​ý​,​ ​c​o​ž​ ​m​ů​ž​e​ ​u​p​o​z​o​r​n​i​t​ ​p​l​a​t​f​o​r​m​u​ ​k​ ​p​ř​e​z​k​o​u​m​á​n​í​.
 				 */
 				'2': string
 				/**
@@ -256,7 +274,7 @@ type RootTranslation = {
 		}
 		'ap-1': {
 			/**
-			 * J​e​ ​V​á​m​ ​v​š​e​ ​j​a​s​n​é​?
+			 * C​h​c​e​t​e​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t​?
 			 */
 			heading: string
 			options: {
@@ -265,7 +283,83 @@ type RootTranslation = {
 				 */
 				'0': string
 				/**
-				 * N​e​,​ ​p​o​t​ř​e​b​u​j​i​ ​z​o​p​a​k​o​v​a​t​ ​p​r​a​x​i
+				 * N​e​,​ ​c​h​c​i​ ​z​o​p​a​k​o​v​a​t​ ​z​á​c​v​i​k
+				 */
+				'1': string
+			}
+		}
+		'pt-1': {
+			/**
+			 * D​o​b​r​á​ ​p​r​á​c​e​!
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * N​y​n​í​ ​p​r​o​s​í​m​ ​z​o​d​p​o​v​ě​z​t​e​ ​n​á​s​l​e​d​u​j​í​c​í​ ​o​t​á​z​k​y​ ​t​ý​k​a​j​í​c​í​ ​s​e​ ​i​n​f​o​r​m​a​c​í​ ​u​v​e​d​e​n​ý​c​h​ ​v​ ​d​o​k​u​m​e​n​t​á​r​n​í​m​ ​v​i​d​e​u​.
+				 */
+				'0': string
+			}
+		}
+		'pt-2': {
+			/**
+			 * C​o​ ​z​p​ů​s​o​b​i​l​o​ ​s​e​s​u​v​ ​p​ů​d​y​ ​n​a​ ​s​v​a​z​í​c​h​ ​u​ ​o​b​c​e​ ​B​u​k​o​v​e​c​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * V​y​t​r​v​a​l​é​ ​p​ř​í​v​a​l​o​v​é​ ​d​e​š​t​ě
+				 */
+				'0': string
+				/**
+				 * L​o​k​á​l​n​í​ ​z​e​m​ě​t​ř​e​s​e​n​í
+				 */
+				'1': string
+				/**
+				 * S​i​l​n​ý​ ​v​í​t​r
+				 */
+				'2': string
+			}
+		}
+		'pt-3': {
+			/**
+			 * J​a​k​ý​ ​t​y​p​ ​k​v​ě​t​i​n​y​ ​j​e​ ​r​o​s​n​a​t​k​a​ ​o​k​r​o​u​h​l​i​s​t​á​?
+			 */
+			heading: string
+			options: {
+				/**
+				 * M​a​s​o​ž​r​a​v​k​a
+				 */
+				'0': string
+				/**
+				 * K​v​ě​t​i​n​a​ ​t​ř​í​d​y​ ​l​i​p​n​i​c​o​v​i​t​é
+				 */
+				'1': string
+				/**
+				 * C​e​l​o​r​o​č​n​ě​ ​z​e​l​e​n​ý​ ​k​e​ř
+				 */
+				'2': string
+			}
+		}
+		'pt-end': {
+			/**
+			 * D​ě​k​u​j​e​m​e​ ​z​a​ ​ú​č​a​s​t​!
+			 */
+			heading: string
+			/**
+			 * U​k​o​n​č​i​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​ ​a​ ​j​s​t​e​ ​j​e​d​n​í​m​ ​z​ ​n​e​j​l​e​p​š​í​c​h​ ​ú​č​a​s​t​n​í​k​ů​.​ ​S​k​v​ě​l​á​ ​p​r​á​c​e​!
+				 */
+				'0': string
+				/**
+				 * V​ý​s​l​e​d​k​y​ ​b​u​d​o​u​ ​z​p​r​a​c​o​v​á​n​y​ ​a​ ​v​ý​h​e​r​c​i​ ​b​u​d​o​u​ ​k​o​n​t​a​k​t​o​v​á​n​i​ ​e​-​m​a​i​l​e​m​.
 				 */
 				'1': string
 			}
@@ -290,6 +384,24 @@ export type TranslationFunctions = {
 	 * Prosím, čekejte na načtení dat.
 	 */
 	pleaseWait: () => LocalizedString
+	socialButtons: {
+		/**
+		 * Líbí se mi
+		 */
+		like: () => LocalizedString
+		/**
+		 * Nelíbí se mi
+		 */
+		dislike: () => LocalizedString
+		/**
+		 * Sdílet
+		 */
+		share: () => LocalizedString
+		/**
+		 * Nahlásit
+		 */
+		report: () => LocalizedString
+	}
 	question: {
 		'1': {
 			/**
@@ -392,10 +504,10 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * •	Líbí se mi: Vyjadřujete, že příspěvek schvalujete.
-			•	Nelíbí se mi: Vyjadřujete, že příspěvek neschvalujete.
-			•	Sdílet: Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
-			•	Nahlásit: Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.
+				 * - **Líbí se mi:** Vyjadřujete, že příspěvek schvalujete.
+			- **Nelíbí se mi:** Vyjadřujete, že příspěvek neschvalujete.
+			- **Sdílet:** Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
+			- **Nahlásit:** Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.
 				 */
 				'2': () => LocalizedString
 				/**
@@ -516,7 +628,7 @@ export type TranslationFunctions = {
 		}
 		'ap-1': {
 			/**
-			 * Je Vám vše jasné?
+			 * Chcete pokračovat na ostrý test?
 			 */
 			heading: () => LocalizedString
 			options: {
@@ -525,7 +637,83 @@ export type TranslationFunctions = {
 				 */
 				'0': () => LocalizedString
 				/**
-				 * Ne, potřebuji zopakovat praxi
+				 * Ne, chci zopakovat zácvik
+				 */
+				'1': () => LocalizedString
+			}
+		}
+		'pt-1': {
+			/**
+			 * Dobrá práce!
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.
+				 */
+				'0': () => LocalizedString
+			}
+		}
+		'pt-2': {
+			/**
+			 * Co způsobilo sesuv půdy na svazích u obce Bukovec?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Vytrvalé přívalové deště
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Lokální zemětřesení
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Silný vítr
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'pt-3': {
+			/**
+			 * Jaký typ květiny je rosnatka okrouhlistá?
+			 */
+			heading: () => LocalizedString
+			options: {
+				/**
+				 * Masožravka
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Květina třídy lipnicovité
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Celoročně zelený keř
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'pt-end': {
+			/**
+			 * Děkujeme za účast!
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Ukončit
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a jste jedním z nejlepších účastníků. Skvělá práce!
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Výsledky budou zpracovány a výherci budou kontaktováni e-mailem.
 				 */
 				'1': () => LocalizedString
 			}

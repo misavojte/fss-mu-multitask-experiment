@@ -23,15 +23,25 @@
 		id: string;
 	}>;
 
+	export let socialMediaButtons: Array<{
+		text: string;
+		id: string;
+	}> = [
+		{ text: 'Like', id: 'like' },
+		{ text: 'Share', id: 'share' },
+		{ text: 'Ignore', id: 'save' },
+		{ text: 'Dislike', id: 'dislike' }
+	];
+
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
 	export let videoDocumentarySrc: string;
 
 	/**
 	 * The time in milliseconds before the task times out.
-	 * Default is 10 minutes (600000 ms).
+	 * Default is 495 seconds (ie. in minutes: 8 minutes and 15 seconds).
 	 */
-	export let timeOut: number = 600000;
+	export let timeOut: number = 495000;
 
 	/**
 	 * The width of the task container.
@@ -116,14 +126,18 @@
 	/**
 	 * The initial delay before the first social media task is shown.
 	 */
-	export let socialInitialDelay: number = 20000;
+	export let socialInitialDelay: number = 5000;
 
 	/**
 	 * The maximum duration of the social media task.
 	 */
-	export let socialStimulusMaxDuration: number = 20000;
+	export let socialStimulusMaxDuration: number = 15000;
+
+	export let socialBetweenDelay: number = 15000;
 
 	export let taskHandler: ATaskPatternMatchingHandler;
+
+	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
 
 	let hasStarted = false;
 
@@ -165,7 +179,9 @@
 	const shouldEndTask = writable(false);
 
 	const handlePatternEnd = () => {
-		shouldEndTask.set(true);
+		if (endScenario === 'pattern-timeout') {
+			shouldEndTask.set(true);
+		} // else do nothing, timeout or something else will end the task
 	};
 
 	const abortController = new AbortController();
@@ -227,16 +243,12 @@
 				heightImage={heightSocialImage}
 				heightInteractors={heightSocialOptions}
 				width={widthSocial}
-				socialMediaButtons={[
-					{ text: 'Like', id: 'like' },
-					{ text: 'Share', id: 'share' },
-					{ text: 'Ignore', id: 'save' },
-					{ text: 'Dislike', id: 'dislike' }
-				]}
+				{socialMediaButtons}
 				{socialMediaStimuliAS}
 				{socialMediaStimuliNS}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
+				betweenDelay={socialBetweenDelay}
 				{hasStarted}
 				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
 					taskHandler

@@ -27,8 +27,9 @@
 		id: string;
 	}>;
 	export let socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'> = ['NS', 'NS', 'AS', 'AS'];
-	export let initialDelay: number = 18000;
-	export let stimulusMaxDuration: number = 18000;
+	export let initialDelay: number = 5000;
+	export let betweenDelay: number = 15000;
+	export let stimulusMaxDuration: number = 15000;
 	export let width: number = 522;
 	export let heightImage: number = 743;
 	export let heightInteractors: number = 150;
@@ -156,10 +157,16 @@
 	};
 
 	const logic = async () => {
+		let isInitialIteration = true;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
 			console.log('loopStimulusDelay', initialDelay);
 			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
-			await waitForTimeoutCancellable(initialDelay, abortController.signal);
+			if (isInitialIteration) {
+				await waitForTimeoutCancellable(initialDelay, abortController.signal);
+			} else {
+				await waitForTimeoutCancellable(betweenDelay, abortController.signal);
+			}
+			isInitialIteration = false;
 			wasClicked.set(false);
 			stimulus = loopStimulus;
 			audioElement.play();

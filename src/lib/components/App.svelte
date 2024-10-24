@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import AppQuestionsPrePractice from '$lib/components/AppQuestionsPrePractice.svelte';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
-	import AppQuestionsPostPractice from '$lib/components/AppQuestionsPostPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import AppEnd from '$lib/components/AppEnd.svelte';
@@ -13,6 +11,12 @@
 	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
 	import { onDestroy, onMount, setContext } from 'svelte';
 	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
+	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
+	import AppQuestionsPrePracticeA from '$lib/components/AppQuestionsPrePracticeA.svelte';
+	import AppQuestionsPostPracticeA from '$lib/components/AppQuestionsPostPracticeA.svelte';
+	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
+	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
+	import { goto } from '$app/navigation';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -22,6 +26,8 @@
 	export let taskHandler: ATaskPatternMatchingHandler;
 	export let connectLogger: IConnectLogger;
 	export let gazeSaver: IGazeSaver;
+
+	export let variant: 'prioritize' | 'even' = 'prioritize';
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -76,7 +82,11 @@
 	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPrePractice {questionsService} on:startPractice={triggerPractice} />
+			{#if variant === 'prioritize'}
+				<AppQuestionsPrePracticeA {questionsService} on:startPractice={triggerPractice} />
+			{:else if variant === 'even'}
+				<AppQuestionsPrePracticeB {questionsService} on:startPractice={triggerPractice} />
+			{/if}
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -84,11 +94,19 @@
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostPractice
-				{questionsService}
-				on:startPractice={triggerPractice}
-				on:startTrial={triggerTrial}
-			/>
+			{#if variant === 'prioritize'}
+				<AppQuestionsPostPracticeA
+					{questionsService}
+					on:startPractice={triggerPractice}
+					on:startTrial={triggerTrial}
+				/>
+			{:else if variant === 'even'}
+				<AppQuestionsPostPracticeB
+					{questionsService}
+					on:startPractice={triggerPractice}
+					on:startTrial={triggerTrial}
+				/>
+			{/if}
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -96,7 +114,12 @@
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppEnd />
+			<AppQuestionsPostTrial
+				{questionsService}
+				on:finish={() => {
+					goto('/download');
+				}}
+			/>
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">

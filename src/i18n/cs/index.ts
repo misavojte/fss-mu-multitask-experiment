@@ -6,6 +6,12 @@ const cs = {
 	footerText: 'Aplikace je součástí výzkumu na Fakultě sociálních studií Masarykovy univerzity.',
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
+	socialButtons: {
+		like: 'Líbí se mi',
+		dislike: 'Nelíbí se mi',
+		share: 'Sdílet',
+		report: 'Nahlásit'
+	},
 	question: {
 		battery: {
 			back: 'Předchozí sekce',
@@ -75,10 +81,10 @@ const cs = {
 			confirm: 'Rozumím',
 			paragraphs: {
 				1: 'Mimo výše uvedené úkoly budete plnit ještě jeden úkol. Pro tento experiment jsme vytvořili fiktivní sociální síť (Chitralok), která funguje podobně jako Instagram. Na této platformě dostanete anonymní účet. Během experimentu vám systém bude zobrazovat různé příspěvky na této síti (složené z textu a obrázků), které se budou objevovat na obrazovce, doprovázené zvukem upozornění. Pod každým příspěvkem bude označen jeden z vašich kontaktů na této platformě. Na každý příspěvek máte možnost reagovat čtyřmi způsoby:',
-				2: `•	Líbí se mi: Vyjadřujete, že příspěvek schvalujete.
-•	Nelíbí se mi: Vyjadřujete, že příspěvek neschvalujete.
-•	Sdílet: Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
-•	Nahlásit: Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.`,
+				2: `- **Líbí se mi:** Vyjadřujete, že příspěvek schvalujete.
+- **Nelíbí se mi:** Vyjadřujete, že příspěvek neschvalujete.
+- **Sdílet:** Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
+- **Nahlásit:** Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.`,
 				3: 'Vaším úkolem je reagovat na tyto příspěvky výběrem jedné ze čtyř možností pomocí myši: líbí se mi, nelíbí se mi, sdílet nebo nahlásit. Vaše volba bude veřejně viditelná ostatním účastníkům studie, což simuluje skutečné prostředí sociálních médií. Každá odpověď na příspěvek vám přinese jeden bod.'
 			}
 		},
@@ -99,10 +105,41 @@ const cs = {
 			}
 		},
 		'ap-1': {
-			heading: 'Je Vám vše jasné?',
+			heading: 'Chcete pokračovat na ostrý test?',
 			options: {
 				0: 'Ano, pokračovat na ostrý test',
-				1: 'Ne, potřebuji zopakovat praxi'
+				1: 'Ne, chci zopakovat zácvik'
+			}
+		},
+		'pt-1': {
+			heading: 'Dobrá práce!',
+			confirm: 'Pokračovat',
+			paragraphs: {
+				0: 'Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.'
+			}
+		},
+		'pt-2': {
+			heading: 'Co způsobilo sesuv půdy na svazích u obce Bukovec?',
+			options: {
+				0: 'Vytrvalé přívalové deště',
+				1: 'Lokální zemětřesení',
+				2: 'Silný vítr'
+			}
+		},
+		'pt-3': {
+			heading: 'Jaký typ květiny je rosnatka okrouhlistá?',
+			options: {
+				0: 'Masožravka',
+				1: 'Květina třídy lipnicovité',
+				2: 'Celoročně zelený keř'
+			}
+		},
+		'pt-end': {
+			heading: 'Děkujeme za účast!',
+			confirm: 'Ukončit',
+			paragraphs: {
+				0: 'Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a jste jedním z nejlepších účastníků. Skvělá práce!',
+				1: 'Výsledky budou zpracovány a výherci budou kontaktováni e-mailem.'
 			}
 		}
 	}
