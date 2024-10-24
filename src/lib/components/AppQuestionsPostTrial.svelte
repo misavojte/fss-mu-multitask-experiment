@@ -59,11 +59,22 @@
 			type: 'instruction',
 			required: true
 		},
-		...randomize(questionToRandomize)
+		...randomize(questionToRandomize),
+		{
+			id: 'pt-end',
+			headingText: $LL['question']['pt-end']['heading'](),
+			confirmText: $LL['question']['pt-end']['confirm'](),
+			type: 'instruction',
+			paragraphs: [
+				$LL['question']['pt-end'].paragraphs[0](),
+				$LL['question']['pt-end'].paragraphs[1]()
+			],
+			required: true
+		}
 	];
 
 	const handleQuestionnaireDone = async (data: any) => {
-		dispatch('startPractice');
+		dispatch('finish');
 	};
 </script>
 

@@ -132,10 +132,10 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * •​	​L​í​b​í​ ​s​e​ ​m​i​:​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​s​c​h​v​a​l​u​j​e​t​e​.​
-			​•​	​N​e​l​í​b​í​ ​s​e​ ​m​i​:​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​s​c​h​v​a​l​u​j​e​t​e​.​
-			​•​	​S​d​í​l​e​t​:​ ​R​o​z​h​o​d​n​e​t​e​ ​s​e​ ​p​ř​e​s​d​í​l​e​t​ ​n​e​b​o​ ​r​e​p​o​s​t​o​v​a​t​ ​o​b​s​a​h​ ​o​s​t​a​t​n​í​m​ ​n​a​ ​p​l​a​t​f​o​r​m​ě​.​
-			​•​	​N​a​h​l​á​s​i​t​:​ ​O​z​n​a​č​í​t​e​ ​p​ř​í​s​p​ě​v​e​k​ ​j​a​k​o​ ​n​e​v​h​o​d​n​ý​,​ ​u​r​á​ž​l​i​v​ý​ ​n​e​b​o​ ​š​k​o​d​l​i​v​ý​,​ ​c​o​ž​ ​m​ů​ž​e​ ​u​p​o​z​o​r​n​i​t​ ​p​l​a​t​f​o​r​m​u​ ​k​ ​p​ř​e​z​k​o​u​m​á​n​í​.
+				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​s​c​h​v​a​l​u​j​e​t​e​.​
+			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​s​c​h​v​a​l​u​j​e​t​e​.​
+			​-​ ​*​*​S​d​í​l​e​t​:​*​*​ ​R​o​z​h​o​d​n​e​t​e​ ​s​e​ ​p​ř​e​s​d​í​l​e​t​ ​n​e​b​o​ ​r​e​p​o​s​t​o​v​a​t​ ​o​b​s​a​h​ ​o​s​t​a​t​n​í​m​ ​n​a​ ​p​l​a​t​f​o​r​m​ě​.​
+			​-​ ​*​*​N​a​h​l​á​s​i​t​:​*​*​ ​O​z​n​a​č​í​t​e​ ​p​ř​í​s​p​ě​v​e​k​ ​j​a​k​o​ ​n​e​v​h​o​d​n​ý​,​ ​u​r​á​ž​l​i​v​ý​ ​n​e​b​o​ ​š​k​o​d​l​i​v​ý​,​ ​c​o​ž​ ​m​ů​ž​e​ ​u​p​o​z​o​r​n​i​t​ ​p​l​a​t​f​o​r​m​u​ ​k​ ​p​ř​e​z​k​o​u​m​á​n​í​.
 				 */
 				'2': string
 				/**
@@ -326,6 +326,26 @@ type RootTranslation = {
 				'2': string
 			}
 		}
+		'pt-end': {
+			/**
+			 * D​ě​k​u​j​e​m​e​ ​z​a​ ​ú​č​a​s​t​!
+			 */
+			heading: string
+			/**
+			 * U​k​o​n​č​i​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​ ​a​ ​j​s​t​e​ ​j​e​d​n​í​m​ ​z​ ​n​e​j​l​e​p​š​í​c​h​ ​ú​č​a​s​t​n​í​k​ů​.​ ​S​k​v​ě​l​á​ ​p​r​á​c​e​!
+				 */
+				'0': string
+				/**
+				 * V​ý​s​l​e​d​k​y​ ​b​u​d​o​u​ ​z​p​r​a​c​o​v​á​n​y​ ​a​ ​v​ý​h​e​r​c​i​ ​b​u​d​o​u​ ​k​o​n​t​a​k​t​o​v​á​n​i​ ​e​-​m​a​i​l​e​m​.
+				 */
+				'1': string
+			}
+		}
 	}
 }
 
@@ -448,10 +468,10 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * •	Líbí se mi: Vyjadřujete, že příspěvek schvalujete.
-			•	Nelíbí se mi: Vyjadřujete, že příspěvek neschvalujete.
-			•	Sdílet: Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
-			•	Nahlásit: Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.
+				 * - **Líbí se mi:** Vyjadřujete, že příspěvek schvalujete.
+			- **Nelíbí se mi:** Vyjadřujete, že příspěvek neschvalujete.
+			- **Sdílet:** Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
+			- **Nahlásit:** Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.
 				 */
 				'2': () => LocalizedString
 				/**
@@ -640,6 +660,26 @@ export type TranslationFunctions = {
 				 * Celoročně zelený keř
 				 */
 				'2': () => LocalizedString
+			}
+		}
+		'pt-end': {
+			/**
+			 * Děkujeme za účast!
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Ukončit
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a jste jedním z nejlepších účastníků. Skvělá práce!
+				 */
+				'0': () => LocalizedString
+				/**
+				 * Výsledky budou zpracovány a výherci budou kontaktováni e-mailem.
+				 */
+				'1': () => LocalizedString
 			}
 		}
 	}
