@@ -137,6 +137,8 @@
 
 	export let taskHandler: ATaskPatternMatchingHandler;
 
+	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
+
 	let hasStarted = false;
 
 	const dispatch = createEventDispatcher();
@@ -177,7 +179,9 @@
 	const shouldEndTask = writable(false);
 
 	const handlePatternEnd = () => {
-		shouldEndTask.set(true);
+		if (endScenario === 'pattern-timeout') {
+			shouldEndTask.set(true);
+		} // else do nothing, timeout or something else will end the task
 	};
 
 	const abortController = new AbortController();

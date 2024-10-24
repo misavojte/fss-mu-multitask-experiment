@@ -72,8 +72,14 @@
 		dispatch('patternMatchingCompleted');
 	};
 
+	const infiniteLoopLogic = async () => {
+		while (!abortController.signal.aborted) {
+			await getCancellableAsync(logic, abortController.signal);
+		}
+	};
+
 	onMount(() => {
-		getCancellableAsync(logic, abortController.signal);
+		getCancellableAsync(infiniteLoopLogic, abortController.signal);
 	});
 
 	onDestroy(() => {
