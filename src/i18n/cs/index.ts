@@ -6,6 +6,12 @@ const cs = {
 	footerText: 'Aplikace je součástí výzkumu na Fakultě sociálních studií Masarykovy univerzity.',
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
+	socialButtons: {
+		like: 'Líbí se mi',
+		dislike: 'Nelíbí se mi',
+		share: 'Sdílet',
+		report: 'Nahlásit'
+	},
 	question: {
 		battery: {
 			back: 'Předchozí sekce',
@@ -99,10 +105,10 @@ const cs = {
 			}
 		},
 		'ap-1': {
-			heading: 'Je Vám vše jasné?',
+			heading: 'Chcete pokračovat na ostrý test?',
 			options: {
 				0: 'Ano, pokračovat na ostrý test',
-				1: 'Ne, potřebuji zopakovat praxi'
+				1: 'Ne, chci zopakovat zácvik'
 			}
 		},
 		'pt-1': {

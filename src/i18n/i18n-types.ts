@@ -30,6 +30,24 @@ type RootTranslation = {
 	 * P​r​o​s​í​m​,​ ​č​e​k​e​j​t​e​ ​n​a​ ​n​a​č​t​e​n​í​ ​d​a​t​.
 	 */
 	pleaseWait: string
+	socialButtons: {
+		/**
+		 * L​í​b​í​ ​s​e​ ​m​i
+		 */
+		like: string
+		/**
+		 * N​e​l​í​b​í​ ​s​e​ ​m​i
+		 */
+		dislike: string
+		/**
+		 * S​d​í​l​e​t
+		 */
+		share: string
+		/**
+		 * N​a​h​l​á​s​i​t
+		 */
+		report: string
+	}
 	question: {
 		'1': {
 			/**
@@ -256,7 +274,7 @@ type RootTranslation = {
 		}
 		'ap-1': {
 			/**
-			 * J​e​ ​V​á​m​ ​v​š​e​ ​j​a​s​n​é​?
+			 * C​h​c​e​t​e​ ​p​o​k​r​a​č​o​v​a​t​ ​n​a​ ​o​s​t​r​ý​ ​t​e​s​t​?
 			 */
 			heading: string
 			options: {
@@ -265,7 +283,7 @@ type RootTranslation = {
 				 */
 				'0': string
 				/**
-				 * N​e​,​ ​p​o​t​ř​e​b​u​j​i​ ​z​o​p​a​k​o​v​a​t​ ​p​r​a​x​i
+				 * N​e​,​ ​c​h​c​i​ ​z​o​p​a​k​o​v​a​t​ ​z​á​c​v​i​k
 				 */
 				'1': string
 			}
@@ -366,6 +384,24 @@ export type TranslationFunctions = {
 	 * Prosím, čekejte na načtení dat.
 	 */
 	pleaseWait: () => LocalizedString
+	socialButtons: {
+		/**
+		 * Líbí se mi
+		 */
+		like: () => LocalizedString
+		/**
+		 * Nelíbí se mi
+		 */
+		dislike: () => LocalizedString
+		/**
+		 * Sdílet
+		 */
+		share: () => LocalizedString
+		/**
+		 * Nahlásit
+		 */
+		report: () => LocalizedString
+	}
 	question: {
 		'1': {
 			/**
@@ -592,7 +628,7 @@ export type TranslationFunctions = {
 		}
 		'ap-1': {
 			/**
-			 * Je Vám vše jasné?
+			 * Chcete pokračovat na ostrý test?
 			 */
 			heading: () => LocalizedString
 			options: {
@@ -601,7 +637,7 @@ export type TranslationFunctions = {
 				 */
 				'0': () => LocalizedString
 				/**
-				 * Ne, potřebuji zopakovat praxi
+				 * Ne, chci zopakovat zácvik
 				 */
 				'1': () => LocalizedString
 			}

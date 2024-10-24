@@ -3,6 +3,7 @@
 	import { base } from '$app/paths';
 	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import LL from '../../i18n/i18n-svelte';
 
 	export let taskHandler: ATaskPatternMatchingHandler;
 	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
@@ -26,6 +27,13 @@
 		id: string;
 		src: string;
 	}>; // No AS stimuli for practice
+
+	const socialMediaButtons: { text: string; id: string }[] = [
+		{ text: $LL.socialButtons['like'](), id: 'like' },
+		{ text: $LL.socialButtons['dislike'](), id: 'dislike' },
+		{ text: $LL.socialButtons['share'](), id: 'share' },
+		{ text: $LL.socialButtons['report'](), id: 'report' }
+	];
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
@@ -34,6 +42,7 @@
 		{patternMatchingObjects}
 		{socialMediaStimuliNS}
 		{socialMediaStimuliAS}
+		{socialMediaButtons}
 		{videoDocumentarySrc}
 		muted={false}
 		socialInitialDelay={5000}

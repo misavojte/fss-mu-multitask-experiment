@@ -23,6 +23,16 @@
 		id: string;
 	}>;
 
+	export let socialMediaButtons: Array<{
+		text: string;
+		id: string;
+	}> = [
+		{ text: 'Like', id: 'like' },
+		{ text: 'Share', id: 'share' },
+		{ text: 'Ignore', id: 'save' },
+		{ text: 'Dislike', id: 'dislike' }
+	];
+
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
 	export let videoDocumentarySrc: string;
@@ -227,12 +237,7 @@
 				heightImage={heightSocialImage}
 				heightInteractors={heightSocialOptions}
 				width={widthSocial}
-				socialMediaButtons={[
-					{ text: 'Like', id: 'like' },
-					{ text: 'Share', id: 'share' },
-					{ text: 'Ignore', id: 'save' },
-					{ text: 'Dislike', id: 'dislike' }
-				]}
+				{socialMediaButtons}
 				{socialMediaStimuliAS}
 				{socialMediaStimuliNS}
 				initialDelay={socialInitialDelay}
