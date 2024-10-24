@@ -1,4 +1,3 @@
-import { P } from 'flowbite-svelte';
 import type { BaseTranslation } from '../i18n-types';
 
 const cs = {
