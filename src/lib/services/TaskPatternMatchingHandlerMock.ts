@@ -32,4 +32,7 @@ export class getTaskPatternMatchingHandlerMock extends ATaskPatternMatchingHandl
 	handleLoadFinish() {
 		console.log('handleLoadFinish');
 	}
+	logVersion(version: 'prioritize' | 'even') {
+		console.log('logVersion', version);
+	}
 }

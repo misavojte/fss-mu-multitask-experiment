@@ -100,4 +100,13 @@ export class TaskPatternMatchingHandlerIDB extends ATaskPatternMatchingHandler {
 			value: ''
 		});
 	}
+	logVersion(version: 'prioritize' | 'even') {
+		console.log('logVersion', version);
+		saveActionLog({
+			timestamp: new Date().toISOString(),
+			sessionId: this.sessionId,
+			type: 'task-version',
+			value: version
+		});
+	}
 }

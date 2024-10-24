@@ -35,4 +35,5 @@ export abstract class ATaskPatternMatchingHandler {
 	abstract handleSocialMediaInteractorsCompleted(): void;
 	abstract handleLoadStart(): void;
 	abstract handleLoadFinish(): void;
+	abstract logVersion(version: 'prioritize' | 'even'): void;
 }

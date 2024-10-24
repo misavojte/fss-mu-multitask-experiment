@@ -48,6 +48,22 @@
 			type: 'instruction',
 			paragraphs: [get(LL).question[5].paragraphs[1](), get(LL).question[5].paragraphs[2]()],
 			required: true
+		},
+		{
+			id: 'ap-6',
+			headingText: $LL.question[6].heading(),
+			confirmText: $LL.question[6].confirm(),
+			type: 'instruction',
+			paragraphs: [get(LL).question[6].paragraphs[1](), get(LL).question[6].paragraphs[2]()],
+			required: true
+		},
+		{
+			id: 'ap-7',
+			headingText: $LL.question['7'].heading(),
+			confirmText: $LL.question['7'].confirm(),
+			type: 'instruction',
+			paragraphs: [get(LL).question['7'].paragraphs[1](), get(LL).question['7b'].paragraphs[2]()],
+			required: true
 		}
 	];
 
