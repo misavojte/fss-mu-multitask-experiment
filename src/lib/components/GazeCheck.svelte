@@ -10,7 +10,7 @@
 		Button
 	} from 'flowbite-svelte';
 	import { ArrowRightOutline, EyeOutline, UndoOutline } from 'flowbite-svelte-icons';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 
 	export let gazeManager: GazeManager;
 	export let validationResult: GazeValidationResult | null = {
@@ -79,6 +79,14 @@
 	const roundToTwo = (num: number) => {
 		return Math.round((num + Number.EPSILON) * 100) / 100;
 	};
+
+	onMount(() => {
+		gazeManager.stop();
+	});
+
+	onDestroy(() => {
+		gazeManager.start();
+	});
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4">

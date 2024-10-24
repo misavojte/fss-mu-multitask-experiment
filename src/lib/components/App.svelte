@@ -66,11 +66,16 @@
 	});
 
 	onDestroy(() => {
+		onDestroyOrUnload();
+	});
+
+	const onDestroyOrUnload = () => {
 		gazeManager.disconnect();
 		gazeManager.off('intersect', onIntersect);
-	});
+	};
 </script>
 
+<svelte:window on:beforeunload={onDestroyOrUnload} />
 <!-- Add 'relative' to make the parent container the positioning context -->
 <div
 	class="w-screen h-screen grow overflow-hidden flex flex-col gap-4 items-center justify-center relative"
