@@ -3,7 +3,6 @@
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppEnd from '$lib/components/AppEnd.svelte';
 	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
 	import { GazeManager } from '@473783/develex-core';
 	import AppGaze from './AppGaze.svelte';
@@ -67,6 +66,7 @@
 	});
 
 	onDestroy(() => {
+		gazeManager.disconnect();
 		gazeManager.off('intersect', onIntersect);
 	});
 </script>
