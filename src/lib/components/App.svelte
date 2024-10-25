@@ -73,6 +73,28 @@
 		gazeManager.disconnect();
 		gazeManager.off('intersect', onIntersect);
 	};
+
+	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
+	// "prioritize" or "even"
+	// if it is not set, set it to "prioritize"
+	// set the opposite variant to the variant
+	const obtainVariant = () => {
+		const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
+		if (variant === 'prioritize') {
+			return 'even';
+		} else {
+			return 'prioritize';
+		}
+	};
+
+	const setVariant = (variant: 'prioritize' | 'even') => {
+		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
+	};
+
+	onMount(() => {
+		variant = obtainVariant();
+		setVariant(variant);
+	});
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} />
