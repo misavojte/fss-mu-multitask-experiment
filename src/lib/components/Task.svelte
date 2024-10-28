@@ -39,9 +39,9 @@
 
 	/**
 	 * The time in milliseconds before the task times out.
-	 * Default is 495 seconds (ie. in minutes: 8 minutes and 15 seconds).
+	 * Default is 410 seconds (6 minutes and 50 seconds).
 	 */
-	export let timeOut: number = 495000;
+	export let timeOut: number = 410000;
 
 	/**
 	 * The width of the task container.
