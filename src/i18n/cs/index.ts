@@ -92,7 +92,7 @@ const cs = {
 			heading: 'Získejte dostatek bodů a vyhrajte!',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů.',
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**.',
 				2: 'Vzhledem k tomu, že za úkol na hledání vhodného tvaru je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.'
 			}
 		},
@@ -100,7 +100,7 @@ const cs = {
 			heading: 'Získejte dostatek bodů a vyhrajte!',
 			confirm: 'Rozumím, začít zácviřnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů.',
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**.',
 				2: 'Proto se soustřeďte na všechny úkoly a získejte maximální počet bodů.'
 			}
 		},
