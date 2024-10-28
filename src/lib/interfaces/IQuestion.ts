@@ -31,6 +31,7 @@ export interface IQuestionConfigBase {
 export interface IQuestionConfigSelect extends IQuestionConfigBase {
 	type: 'select';
 	options: readonly string[];
+	paragraphs?: readonly string[];
 }
 
 export interface IQuestionConfigText extends IQuestionConfigBase {

@@ -40,3 +40,17 @@ export const Default: Story = {
 		value: ''
 	}
 };
+
+export const DefaultWithInstruction: Story = {
+	args: {
+		question: {
+			id: '1',
+			headingText: 'How are you feeling today?',
+			options: ['Good', 'Okay', 'Bad'],
+			type: 'select',
+			paragraphs: ['Please select one of the options below.'],
+			required: true
+		},
+		value: ''
+	}
+};

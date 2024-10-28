@@ -19,6 +19,7 @@
 			type: 'select',
 			options: [$LL.question['ap-1'].options[0](), $LL.question['ap-1'].options[1]()],
 			required: true,
+			paragraphs: [$LL.reminder.priority()],
 			preliminaryEndAnswer: '0'
 		},
 		{

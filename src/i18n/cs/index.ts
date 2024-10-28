@@ -12,6 +12,10 @@ const cs = {
 		share: 'Sdílet',
 		report: 'Nahlásit'
 	},
+	reminder: {
+		priority: 'Připomínáme, že **výběr vhodného tvaru je prioritní**.',
+		even: 'Připomínáme, že **žádný úkol není prioritní**.'
+	},
 	question: {
 		battery: {
 			back: 'Předchozí sekce',
@@ -92,15 +96,15 @@ const cs = {
 			heading: 'Získejte dostatek bodů a vyhrajte!',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**.',
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.',
 				2: 'Vzhledem k tomu, že za úkol na hledání vhodného tvaru je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.'
 			}
 		},
 		'7b': {
 			heading: 'Získejte dostatek bodů a vyhrajte!',
-			confirm: 'Rozumím, začít zácviřnou úlohu',
+			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**.',
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
 				2: 'Proto se soustřeďte na všechny úkoly a získejte maximální počet bodů.'
 			}
 		},

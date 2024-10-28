@@ -48,6 +48,16 @@ type RootTranslation = {
 		 */
 		report: string
 	}
+	reminder: {
+		/**
+		 * P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​p​r​i​o​r​i​t​n​í​*​*​.
+		 */
+		priority: string
+		/**
+		 * P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.
+		 */
+		even: string
+	}
 	question: {
 		'1': {
 			/**
@@ -164,16 +174,16 @@ type RootTranslation = {
 		}
 		'7': {
 			/**
-			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​ ​2​5​0​0​ ​K​č
+			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​!
 			 */
 			heading: string
 			/**
-			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​z​á​c​v​i​ř​n​o​u​ ​ú​l​o​h​u
+			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​z​á​c​v​i​č​n​o​u​ ​ú​l​o​h​u
 			 */
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​C​e​l​k​o​v​ý​ ​p​o​č​e​t​ ​b​o​d​ů​,​ ​k​t​e​r​é​ ​z​í​s​k​á​t​e​,​ ​u​r​č​í​ ​v​a​š​i​ ​š​a​n​c​i​ ​n​a​ ​t​o​ ​z​í​s​k​a​t​ ​d​o​d​a​t​e​č​n​o​u​ ​ ​o​d​m​ě​n​u​.​ ​P​o​k​u​d​ ​b​u​d​e​t​e​ ​p​a​t​ř​i​t​ ​m​e​z​i​ ​p​ě​t​ ​n​e​j​l​e​p​š​í​c​h​ ​ú​č​a​s​t​n​í​k​ů​,​ ​b​u​d​e​t​e​ ​m​í​t​ ​š​a​n​c​i​ ​v​y​h​r​á​t​ ​v​ ​l​o​s​o​v​á​n​í​ ​h​l​a​v​n​í​ ​c​e​n​u​ ​2​5​0​0​,​-​ ​K​č​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
 				 */
 				'1': string
 				/**
@@ -254,16 +264,16 @@ type RootTranslation = {
 		}
 		'7b': {
 			/**
-			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​ ​2​5​0​0​ ​K​č
+			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​!
 			 */
 			heading: string
 			/**
-			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​z​á​c​v​i​ř​n​o​u​ ​ú​l​o​h​u
+			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​z​á​c​v​i​č​n​o​u​ ​ú​l​o​h​u
 			 */
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​C​e​l​k​o​v​ý​ ​p​o​č​e​t​ ​b​o​d​ů​,​ ​k​t​e​r​é​ ​z​í​s​k​á​t​e​,​ ​u​r​č​í​ ​v​a​š​i​ ​š​a​n​c​i​ ​n​a​ ​t​o​ ​z​í​s​k​a​t​ ​d​o​d​a​t​e​č​n​o​u​ ​ ​o​d​m​ě​n​u​.​ ​P​o​k​u​d​ ​b​u​d​e​t​e​ ​p​a​t​ř​i​t​ ​m​e​z​i​ ​p​ě​t​ ​n​e​j​l​e​p​š​í​c​h​ ​ú​č​a​s​t​n​í​k​ů​,​ ​b​u​d​e​t​e​ ​m​í​t​ ​š​a​n​c​i​ ​v​y​h​r​á​t​ ​v​ ​l​o​s​o​v​á​n​í​ ​h​l​a​v​n​í​ ​c​e​n​u​ ​2​5​0​0​,​-​ ​K​č​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
 				 */
 				'1': string
 				/**
@@ -402,6 +412,16 @@ export type TranslationFunctions = {
 		 */
 		report: () => LocalizedString
 	}
+	reminder: {
+		/**
+		 * Připomínáme, že **výběr vhodného tvaru je prioritní**.
+		 */
+		priority: () => LocalizedString
+		/**
+		 * Připomínáme, že **žádný úkol není prioritní**.
+		 */
+		even: () => LocalizedString
+	}
 	question: {
 		'1': {
 			/**
@@ -518,16 +538,16 @@ export type TranslationFunctions = {
 		}
 		'7': {
 			/**
-			 * Získejte dostatek bodů a vyhrajte 2500 Kč
+			 * Získejte dostatek bodů a vyhrajte!
 			 */
 			heading: () => LocalizedString
 			/**
-			 * Rozumím, začít zácviřnou úlohu
+			 * Rozumím, začít zácvičnou úlohu
 			 */
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Vaším cílem je nasbírat co nejvíce bodů. Celkový počet bodů, které získáte, určí vaši šanci na to získat dodatečnou  odměnu. Pokud budete patřit mezi pět nejlepších účastníků, budete mít šanci vyhrát v losování hlavní cenu 2500,- Kč.
+				 * Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.
 				 */
 				'1': () => LocalizedString
 				/**
@@ -608,16 +628,16 @@ export type TranslationFunctions = {
 		}
 		'7b': {
 			/**
-			 * Získejte dostatek bodů a vyhrajte 2500 Kč
+			 * Získejte dostatek bodů a vyhrajte!
 			 */
 			heading: () => LocalizedString
 			/**
-			 * Rozumím, začít zácviřnou úlohu
+			 * Rozumím, začít zácvičnou úlohu
 			 */
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Vaším cílem je nasbírat co nejvíce bodů. Celkový počet bodů, které získáte, určí vaši šanci na to získat dodatečnou  odměnu. Pokud budete patřit mezi pět nejlepších účastníků, budete mít šanci vyhrát v losování hlavní cenu 2500,- Kč.
+				 * Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
 				 */
 				'1': () => LocalizedString
 				/**
