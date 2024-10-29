@@ -3,13 +3,13 @@ import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
 import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
-import { getTaskPatternMatchingHandlerMock } from '$lib/services/TaskPatternMatchingHandlerMock';
+import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskPatternMatchingHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');
 
 const patternMatchingService = new TaskPatternMatchingServiceBase();
-const taskHandler = new getTaskPatternMatchingHandlerMock();
+const taskHandler = new TaskPatternMatchingHandlerMock('even');
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
