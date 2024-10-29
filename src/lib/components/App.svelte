@@ -16,7 +16,7 @@
 	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
-	import InterfaceFooter from './InterfaceFooter.svelte';
+	import { base } from '$app/paths';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -146,7 +146,7 @@
 				{questionsService}
 				{taskHandler}
 				on:finish={() => {
-					goto('/download');
+					goto(`${base}/download`);
 				}}
 			/>
 		</div>
