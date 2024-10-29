@@ -9,8 +9,12 @@
 	import { createEventDispatcher } from 'svelte';
 	import InterfaceFooter from './InterfaceFooter.svelte';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
+	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import { fade } from 'svelte/transition';
+	import { base } from '$app/paths';
 
 	export let questionsService: ITimestampQuestionService;
+	export let taskHandler: ATaskPatternMatchingHandler;
 
 	const dispatch = createEventDispatcher();
 
@@ -77,39 +81,74 @@
 			type: 'instruction',
 			required: true
 		},
-		...randomize(questionToRandomize),
-		{
-			id: 'pt-end',
-			headingText: $LL['question']['pt-end']['heading'](),
-			confirmText: $LL['question']['pt-end']['confirm'](),
-			type: 'instruction',
-			paragraphs: [
-				$LL['question']['pt-end'].paragraphs[0](),
-				$LL['question']['pt-end'].paragraphs[1]()
-			],
-			required: true
-		}
+		...randomize(questionToRandomize)
 	];
 
 	const handleQuestionnaireDone = async (data: any) => {
+		stage = 'end';
+	};
+
+	const handleAnswer = (data: CustomEvent<{ id: string; value: string }>) => {
+		if (data.detail.id === 'pt-3' || data.detail.id === 'pt-2') {
+			const answer = data.detail.value;
+			if (answer === '0') taskHandler.handleDocumentaryQuestionnaireResponse(true);
+		}
+	};
+
+	const handleAllDone = () => {
 		dispatch('finish');
 	};
 
-	const handleAnswer = (data: CustomEvent<{ id: string; answer: string }>) => {
-		//questionsService.addAnswer(data.detail.id, data.detail.answer);
+	let stage: 'questionnaire' | 'end' = 'questionnaire';
 
-		if (data.detail.id === 'pt-3' || data.detail.id === 'pt-2') {
-			const answer = data.detail.answer;
-		}
+	// Define the fade transition settings
+	const fadeInParams = {
+		delay: 400, // Delay of 200ms for the 'in' transition
+		duration: 400 // Duration of the transition (adjust as needed)
+	};
+
+	const fadeOutParams = {
+		delay: 0, // No delay for the 'out' transition
+		duration: 400 // Duration of the transition (adjust as needed)
 	};
 </script>
 
 <div class="w-full h-full p-8 mx-auto flex flex-col gap-8">
-	<QuestionManager
-		{questions}
-		{questionsService}
-		on:questionnaireDone={handleQuestionnaireDone}
-		on:questionnaireAnswer={handleAnswer}
-	/>
+	<div class="flex-grow relative">
+		{#if stage === 'questionnaire'}
+			<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+				<QuestionManager
+					{questions}
+					{questionsService}
+					on:questionnaireDone={handleQuestionnaireDone}
+					on:questionnaireAnswer={handleAnswer}
+				/>
+			</div>
+		{:else if stage === 'end'}
+			<div
+				in:fade={fadeInParams}
+				out:fade={fadeOutParams}
+				class="absolute inset-0 text-neutral-700 w-full h-full justify-center items-center"
+			>
+				<div
+					class="flex flex-col gap-6 items-center justify-center flex-grow my-auto w-full h-full"
+				>
+					<h2 class="text-3xl font-bold">{$LL['pt-end']['heading']()}</h2>
+					<img
+						src={`${base}/end.jpeg`}
+						alt="End of the post-trial questionnaire"
+						class="h-48 w-auto"
+					/>
+					<p class="text-lg">{$LL['pt-end'].paragraphs[0]({ points: taskHandler.score })}</p>
+					<button
+						class="bg-blue-500 text-white px-4 py-3 text-lg mt-1 rounded-md font-semibold hover:bg-blue-600"
+						on:click={handleAllDone}
+					>
+						{$LL['pt-end']['confirm']()}
+					</button>
+				</div>
+			</div>
+		{/if}
+	</div>
 	<InterfaceFooter />
 </div>

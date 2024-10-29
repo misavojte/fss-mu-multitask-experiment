@@ -354,25 +354,22 @@ type RootTranslation = {
 				'2': string
 			}
 		}
-		'pt-end': {
+	}
+	'pt-end': {
+		/**
+		 * D​ě​k​u​j​e​m​e​ ​z​a​ ​ú​č​a​s​t​!
+		 */
+		heading: string
+		/**
+		 * U​k​o​n​č​i​t
+		 */
+		confirm: string
+		paragraphs: {
 			/**
-			 * D​ě​k​u​j​e​m​e​ ​z​a​ ​ú​č​a​s​t​!
+			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​ ​a​ ​z​í​s​k​a​l​i​ ​j​s​t​e​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
+			 * @param {number} points
 			 */
-			heading: string
-			/**
-			 * U​k​o​n​č​i​t
-			 */
-			confirm: string
-			paragraphs: {
-				/**
-				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​ ​a​ ​j​s​t​e​ ​j​e​d​n​í​m​ ​z​ ​n​e​j​l​e​p​š​í​c​h​ ​ú​č​a​s​t​n​í​k​ů​.​ ​S​k​v​ě​l​á​ ​p​r​á​c​e​!
-				 */
-				'0': string
-				/**
-				 * V​ý​s​l​e​d​k​y​ ​b​u​d​o​u​ ​z​p​r​a​c​o​v​á​n​y​ ​a​ ​v​ý​h​e​r​c​i​ ​b​u​d​o​u​ ​k​o​n​t​a​k​t​o​v​á​n​i​ ​e​-​m​a​i​l​e​m​.
-				 */
-				'1': string
-			}
+			'0': RequiredParams<'points'>
 		}
 	}
 }
@@ -718,25 +715,21 @@ export type TranslationFunctions = {
 				'2': () => LocalizedString
 			}
 		}
-		'pt-end': {
+	}
+	'pt-end': {
+		/**
+		 * Děkujeme za účast!
+		 */
+		heading: () => LocalizedString
+		/**
+		 * Ukončit
+		 */
+		confirm: () => LocalizedString
+		paragraphs: {
 			/**
-			 * Děkujeme za účast!
+			 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a získali jste {points} bodů.
 			 */
-			heading: () => LocalizedString
-			/**
-			 * Ukončit
-			 */
-			confirm: () => LocalizedString
-			paragraphs: {
-				/**
-				 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a jste jedním z nejlepších účastníků. Skvělá práce!
-				 */
-				'0': () => LocalizedString
-				/**
-				 * Výsledky budou zpracovány a výherci budou kontaktováni e-mailem.
-				 */
-				'1': () => LocalizedString
-			}
+			'0': (arg: { points: number }) => LocalizedString
 		}
 	}
 }

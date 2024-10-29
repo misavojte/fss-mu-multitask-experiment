@@ -137,14 +137,13 @@ const cs = {
 				1: 'Květina třídy lipnicovité',
 				2: 'Celoročně zelený keř'
 			}
-		},
-		'pt-end': {
-			heading: 'Děkujeme za účast!',
-			confirm: 'Ukončit',
-			paragraphs: {
-				0: 'Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a jste jedním z nejlepších účastníků. Skvělá práce!',
-				1: 'Výsledky budou zpracovány a výherci budou kontaktováni e-mailem.'
-			}
+		}
+	},
+	'pt-end': {
+		heading: 'Děkujeme za účast!',
+		confirm: 'Ukončit',
+		paragraphs: {
+			0: 'Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu! Vaše skóre činí {points:number} bodů.'
 		}
 	}
 } satisfies BaseTranslation;

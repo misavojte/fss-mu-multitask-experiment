@@ -16,6 +16,7 @@
 	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
+	import InterfaceFooter from './InterfaceFooter.svelte';
 
 	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
 
@@ -143,6 +144,7 @@
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPostTrial
 				{questionsService}
+				{taskHandler}
 				on:finish={() => {
 					goto('/download');
 				}}
