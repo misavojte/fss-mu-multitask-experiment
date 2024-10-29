@@ -39,7 +39,7 @@
 		{#if question.paragraphs.length > 0}
 			<ul class="text-neutral-700 w-full flex flex-col gap-4 overflow-auto max-w-screen-md mx-auto">
 				{#each paragraphs as paragraph}
-					<li class="md-converted-content">
+					<li class="md-converted-content md:text-lg">
 						{@html paragraph}
 					</li>
 				{/each}

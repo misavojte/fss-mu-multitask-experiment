@@ -9,7 +9,7 @@
 	const dispatch = createEventDispatcher();
 
 	const handleOptionChange = () => {
-		dispatch('input');
+		dispatch('input', value);
 	};
 
 	function convertMarkdownToHtml(markdown: string): string {
@@ -47,13 +47,13 @@
 		</ul>
 	{/if}
 	<ul class="flex flex-col">
-		{#each question.options as option, optionIndex}
+		{#each question.options as option}
 			<li>
 				<input
 					type="radio"
-					id={'option-' + optionIndex}
+					id={'option-' + option.id}
 					name={question.id}
-					value={optionIndex.toString()}
+					value={option.id.toString()}
 					class="hidden peer"
 					required
 					bind:group={value}
@@ -61,13 +61,13 @@
 					on:click|stopPropagation
 				/>
 				<label
-					for={'option-' + optionIndex}
+					for={'option-' + option.id}
 					class="font-semibold select-none peer block w-96 border-2 border-gray-300 rounded-lg p-4 mb-4 cursor-pointer {value ===
-					optionIndex.toString()
+					option.id.toString()
 						? 'bg-blue-500 text-white'
 						: 'bg-white text-gray-600 hover:bg-gray-100'}"
 				>
-					{option}
+					{option.label}
 				</label>
 			</li>
 		{/each}

@@ -30,7 +30,10 @@ export interface IQuestionConfigBase {
 
 export interface IQuestionConfigSelect extends IQuestionConfigBase {
 	type: 'select';
-	options: readonly string[];
+	options: readonly {
+		id: string;
+		label: string;
+	}[];
 	paragraphs?: readonly string[];
 }
 

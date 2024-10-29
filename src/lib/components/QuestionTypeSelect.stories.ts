@@ -33,7 +33,20 @@ export const Default: Story = {
 		question: {
 			id: '1',
 			headingText: 'How are you feeling today?',
-			options: ['Good', 'Okay', 'Bad'],
+			options: [
+				{
+					id: '1',
+					label: 'Good'
+				},
+				{
+					id: '2',
+					label: 'Okay'
+				},
+				{
+					id: '3',
+					label: 'Bad'
+				}
+			],
 			type: 'select',
 			required: true
 		},
@@ -46,7 +59,20 @@ export const DefaultWithInstruction: Story = {
 		question: {
 			id: '1',
 			headingText: 'How are you feeling today?',
-			options: ['Good', 'Okay', 'Bad'],
+			options: [
+				{
+					id: '1',
+					label: 'Good'
+				},
+				{
+					id: '2',
+					label: 'Okay'
+				},
+				{
+					id: '3',
+					label: 'Bad'
+				}
+			],
 			type: 'select',
 			paragraphs: ['Please select one of the options below.'],
 			required: true
