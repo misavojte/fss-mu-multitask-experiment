@@ -14,23 +14,16 @@
 
 	const dispatch = createEventDispatcher();
 
-	type GazeValidationResult = {
-		topleft: {
-			accuracy: number;
-			precision: number;
-			gazePointCount: number;
-		};
-		middle: {
-			accuracy: number;
-			precision: number;
-			gazePointCount: number;
-		};
-		bottomright: {
-			accuracy: number;
-			precision: number;
-			gazePointCount: number;
-		};
+	type GazeValidationMetrics = {
+		accuracy: number;
+		precision: number;
+		gazePointCount: number;
 	};
+
+	type GazeValidationResult = Record<
+		'topleft' | 'middle' | 'bottomright' | 'topright' | 'topmiddle',
+		GazeValidationMetrics
+	>;
 
 	let validationResult: GazeValidationResult | null = null;
 
@@ -50,11 +43,7 @@
 		</div>
 	{:else if stage === 'validate'}
 		<div class="absolute w-full h-full flex flex-col items-center justify-center" transition:fade>
-			<GazeValidate
-				{connectLogger}
-				{gazeManager}
-				on:gazeValidationDone={handleGazeValidationDone}
-			/>
+			<GazeValidate {connectLogger} {gazeManager} on:validated={handleGazeValidationDone} />
 		</div>
 	{:else if stage === 'check'}
 		<div class="absolute w-full h-full flex flex-col items-center justify-center" transition:fade>

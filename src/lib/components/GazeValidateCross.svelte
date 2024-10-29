@@ -64,12 +64,18 @@
 	aria-label="Validation Area"
 	bind:this={element}
 >
-	<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		width="100"
+		height="100"
+		viewBox="0 0 100 100"
+		xmlns="http://www.w3.org/2000/svg"
+		class="text-neutral-500"
+	>
 		<!-- Outer Circle -->
-		<circle cx="50" cy="50" r="45" stroke="black" stroke-width="2" fill="none" />
+		<circle cx="50" cy="50" r="20" stroke="currentColor" stroke-width="2" fill="none" />
 		<!-- Vertical Line -->
-		<line x1="50" y1="5" x2="50" y2="95" stroke="black" stroke-width="2" />
+		<line x1="50" y1="5" x2="50" y2="95" stroke="currentColor" stroke-width="2" />
 		<!-- Horizontal Line -->
-		<line x1="5" y1="50" x2="95" y2="50" stroke="black" stroke-width="2" />
+		<line x1="5" y1="50" x2="95" y2="50" stroke="currentColor" stroke-width="2" />
 	</svg>
 </button>
