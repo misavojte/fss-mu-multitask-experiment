@@ -8,7 +8,7 @@
 	export let gazeManager: GazeManager;
 	export let connectLogger: IConnectLogger;
 
-	let stage: 'topleft' | 'middle' | 'bottomright' = 'topleft';
+	let stage: 'topleft' | 'middle' | 'bottomright' | 'topright' | 'topmiddle' = 'topleft';
 
 	const results = {
 		topleft: {
@@ -22,6 +22,16 @@
 			gazePointCount: 0
 		},
 		bottomright: {
+			accuracy: 999,
+			precision: 999,
+			gazePointCount: 0
+		},
+		topright: {
+			accuracy: 999,
+			precision: 999,
+			gazePointCount: 0
+		},
+		topmiddle: {
 			accuracy: 999,
 			precision: 999,
 			gazePointCount: 0
@@ -42,15 +52,21 @@
 			} else if (stage === 'middle') {
 				saveResult('middle', result);
 				stage = 'bottomright';
-			} else {
+			} else if (stage === 'bottomright') {
 				saveResult('bottomright', result);
-				dispatch('gazeValidationDone', results);
+				stage = 'topright';
+			} else if (stage === 'topright') {
+				saveResult('topright', result);
+				stage = 'topmiddle';
+			} else if (stage === 'topmiddle') {
+				saveResult('topmiddle', result);
+				dispatch('validated', results);
 			}
 		}
 	};
 
 	const saveResult = (
-		where: 'topleft' | 'middle' | 'bottomright',
+		where: 'topleft' | 'middle' | 'bottomright' | 'topright' | 'topmiddle',
 		result: { accuracy: number; precision: number; gazeDataPoints: unknown[] }
 	) => {
 		results[where].accuracy = result.accuracy;
@@ -92,6 +108,28 @@
 				{gazeManager}
 				{validationSettings}
 				aoi="crossfix-mt-3"
+				animation="smaller"
+				color="red"
+			/>
+		</div>
+	{:else if stage === 'topright'}
+		<!-- TOP RIGHT -->
+		<div class="absolute top-0 right-0" transition:fade>
+			<GazeValidateCross
+				{gazeManager}
+				{validationSettings}
+				aoi="crossfix-mt-5"
+				animation="smaller"
+				color="red"
+			/>
+		</div>
+	{:else if stage === 'topmiddle'}
+		<!-- TOP MIDDLE -->
+		<div class="absolute top-0 left-1/2 transform -translate-x-1/2" transition:fade>
+			<GazeValidateCross
+				{gazeManager}
+				{validationSettings}
+				aoi="crossfix-mt-6"
 				animation="smaller"
 				color="red"
 			/>
