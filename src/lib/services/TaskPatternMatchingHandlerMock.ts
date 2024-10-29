@@ -1,38 +1,70 @@
 import { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 
-export class getTaskPatternMatchingHandlerMock extends ATaskPatternMatchingHandler {
-	handlePatternMatchingResponse(event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>) {
-		console.log('handlePatternMatchingResponse', event);
+export class TaskPatternMatchingHandlerMock extends ATaskPatternMatchingHandler {
+	scoringType: 'prioritize' | 'even';
+	constructor(scoringType: 'prioritize' | 'even') {
+		super();
+		this.scoringType = scoringType;
 	}
+
+	private logAction(type: string, value: string) {
+		console.log(`Action: ${type}, Value: ${value}`);
+	}
+
+	private addPatternMatchingScore() {
+		this.score += this.scoringType === 'prioritize' ? 3 : 1;
+	}
+
+	private addSocialMediaScore() {
+		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+	}
+
+	private addDocumentaryQuestionnaireScore() {
+		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+	}
+
+	handlePatternMatchingResponse(event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>) {
+		this.logAction('pattern-matching-response', event.detail);
+		if (event.detail === 'T1') {
+			this.addPatternMatchingScore();
+		}
+	}
+
 	handlePatternMatchingNext(event: CustomEvent<string>) {
-		console.log('handlePatternMatchingNext', event);
+		this.logAction('pattern-matching-next', event.detail);
 	}
 	handlePatternMatchingCompleted() {
-		console.log('handlePatternMatchingCompleted');
+		this.logAction('pattern-matching-completed', '');
 		this.onEnd();
 	}
 	handleSocialMediaInteractorsShow(event: CustomEvent<{ id: string; timestamp: number }>) {
-		console.log('handleSocialMediaInteractorsShow', event);
+		this.logAction('social-media-interactors-show', event.detail.id);
 	}
 	handleSocialMediaInteractorsClick(event: CustomEvent<{ buttonId: string; timestamp: number }>) {
-		console.log('handleSocialMediaInteractorsClick', event);
+		this.logAction('social-media-interactors-click', event.detail.buttonId);
+		this.addSocialMediaScore();
 	}
 	handleSocialMediaInteractorsHidden() {
-		console.log('handleSocialMediaInteractorsHidden');
+		this.logAction('social-media-interactors-hidden', '');
 	}
 	handleSocialMediaInteractorsTimeout() {
-		console.log('handleSocialMediaInteractorsTimeout');
+		this.logAction('social-media-interactors-timeout', '');
 	}
 	handleSocialMediaInteractorsCompleted() {
-		console.log('handleSocialMediaInteractorsCompleted');
+		this.logAction('social-media-interactors-completed', '');
 	}
-	handleLoadStart() {
-		console.log('handleLoadStart');
+	handleLoadStart(): void {
+		this.logAction('task-load-start', '');
 	}
-	handleLoadFinish() {
-		console.log('handleLoadFinish');
+	handleLoadFinish(): void {
+		this.logAction('task-load-finish', '');
 	}
 	logVersion(version: 'prioritize' | 'even') {
-		console.log('logVersion', version);
+		this.logAction('task-version', version);
+	}
+	handleDocumentaryQuestionnaireResponse(isCorrect: boolean): void {
+		if (isCorrect) {
+			this.addDocumentaryQuestionnaireScore();
+		}
 	}
 }

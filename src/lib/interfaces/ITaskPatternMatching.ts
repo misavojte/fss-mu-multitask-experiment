@@ -21,6 +21,7 @@ export abstract class ATaskPatternMatchingHandler {
 	removeOnEndHandler() {
 		this.onEnd = () => {};
 	}
+	score = 0;
 	abstract handlePatternMatchingResponse(event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>): void;
 	abstract handlePatternMatchingNext(event: CustomEvent<string>): void;
 	abstract handlePatternMatchingCompleted(): void;
@@ -36,4 +37,5 @@ export abstract class ATaskPatternMatchingHandler {
 	abstract handleLoadStart(): void;
 	abstract handleLoadFinish(): void;
 	abstract logVersion(version: 'prioritize' | 'even'): void;
+	abstract handleDocumentaryQuestionnaireResponse(isCorrect: boolean): void;
 }

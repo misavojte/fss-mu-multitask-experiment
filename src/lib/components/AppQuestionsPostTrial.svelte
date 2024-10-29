@@ -20,9 +20,18 @@
 			headingText: $LL.question['pt-2'].heading(),
 			type: 'select',
 			options: [
-				$LL.question['pt-2'].options[0](),
-				$LL.question['pt-2'].options[1](),
-				$LL.question['pt-2'].options[2]()
+				{
+					id: '0',
+					label: $LL.question['pt-2'].options[0]()
+				},
+				{
+					id: '1',
+					label: $LL.question['pt-2'].options[1]()
+				},
+				{
+					id: '2',
+					label: $LL.question['pt-2'].options[2]()
+				}
 			],
 			required: true
 		},
@@ -31,9 +40,18 @@
 			headingText: $LL.question['pt-3'].heading(),
 			type: 'select',
 			options: [
-				$LL.question['pt-3'].options[0](),
-				$LL.question['pt-3'].options[1](),
-				$LL.question['pt-3'].options[2]()
+				{
+					id: '0',
+					label: $LL.question['pt-3'].options[0]()
+				},
+				{
+					id: '1',
+					label: $LL.question['pt-3'].options[1]()
+				},
+				{
+					id: '2',
+					label: $LL.question['pt-3'].options[2]()
+				}
 			],
 			required: true
 		}
@@ -76,9 +94,22 @@
 	const handleQuestionnaireDone = async (data: any) => {
 		dispatch('finish');
 	};
+
+	const handleAnswer = (data: CustomEvent<{ id: string; answer: string }>) => {
+		//questionsService.addAnswer(data.detail.id, data.detail.answer);
+
+		if (data.detail.id === 'pt-3' || data.detail.id === 'pt-2') {
+			const answer = data.detail.answer;
+		}
+	};
 </script>
 
 <div class="w-full h-full p-8 mx-auto flex flex-col gap-8">
-	<QuestionManager {questions} {questionsService} on:questionnaireDone={handleQuestionnaireDone} />
+	<QuestionManager
+		{questions}
+		{questionsService}
+		on:questionnaireDone={handleQuestionnaireDone}
+		on:questionnaireAnswer={handleAnswer}
+	/>
 	<InterfaceFooter />
 </div>
