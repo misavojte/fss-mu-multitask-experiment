@@ -132,6 +132,8 @@
 
 	export let socialBetweenDelay: number = 15000;
 
+	export let socialStimulusRemindAfter: number = 10000;
+
 	export let taskHandler: ATaskHandler;
 
 	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
@@ -243,6 +245,7 @@
 				{socialMediaButtons}
 				{socialMediaStimuliAS}
 				{socialMediaStimuliNS}
+				stimulusRemindAfter={socialStimulusRemindAfter}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
 				betweenDelay={socialBetweenDelay}

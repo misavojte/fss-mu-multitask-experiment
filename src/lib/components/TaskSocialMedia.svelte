@@ -162,7 +162,7 @@
 		let activeStimulusIndex = 0;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
 			console.log('loopStimulusDelay', initialDelay);
-			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
+			// socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {

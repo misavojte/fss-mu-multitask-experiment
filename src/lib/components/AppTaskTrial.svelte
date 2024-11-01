@@ -20,12 +20,10 @@
 		src: `${base}/task/3/test/NS_Image ${i + 1}.PNG`
 	}));
 
-	const socialMediaButtons: { text: string; id: string }[] = [
+	const socialMediaButtons: { text: string; id: string }[] = fisherYatesShuffle([
 		{ text: $LL.socialButtons['like'](), id: 'like' },
-		{ text: $LL.socialButtons['dislike'](), id: 'dislike' },
-		{ text: $LL.socialButtons['share'](), id: 'share' },
-		{ text: $LL.socialButtons['report'](), id: 'report' }
-	];
+		{ text: $LL.socialButtons['dislike'](), id: 'dislike' }
+	]);
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
@@ -41,6 +39,7 @@
 		socialInitialDelay={5000}
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
+		socialStimulusRemindAfter={15000}
 		endScenario={'timeout'}
 	/>
 </div>
