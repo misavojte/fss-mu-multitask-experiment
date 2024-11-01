@@ -2,14 +2,12 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
-import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
-import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskHandlerMock';
+import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');
 
-const patternMatchingService = new TaskPatternMatchingServiceIntelligence();
-const taskHandler = new TaskPatternMatchingHandlerMock('even');
+const taskHandler = new TaskHandlerIntelligenceMock('even');
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -56,7 +54,7 @@ export const Default: Story = {
 				src: 'task/3/3.png'
 			}
 		],
-		patternMatchingObjects: patternMatchingService.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice(),
 		videoDocumentarySrc: 'video/video.mp4',
 		taskHandler
 	}
