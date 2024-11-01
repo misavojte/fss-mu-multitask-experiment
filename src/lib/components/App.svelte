@@ -145,7 +145,6 @@
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPostTrial
-				{questionsService}
 				{taskHandler}
 				on:finish={() => {
 					goto(`${base}/download`);
