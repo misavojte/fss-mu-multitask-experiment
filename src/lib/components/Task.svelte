@@ -23,11 +23,12 @@
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
+		color: string;
+		textColor: string;
+		html: string;
 	}> = [
-		{ text: 'Like', id: 'like' },
-		{ text: 'Share', id: 'share' },
-		{ text: 'Ignore', id: 'save' },
-		{ text: 'Dislike', id: 'dislike' }
+		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff', html: '' },
+		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff', html: '' }
 	];
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];

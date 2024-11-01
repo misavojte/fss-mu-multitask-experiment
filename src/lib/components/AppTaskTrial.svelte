@@ -21,7 +21,13 @@
 		src: `${base}/task/3/test/NS_Image ${i + 1}.PNG`
 	}));
 
-	const socialMediaButtons: { text: string; id: string }[] = fisherYatesShuffle([
+	const socialMediaButtons: {
+		text: string;
+		id: string;
+		html: string;
+		color: string;
+		textColor: string;
+	}[] = fisherYatesShuffle([
 		{
 			text: get(LL).socialButtons['like'](),
 			id: 'like',

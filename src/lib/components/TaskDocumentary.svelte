@@ -4,6 +4,7 @@
 	import { waitForTimeoutCancellable } from '$lib/utils/waitForCondition';
 	import TaskDocumentaryButton from './TaskDocumentaryButton.svelte';
 	import AnimationTarget from './AnimationTarget.svelte';
+	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
 	export let videoDocumentarySrc: string;
 	export let width: number = 400;
@@ -34,12 +35,12 @@
 	};
 
 	let video: HTMLVideoElement | null = null;
-	let feedbackCircles: Record<string, SvelteComponent> = {};
 
 	const dispatch = createEventDispatcher();
 	let abortController = new AbortController();
 	console.log('TaskDocumentary', wordOccurenceTimestampCheck);
 
+	const animationTargetHandler = new AnimationTargetHandler();
 	const handleClick = async (e: CustomEvent<MouseEvent>) => {
 		const wasCorrect = evaluateCorrectnessOfClick();
 		if (wasCorrect) {
@@ -50,22 +51,12 @@
 
 		if (!showCorrectnessFeedback) return;
 
-		const randomId = Math.random().toString();
-		feedbackCircles[randomId] = new AnimationTarget({
-			target: document.body,
-			props: {
-				centerCoordinates: { x: e.detail.clientX, y: e.detail.clientY },
-				color: wasCorrect ? 'green' : 'red',
-				content: wasCorrect ? '+ 1 bod' : 'špatně'
-			}
-		});
-		try {
-			await waitForTimeoutCancellable(1000, abortController.signal);
-		} catch (e) {
-			// Do nothing
-		}
-		feedbackCircles[randomId].$destroy();
-		delete feedbackCircles[randomId];
+		animationTargetHandler.createAnimationTarget(
+			{ x: e.detail.clientX, y: e.detail.clientY },
+			wasCorrect ? 'green' : 'red',
+			wasCorrect ? '+ 1 bod' : 'špatně',
+			abortController.signal
+		);
 	};
 
 	const evaluateCorrectnessOfClick = () => {
