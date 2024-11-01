@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
-import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
 import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskPatternMatchingHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');
 
-const patternMatchingService = new TaskPatternMatchingServiceBase();
+const patternMatchingService = new TaskPatternMatchingServiceIntelligence();
 const taskHandler = new TaskPatternMatchingHandlerMock('even');
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories

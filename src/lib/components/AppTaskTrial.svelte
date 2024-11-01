@@ -1,13 +1,13 @@
 <script lang="ts">
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
-	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+	import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import LL from '../../i18n/i18n-svelte';
 
 	export let taskHandler: ATaskPatternMatchingHandler;
-	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
+	const patternMatchingService = new TaskPatternMatchingServiceIntelligence(base + '/');
 	const patternMatchingObjects = fisherYatesShuffle(
 		patternMatchingService.getTaskPatternMatchingObjectsForTest()
 	);

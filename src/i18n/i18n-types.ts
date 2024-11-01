@@ -366,7 +366,7 @@ type RootTranslation = {
 		confirm: string
 		paragraphs: {
 			/**
-			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​ ​a​ ​z​í​s​k​a​l​i​ ​j​s​t​e​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
+			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
 			 * @param {number} points
 			 */
 			'0': RequiredParams<'points'>
@@ -727,7 +727,7 @@ export type TranslationFunctions = {
 		confirm: () => LocalizedString
 		paragraphs: {
 			/**
-			 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu a získali jste {points} bodů.
+			 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu! Vaše skóre činí {points} bodů.
 			 */
 			'0': (arg: { points: number }) => LocalizedString
 		}

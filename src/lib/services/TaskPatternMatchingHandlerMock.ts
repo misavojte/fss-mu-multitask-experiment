@@ -23,7 +23,7 @@ export class TaskPatternMatchingHandlerMock extends ATaskPatternMatchingHandler 
 		this.score += this.scoringType === 'prioritize' ? 1 : 1;
 	}
 
-	handlePatternMatchingResponse(event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>) {
+	handlePatternMatchingResponse(event: CustomEvent<string>) {
 		this.logAction('pattern-matching-response', event.detail);
 		if (event.detail === 'T1') {
 			this.addPatternMatchingScore();

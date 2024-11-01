@@ -3,8 +3,12 @@ import type {
 	ITaskPatternMatchingObject
 } from '$lib/interfaces/ITaskPatternMatching';
 
-export class TaskPatternMatchingServiceBase implements ITaskPatternMatching {
+export class TaskPatternMatchingServiceIntelligence implements ITaskPatternMatching {
 	private base: string;
+
+	get correctResponseId(): string {
+		return 'T1';
+	}
 
 	constructor(base: string = '') {
 		this.base = base;

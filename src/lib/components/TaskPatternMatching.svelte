@@ -25,7 +25,7 @@
 	const patternMatchingObjectIndex = writable(0);
 	const dispatch = createEventDispatcher();
 
-	const handlePatternMatchingResponseClicked = (event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>) => {
+	const handlePatternMatchingResponseClicked = (event: CustomEvent<string>) => {
 		// const isCorrect = event.detail === 'T1'; //
 		dispatch('patternMatchingResponse', event.detail);
 		hasRespondedToCurrent.set(true);

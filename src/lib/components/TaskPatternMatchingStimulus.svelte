@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 
 	export let patternMatchingObject: ITaskPatternMatchingObject;
 
 	$: shuffledResponses = fisherYatesShuffle(patternMatchingObject.responses);
+
+	console.log(patternMatchingObject);
 
 	const dispatch = createEventDispatcher();
 
@@ -15,15 +17,16 @@
 		dispatch('patternMatchingResponseClicked', id);
 	};
 
-	let imageLoadedStatus = {
-		main: false,
-		T1: false,
-		T2: false,
-		T3: false,
-		T4: false
-	};
-	const handleLoad = (id: 'main' | 'T1' | 'T2' | 'T3' | 'T4') => {
-		imageLoadedStatus[id] = true;
+	let imageLoadedStatus = {};
+	onMount(() => {
+		imageLoadedStatus = {
+			main: false,
+			...Object.fromEntries(shuffledResponses.map((response) => [response.id, false]))
+		};
+	});
+
+	const handleLoad = (id: 'main' | string) => {
+		imageLoadedStatus = { ...imageLoadedStatus, [id]: true };
 		if (Object.values(imageLoadedStatus).every((status) => status)) dispatch('loaded');
 	};
 </script>

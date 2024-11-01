@@ -27,8 +27,6 @@
 	export let connectLogger: IConnectLogger;
 	export let gazeSaver: IGazeSaver;
 
-	export let variant: 'prioritize' | 'even' = 'prioritize';
-
 	// Define the fade transition settings
 	const fadeInParams = {
 		delay: 400, // Delay of 200ms for the 'in' transition
@@ -75,27 +73,7 @@
 		gazeManager.off('intersect', onIntersect);
 	};
 
-	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
-	// "prioritize" or "even"
-	// if it is not set, set it to "prioritize"
-	// set the opposite variant to the variant
-	const obtainVariant = () => {
-		const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
-		if (variant === 'prioritize') {
-			return 'even';
-		} else {
-			return 'prioritize';
-		}
-	};
-
-	const setVariant = (variant: 'prioritize' | 'even') => {
-		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
-	};
-
-	onMount(() => {
-		variant = obtainVariant();
-		setVariant(variant);
-	});
+	const variant = taskHandler.variant;
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} />

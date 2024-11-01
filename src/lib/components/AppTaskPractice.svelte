@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
-	import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+	import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
 	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
 	import LL from '../../i18n/i18n-svelte';
 
 	export let taskHandler: ATaskPatternMatchingHandler;
-	const patternMatchingService = new TaskPatternMatchingServiceBase(base + '/');
+	const patternMatchingService = new TaskPatternMatchingServiceIntelligence(base + '/');
 	const patternMatchingObjects = patternMatchingService.getTaskPatternMatchingObjectsForPractice();
 	const videoDocumentarySrc = base + '/video/video.mp4';
 	const socialMediaStimuliNS = [

@@ -1,4 +1,5 @@
 export interface ITaskPatternMatching {
+	get correctResponseId(): string;
 	getTaskPatternMatchingObject(id: string): ITaskPatternMatchingObject;
 	getTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObject[];
 	getTaskPatternMatchingObjectsForTest(): ITaskPatternMatchingObject[];
@@ -8,7 +9,7 @@ export interface ITaskPatternMatchingObject {
 	id: string;
 	matrixSrc: string;
 	responses: {
-		id: 'T1' | 'T2' | 'T3' | 'T4';
+		id: string;
 		src: string;
 	}[];
 }
@@ -21,8 +22,9 @@ export abstract class ATaskPatternMatchingHandler {
 	removeOnEndHandler() {
 		this.onEnd = () => {};
 	}
+	variant: 'prioritize' | 'even' = 'prioritize';
 	score = 0;
-	abstract handlePatternMatchingResponse(event: CustomEvent<'T1' | 'T2' | 'T3' | 'T4'>): void;
+	abstract handlePatternMatchingResponse(event: CustomEvent<string>): void;
 	abstract handlePatternMatchingNext(event: CustomEvent<string>): void;
 	abstract handlePatternMatchingCompleted(): void;
 	abstract handleSocialMediaInteractorsShow(

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
-import { TaskPatternMatchingServiceBase } from '$lib/services/TaskPatternMatchingServiceBase';
+import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
 
-const taskPatternMatchingService = new TaskPatternMatchingServiceBase();
+const taskPatternMatchingService = new TaskPatternMatchingServiceIntelligence();
 
 loadLocale('cs');
 setLocale('cs');
