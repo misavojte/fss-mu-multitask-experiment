@@ -170,6 +170,7 @@ export const QuickInspect: Story = {
 			}
 		],
 		initialDelay: 1000,
-		stimulusMaxDuration: 2000
+		stimulusMaxDuration: 2000,
+		stimulusRemindAfter: 1000
 	}
 };

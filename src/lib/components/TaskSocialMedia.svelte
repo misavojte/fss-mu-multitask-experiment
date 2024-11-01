@@ -30,9 +30,10 @@
 	export let initialDelay: number = 5000;
 	export let betweenDelay: number = 15000;
 	export let stimulusMaxDuration: number = 15000;
-	export let width: number = 522;
-	export let heightImage: number = 743;
-	export let heightInteractors: number = 150;
+	export let stimulusRemindAfter: number = 10000;
+	export let width: number = 500;
+	export let heightImage: number = 700;
+	export let heightInteractors: number = 200;
 	export let hasStarted: boolean = true;
 
 	$: {
@@ -158,6 +159,7 @@
 
 	const logic = async () => {
 		let isInitialIteration = true;
+		let activeStimulusIndex = 0;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
 			console.log('loopStimulusDelay', initialDelay);
 			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
@@ -175,14 +177,30 @@
 				timestamp: Date.now()
 			});
 			try {
-				await waitForConditionCancellable(wasClicked, stimulusMaxDuration, abortController.signal);
+				await waitForConditionCancellable(wasClicked, stimulusRemindAfter, abortController.signal);
 			} catch (error) {
 				if (error === 'TaskSocialMedia was destroyed') {
 					return; // stop the task, no logging
 				}
-				dispatch('socialMediaInteractorsTimeout');
+				dispatch('socialMediaInteractorsReminder');
+				audioElement2.play();
+				try {
+					await waitForConditionCancellable(
+						wasClicked,
+						stimulusMaxDuration - stimulusRemindAfter,
+						abortController.signal
+					);
+				} catch (error) {
+					if (error === 'TaskSocialMedia was destroyed') {
+						return; // stop the task, no logging
+					}
+					dispatch('socialMediaInteractorsTimeout');
+				}
 			}
 			stimulus = null;
+			// stop and restart the audio to prevent it from playing multiple times
+			audioElement2.pause();
+			audioElement2.currentTime = 0;
 			dispatch('socialMediaInteractorsHidden');
 			preloadNextStimulusImage(shuffledStimuliAlongPresentationPattern.indexOf(loopStimulus));
 		}
@@ -190,6 +208,7 @@
 	};
 
 	let audioElement: HTMLAudioElement;
+	let audioElement2: HTMLAudioElement;
 </script>
 
 <InterfaceFrame {width} height={heightImage + heightInteractors}>
@@ -215,6 +234,13 @@
 			autoplay={false}
 			bind:this={audioElement}
 			on:canplaythrough={handleLoad}
+		/>
+		<audio
+			src={`${base}/notification2.mp3`}
+			preload="auto"
+			class="hidden"
+			autoplay={false}
+			bind:this={audioElement2}
 		/>
 	{/if}
 </InterfaceFrame>
