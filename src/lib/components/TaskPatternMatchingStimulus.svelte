@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskHandler';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { createEventDispatcher, onMount } from 'svelte';
 

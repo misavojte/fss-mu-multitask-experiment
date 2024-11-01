@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
-	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
 	import { GazeManager } from '@473783/develex-core';
@@ -23,7 +23,7 @@
 	const gazeManager = new GazeManager();
 
 	export let questionsService: ITimestampQuestionService;
-	export let taskHandler: ATaskPatternMatchingHandler;
+	export let taskHandler: ATaskHandler;
 	export let connectLogger: IConnectLogger;
 	export let gazeSaver: IGazeSaver;
 
@@ -73,7 +73,31 @@
 		gazeManager.off('intersect', onIntersect);
 	};
 
-	const variant = taskHandler.variant;
+	let variant: 'prioritize' | 'even';
+
+	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
+	// "prioritize" or "even"
+	// if it is not set, set it to "prioritize"
+	// set the opposite variant to the variant
+	const obtainVariant = () => {
+		const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
+		if (variant === 'prioritize') {
+			return 'even';
+		} else {
+			return 'prioritize';
+		}
+	};
+
+	const setVariant = (variant: 'prioritize' | 'even') => {
+		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
+	};
+
+	onMount(() => {
+		variant = obtainVariant();
+		taskHandler.scoringType = variant;
+		setVariant(variant);
+		taskHandler.logScoringType();
+	});
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} />

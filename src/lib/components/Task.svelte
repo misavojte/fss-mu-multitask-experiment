@@ -2,10 +2,7 @@
 	import TaskDocumentary from './TaskDocumentary.svelte';
 	import TaskPatternMatching from './TaskPatternMatching.svelte';
 	import TaskSocialMedia from './TaskSocialMedia.svelte';
-	import type {
-		ATaskPatternMatchingHandler,
-		ITaskPatternMatchingObject
-	} from '$lib/interfaces/ITaskPatternMatching';
+	import type { ATaskHandler, ITaskPatternMatchingObject } from '$lib/interfaces/ITaskHandler';
 	import { fade } from 'svelte/transition';
 	import InterfaceLoader from './InterfaceLoader.svelte';
 	import { getCancellableAsync, waitForConditionCancellable } from '$lib/utils/waitForCondition';
@@ -135,7 +132,7 @@
 
 	export let socialBetweenDelay: number = 15000;
 
-	export let taskHandler: ATaskPatternMatchingHandler;
+	export let taskHandler: ATaskHandler;
 
 	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
 

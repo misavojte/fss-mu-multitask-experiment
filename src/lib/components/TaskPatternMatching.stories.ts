@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import TaskPatternMatching from './TaskPatternMatching.svelte';
-import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
+import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
 
-const taskPatternMatchingService = new TaskPatternMatchingServiceIntelligence();
+const taskHandler = new TaskHandlerIntelligenceMock();
 
 loadLocale('cs');
 setLocale('cs');
@@ -17,7 +17,7 @@ const meta = {
 	argTypes: {
 		patternMatchingObjects: {
 			control: 'object',
-			defaultValue: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()
+			defaultValue: taskHandler.getTaskPatternMatchingObjectsForPractice()
 		}
 	}
 } satisfies Meta<TaskPatternMatching>;
@@ -28,6 +28,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
 	args: {
-		patternMatchingObjects: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()
+		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice()
 	}
 };

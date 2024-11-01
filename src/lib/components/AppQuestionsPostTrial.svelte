@@ -9,12 +9,12 @@
 	import { createEventDispatcher } from 'svelte';
 	import InterfaceFooter from './InterfaceFooter.svelte';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
-	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import { fade } from 'svelte/transition';
 	import { base } from '$app/paths';
 
 	export let questionsService: ITimestampQuestionService;
-	export let taskHandler: ATaskPatternMatchingHandler;
+	export let taskHandler: ATaskHandler;
 
 	const dispatch = createEventDispatcher();
 

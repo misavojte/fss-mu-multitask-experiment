@@ -3,7 +3,7 @@ import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
 import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
-import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskPatternMatchingHandlerMock';
+import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');

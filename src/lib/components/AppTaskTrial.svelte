@@ -1,15 +1,13 @@
 <script lang="ts">
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
-	import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
-	import type { ATaskPatternMatchingHandler } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import LL from '../../i18n/i18n-svelte';
 
-	export let taskHandler: ATaskPatternMatchingHandler;
-	const patternMatchingService = new TaskPatternMatchingServiceIntelligence(base + '/');
+	export let taskHandler: ATaskHandler;
 	const patternMatchingObjects = fisherYatesShuffle(
-		patternMatchingService.getTaskPatternMatchingObjectsForTest()
+		taskHandler.getTaskPatternMatchingObjectsForTest()
 	);
 	const videoDocumentarySrc = base + '/video/trial.mp4';
 

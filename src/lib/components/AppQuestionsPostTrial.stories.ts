@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import AppQuestionsPostPractice from './AppQuestionsPostTrial.svelte';
 import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
-import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskPatternMatchingHandlerMock';
+import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskHandlerMock';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import StoriesWrapper from './StoriesWrapper.svelte';
