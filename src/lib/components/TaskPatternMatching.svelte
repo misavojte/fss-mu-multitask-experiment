@@ -1,19 +1,28 @@
 <script lang="ts">
-	import type { ITaskPatternMatchingObject } from '$lib/interfaces/ITaskPatternMatching';
+	import type { ATaskHandler, ITaskPatternMatchingObject } from '$lib/interfaces/ITaskHandler';
 	import { writable } from 'svelte/store';
 	import TaskPatternMatchingStimulus from '$lib/components/TaskPatternMatchingStimulus.svelte';
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
-	import { getCancellableAsync, waitForConditionCancellable } from '$lib/utils/waitForCondition';
+	import {
+		getCancellableAsync,
+		waitForConditionCancellable,
+		waitForTimeoutCancellable
+	} from '$lib/utils/waitForCondition';
+	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
+	export let taskHandler: ATaskHandler;
 
 	export let width: number = 300;
 
 	export let height: number = 300;
 
 	export let hasStarted: boolean = true;
+
+	export let showCorrectnessFeedback: boolean = true;
+
 	const hasStartedStore = writable(hasStarted);
 	const hasRespondedToCurrent = writable(false);
 	$: {
@@ -24,10 +33,29 @@
 
 	const patternMatchingObjectIndex = writable(0);
 	const dispatch = createEventDispatcher();
+	const animationTargetHandler = new AnimationTargetHandler();
 
-	const handlePatternMatchingResponseClicked = (event: CustomEvent<string>) => {
+	const handlePatternMatchingResponseClicked = (
+		event: CustomEvent<{
+			e: MouseEvent;
+			response: string;
+		}>
+	): void => {
+		if ($hasRespondedToCurrent) return;
 		// const isCorrect = event.detail === 'T1'; //
-		dispatch('patternMatchingResponse', event.detail);
+		console.log('response', event.detail.response, taskHandler.correctResponseId);
+		const isCorrect = event.detail.response === taskHandler.correctResponseId;
+		dispatch('patternMatchingResponse', event.detail.response);
+		if (showCorrectnessFeedback) {
+			animationTargetHandler.createAnimationTarget(
+				{ x: event.detail.e.clientX, y: event.detail.e.clientY },
+				isCorrect ? 'green' : 'red',
+				isCorrect
+					? `+ ${taskHandler.pointsOnCorrectPatternMatching} bod${taskHandler.pointsOnCorrectPatternMatching > 1 ? 'y' : ''}`
+					: 'špatně',
+				abortController.signal
+			);
+		}
 		hasRespondedToCurrent.set(true);
 	};
 
@@ -65,6 +93,7 @@
 			dispatch('patternMatchingNext', patternMatchingObject.id);
 			preloadNextPatternMatchingImages($patternMatchingObjectIndex);
 			await waitForConditionCancellable(hasRespondedToCurrent, 0, abortController.signal);
+			await waitForTimeoutCancellable(600, abortController.signal);
 			hasRespondedToCurrent.set(false);
 			if ($patternMatchingObjectIndex !== patternMatchingObjects.length - 1) {
 				patternMatchingObjectIndex.set($patternMatchingObjectIndex + 1);

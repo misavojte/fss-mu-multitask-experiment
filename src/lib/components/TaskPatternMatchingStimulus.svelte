@@ -11,10 +11,13 @@
 
 	const dispatch = createEventDispatcher();
 
-	const handleResponseClick = (id: string) => {
+	const handleResponseClick = (e: MouseEvent, id: string) => {
 		const response = patternMatchingObject.responses.find((response) => response.id === id);
 		if (!response) throw new Error('Response not found');
-		dispatch('patternMatchingResponseClicked', id);
+		dispatch('patternMatchingResponseClicked', {
+			e,
+			response: response.id
+		});
 	};
 
 	let imageLoadedStatus = {};
@@ -44,7 +47,7 @@
 		{#each shuffledResponses as response}
 			<button
 				class="border border-gray-200 rounded-md custom-button overflow-hidden box-content transition-all hover:bg-gray-300"
-				on:click={() => handleResponseClick(response.id)}
+				on:click={(e) => handleResponseClick(e, response.id)}
 			>
 				<img
 					src={response.src}

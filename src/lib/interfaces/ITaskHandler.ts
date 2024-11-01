@@ -17,7 +17,15 @@ export abstract class ATaskHandler {
 	}
 	scoringType: 'prioritize' | 'even' = 'prioritize';
 	score = 0;
-
+	get pointsOnCorrectPatternMatching(): number {
+		return this.scoringType === 'prioritize' ? 3 : 1;
+	}
+	get pointsOnCorrectSocialMedia(): number {
+		return 1;
+	}
+	get pointsOnCorrectDocumentaryQuestionnaire(): number {
+		return 1;
+	}
 	abstract get correctResponseId(): string;
 	abstract getTaskPatternMatchingObject(id: string): ITaskPatternMatchingObject;
 	abstract getTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObject[];
@@ -25,15 +33,15 @@ export abstract class ATaskHandler {
 	abstract logAction(type: string, value: string): void;
 
 	private addPatternMatchingScore() {
-		this.score += this.scoringType === 'prioritize' ? 3 : 1;
+		this.score += this.pointsOnCorrectPatternMatching;
 	}
 
 	private addSocialMediaScore() {
-		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+		this.score += this.pointsOnCorrectSocialMedia;
 	}
 
 	private addDocumentaryQuestionnaireScore() {
-		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+		this.score += this.pointsOnCorrectDocumentaryQuestionnaire;
 	}
 
 	handlePatternMatchingResponse(event: CustomEvent<string>) {
