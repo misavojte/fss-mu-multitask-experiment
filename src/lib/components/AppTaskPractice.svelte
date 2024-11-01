@@ -44,8 +44,8 @@
 		{videoDocumentarySrc}
 		muted={false}
 		socialInitialDelay={5000}
-		socialBetweenDelay={10000}
-		socialStimulusMaxDuration={15000}
+		socialBetweenDelay={5000}
+		socialStimulusMaxDuration={20000}
 		endScenario={'pattern-timeout'}
 		on:taskEnd
 	/>
