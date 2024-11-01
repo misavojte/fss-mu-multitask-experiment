@@ -3,7 +3,7 @@ import App from './App.svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
-import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskHandlerMock';
+import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
 import { GazeSaverMock } from '$lib/services/GazeSaverMock';
 import { ConnectLoggerMock } from '$lib/services/ConnectLoggerMock';
 
@@ -11,7 +11,7 @@ loadLocale('cs');
 setLocale('cs');
 
 const questionsService = new TimestampQuestionServiceMock();
-const taskHandler = new TaskPatternMatchingHandlerMock('prioritize');
+const taskHandler = new TaskHandlerIntelligenceMock('/', 'prioritize');
 const gazeSaver = new GazeSaverMock();
 const connectLogger = new ConnectLoggerMock();
 
