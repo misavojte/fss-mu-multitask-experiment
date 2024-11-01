@@ -280,6 +280,7 @@
 				{patternMatchingObjects}
 				width={widthPattern}
 				height={heightPattern}
+				{taskHandler}
 				on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
 				on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
 				on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
