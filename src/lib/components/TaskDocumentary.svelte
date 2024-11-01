@@ -14,6 +14,7 @@
 	export let wordOccurence: string = 'SLOVO';
 	export let wordOccurenceTolerance: number = 10000;
 	export let wordOccurenceTimestamps: number[] = [7000, 7100];
+	export let showCorrectnessFeedback: boolean = true;
 
 	const wordOccurenceTimestampCheck: {
 		time: number;
@@ -46,6 +47,9 @@
 		} else {
 			dispatch('incorrect');
 		}
+
+		if (!showCorrectnessFeedback) return;
+
 		const randomId = Math.random().toString();
 		feedbackCircles[randomId] = new AnimationTarget({
 			target: document.body,
