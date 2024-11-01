@@ -14,6 +14,10 @@ const meta = {
 		id: {
 			control: 'text',
 			defaultValue: 'share'
+		},
+		color: {
+			control: 'color',
+			defaultValue: '#000000'
 		}
 	}
 } satisfies Meta<TaskSocialMediaButton>;

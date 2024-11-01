@@ -17,6 +17,9 @@
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
+		color: string;
+		textColor: string;
+		html: string;
 	}>;
 	export let socialMediaStimuliAS: Array<{
 		src: string;
@@ -159,7 +162,6 @@
 
 	const logic = async () => {
 		let isInitialIteration = true;
-		let activeStimulusIndex = 0;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
 			console.log('loopStimulusDelay', initialDelay);
 			// socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus

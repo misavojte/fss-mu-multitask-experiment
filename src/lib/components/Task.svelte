@@ -73,7 +73,7 @@
 	/**
 	 * The height of the social media task interactors.
 	 */
-	export let heightSocialOptions: number = 200;
+	export let heightSocialOptions: number = 140;
 
 	/**
 	 * The position of the pattern matching task on the x-axis in pixels.
