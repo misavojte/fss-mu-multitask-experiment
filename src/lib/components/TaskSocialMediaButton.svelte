@@ -8,8 +8,8 @@
 
 	const dispatch = createEventDispatcher();
 
-	const handleClick = () => {
-		dispatch('click', { id, timestamp: Date.now() });
+	const handleClick = (e: MouseEvent) => {
+		dispatch('click', { id, timestamp: Date.now(), e });
 	};
 
 	const calculateDarkerShadeOfHex = (hex: string, factor: number = 0.8): string => {

@@ -11,6 +11,7 @@
 	import { preloadMedia } from '$lib/utils/preloadMedia';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { base } from '$app/paths';
+	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
 	const dispatch = createEventDispatcher();
 
@@ -38,6 +39,7 @@
 	export let heightImage: number = 700;
 	export let heightInteractors: number = 200;
 	export let hasStarted: boolean = true;
+	export let showCorrectnessFeedback: boolean = true;
 
 	$: {
 		if (hasStarted) {
@@ -122,15 +124,23 @@
 	const wasClicked = writable(false);
 
 	let stimulus: { src: string; id: string } | null = null; // always begin with no stimulus
-
+	const animationTargetHandler = new AnimationTargetHandler();
 	const handleSocialMediaInteractorsClick = (
-		event: CustomEvent<{ id: string; timestamp: number }>
+		event: CustomEvent<{ id: string; timestamp: number; e: MouseEvent }>
 	) => {
 		if (!stimulus) return;
 		dispatch('socialMediaInteractorsClick', {
 			buttonId: event.detail.id,
 			timestamp: event.detail.timestamp
 		});
+		if (showCorrectnessFeedback) {
+			animationTargetHandler.createAnimationTarget(
+				{ x: event.detail.e.clientX, y: event.detail.e.clientY },
+				'green',
+				'+ 1 bod',
+				abortController.signal
+			);
+		}
 		wasClicked.set(true);
 	};
 
