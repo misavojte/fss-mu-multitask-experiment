@@ -222,6 +222,13 @@
 		taskHandler.removeOnEndHandler();
 		abortController.abort('Task was destroyed');
 	});
+
+	const handleDocumentaryResponse = (
+		e: CustomEvent<{ correct: boolean; videoTime: number; timestampTime?: number }>
+	) => {
+		const { correct, videoTime, timestampTime } = e.detail;
+		taskHandler.handleDocumentaryResponse(correct, videoTime, timestampTime);
+	};
 </script>
 
 <div
@@ -309,6 +316,7 @@
 				{wordOccurenceTolerance}
 				{wordOccurenceTimestamps}
 				on:loaded={() => videoLoaded.triggerResolve(true)}
+				on:response={handleDocumentaryResponse}
 			/>
 		</Intersecter>
 	</div>

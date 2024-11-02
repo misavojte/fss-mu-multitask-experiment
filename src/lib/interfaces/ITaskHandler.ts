@@ -100,7 +100,17 @@ export abstract class ATaskHandler {
 	logScoringType() {
 		this.logAction('task-version', this.scoringType);
 	}
-	handleDocumentaryQuestionnaireResponse(isCorrect: boolean): void {
+	handleDocumentaryResponse(
+		isCorrect: boolean,
+		videoTime: number,
+		timestampTime: number | undefined
+	) {
+		const JSONValue = JSON.stringify({
+			isCorrect,
+			videoTime,
+			timestampTime
+		});
+		this.logAction('documentary-response', JSONValue);
 		if (isCorrect) {
 			this.addDocumentaryQuestionnaireScore();
 		}

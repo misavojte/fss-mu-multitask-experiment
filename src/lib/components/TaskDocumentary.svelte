@@ -40,25 +40,21 @@
 
 	const animationTargetHandler = new AnimationTargetHandler();
 	const handleClick = async (e: CustomEvent<MouseEvent>) => {
-		const wasCorrect = evaluateCorrectnessOfClick();
-		if (wasCorrect) {
-			dispatch('correct');
-		} else {
-			dispatch('incorrect');
-		}
+		const { correctness, videoTime, timestampTime } = evaluateCorrectnessOfClick();
+		dispatch('response', { videoTime, timestampTime, correctness });
 
 		if (!showCorrectnessFeedback) return;
 
 		animationTargetHandler.createAnimationTarget(
 			{ x: e.detail.clientX, y: e.detail.clientY },
-			wasCorrect ? 'green' : 'red',
-			wasCorrect ? '+ 1 bod' : 'špatně',
+			correctness ? 'green' : 'red',
+			correctness ? '+ 1 bod' : 'špatně',
 			abortController.signal
 		);
 	};
 
 	const evaluateCorrectnessOfClick = () => {
-		if (!video) return false;
+		if (!video) return { correctness: false, videoTime: 0 };
 		const toleranceTimeEnd = video.currentTime * 1000;
 		const toleranceTimeStart = toleranceTimeEnd - wordOccurenceTolerance; // So if video is at 7.1s and tolerance is 1000ms, it will check from 6.1s to 7.1s
 
@@ -67,15 +63,20 @@
 				timestampCheck.time >= toleranceTimeStart && timestampCheck.time <= toleranceTimeEnd
 		);
 
-		if (timestampChecksWithinTolerance.length === 0) return false;
+		if (timestampChecksWithinTolerance.length === 0)
+			return { correctness: false, videoTime: video.currentTime };
 
 		const correctTimestampCheck = timestampChecksWithinTolerance.find(
 			(timestampCheck) => !timestampCheck.checked
 		);
-		if (!correctTimestampCheck) return false;
+		if (!correctTimestampCheck) return { correctness: false, videoTime: video.currentTime };
 
 		correctTimestampCheck.checked = true;
-		return true;
+		return {
+			correctness: true,
+			timestampTime: correctTimestampCheck.time,
+			videoTime: video.currentTime
+		};
 	};
 
 	let startTime: number | null = null;
