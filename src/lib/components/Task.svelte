@@ -232,7 +232,7 @@
 </script>
 
 <div
-	class="flex justify-center items-start box-border relative"
+	class="flex justify-center items-start box-border absolute"
 	style="width: {width}px; height: {height}px;"
 	bind:this={mainElement}
 >
