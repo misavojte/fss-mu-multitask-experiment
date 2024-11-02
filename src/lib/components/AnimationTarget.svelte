@@ -9,7 +9,7 @@
 
 <div
 	transition:fade
-	class="slowly-moving-up absolute z-50 pointer-events-none flex justify-center items-center text-white text-lg font-bold text-center p-6 rounded-full bg-opacity-50 {color ===
+	class="slowly-moving-up absolute z-50 pointer-events-none flex justify-center items-center text-white text-lg font-bold text-center p-6 rounded-full bg-opacity-70 {color ===
 	'green'
 		? 'bg-green-500'
 		: 'bg-red-500'}"

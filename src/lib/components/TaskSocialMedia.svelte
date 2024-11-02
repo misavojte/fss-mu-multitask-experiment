@@ -171,31 +171,33 @@
 		}
 	};
 
-	let startTime = Date.now();
-	let remainingTime = 0;
+	let remainingTime = writable(0);
+	let isInitialIteration = true;
 
 	const logic = async () => {
-		let isInitialIteration = true;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
-			console.log('loopStimulusDelay', initialDelay);
-			// socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
+				// Calculate delay, but avoid negative cumulative adjustments by resetting remainingTime if it’s negative
 				const calculatedBetweenDelay = adjustBetweenDelay
-					? betweenDelay + remainingTime
+					? Math.max(betweenDelay, betweenDelay + $remainingTime)
 					: betweenDelay;
 				await waitForTimeoutCancellable(calculatedBetweenDelay, abortController.signal);
 			}
+
+			// Reset remainingTime at the start of each stimulus to prevent carry-over adjustments
+
 			isInitialIteration = false;
 			wasClicked.set(false);
-			startTime = Date.now();
+			const startTime = performance.now();
 			stimulus = loopStimulus;
 			audioElement.play();
 			dispatch('socialMediaInteractorsShow', {
 				id: loopStimulus.id,
-				timestamp: Date.now()
+				timestamp: performance.now()
 			});
+
 			try {
 				await waitForConditionCancellable(wasClicked, stimulusRemindAfter, abortController.signal);
 			} catch (error) {
@@ -224,9 +226,10 @@
 					dispatch('socialMediaInteractorsTimeout');
 				}
 			}
-			remainingTime = stimulusMaxDuration - (Date.now() - startTime);
+
+			// Calculate the remaining time after the stimulus completes, resetting to 0 if negative
+			remainingTime.set(Math.max(0, stimulusMaxDuration - (performance.now() - startTime)));
 			stimulus = null;
-			// stop and restart the audio to prevent it from playing multiple times
 			audioElement2.pause();
 			audioElement2.currentTime = 0;
 			dispatch('socialMediaInteractorsHidden');
