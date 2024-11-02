@@ -40,6 +40,7 @@
 	export let heightInteractors: number = 200;
 	export let hasStarted: boolean = true;
 	export let showCorrectnessFeedback: boolean = true;
+	export let adjustBetweenDelay: boolean = false;
 
 	$: {
 		if (hasStarted) {
@@ -170,6 +171,9 @@
 		}
 	};
 
+	let startTime = Date.now();
+	let remainingTime = 0;
+
 	const logic = async () => {
 		let isInitialIteration = true;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
@@ -178,10 +182,14 @@
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
-				await waitForTimeoutCancellable(betweenDelay, abortController.signal);
+				const calculatedBetweenDelay = adjustBetweenDelay
+					? betweenDelay + remainingTime
+					: betweenDelay;
+				await waitForTimeoutCancellable(calculatedBetweenDelay, abortController.signal);
 			}
 			isInitialIteration = false;
 			wasClicked.set(false);
+			startTime = Date.now();
 			stimulus = loopStimulus;
 			audioElement.play();
 			dispatch('socialMediaInteractorsShow', {
@@ -206,9 +214,17 @@
 					if (error === 'TaskSocialMedia was destroyed') {
 						return; // stop the task, no logging
 					}
+					animationTargetHandler.createAnimationTarget(
+						getCenterCoordinates(divElement),
+						'red',
+						'Věnujte pozornost úloze!',
+						abortController.signal,
+						2000
+					);
 					dispatch('socialMediaInteractorsTimeout');
 				}
 			}
+			remainingTime = stimulusMaxDuration - (Date.now() - startTime);
 			stimulus = null;
 			// stop and restart the audio to prevent it from playing multiple times
 			audioElement2.pause();
@@ -221,9 +237,24 @@
 
 	let audioElement: HTMLAudioElement;
 	let audioElement2: HTMLAudioElement;
+	let divElement: HTMLDivElement;
+
+	// return x and y coordinates of the center of the element
+	// coordinates are relative to the body
+	const getCenterCoordinates = (element: HTMLElement) => {
+		const rect = element.getBoundingClientRect();
+		return {
+			x: rect.left + rect.width / 2 + window.scrollX,
+			y: rect.top + rect.height / 2 + window.scrollY
+		};
+	};
 </script>
 
 <InterfaceFrame {width} height={heightImage + heightInteractors}>
+	<div
+		class="pointer-events-none absolute w-full h-full select-none -z-10"
+		bind:this={divElement}
+	/>
 	{#if errorMessages.length > 0}
 		<div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
 			{#each errorMessages as errorMessage}

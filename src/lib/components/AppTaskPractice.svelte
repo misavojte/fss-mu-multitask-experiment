@@ -67,6 +67,7 @@
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
+		socialAdjustBetweenDelay={true}
 		wordOccurence="PARETTO"
 		wordOccurenceTolerance={10000}
 		wordOccurenceTimestamps={[6800, 7200]}

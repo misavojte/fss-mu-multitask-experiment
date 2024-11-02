@@ -18,7 +18,8 @@ export class AnimationTargetHandler {
 			props: {
 				centerCoordinates,
 				color,
-				content
+				content,
+				duration: timeout
 			}
 		});
 		try {

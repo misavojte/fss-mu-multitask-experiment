@@ -61,6 +61,7 @@
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
+		socialAdjustBetweenDelay={true}
 		wordOccurence="mokřad*"
 		wordOccurenceTolerance={10000}
 		wordOccurenceTimestamps={mokradyTimestamps}

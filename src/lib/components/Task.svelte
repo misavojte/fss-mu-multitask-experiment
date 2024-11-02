@@ -135,6 +135,8 @@
 
 	export let socialStimulusRemindAfter: number = 10000;
 
+	export let socialAdjustBetweenDelay: boolean = false;
+
 	export let wordOccurence: string = 'SLOVO';
 	export let wordOccurenceTolerance: number = 10000;
 	export let wordOccurenceTimestamps: number[] = [7000, 7100];
@@ -262,6 +264,7 @@
 				stimulusMaxDuration={socialStimulusMaxDuration}
 				betweenDelay={socialBetweenDelay}
 				{hasStarted}
+				adjustBetweenDelay={socialAdjustBetweenDelay}
 				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
 					taskHandler
 				)}
