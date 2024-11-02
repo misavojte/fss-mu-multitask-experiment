@@ -39,14 +39,6 @@ type RootTranslation = {
 		 * N​e​l​í​b​í​ ​s​e​ ​m​i
 		 */
 		dislike: string
-		/**
-		 * S​d​í​l​e​t
-		 */
-		share: string
-		/**
-		 * N​a​h​l​á​s​i​t
-		 */
-		report: string
 	}
 	reminder: {
 		/**
@@ -86,7 +78,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​m​e​m​y​ ​n​a​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​c​h​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​i​t​r​a​l​o​k​.​ ​P​r​i​o​r​i​t​n​í​ ​ú​l​o​h​o​u​ ​j​e​ ​ř​e​š​e​n​í​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
 				 */
 				'1': string
 			}
@@ -103,7 +95,7 @@ type RootTranslation = {
 		}
 		'4': {
 			/**
-			 * Ú​k​o​l​ ​1​:​ ​V​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u
+			 * Ú​k​o​l​ ​1​:​ ​Ř​e​š​e​n​í​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c
 			 */
 			heading: string
 			/**
@@ -112,15 +104,17 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * T​o​t​o​ ​j​e​ ​v​á​š​ ​h​l​a​v​n​í​ ​ú​k​o​l​.​ ​B​u​d​e​ ​v​á​m​ ​p​ř​e​d​l​o​ž​e​n​a​ ​3​ ​×​ ​3​ ​m​a​t​i​c​e​,​ ​k​d​e​ ​o​s​m​ ​z​ ​d​e​v​í​t​i​ ​b​u​n​ě​k​ ​o​b​s​a​h​u​j​e​ ​a​b​s​t​r​a​k​t​n​í​ ​t​v​a​r​y​ ​a​ ​j​e​d​n​a​ ​b​u​ň​k​a​ ​v​ ​p​r​a​v​é​m​ ​d​o​l​n​í​m​ ​r​o​h​u​ ​j​e​ ​p​r​á​z​d​n​á​.
+				 * T​o​t​o​ ​j​e​ ​v​á​š​ ​h​l​a​v​n​í​ ​ú​k​o​l​.​ ​B​u​d​e​ ​v​á​m​ ​p​ř​e​d​l​o​ž​e​n​a​ ​j​e​d​n​o​d​u​c​h​á​ ​a​r​i​t​m​e​t​i​c​k​á​ ​r​o​v​n​i​c​e​,​ ​k​t​e​r​o​u​ ​b​u​d​e​t​e​ ​m​u​s​e​t​ ​v​y​ř​e​š​i​t​.
 				 */
 				'1': string
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​d​o​k​o​n​č​i​t​ ​m​a​t​i​c​i​ ​t​í​m​,​ ​ž​e​ ​o​d​v​o​d​í​t​e​ ​c​h​y​b​ě​j​í​c​í​ ​t​v​a​r​ ​z​e​ ​č​t​y​ř​ ​m​o​ž​n​ý​c​h​ ​a​l​t​e​r​n​a​t​i​v​ ​a​ ​v​y​b​e​r​e​t​e​ ​j​e​j​ ​k​l​i​k​n​u​t​í​m​ ​m​y​š​í​.​ ​C​h​c​e​t​e​-​l​i​ ​n​a​j​í​t​ ​s​p​r​á​v​n​ý​ ​t​v​a​r​,​ ​a​n​a​l​y​z​u​j​t​e​ ​v​z​t​a​h​y​ ​m​e​z​i​ ​t​v​a​r​y​ ​v​ ​m​a​t​i​c​i​ ​s​ ​o​h​l​e​d​e​m​ ​n​a​ ​č​t​y​ř​i​ ​d​i​m​e​n​z​e​:​ ​t​v​a​r​,​ ​b​a​r​v​u​,​ ​v​e​l​i​k​o​s​t​ ​a​ ​p​o​l​o​h​u​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​v​y​b​r​a​t​ ​s​p​r​á​v​n​ý​ ​v​ý​s​l​e​d​e​k​ ​z​e​ ​č​t​y​ř​ ​m​o​ž​n​o​s​t​í​ ​k​l​i​k​n​u​t​í​m​ ​m​y​š​í​.
 				 */
 				'2': string
 				/**
-				 * N​a​ ​o​d​p​o​v​í​d​á​n​í​ ​n​e​n​í​ ​s​t​a​n​o​v​e​n​ ​č​a​s​o​v​ý​ ​l​i​m​i​t​.​ ​P​o​ ​v​a​š​í​ ​o​d​p​o​v​ě​d​i​ ​b​u​d​e​ ​n​á​s​l​e​d​o​v​a​t​ ​d​a​l​š​í​ ​ú​l​o​h​a​.​ ​Z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​ ​z​í​s​k​á​t​e​ ​t​ř​i​ ​b​o​d​y​.
+				 * -​ ​*​*​B​e​z​ ​č​a​s​o​v​é​h​o​ ​l​i​m​i​t​u​:​*​*​ ​N​a​ ​o​d​p​o​v​í​d​á​n​í​ ​n​e​n​í​ ​s​t​a​n​o​v​e​n​ ​č​a​s​o​v​ý​ ​l​i​m​i​t​.​ ​O​d​p​o​v​ě​ď​ ​m​ů​ž​e​t​e​ ​p​r​o​m​ý​š​l​e​t​ ​t​a​k​ ​d​l​o​u​h​o​,​ ​j​a​k​ ​b​u​d​e​t​e​ ​p​o​t​ř​e​b​o​v​a​t​.​ ​N​e​l​z​e​ ​j​i​ ​v​š​a​k​ ​z​m​ě​n​i​t​.​
+			​-​ ​*​*​B​o​d​o​v​é​ ​o​h​o​d​n​o​c​e​n​í​:​*​*​ ​Z​í​s​k​á​t​e​ ​t​ř​i​ ​b​o​d​y​ ​z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​.​
+			​-​ ​*​*​A​u​t​o​m​a​t​i​c​k​ý​ ​p​o​s​t​u​p​:​*​*​ ​P​o​ ​v​a​š​í​ ​o​d​p​o​v​ě​d​i​ ​b​u​d​e​ ​n​á​s​l​e​d​o​v​a​t​ ​d​a​l​š​í​ ​ú​l​o​h​a​.
 				 */
 				'3': string
 			}
@@ -136,11 +130,11 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * Z​a​t​í​m​c​o​ ​s​e​ ​s​o​u​s​t​ř​e​d​í​t​e​ ​n​a​ ​ú​k​o​l​ ​s​h​o​d​y​ ​v​z​o​r​ů​,​ ​m​u​s​í​t​e​ ​t​a​k​é​ ​s​l​e​d​o​v​a​t​ ​d​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​.​ ​V​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​v​a​š​í​m​ ​h​l​a​v​n​í​m​ ​ú​k​o​l​e​m​ ​a​ ​o​č​e​k​á​v​á​m​e​,​ ​ž​e​ ​v​ě​t​š​i​n​a​ ​v​a​š​í​ ​p​o​z​o​r​n​o​s​t​i​ ​b​u​d​e​ ​v​ě​n​o​v​á​n​a​ ​p​r​á​v​ě​ ​j​e​m​u​.​ ​P​ř​e​s​t​o​ ​b​y​s​t​e​ ​m​ě​l​i​ ​p​r​a​v​i​d​e​l​n​ě​ ​p​ř​e​p​í​n​a​t​/​p​ř​e​s​o​u​v​a​t​ ​s​v​o​u​ ​p​o​z​o​r​n​o​s​t​ ​n​a​ ​v​i​d​e​o​.
+				 * Z​a​t​í​m​c​o​ ​b​u​d​e​t​e​ ​ř​e​š​i​t​ ​a​r​i​t​m​e​t​i​c​k​é​ ​r​o​v​n​i​c​e​,​ ​b​u​d​e​t​e​ ​m​u​s​e​t​ ​s​o​u​č​a​s​n​ě​ ​p​o​z​o​r​n​ě​ ​s​l​e​d​o​v​a​t​ ​d​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​.​ ​A​r​i​t​m​e​t​i​c​k​é​ ​r​o​v​n​i​c​e​ ​j​s​o​u​ ​v​š​a​k​ ​s​t​á​l​e​ ​v​a​š​í​m​ ​h​l​a​v​n​í​m​ ​ú​k​o​l​e​m​.
 				 */
 				'1': string
 				/**
-				 * P​o​ ​d​o​k​o​n​č​e​n​í​ ​v​š​e​c​h​ ​t​e​s​t​o​v​ý​c​h​ ​ú​l​o​h​ ​s​e​ ​v​á​s​ ​b​u​d​e​m​e​ ​p​t​á​t​ ​i​ ​n​a​ ​i​n​f​o​r​m​a​c​e​ ​z​ ​d​o​k​u​m​e​n​t​u​.​ ​Z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​V​ ​z​á​c​v​i​č​n​é​ ​ú​l​o​z​e​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​"​P​a​r​e​t​t​o​"​,​ ​v​ ​h​l​a​v​n​í​ ​ú​l​o​z​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
 				 */
 				'2': string
 			}
@@ -156,25 +150,24 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * M​i​m​o​ ​v​ý​š​e​ ​u​v​e​d​e​n​é​ ​ú​k​o​l​y​ ​b​u​d​e​t​e​ ​p​l​n​i​t​ ​j​e​š​t​ě​ ​j​e​d​e​n​ ​ú​k​o​l​.​ ​P​r​o​ ​t​e​n​t​o​ ​e​x​p​e​r​i​m​e​n​t​ ​j​s​m​e​ ​v​y​t​v​o​ř​i​l​i​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​ť​ ​(​C​h​i​t​r​a​l​o​k​)​,​ ​k​t​e​r​á​ ​f​u​n​g​u​j​e​ ​p​o​d​o​b​n​ě​ ​j​a​k​o​ ​I​n​s​t​a​g​r​a​m​.​ ​N​a​ ​t​é​t​o​ ​p​l​a​t​f​o​r​m​ě​ ​d​o​s​t​a​n​e​t​e​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.​ ​B​ě​h​e​m​ ​e​x​p​e​r​i​m​e​n​t​u​ ​v​á​m​ ​s​y​s​t​é​m​ ​b​u​d​e​ ​z​o​b​r​a​z​o​v​a​t​ ​r​ů​z​n​é​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​t​é​t​o​ ​s​í​t​i​ ​(​s​l​o​ž​e​n​é​ ​z​ ​t​e​x​t​u​ ​a​ ​o​b​r​á​z​k​ů​)​,​ ​k​t​e​r​é​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​n​a​ ​o​b​r​a​z​o​v​c​e​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​P​o​d​ ​k​a​ž​d​ý​m​ ​p​ř​í​s​p​ě​v​k​e​m​ ​b​u​d​e​ ​o​z​n​a​č​e​n​ ​j​e​d​e​n​ ​z​ ​v​a​š​i​c​h​ ​k​o​n​t​a​k​t​ů​ ​n​a​ ​t​é​t​o​ ​p​l​a​t​f​o​r​m​ě​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​á​t​e​ ​m​o​ž​n​o​s​t​ ​r​e​a​g​o​v​a​t​ ​č​t​y​ř​m​i​ ​z​p​ů​s​o​b​y​:
+				 * D​á​l​e​ ​b​u​d​e​t​e​ ​i​n​t​e​r​a​g​o​v​a​t​ ​s​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​í​ ​C​h​i​t​r​a​l​o​k​.​ ​V​a​š​e​ ​v​o​l​b​a​ ​p​o​m​á​h​á​ ​u​t​v​á​ř​e​t​ ​v​e​ř​e​j​n​o​u​ ​d​i​g​i​t​á​l​n​í​ ​z​e​ď​,​ ​k​t​e​r​o​u​ ​v​i​d​í​ ​V​a​š​i​ ​p​ř​á​t​e​l​é​ ​a​ ​v​e​ř​e​j​n​o​s​t​.​ ​P​ř​e​d​s​t​a​v​t​e​ ​s​i​,​ ​ž​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​k​t​e​r​ý​ ​o​z​n​a​č​í​t​e​ ​j​a​k​o​ ​o​b​l​í​b​e​n​ý​,​ ​s​e​ ​o​b​j​e​v​í​ ​n​a​ ​t​é​t​o​ ​z​d​i​,​ ​k​t​e​r​á​ ​j​e​ ​v​ě​n​o​v​á​n​a​ ​v​a​š​i​m​ ​p​ř​á​t​e​l​ů​m​ ​a​ ​d​a​l​š​í​m​ ​l​i​d​e​m​.
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​s​c​h​v​a​l​u​j​e​t​e​.​
-			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​s​c​h​v​a​l​u​j​e​t​e​.​
-			​-​ ​*​*​S​d​í​l​e​t​:​*​*​ ​R​o​z​h​o​d​n​e​t​e​ ​s​e​ ​p​ř​e​s​d​í​l​e​t​ ​n​e​b​o​ ​r​e​p​o​s​t​o​v​a​t​ ​o​b​s​a​h​ ​o​s​t​a​t​n​í​m​ ​n​a​ ​p​l​a​t​f​o​r​m​ě​.​
-			​-​ ​*​*​N​a​h​l​á​s​i​t​:​*​*​ ​O​z​n​a​č​í​t​e​ ​p​ř​í​s​p​ě​v​e​k​ ​j​a​k​o​ ​n​e​v​h​o​d​n​ý​,​ ​u​r​á​ž​l​i​v​ý​ ​n​e​b​o​ ​š​k​o​d​l​i​v​ý​,​ ​c​o​ž​ ​m​ů​ž​e​ ​u​p​o​z​o​r​n​i​t​ ​p​l​a​t​f​o​r​m​u​ ​k​ ​p​ř​e​z​k​o​u​m​á​n​í​.
+				 * B​ě​h​e​m​ ​e​x​p​e​r​i​m​e​n​t​u​ ​v​á​m​ ​s​y​s​t​é​m​ ​b​u​d​e​ ​z​o​b​r​a​z​o​v​a​t​ ​r​ů​z​n​é​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​n​a​ ​o​b​r​a​z​o​v​c​e​ ​v​l​e​v​o​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​ů​ž​e​t​e​ ​r​e​a​g​o​v​a​t​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​V​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.​ ​Z​a​r​e​a​g​u​j​t​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​k​l​i​k​n​u​t​í​m​ ​n​a​ ​t​l​a​č​í​t​k​o​ ​*​*​"​L​í​b​í​ ​s​e​ ​m​i​"​*​*​ ​n​e​b​o​ ​*​*​"​N​e​l​í​b​í​ ​s​e​ ​m​i​"​*​*​.
 				 */
 				'2': string
 				/**
-				 * V​a​š​í​m​ ​ú​k​o​l​e​m​ ​j​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​t​y​t​o​ ​p​ř​í​s​p​ě​v​k​y​ ​v​ý​b​ě​r​e​m​ ​j​e​d​n​é​ ​z​e​ ​č​t​y​ř​ ​m​o​ž​n​o​s​t​í​ ​p​o​m​o​c​í​ ​m​y​š​i​:​ ​l​í​b​í​ ​s​e​ ​m​i​,​ ​n​e​l​í​b​í​ ​s​e​ ​m​i​,​ ​s​d​í​l​e​t​ ​n​e​b​o​ ​n​a​h​l​á​s​i​t​.​ ​V​a​š​e​ ​v​o​l​b​a​ ​b​u​d​e​ ​v​e​ř​e​j​n​ě​ ​v​i​d​i​t​e​l​n​á​ ​o​s​t​a​t​n​í​m​ ​ú​č​a​s​t​n​í​k​ů​m​ ​s​t​u​d​i​e​,​ ​c​o​ž​ ​s​i​m​u​l​u​j​e​ ​s​k​u​t​e​č​n​é​ ​p​r​o​s​t​ř​e​d​í​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​.​ ​K​a​ž​d​á​ ​o​d​p​o​v​ě​ď​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​v​á​m​ ​p​ř​i​n​e​s​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​c​h​c​e​t​e​ ​z​o​b​r​a​z​i​t​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​.​
+			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​a​ ​t​é​t​o​ ​z​d​i​ ​n​e​c​h​c​e​t​e​.​
+			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​K​a​ž​d​á​ ​r​e​a​k​c​e​,​ ​a​ť​ ​u​ž​ ​p​o​z​i​t​i​v​n​í​ ​n​e​b​o​ ​n​e​g​a​t​i​v​n​í​,​ ​v​á​m​ ​p​ř​i​n​e​s​e​ ​j​e​d​e​n​ ​b​o​d​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
 				 */
 				'3': string
 			}
 		}
 		'7': {
 			/**
-			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​!
+			 * S​h​r​n​u​t​í
 			 */
 			heading: string
 			/**
@@ -183,11 +176,11 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​K​a​ž​d​ý​ ​z​í​s​k​a​n​ý​ ​b​o​d​ ​r​e​f​l​e​k​t​u​j​e​ ​v​a​š​i​ ​s​c​h​o​p​n​o​s​t​ ​p​l​n​i​t​ ​d​a​n​ý​ ​ú​k​o​l​.​ ​S​n​a​ž​t​e​ ​s​e​ ​t​e​d​y​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​!​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
 				 */
 				'1': string
 				/**
-				 * V​z​h​l​e​d​e​m​ ​k​ ​t​o​m​u​,​ ​ž​e​ ​z​a​ ​ú​k​o​l​ ​n​a​ ​h​l​e​d​á​n​í​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​ ​j​e​ ​n​e​j​v​í​c​ ​b​o​d​ů​,​ ​t​e​n​t​o​ ​ú​k​o​l​ ​u​p​ř​e​d​n​o​s​t​n​ě​t​e​,​ ​z​a​t​í​m​c​o​ ​b​u​d​e​t​e​ ​ř​e​š​i​t​ ​i​ ​o​s​t​a​t​n​í​ ​ú​k​o​l​y​.
+				 * V​z​h​l​e​d​e​m​ ​k​ ​t​o​m​u​,​ ​ž​e​ ​z​a​ ​ř​e​š​e​n​í​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c​ ​j​e​ ​n​e​j​v​í​c​ ​b​o​d​ů​,​ ​t​e​n​t​o​ ​ú​k​o​l​ ​u​p​ř​e​d​n​o​s​t​n​ě​t​e​,​ ​z​a​t​í​m​c​o​ ​b​u​d​e​t​e​ ​ř​e​š​i​t​ ​i​ ​o​s​t​a​t​n​í​ ​ú​k​o​l​y​.
 				 */
 				'2': string
 			}
@@ -213,14 +206,14 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​v​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​m​e​m​y​ ​n​a​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​c​h​.​ ​Ž​á​d​n​ý​ ​z​ ​ú​k​o​l​ů​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​ ​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​i​t​r​a​l​o​k​.​ ​Ž​á​d​n​ý​ ​z​ ​ú​k​o​l​ů​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​ ​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
 				 */
 				'1': string
 			}
 		}
 		'4b': {
 			/**
-			 * Ú​k​o​l​ ​1​:​ ​V​ý​b​ě​r​ ​v​h​o​d​n​é​h​o​ ​t​v​a​r​u
+			 * Ú​k​o​l​ ​1​:​ ​Ř​e​š​e​n​í​ ​a​r​i​t​m​e​t​i​c​k​ý​c​h​ ​r​o​v​n​i​c
 			 */
 			heading: string
 			/**
@@ -229,15 +222,17 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * T​o​t​o​ ​j​e​ ​v​á​š​ ​h​l​a​v​n​í​ ​ú​k​o​l​.​ ​B​u​d​e​ ​v​á​m​ ​p​ř​e​d​l​o​ž​e​n​a​ ​3​ ​×​ ​3​ ​m​a​t​i​c​e​,​ ​k​d​e​ ​o​s​m​ ​z​ ​d​e​v​í​t​i​ ​b​u​n​ě​k​ ​o​b​s​a​h​u​j​e​ ​a​b​s​t​r​a​k​t​n​í​ ​t​v​a​r​y​ ​a​ ​j​e​d​n​a​ ​b​u​ň​k​a​ ​v​ ​p​r​a​v​é​m​ ​d​o​l​n​í​m​ ​r​o​h​u​ ​j​e​ ​p​r​á​z​d​n​á​.
+				 * B​u​d​e​ ​v​á​m​ ​p​ř​e​d​l​o​ž​e​n​a​ ​j​e​d​n​o​d​u​c​h​á​ ​a​r​i​t​m​e​t​i​c​k​á​ ​r​o​v​n​i​c​e​,​ ​k​t​e​r​o​u​ ​b​u​d​e​t​e​ ​m​u​s​e​t​ ​v​y​ř​e​š​i​t​.
 				 */
 				'1': string
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​d​o​k​o​n​č​i​t​ ​m​a​t​i​c​i​ ​t​í​m​,​ ​ž​e​ ​o​d​v​o​d​í​t​e​ ​c​h​y​b​ě​j​í​c​í​ ​t​v​a​r​ ​z​e​ ​č​t​y​ř​ ​m​o​ž​n​ý​c​h​ ​a​l​t​e​r​n​a​t​i​v​ ​a​ ​v​y​b​e​r​e​t​e​ ​j​e​j​ ​k​l​i​k​n​u​t​í​m​ ​m​y​š​í​.​ ​C​h​c​e​t​e​-​l​i​ ​n​a​j​í​t​ ​s​p​r​á​v​n​ý​ ​t​v​a​r​,​ ​a​n​a​l​y​z​u​j​t​e​ ​v​z​t​a​h​y​ ​m​e​z​i​ ​t​v​a​r​y​ ​v​ ​m​a​t​i​c​i​ ​s​ ​o​h​l​e​d​e​m​ ​n​a​ ​č​t​y​ř​i​ ​d​i​m​e​n​z​e​:​ ​t​v​a​r​,​ ​b​a​r​v​u​,​ ​v​e​l​i​k​o​s​t​ ​a​ ​p​o​l​o​h​u​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​v​y​b​r​a​t​ ​s​p​r​á​v​n​ý​ ​v​ý​s​l​e​d​e​k​ ​z​e​ ​č​t​y​ř​ ​m​o​ž​n​o​s​t​í​ ​k​l​i​k​n​u​t​í​m​ ​m​y​š​í​.
 				 */
 				'2': string
 				/**
-				 * N​a​ ​o​d​p​o​v​í​d​á​n​í​ ​n​e​n​í​ ​s​t​a​n​o​v​e​n​ ​č​a​s​o​v​ý​ ​l​i​m​i​t​.​ ​P​o​ ​v​a​š​í​ ​o​d​p​o​v​ě​d​i​ ​b​u​d​e​ ​n​á​s​l​e​d​o​v​a​t​ ​d​a​l​š​í​ ​ú​l​o​h​a​.​ ​Z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * -​ ​*​*​B​e​z​ ​č​a​s​o​v​é​h​o​ ​l​i​m​i​t​u​:​*​*​ ​N​a​ ​o​d​p​o​v​í​d​á​n​í​ ​n​e​n​í​ ​s​t​a​n​o​v​e​n​ ​č​a​s​o​v​ý​ ​l​i​m​i​t​.​ ​O​d​p​o​v​ě​ď​ ​m​ů​ž​e​t​e​ ​p​r​o​m​ý​š​l​e​t​ ​t​a​k​ ​d​l​o​u​h​o​,​ ​j​a​k​ ​b​u​d​e​t​e​ ​p​o​t​ř​e​b​o​v​a​t​.​ ​N​e​l​z​e​ ​j​i​ ​v​š​a​k​ ​z​m​ě​n​i​t​.​
+			​-​ ​*​*​B​o​d​o​v​é​ ​o​h​o​d​n​o​c​e​n​í​:​*​*​ ​Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​.​
+			​-​ ​*​*​A​u​t​o​m​a​t​i​c​k​ý​ ​p​o​s​t​u​p​:​*​*​ ​P​o​ ​v​a​š​í​ ​o​d​p​o​v​ě​d​i​ ​b​u​d​e​ ​n​á​s​l​e​d​o​v​a​t​ ​d​a​l​š​í​ ​ú​l​o​h​a​.
 				 */
 				'3': string
 			}
@@ -253,18 +248,18 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * Z​a​t​í​m​c​o​ ​s​e​ ​s​o​u​s​t​ř​e​d​í​t​e​ ​n​a​ ​ú​k​o​l​ ​s​h​o​d​y​ ​v​z​o​r​ů​,​ ​m​u​s​í​t​e​ ​t​a​k​é​ ​p​e​č​l​i​v​ě​ ​s​l​e​d​o​v​a​t​ ​d​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​.
+				 * Z​a​t​í​m​c​o​ ​b​u​d​e​t​e​ ​ř​e​š​i​t​ ​a​r​i​t​m​e​t​i​c​k​é​ ​r​o​v​n​i​c​e​,​ ​b​u​d​e​t​e​ ​m​u​s​e​t​ ​s​o​u​č​a​s​n​ě​ ​p​o​z​o​r​n​ě​ ​s​l​e​d​o​v​a​t​ ​d​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​.
 				 */
 				'1': string
 				/**
-				 * P​o​ ​d​o​k​o​n​č​e​n​í​ ​v​š​e​c​h​ ​t​e​s​t​o​v​ý​c​h​ ​ú​l​o​h​ ​s​e​ ​v​á​s​ ​b​u​d​e​m​e​ ​p​t​á​t​ ​i​ ​n​a​ ​i​n​f​o​r​m​a​c​e​ ​z​ ​d​o​k​u​m​e​n​t​u​.​ ​Z​a​ ​k​a​ž​d​o​u​ ​s​p​r​á​v​n​o​u​ ​o​d​p​o​v​ě​ď​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​V​ ​z​á​c​v​i​č​n​é​ ​ú​l​o​z​e​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​"​P​a​r​e​t​t​o​"​,​ ​v​ ​h​l​a​v​n​í​ ​ú​l​o​z​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
 				 */
 				'2': string
 			}
 		}
 		'7b': {
 			/**
-			 * Z​í​s​k​e​j​t​e​ ​d​o​s​t​a​t​e​k​ ​b​o​d​ů​ ​a​ ​v​y​h​r​a​j​t​e​!
+			 * S​h​r​n​u​t​í
 			 */
 			heading: string
 			/**
@@ -273,11 +268,11 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​K​a​ž​d​ý​ ​z​í​s​k​a​n​ý​ ​b​o​d​ ​r​e​f​l​e​k​t​u​j​e​ ​v​a​š​i​ ​s​c​h​o​p​n​o​s​t​ ​p​l​n​i​t​ ​d​a​n​ý​ ​ú​k​o​l​.​ ​S​n​a​ž​t​e​ ​s​e​ ​t​e​d​y​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​!​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
 				 */
 				'1': string
 				/**
-				 * P​r​o​t​o​ ​s​e​ ​s​o​u​s​t​ř​e​ď​t​e​ ​n​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​a​ ​z​í​s​k​e​j​t​e​ ​m​a​x​i​m​á​l​n​í​ ​p​o​č​e​t​ ​b​o​d​ů​.
+				 * V​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​,​ ​t​a​k​ž​e​ ​s​e​ ​s​n​a​ž​t​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​v​e​ ​v​š​e​c​h​ ​ú​k​o​l​e​c​h​.
 				 */
 				'2': string
 			}
@@ -296,62 +291,6 @@ type RootTranslation = {
 				 * N​e​,​ ​c​h​c​i​ ​z​o​p​a​k​o​v​a​t​ ​z​á​c​v​i​k
 				 */
 				'1': string
-			}
-		}
-		'pt-1': {
-			/**
-			 * D​o​b​r​á​ ​p​r​á​c​e​!
-			 */
-			heading: string
-			/**
-			 * P​o​k​r​a​č​o​v​a​t
-			 */
-			confirm: string
-			paragraphs: {
-				/**
-				 * N​y​n​í​ ​p​r​o​s​í​m​ ​z​o​d​p​o​v​ě​z​t​e​ ​n​á​s​l​e​d​u​j​í​c​í​ ​o​t​á​z​k​y​ ​t​ý​k​a​j​í​c​í​ ​s​e​ ​i​n​f​o​r​m​a​c​í​ ​u​v​e​d​e​n​ý​c​h​ ​v​ ​d​o​k​u​m​e​n​t​á​r​n​í​m​ ​v​i​d​e​u​.
-				 */
-				'0': string
-			}
-		}
-		'pt-2': {
-			/**
-			 * C​o​ ​z​p​ů​s​o​b​i​l​o​ ​s​e​s​u​v​ ​p​ů​d​y​ ​n​a​ ​s​v​a​z​í​c​h​ ​u​ ​o​b​c​e​ ​B​u​k​o​v​e​c​?
-			 */
-			heading: string
-			options: {
-				/**
-				 * V​y​t​r​v​a​l​é​ ​p​ř​í​v​a​l​o​v​é​ ​d​e​š​t​ě
-				 */
-				'0': string
-				/**
-				 * L​o​k​á​l​n​í​ ​z​e​m​ě​t​ř​e​s​e​n​í
-				 */
-				'1': string
-				/**
-				 * S​i​l​n​ý​ ​v​í​t​r
-				 */
-				'2': string
-			}
-		}
-		'pt-3': {
-			/**
-			 * J​a​k​ý​ ​t​y​p​ ​k​v​ě​t​i​n​y​ ​j​e​ ​r​o​s​n​a​t​k​a​ ​o​k​r​o​u​h​l​i​s​t​á​?
-			 */
-			heading: string
-			options: {
-				/**
-				 * M​a​s​o​ž​r​a​v​k​a
-				 */
-				'0': string
-				/**
-				 * K​v​ě​t​i​n​a​ ​t​ř​í​d​y​ ​l​i​p​n​i​c​o​v​i​t​é
-				 */
-				'1': string
-				/**
-				 * C​e​l​o​r​o​č​n​ě​ ​z​e​l​e​n​ý​ ​k​e​ř
-				 */
-				'2': string
 			}
 		}
 	}
@@ -400,14 +339,6 @@ export type TranslationFunctions = {
 		 * Nelíbí se mi
 		 */
 		dislike: () => LocalizedString
-		/**
-		 * Sdílet
-		 */
-		share: () => LocalizedString
-		/**
-		 * Nahlásit
-		 */
-		report: () => LocalizedString
 	}
 	reminder: {
 		/**
@@ -447,7 +378,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Na dalších snímcích následující podrobnější instrukce.
+				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých aritmetických rovnic, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Prioritní úlohou je řešení aritmetických rovnic. Na dalších snímcích následující podrobnější instrukce.
 				 */
 				'1': () => LocalizedString
 			}
@@ -464,7 +395,7 @@ export type TranslationFunctions = {
 		}
 		'4': {
 			/**
-			 * Úkol 1: Výběr vhodného tvaru
+			 * Úkol 1: Řešení aritmetických rovnic
 			 */
 			heading: () => LocalizedString
 			/**
@@ -473,15 +404,17 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.
+				 * Toto je váš hlavní úkol. Bude vám předložena jednoduchá aritmetická rovnice, kterou budete muset vyřešit.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.
+				 * Vaším cílem je vybrat správný výsledek ze čtyř možností kliknutím myší.
 				 */
 				'2': () => LocalizedString
 				/**
-				 * Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte tři body.
+				 * - **Bez časového limitu:** Na odpovídání není stanoven časový limit. Odpověď můžete promýšlet tak dlouho, jak budete potřebovat. Nelze ji však změnit.
+			- **Bodové ohodnocení:** Získáte tři body za každou správnou odpověď.
+			- **Automatický postup:** Po vaší odpovědi bude následovat další úloha.
 				 */
 				'3': () => LocalizedString
 			}
@@ -497,11 +430,11 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Zatímco se soustředíte na úkol shody vzorů, musíte také sledovat dokumentární video. Výběr vhodného tvaru je vaším hlavním úkolem a očekáváme, že většina vaší pozornosti bude věnována právě jemu. Přesto byste měli pravidelně přepínat/přesouvat svou pozornost na video.
+				 * Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video. Aritmetické rovnice jsou však stále vaším hlavním úkolem.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.
+				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
 				 */
 				'2': () => LocalizedString
 			}
@@ -517,25 +450,24 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Mimo výše uvedené úkoly budete plnit ještě jeden úkol. Pro tento experiment jsme vytvořili fiktivní sociální síť (Chitralok), která funguje podobně jako Instagram. Na této platformě dostanete anonymní účet. Během experimentu vám systém bude zobrazovat různé příspěvky na této síti (složené z textu a obrázků), které se budou objevovat na obrazovce, doprovázené zvukem upozornění. Pod každým příspěvkem bude označen jeden z vašich kontaktů na této platformě. Na každý příspěvek máte možnost reagovat čtyřmi způsoby:
+				 * Dále budete interagovat s fiktivní sociální sítí Chitralok. Vaše volba pomáhá utvářet veřejnou digitální zeď, kterou vidí Vaši přátelé a veřejnost. Představte si, že každý příspěvek, který označíte jako oblíbený, se objeví na této zdi, která je věnována vašim přátelům a dalším lidem.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Líbí se mi:** Vyjadřujete, že příspěvek schvalujete.
-			- **Nelíbí se mi:** Vyjadřujete, že příspěvek neschvalujete.
-			- **Sdílet:** Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
-			- **Nahlásit:** Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.
+				 * Během experimentu vám systém bude zobrazovat různé příspěvky, které se budou objevovat na obrazovce vlevo, doprovázené zvukem upozornění. Na každý příspěvek můžete reagovat jen několik sekund, než zmizí. Těsně před zmizením Vás na tuto skutečnost upozorní zvukový signál. Zareagujte na každý příspěvek kliknutím na tlačítko **"Líbí se mi"** nebo **"Nelíbí se mi"**.
 				 */
 				'2': () => LocalizedString
 				/**
-				 * Vaším úkolem je reagovat na tyto příspěvky výběrem jedné ze čtyř možností pomocí myši: líbí se mi, nelíbí se mi, sdílet nebo nahlásit. Vaše volba bude veřejně viditelná ostatním účastníkům studie, což simuluje skutečné prostředí sociálních médií. Každá odpověď na příspěvek vám přinese jeden bod.
+				 * - **Líbí se mi:** Vyjadřujete, že příspěvek chcete zobrazit na veřejné zdi.
+			- **Nelíbí se mi:** Vyjadřujete, že příspěvek na této zdi nechcete.
+			- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
 				 */
 				'3': () => LocalizedString
 			}
 		}
 		'7': {
 			/**
-			 * Získejte dostatek bodů a vyhrajte!
+			 * Shrnutí
 			 */
 			heading: () => LocalizedString
 			/**
@@ -544,11 +476,11 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.
+				 * Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Vzhledem k tomu, že za úkol na hledání vhodného tvaru je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.
+				 * Vzhledem k tomu, že za řešení aritmetických rovnic je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.
 				 */
 				'2': () => LocalizedString
 			}
@@ -574,14 +506,14 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.
+				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých aritmetických rovnic, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.
 				 */
 				'1': () => LocalizedString
 			}
 		}
 		'4b': {
 			/**
-			 * Úkol 1: Výběr vhodného tvaru
+			 * Úkol 1: Řešení aritmetických rovnic
 			 */
 			heading: () => LocalizedString
 			/**
@@ -590,15 +522,17 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.
+				 * Bude vám předložena jednoduchá aritmetická rovnice, kterou budete muset vyřešit.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.
+				 * Vaším cílem je vybrat správný výsledek ze čtyř možností kliknutím myší.
 				 */
 				'2': () => LocalizedString
 				/**
-				 * Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte jeden bod.
+				 * - **Bez časového limitu:** Na odpovídání není stanoven časový limit. Odpověď můžete promýšlet tak dlouho, jak budete potřebovat. Nelze ji však změnit.
+			- **Bodové ohodnocení:** Získáte jeden bod za každou správnou odpověď.
+			- **Automatický postup:** Po vaší odpovědi bude následovat další úloha.
 				 */
 				'3': () => LocalizedString
 			}
@@ -614,18 +548,18 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Zatímco se soustředíte na úkol shody vzorů, musíte také pečlivě sledovat dokumentární video.
+				 * Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.
+				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
 				 */
 				'2': () => LocalizedString
 			}
 		}
 		'7b': {
 			/**
-			 * Získejte dostatek bodů a vyhrajte!
+			 * Shrnutí
 			 */
 			heading: () => LocalizedString
 			/**
@@ -634,11 +568,11 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
+				 * Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Proto se soustřeďte na všechny úkoly a získejte maximální počet bodů.
+				 * Všechny úkoly jsou stejně důležité, takže se snažte získat co nejvíce bodů ve všech úkolech.
 				 */
 				'2': () => LocalizedString
 			}
@@ -657,62 +591,6 @@ export type TranslationFunctions = {
 				 * Ne, chci zopakovat zácvik
 				 */
 				'1': () => LocalizedString
-			}
-		}
-		'pt-1': {
-			/**
-			 * Dobrá práce!
-			 */
-			heading: () => LocalizedString
-			/**
-			 * Pokračovat
-			 */
-			confirm: () => LocalizedString
-			paragraphs: {
-				/**
-				 * Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.
-				 */
-				'0': () => LocalizedString
-			}
-		}
-		'pt-2': {
-			/**
-			 * Co způsobilo sesuv půdy na svazích u obce Bukovec?
-			 */
-			heading: () => LocalizedString
-			options: {
-				/**
-				 * Vytrvalé přívalové deště
-				 */
-				'0': () => LocalizedString
-				/**
-				 * Lokální zemětřesení
-				 */
-				'1': () => LocalizedString
-				/**
-				 * Silný vítr
-				 */
-				'2': () => LocalizedString
-			}
-		}
-		'pt-3': {
-			/**
-			 * Jaký typ květiny je rosnatka okrouhlistá?
-			 */
-			heading: () => LocalizedString
-			options: {
-				/**
-				 * Masožravka
-				 */
-				'0': () => LocalizedString
-				/**
-				 * Květina třídy lipnicovité
-				 */
-				'1': () => LocalizedString
-				/**
-				 * Celoročně zelený keř
-				 */
-				'2': () => LocalizedString
 			}
 		}
 	}

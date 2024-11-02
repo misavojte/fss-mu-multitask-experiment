@@ -8,9 +8,7 @@ const cs = {
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	socialButtons: {
 		like: 'Líbí se mi',
-		dislike: 'Nelíbí se mi',
-		share: 'Sdílet',
-		report: 'Nahlásit'
+		dislike: 'Nelíbí se mi'
 	},
 	reminder: {
 		priority: 'Připomínáme, že **výběr vhodného tvaru je prioritní**.',
@@ -32,14 +30,14 @@ const cs = {
 			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Na dalších snímcích následující podrobnější instrukce.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých aritmetických rovnic, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Prioritní úlohou je řešení aritmetických rovnic. Na dalších snímcích následující podrobnější instrukce.'
 			}
 		},
 		'2b': {
 			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'V tomto experimentu se budete současně účastnit tří úkolů: výběr vhodného tvaru, sledování dokumentu a reagování na memy na sociálních médiích. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých aritmetických rovnic, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
 			}
 		},
 		3: {
@@ -47,65 +45,68 @@ const cs = {
 			confirm: 'Potvrdit'
 		},
 		4: {
-			heading: 'Úkol 1: Výběr vhodného tvaru',
+			heading: 'Úkol 1: Řešení aritmetických rovnic',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.',
-				2: 'Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.',
-				3: 'Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte tři body.'
+				1: 'Toto je váš hlavní úkol. Bude vám předložena jednoduchá aritmetická rovnice, kterou budete muset vyřešit.',
+				2: 'Vaším cílem je vybrat správný výsledek ze čtyř možností kliknutím myší.',
+				3: `- **Bez časového limitu:** Na odpovídání není stanoven časový limit. Odpověď můžete promýšlet tak dlouho, jak budete potřebovat. Nelze ji však změnit.
+- **Bodové ohodnocení:** Získáte tři body za každou správnou odpověď.
+- **Automatický postup:** Po vaší odpovědi bude následovat další úloha.`
 			}
 		},
 		'4b': {
-			heading: 'Úkol 1: Výběr vhodného tvaru',
+			heading: 'Úkol 1: Řešení aritmetických rovnic',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Toto je váš hlavní úkol. Bude vám předložena 3 × 3 matice, kde osm z devíti buněk obsahuje abstraktní tvary a jedna buňka v pravém dolním rohu je prázdná.',
-				2: 'Vaším cílem je dokončit matici tím, že odvodíte chybějící tvar ze čtyř možných alternativ a vyberete jej kliknutím myší. Chcete-li najít správný tvar, analyzujte vztahy mezi tvary v matici s ohledem na čtyři dimenze: tvar, barvu, velikost a polohu.',
-				3: 'Na odpovídání není stanoven časový limit. Po vaší odpovědi bude následovat další úloha. Za každou správnou odpověď získáte jeden bod.'
+				1: 'Bude vám předložena jednoduchá aritmetická rovnice, kterou budete muset vyřešit.',
+				2: 'Vaším cílem je vybrat správný výsledek ze čtyř možností kliknutím myší.',
+				3: `- **Bez časového limitu:** Na odpovídání není stanoven časový limit. Odpověď můžete promýšlet tak dlouho, jak budete potřebovat. Nelze ji však změnit.
+- **Bodové ohodnocení:** Získáte jeden bod za každou správnou odpověď.
+- **Automatický postup:** Po vaší odpovědi bude následovat další úloha.`
 			}
 		},
 		5: {
 			heading: 'Úkol 2: Sledování dokumentu',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Zatímco se soustředíte na úkol shody vzorů, musíte také sledovat dokumentární video. Výběr vhodného tvaru je vaším hlavním úkolem a očekáváme, že většina vaší pozornosti bude věnována právě jemu. Přesto byste měli pravidelně přepínat/přesouvat svou pozornost na video.',
-				2: 'Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.'
+				1: 'Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video. Aritmetické rovnice jsou však stále vaším hlavním úkolem.',
+				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
 			}
 		},
 		'5b': {
 			heading: 'Úkol 2: Sledování dokumentu',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Zatímco se soustředíte na úkol shody vzorů, musíte také pečlivě sledovat dokumentární video.',
-				2: 'Po dokončení všech testových úloh se vás budeme ptát i na informace z dokumentu. Za každou správnou odpověď získáte jeden bod.'
+				1: 'Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video.',
+				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
 			}
 		},
 		6: {
 			heading: 'Úkol 3: Reakce na příspěvky na sociální síti',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Mimo výše uvedené úkoly budete plnit ještě jeden úkol. Pro tento experiment jsme vytvořili fiktivní sociální síť (Chitralok), která funguje podobně jako Instagram. Na této platformě dostanete anonymní účet. Během experimentu vám systém bude zobrazovat různé příspěvky na této síti (složené z textu a obrázků), které se budou objevovat na obrazovce, doprovázené zvukem upozornění. Pod každým příspěvkem bude označen jeden z vašich kontaktů na této platformě. Na každý příspěvek máte možnost reagovat čtyřmi způsoby:',
-				2: `- **Líbí se mi:** Vyjadřujete, že příspěvek schvalujete.
-- **Nelíbí se mi:** Vyjadřujete, že příspěvek neschvalujete.
-- **Sdílet:** Rozhodnete se přesdílet nebo repostovat obsah ostatním na platformě.
-- **Nahlásit:** Označíte příspěvek jako nevhodný, urážlivý nebo škodlivý, což může upozornit platformu k přezkoumání.`,
-				3: 'Vaším úkolem je reagovat na tyto příspěvky výběrem jedné ze čtyř možností pomocí myši: líbí se mi, nelíbí se mi, sdílet nebo nahlásit. Vaše volba bude veřejně viditelná ostatním účastníkům studie, což simuluje skutečné prostředí sociálních médií. Každá odpověď na příspěvek vám přinese jeden bod.'
+				1: 'Dále budete interagovat s fiktivní sociální sítí Chitralok. Vaše volba pomáhá utvářet veřejnou digitální zeď, kterou vidí Vaši přátelé a veřejnost. Představte si, že každý příspěvek, který označíte jako oblíbený, se objeví na této zdi, která je věnována vašim přátelům a dalším lidem.',
+				2: 'Během experimentu vám systém bude zobrazovat různé příspěvky, které se budou objevovat na obrazovce vlevo, doprovázené zvukem upozornění. Na každý příspěvek můžete reagovat jen několik sekund, než zmizí. Těsně před zmizením Vás na tuto skutečnost upozorní zvukový signál. Zareagujte na každý příspěvek kliknutím na tlačítko **"Líbí se mi"** nebo **"Nelíbí se mi"**.',
+				3: `- **Líbí se mi:** Vyjadřujete, že příspěvek chcete zobrazit na veřejné zdi.
+- **Nelíbí se mi:** Vyjadřujete, že příspěvek na této zdi nechcete.
+- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`
 			}
 		},
 		7: {
-			heading: 'Získejte dostatek bodů a vyhrajte!',
+			heading: 'Shrnutí',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.',
-				2: 'Vzhledem k tomu, že za úkol na hledání vhodného tvaru je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.'
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **výběr vhodného tvaru je prioritní**. Váš výsledek bude zobrazen na konci.',
+				2: 'Vzhledem k tomu, že za řešení aritmetických rovnic je nejvíc bodů, tento úkol upřednostněte, zatímco budete řešit i ostatní úkoly.'
 			}
 		},
 		'7b': {
-			heading: 'Získejte dostatek bodů a vyhrajte!',
+			heading: 'Shrnutí',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů. Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
-				2: 'Proto se soustřeďte na všechny úkoly a získejte maximální počet bodů.'
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
+				2: 'Všechny úkoly jsou stejně důležité, takže se snažte získat co nejvíce bodů ve všech úkolech.'
 			}
 		},
 		'ap-1': {
@@ -113,29 +114,6 @@ const cs = {
 			options: {
 				0: 'Ano, pokračovat na ostrý test',
 				1: 'Ne, chci zopakovat zácvik'
-			}
-		},
-		'pt-1': {
-			heading: 'Dobrá práce!',
-			confirm: 'Pokračovat',
-			paragraphs: {
-				0: 'Nyní prosím zodpovězte následující otázky týkající se informací uvedených v dokumentárním videu.'
-			}
-		},
-		'pt-2': {
-			heading: 'Co způsobilo sesuv půdy na svazích u obce Bukovec?',
-			options: {
-				0: 'Vytrvalé přívalové deště',
-				1: 'Lokální zemětřesení',
-				2: 'Silný vítr'
-			}
-		},
-		'pt-3': {
-			heading: 'Jaký typ květiny je rosnatka okrouhlistá?',
-			options: {
-				0: 'Masožravka',
-				1: 'Květina třídy lipnicovité',
-				2: 'Celoročně zelený keř'
 			}
 		}
 	},
