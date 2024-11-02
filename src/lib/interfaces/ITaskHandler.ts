@@ -1,4 +1,7 @@
-export interface ITaskPatternMatchingObject {
+import { mathStimuli } from '$lib/data/mathStimuli';
+
+export interface ITaskPatternMatchingObjectImage {
+	type: 'image';
 	id: string;
 	matrixSrc: string;
 	responses: {
@@ -6,6 +9,20 @@ export interface ITaskPatternMatchingObject {
 		src: string;
 	}[];
 }
+
+export interface ITaskPatternMatchingObjectText {
+	type: 'text';
+	id: string;
+	matrixContent: string;
+	responses: {
+		id: string;
+		content: string;
+	}[];
+}
+
+export type ITaskPatternMatchingObject =
+	| ITaskPatternMatchingObjectImage
+	| ITaskPatternMatchingObjectText;
 
 export abstract class ATaskHandler {
 	onEnd: () => void = () => {};
@@ -17,7 +34,15 @@ export abstract class ATaskHandler {
 	}
 	scoringType: 'prioritize' | 'even' = 'prioritize';
 	score = 0;
-
+	get pointsOnCorrectPatternMatching(): number {
+		return this.scoringType === 'prioritize' ? 3 : 1;
+	}
+	get pointsOnCorrectSocialMedia(): number {
+		return 1;
+	}
+	get pointsOnCorrectDocumentaryQuestionnaire(): number {
+		return 1;
+	}
 	abstract get correctResponseId(): string;
 	abstract getTaskPatternMatchingObject(id: string): ITaskPatternMatchingObject;
 	abstract getTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObject[];
@@ -25,15 +50,15 @@ export abstract class ATaskHandler {
 	abstract logAction(type: string, value: string): void;
 
 	private addPatternMatchingScore() {
-		this.score += this.scoringType === 'prioritize' ? 3 : 1;
+		this.score += this.pointsOnCorrectPatternMatching;
 	}
 
 	private addSocialMediaScore() {
-		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+		this.score += this.pointsOnCorrectSocialMedia;
 	}
 
 	private addDocumentaryQuestionnaireScore() {
-		this.score += this.scoringType === 'prioritize' ? 1 : 1;
+		this.score += this.pointsOnCorrectDocumentaryQuestionnaire;
 	}
 
 	handlePatternMatchingResponse(event: CustomEvent<string>) {
@@ -75,10 +100,68 @@ export abstract class ATaskHandler {
 	logScoringType() {
 		this.logAction('task-version', this.scoringType);
 	}
-	handleDocumentaryQuestionnaireResponse(isCorrect: boolean): void {
+	handleDocumentaryResponse(
+		isCorrect: boolean,
+		videoTime: number,
+		timestampTime: number | undefined
+	) {
+		const JSONValue = JSON.stringify({
+			isCorrect,
+			videoTime,
+			timestampTime
+		});
+		this.logAction('documentary-response', JSONValue);
 		if (isCorrect) {
 			this.addDocumentaryQuestionnaireScore();
 		}
+	}
+}
+
+export abstract class ATaskHandlerMath extends ATaskHandler {
+	private base: string;
+
+	// Correct response is always the second one
+	get correctResponseId(): string {
+		return '2';
+	}
+
+	constructor(base: string = '') {
+		super();
+		this.base = base;
+	}
+
+	// Id is just a number as string
+	public getTaskPatternMatchingObject(
+		id: string,
+		base: string = ''
+	): ITaskPatternMatchingObjectText {
+		void base;
+		// find by id in mathStimuli
+		const obj = mathStimuli.find((stimulus) => stimulus.id === id);
+		if (obj === undefined) {
+			throw new Error('Task not found');
+		}
+		return obj;
+	}
+
+	public getTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObjectText[] {
+		const ids = ['1', '2', '3', '4'];
+		const base = this.base + 'task/1/math/practice/';
+		return ids.map((id) => this.getTaskPatternMatchingObject(id, base));
+	}
+
+	public getTaskPatternMatchingObjectsForTest(): ITaskPatternMatchingObjectText[] {
+		// create programatically an array of ids from 5 to 80
+		const getIds = (start: number, end: number) => {
+			const ids = [];
+			for (let i = start; i <= end; i++) {
+				ids.push(i.toString());
+			}
+			return ids;
+		};
+		const ids = getIds(5, 25);
+		const base = this.base + 'task/1/math/trial/';
+		return ids.map((id) => this.getTaskPatternMatchingObject(id, base));
 	}
 }
 
@@ -103,6 +186,7 @@ export abstract class ATaskHandlerIntelligence extends ATaskHandler {
 		const T3Src = base + `${idParts[0]}_T3_${idParts[1]}_md.jpeg`;
 		const T4Src = base + `${idParts[0]}_T4_${idParts[1]}_md.jpeg`;
 		return {
+			type: 'image',
 			id: id,
 			matrixSrc,
 			responses: [

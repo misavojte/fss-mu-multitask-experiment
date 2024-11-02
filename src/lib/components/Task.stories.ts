@@ -2,14 +2,13 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
-import { TaskPatternMatchingServiceIntelligence } from '$lib/services/TaskPatternMatchingServiceBase';
-import { TaskPatternMatchingHandlerMock } from '$lib/services/TaskHandlerMock';
+import { TaskHandlerIntelligenceMock, TaskHandlerMathMock } from '$lib/services/TaskHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');
 
-const patternMatchingService = new TaskPatternMatchingServiceIntelligence();
-const taskHandler = new TaskPatternMatchingHandlerMock('even');
+const taskHandler = new TaskHandlerIntelligenceMock();
+const taskHandlerMath = new TaskHandlerMathMock();
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -56,8 +55,36 @@ export const Default: Story = {
 				src: 'task/3/3.png'
 			}
 		],
-		patternMatchingObjects: patternMatchingService.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice(),
 		videoDocumentarySrc: 'video/video.mp4',
 		taskHandler
+	}
+};
+
+export const Math: Story = {
+	args: {
+		socialMediaStimuliAS: [
+			{
+				id: 'PT_AS_1',
+				src: '/task/3/practice/PT_AS_Image 1.png'
+			},
+			{
+				id: 'PT_AS_2',
+				src: '/task/3/practice/PT_AS_Image 2.png'
+			}
+		],
+		socialMediaStimuliNS: [
+			{
+				id: 'PT_NS_1',
+				src: '/task/3/practice/PT_NS_Image 1.png'
+			},
+			{
+				id: 'PT_NS_2',
+				src: '/task/3/practice/PT_NS_Image 2.png'
+			}
+		],
+		patternMatchingObjects: taskHandlerMath.getTaskPatternMatchingObjectsForPractice(),
+		videoDocumentarySrc: 'video/video.mp4',
+		taskHandler: taskHandlerMath
 	}
 };

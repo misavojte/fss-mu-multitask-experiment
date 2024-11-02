@@ -11,12 +11,16 @@
 	import { preloadMedia } from '$lib/utils/preloadMedia';
 	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { base } from '$app/paths';
+	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
 	const dispatch = createEventDispatcher();
 
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
+		color: string;
+		textColor: string;
+		html: string;
 	}>;
 	export let socialMediaStimuliAS: Array<{
 		src: string;
@@ -30,10 +34,12 @@
 	export let initialDelay: number = 5000;
 	export let betweenDelay: number = 15000;
 	export let stimulusMaxDuration: number = 15000;
-	export let width: number = 522;
-	export let heightImage: number = 743;
-	export let heightInteractors: number = 150;
+	export let stimulusRemindAfter: number = 10000;
+	export let width: number = 500;
+	export let heightImage: number = 700;
+	export let heightInteractors: number = 200;
 	export let hasStarted: boolean = true;
+	export let showCorrectnessFeedback: boolean = true;
 
 	$: {
 		if (hasStarted) {
@@ -118,15 +124,23 @@
 	const wasClicked = writable(false);
 
 	let stimulus: { src: string; id: string } | null = null; // always begin with no stimulus
-
+	const animationTargetHandler = new AnimationTargetHandler();
 	const handleSocialMediaInteractorsClick = (
-		event: CustomEvent<{ id: string; timestamp: number }>
+		event: CustomEvent<{ id: string; timestamp: number; e: MouseEvent }>
 	) => {
 		if (!stimulus) return;
 		dispatch('socialMediaInteractorsClick', {
 			buttonId: event.detail.id,
 			timestamp: event.detail.timestamp
 		});
+		if (showCorrectnessFeedback) {
+			animationTargetHandler.createAnimationTarget(
+				{ x: event.detail.e.clientX, y: event.detail.e.clientY },
+				'green',
+				'+ 1 bod',
+				abortController.signal
+			);
+		}
 		wasClicked.set(true);
 	};
 
@@ -160,7 +174,7 @@
 		let isInitialIteration = true;
 		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
 			console.log('loopStimulusDelay', initialDelay);
-			socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
+			// socialMediaButtons = fisherYatesShuffle(socialMediaButtons); // shuffle the buttons for each stimulus
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
@@ -175,14 +189,30 @@
 				timestamp: Date.now()
 			});
 			try {
-				await waitForConditionCancellable(wasClicked, stimulusMaxDuration, abortController.signal);
+				await waitForConditionCancellable(wasClicked, stimulusRemindAfter, abortController.signal);
 			} catch (error) {
 				if (error === 'TaskSocialMedia was destroyed') {
 					return; // stop the task, no logging
 				}
-				dispatch('socialMediaInteractorsTimeout');
+				dispatch('socialMediaInteractorsReminder');
+				audioElement2.play();
+				try {
+					await waitForConditionCancellable(
+						wasClicked,
+						stimulusMaxDuration - stimulusRemindAfter,
+						abortController.signal
+					);
+				} catch (error) {
+					if (error === 'TaskSocialMedia was destroyed') {
+						return; // stop the task, no logging
+					}
+					dispatch('socialMediaInteractorsTimeout');
+				}
 			}
 			stimulus = null;
+			// stop and restart the audio to prevent it from playing multiple times
+			audioElement2.pause();
+			audioElement2.currentTime = 0;
 			dispatch('socialMediaInteractorsHidden');
 			preloadNextStimulusImage(shuffledStimuliAlongPresentationPattern.indexOf(loopStimulus));
 		}
@@ -190,6 +220,7 @@
 	};
 
 	let audioElement: HTMLAudioElement;
+	let audioElement2: HTMLAudioElement;
 </script>
 
 <InterfaceFrame {width} height={heightImage + heightInteractors}>
@@ -215,6 +246,13 @@
 			autoplay={false}
 			bind:this={audioElement}
 			on:canplaythrough={handleLoad}
+		/>
+		<audio
+			src={`${base}/notification2.mp3`}
+			preload="auto"
+			class="hidden"
+			autoplay={false}
+			bind:this={audioElement2}
 		/>
 	{/if}
 </InterfaceFrame>

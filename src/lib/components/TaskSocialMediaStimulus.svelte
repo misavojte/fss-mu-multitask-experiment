@@ -14,6 +14,9 @@
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
+		color: string;
+		textColor: string;
+		html: string;
 	}>;
 
 	const dispatch = createEventDispatcher();

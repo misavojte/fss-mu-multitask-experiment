@@ -23,11 +23,12 @@
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
+		color: string;
+		textColor: string;
+		html: string;
 	}> = [
-		{ text: 'Like', id: 'like' },
-		{ text: 'Share', id: 'share' },
-		{ text: 'Ignore', id: 'save' },
-		{ text: 'Dislike', id: 'dislike' }
+		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff', html: '' },
+		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff', html: '' }
 	];
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
@@ -73,7 +74,7 @@
 	/**
 	 * The height of the social media task interactors.
 	 */
-	export let heightSocialOptions: number = 200;
+	export let heightSocialOptions: number = 140;
 
 	/**
 	 * The position of the pattern matching task on the x-axis in pixels.
@@ -131,6 +132,12 @@
 	export let socialStimulusMaxDuration: number = 15000;
 
 	export let socialBetweenDelay: number = 15000;
+
+	export let socialStimulusRemindAfter: number = 10000;
+
+	export let wordOccurence: string = 'SLOVO';
+	export let wordOccurenceTolerance: number = 10000;
+	export let wordOccurenceTimestamps: number[] = [7000, 7100];
 
 	export let taskHandler: ATaskHandler;
 
@@ -215,10 +222,17 @@
 		taskHandler.removeOnEndHandler();
 		abortController.abort('Task was destroyed');
 	});
+
+	const handleDocumentaryResponse = (
+		e: CustomEvent<{ correct: boolean; videoTime: number; timestampTime?: number }>
+	) => {
+		const { correct, videoTime, timestampTime } = e.detail;
+		taskHandler.handleDocumentaryResponse(correct, videoTime, timestampTime);
+	};
 </script>
 
 <div
-	class="flex justify-center items-start box-border absolute"
+	class="flex justify-center items-start box-border relative"
 	style="width: {width}px; height: {height}px;"
 	bind:this={mainElement}
 >
@@ -243,6 +257,7 @@
 				{socialMediaButtons}
 				{socialMediaStimuliAS}
 				{socialMediaStimuliNS}
+				stimulusRemindAfter={socialStimulusRemindAfter}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
 				betweenDelay={socialBetweenDelay}
@@ -276,6 +291,7 @@
 				{patternMatchingObjects}
 				width={widthPattern}
 				height={heightPattern}
+				{taskHandler}
 				on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
 				on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
 				on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
@@ -296,7 +312,11 @@
 				{muted}
 				width={widthDocumentary}
 				height={heightDocumentary}
+				{wordOccurence}
+				{wordOccurenceTolerance}
+				{wordOccurenceTimestamps}
 				on:loaded={() => videoLoaded.triggerResolve(true)}
+				on:response={handleDocumentaryResponse}
 			/>
 		</Intersecter>
 	</div>
