@@ -12,21 +12,21 @@
 	const socialMediaStimuliNS = [
 		{
 			id: 'PT_NS_1',
-			src: base + '/task/3/practice/PT_NS_Image 1.png'
+			src: base + '/task/3/practice/PT_NS_Image 1.PNG'
 		},
 		{
 			id: 'PT_NS_2',
-			src: base + '/task/3/practice/PT_NS_Image 2.png'
+			src: base + '/task/3/practice/PT_NS_Image 2.PNG'
 		}
 	];
 	const socialMediaStimuliAS = [
 		{
 			id: 'PT_AS_1',
-			src: base + '/task/3/practice/PT_AS_Image 1.png'
+			src: base + '/task/3/practice/PT_AS_Image 1.PNG'
 		},
 		{
 			id: 'PT_AS_2',
-			src: base + '/task/3/practice/PT_AS_Image 2.png'
+			src: base + '/task/3/practice/PT_AS_Image 2.PNG'
 		}
 	];
 
