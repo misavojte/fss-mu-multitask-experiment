@@ -12,13 +12,13 @@
 	);
 	const videoDocumentarySrc = base + '/video/trial.mp4';
 
-	const socialMediaStimuliAS = Array.from({ length: 16 }, (_, i) => ({
+	const socialMediaStimuliAS = Array.from({ length: 8 }, (_, i) => ({
 		id: `AS_Image ${i + 1}`,
-		src: `${base}/task/3/test/AS_Image ${i + 1}.PNG`
+		src: `${base}/task/3/trial/F_AS_Image ${i + 1}.PNG`
 	}));
-	const socialMediaStimuliNS = Array.from({ length: 16 }, (_, i) => ({
+	const socialMediaStimuliNS = Array.from({ length: 8 }, (_, i) => ({
 		id: `NS_Image ${i + 1}`,
-		src: `${base}/task/3/test/NS_Image ${i + 1}.PNG`
+		src: `${base}/task/3/trial/F_NS_Image ${i + 1}.PNG`
 	}));
 
 	const socialMediaButtons: {
