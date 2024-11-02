@@ -105,8 +105,9 @@ export abstract class ATaskHandler {
 		videoTime: number,
 		timestampTime: number | undefined
 	) {
+		const correctness = isCorrect ? 'correct' : 'incorrect';
 		const JSONValue = JSON.stringify({
-			isCorrect,
+			correctness,
 			videoTime,
 			timestampTime
 		});

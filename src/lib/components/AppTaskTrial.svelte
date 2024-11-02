@@ -44,7 +44,7 @@
 		}
 	]);
 
-	const mokradyTimestamps = [16000, 71000, 132000, 165000, 192000, 421000, 717000];
+	const mokradyTimestamps = [16000, 72000, 83000, 157000, 169000, 423000, 749000];
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
