@@ -37,7 +37,12 @@
 	};
 </script>
 
-<div class="flex flex-col gap-4 w-auto h-full items-center border p-4 text-neutral-500">
+<div
+	class="flex flex-col gap-4 w-auto h-full items-center border p-4 text-neutral-500 {patternMatchingObject.type ===
+	'text'
+		? 'bg-gray-50'
+		: ''}"
+>
 	<div class="object-cover h-auto custom-container flex justify-center items-center aspect-square">
 		{#if patternMatchingObject.type === 'image'}
 			<img
@@ -47,7 +52,9 @@
 				on:load={() => handleLoad('main')}
 			/>
 		{:else if patternMatchingObject.type === 'text'}
-			<p class="text-center text-3xl font-semibold select-none">
+			<p
+				class="text-center text-3xl font-semibold select-none border border-gray-200 rounded-md p-4 w-full h-full inline-flex items-center justify-center bg-white"
+			>
 				{patternMatchingObject.matrixContent}
 			</p>
 		{/if}
@@ -55,7 +62,10 @@
 	<div class="flex gap-4 w-full justify-center">
 		{#each shuffledResponses as response, i}
 			<button
-				class="border border-gray-200 rounded-md custom-button overflow-hidden box-content transition-all hover:bg-gray-300 aspect-square"
+				class="border border-gray-200 rounded-md custom-button overflow-hidden box-content transition-all hover:bg-gray-300 aspect-square {patternMatchingObject.type ===
+				'text'
+					? 'bg-white'
+					: ''}"
 				on:click={(e) => handleResponseClick(e, response.id)}
 			>
 				{#if patternMatchingObject.type === 'image'}
@@ -66,7 +76,9 @@
 						on:load={() => handleLoad(response.id)}
 					/>
 				{:else if patternMatchingObject.type === 'text'}
-					<p class="text-center text-2xl font-semibold select-none">
+					<p
+						class="text-center text-2xl font-semibold select-none inline-flex items-center justify-center w-full h-full"
+					>
 						{patternMatchingObject.responses[i].content}
 					</p>
 				{/if}
