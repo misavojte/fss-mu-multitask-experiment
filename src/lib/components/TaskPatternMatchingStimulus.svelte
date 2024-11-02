@@ -5,9 +5,9 @@
 
 	export let patternMatchingObject: ITaskPatternMatchingObject;
 
-	$: shuffledResponses = fisherYatesShuffle(patternMatchingObject.responses);
-
-	console.log(patternMatchingObject);
+	$: shuffledResponses = fisherYatesShuffle<ITaskPatternMatchingObject['responses'][0]>(
+		patternMatchingObject.responses
+	);
 
 	const dispatch = createEventDispatcher();
 
@@ -26,6 +26,9 @@
 			main: false,
 			...Object.fromEntries(shuffledResponses.map((response) => [response.id, false]))
 		};
+		if (patternMatchingObject.type === 'text') {
+			dispatch('loaded');
+		}
 	});
 
 	const handleLoad = (id: 'main' | string) => {
@@ -34,27 +37,39 @@
 	};
 </script>
 
-<div class="flex flex-col gap-4 w-auto h-full items-center border p-4">
-	<div class="object-cover h-auto custom-container">
-		<img
-			src={patternMatchingObject.matrixSrc}
-			alt="Pattern matching task"
-			class="object-cover w-full h-auto"
-			on:load={() => handleLoad('main')}
-		/>
+<div class="flex flex-col gap-4 w-auto h-full items-center border p-4 text-neutral-500">
+	<div class="object-cover h-auto custom-container flex justify-center items-center aspect-square">
+		{#if patternMatchingObject.type === 'image'}
+			<img
+				src={patternMatchingObject.matrixSrc}
+				alt="Pattern matching task"
+				class="object-cover w-full h-auto"
+				on:load={() => handleLoad('main')}
+			/>
+		{:else if patternMatchingObject.type === 'text'}
+			<p class="text-center text-3xl font-semibold select-none">
+				{patternMatchingObject.matrixContent}
+			</p>
+		{/if}
 	</div>
 	<div class="flex gap-4 w-full justify-center">
-		{#each shuffledResponses as response}
+		{#each shuffledResponses as response, i}
 			<button
-				class="border border-gray-200 rounded-md custom-button overflow-hidden box-content transition-all hover:bg-gray-300"
+				class="border border-gray-200 rounded-md custom-button overflow-hidden box-content transition-all hover:bg-gray-300 aspect-square"
 				on:click={(e) => handleResponseClick(e, response.id)}
 			>
-				<img
-					src={response.src}
-					alt="Pattern matching task"
-					class="w-full peer transition-all hover:opacity-75"
-					on:load={() => handleLoad(response.id)}
-				/>
+				{#if patternMatchingObject.type === 'image'}
+					<img
+						src={patternMatchingObject.responses[i].src}
+						alt="Pattern matching task"
+						class="w-full peer transition-all hover:opacity-75"
+						on:load={() => handleLoad(response.id)}
+					/>
+				{:else if patternMatchingObject.type === 'text'}
+					<p class="text-center text-2xl font-semibold select-none">
+						{patternMatchingObject.responses[i].content}
+					</p>
+				{/if}
 			</button>
 		{/each}
 	</div>

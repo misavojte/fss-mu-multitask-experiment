@@ -2,12 +2,13 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import Task from './Task.svelte';
-import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
+import { TaskHandlerIntelligenceMock, TaskHandlerMathMock } from '$lib/services/TaskHandlerMock';
 
 loadLocale('cs');
 setLocale('cs');
 
-const taskHandler = new TaskHandlerIntelligenceMock('even');
+const taskHandler = new TaskHandlerIntelligenceMock();
+const taskHandlerMath = new TaskHandlerMathMock();
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
@@ -57,5 +58,41 @@ export const Default: Story = {
 		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice(),
 		videoDocumentarySrc: 'video/video.mp4',
 		taskHandler
+	}
+};
+
+export const Math: Story = {
+	args: {
+		socialMediaStimuliAS: [
+			{
+				id: '1',
+				src: 'task/3/1.png'
+			},
+			{
+				id: '2',
+				src: 'task/3/2.png'
+			},
+			{
+				id: '3',
+				src: 'task/3/3.png'
+			}
+		],
+		socialMediaStimuliNS: [
+			{
+				id: '1',
+				src: 'task/3/1.png'
+			},
+			{
+				id: '2',
+				src: 'task/3/2.png'
+			},
+			{
+				id: '3',
+				src: 'task/3/3.png'
+			}
+		],
+		patternMatchingObjects: taskHandlerMath.getTaskPatternMatchingObjectsForPractice(),
+		videoDocumentarySrc: 'video/video.mp4',
+		taskHandler: taskHandlerMath
 	}
 };

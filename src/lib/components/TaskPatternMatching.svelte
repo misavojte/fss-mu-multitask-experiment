@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { ATaskHandler, ITaskPatternMatchingObject } from '$lib/interfaces/ITaskHandler';
+	import type {
+		ATaskHandler,
+		ITaskPatternMatchingObject,
+		ITaskPatternMatchingObjectImage
+	} from '$lib/interfaces/ITaskHandler';
 	import { writable } from 'svelte/store';
 	import TaskPatternMatchingStimulus from '$lib/components/TaskPatternMatchingStimulus.svelte';
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
@@ -63,17 +67,19 @@
 		const nextIndex = index + 1;
 		if (nextIndex < patternMatchingObjects.length) {
 			const nextPatternMatchingObject = patternMatchingObjects[nextIndex];
-			const media = [
-				{
-					type: 'img' as const,
-					src: nextPatternMatchingObject.matrixSrc
-				},
-				...nextPatternMatchingObject.responses.map((response) => ({
-					type: 'img' as const,
-					src: response.src
-				}))
-			];
-			preloadMedia(media);
+			// if it is image type, preload it
+			if (nextPatternMatchingObject.type === 'image') {
+				preloadMedia([
+					{
+						type: 'img' as const,
+						src: (nextPatternMatchingObject as ITaskPatternMatchingObjectImage).matrixSrc
+					},
+					...nextPatternMatchingObject.responses.map((response) => ({
+						type: 'img' as const,
+						src: response.src
+					}))
+				]);
+			}
 		}
 	};
 

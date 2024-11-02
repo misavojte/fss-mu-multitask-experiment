@@ -221,7 +221,7 @@
 </script>
 
 <div
-	class="flex justify-center items-start box-border absolute"
+	class="flex justify-center items-start box-border relative"
 	style="width: {width}px; height: {height}px;"
 	bind:this={mainElement}
 >
