@@ -33,38 +33,10 @@ const meta = {
 			]
 		},
 		socialMediaStimuliAS: {
-			control: 'object',
-			defaultValue: [
-				{
-					id: '1',
-					src: 'task/3/1.png'
-				},
-				{
-					id: '2',
-					src: 'task/3/2.png'
-				},
-				{
-					id: '3',
-					src: 'task/3/3.png'
-				}
-			]
+			control: 'object'
 		},
 		socialMediaStimuliNS: {
-			control: 'object',
-			defaultValue: [
-				{
-					id: '1',
-					src: 'task/3/1.png'
-				},
-				{
-					id: '2',
-					src: 'task/3/2.png'
-				},
-				{
-					id: '3',
-					src: 'task/3/3.png'
-				}
-			]
+			control: 'object'
 		}
 	}
 } satisfies Meta<TaskSocialMedia>;
@@ -94,30 +66,22 @@ export const Default: Story = {
 		],
 		socialMediaStimuliAS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_AS_1',
+				src: '/task/3/practice/PT_AS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_AS_2',
+				src: '/task/3/practice/PT_AS_Image 2.png'
 			}
 		],
 		socialMediaStimuliNS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_NS_1',
+				src: '/task/3/practice/PT_NS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_NS_2',
+				src: '/task/3/practice/PT_NS_Image 2.png'
 			}
 		]
 	}
@@ -143,30 +107,22 @@ export const QuickInspect: Story = {
 		],
 		socialMediaStimuliAS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_AS_1',
+				src: '/task/3/practice/PT_AS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_AS_2',
+				src: '/task/3/practice/PT_AS_Image 2.png'
 			}
 		],
 		socialMediaStimuliNS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_NS_1',
+				src: '/task/3/practice/PT_NS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_NS_2',
+				src: '/task/3/practice/PT_NS_Image 2.png'
 			}
 		],
 		initialDelay: 1000,

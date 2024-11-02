@@ -65,30 +65,22 @@ export const Math: Story = {
 	args: {
 		socialMediaStimuliAS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_AS_1',
+				src: '/task/3/practice/PT_AS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_AS_2',
+				src: '/task/3/practice/PT_AS_Image 2.png'
 			}
 		],
 		socialMediaStimuliNS: [
 			{
-				id: '1',
-				src: 'task/3/1.png'
+				id: 'PT_NS_1',
+				src: '/task/3/practice/PT_NS_Image 1.png'
 			},
 			{
-				id: '2',
-				src: 'task/3/2.png'
-			},
-			{
-				id: '3',
-				src: 'task/3/3.png'
+				id: 'PT_NS_2',
+				src: '/task/3/practice/PT_NS_Image 2.png'
 			}
 		],
 		patternMatchingObjects: taskHandlerMath.getTaskPatternMatchingObjectsForPractice(),

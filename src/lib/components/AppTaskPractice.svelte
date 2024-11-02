@@ -11,22 +11,24 @@
 	const videoDocumentarySrc = base + '/video/video.mp4';
 	const socialMediaStimuliNS = [
 		{
-			id: '1',
-			src: base + '/task/3/1.png'
+			id: 'PT_NS_1',
+			src: base + '/task/3/practice/PT_NS_Image 1.png'
 		},
 		{
-			id: '2',
-			src: base + '/task/3/2.png'
-		},
-		{
-			id: '3',
-			src: base + '/task/3/3.png'
+			id: 'PT_NS_2',
+			src: base + '/task/3/practice/PT_NS_Image 2.png'
 		}
 	];
-	const socialMediaStimuliAS = [] as Array<{
-		id: string;
-		src: string;
-	}>; // No AS stimuli for practice
+	const socialMediaStimuliAS = [
+		{
+			id: 'PT_AS_1',
+			src: base + '/task/3/practice/PT_AS_Image 1.png'
+		},
+		{
+			id: 'PT_AS_2',
+			src: base + '/task/3/practice/PT_AS_Image 2.png'
+		}
+	];
 
 	const socialMediaButtons: {
 		text: string;
