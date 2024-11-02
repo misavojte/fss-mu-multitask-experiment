@@ -160,7 +160,7 @@ export abstract class ATaskHandlerMath extends ATaskHandler {
 			}
 			return ids;
 		};
-		const ids = getIds(5, 25);
+		const ids = getIds(5, 200);
 		const base = this.base + 'task/1/math/trial/';
 		return ids.map((id) => this.getTaskPatternMatchingObject(id, base));
 	}
