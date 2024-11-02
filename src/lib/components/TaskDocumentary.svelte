@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { createEventDispatcher, onDestroy, SvelteComponent } from 'svelte';
+	import { createEventDispatcher, onDestroy } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
-	import { waitForTimeoutCancellable } from '$lib/utils/waitForCondition';
 	import TaskDocumentaryButton from './TaskDocumentaryButton.svelte';
-	import AnimationTarget from './AnimationTarget.svelte';
 	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
 	export let videoDocumentarySrc: string;

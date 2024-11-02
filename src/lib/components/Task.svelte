@@ -135,6 +135,10 @@
 
 	export let socialStimulusRemindAfter: number = 10000;
 
+	export let wordOccurence: string = 'SLOVO';
+	export let wordOccurenceTolerance: number = 10000;
+	export let wordOccurenceTimestamps: number[] = [7000, 7100];
+
 	export let taskHandler: ATaskHandler;
 
 	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
@@ -301,6 +305,9 @@
 				{muted}
 				width={widthDocumentary}
 				height={heightDocumentary}
+				{wordOccurence}
+				{wordOccurenceTolerance}
+				{wordOccurenceTimestamps}
 				on:loaded={() => videoLoaded.triggerResolve(true)}
 			/>
 		</Intersecter>

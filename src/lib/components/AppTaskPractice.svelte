@@ -65,6 +65,9 @@
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
+		wordOccurence="PARETTO"
+		wordOccurenceTolerance={10000}
+		wordOccurenceTimestamps={[6800, 7200]}
 		endScenario={'pattern-timeout'}
 		on:taskEnd
 	/>
