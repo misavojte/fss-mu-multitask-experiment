@@ -137,6 +137,7 @@
 
 	export let socialAdjustBetweenDelay: boolean = false;
 
+	export let videoStartTime: number = 0;
 	export let wordOccurence: string = 'SLOVO';
 	export let wordOccurenceTolerance: number = 10000;
 	export let wordOccurenceTimestamps: number[] = [7000, 7100];
@@ -310,6 +311,7 @@
 		<Intersecter id="task-documentary">
 			<TaskDocumentary
 				{videoDocumentarySrc}
+				{videoStartTime}
 				hideAllControls={true}
 				play={hasStarted}
 				{muted}

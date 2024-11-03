@@ -71,7 +71,7 @@ const cs = {
 			confirm: 'Rozumím',
 			paragraphs: {
 				1: 'Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video. Aritmetické rovnice jsou však stále vaším hlavním úkolem.',
-				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
+				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. Konkrétně jde o slovo **"mokřad"** a všechna odvozená slova (tedy např. i přídavné jméno *mokřadní*). Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
 			}
 		},
 		'5b': {
@@ -79,7 +79,7 @@ const cs = {
 			confirm: 'Rozumím',
 			paragraphs: {
 				1: 'Zatímco budete řešit aritmetické rovnice, budete muset současně pozorně sledovat dokumentární video.',
-				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
+				2: 'Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. Konkrétně jde o slovo **"mokřad"** a všechna odvozená slova (tedy např. i přídavné jméno *mokřadní*). Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.'
 			}
 		},
 		6: {

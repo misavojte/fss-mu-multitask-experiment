@@ -8,7 +8,7 @@
 
 	export let taskHandler: ATaskHandler;
 	const patternMatchingObjects = taskHandler.getTaskPatternMatchingObjectsForPractice();
-	const videoDocumentarySrc = base + '/video/video.mp4';
+	const videoDocumentarySrc = base + '/video/trial.mp4';
 	const socialMediaStimuliNS = [
 		{
 			id: 'PT_NS_1',
@@ -68,9 +68,10 @@
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
 		socialAdjustBetweenDelay={true}
-		wordOccurence="PARETTO"
+		wordOccurence="mokřad*"
 		wordOccurenceTolerance={10000}
-		wordOccurenceTimestamps={[6800, 7200]}
+		wordOccurenceTimestamps={[423000, 749000]}
+		videoStartTime={415000}
 		endScenario={'pattern-timeout'}
 		on:taskEnd
 	/>

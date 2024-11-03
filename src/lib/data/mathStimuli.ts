@@ -1297,7 +1297,7 @@ export const mathStimuli: ITaskPatternMatchingObjectText[] = [
         matrixContent: `(15 - 5) + 2 = ?`,
         responses: [
             { id: '1', content: `19` },
-            { id: '2', content: `7` },
+            { id: '2', content: `12` },
             { id: '3', content: `37` },
             { id: '4', content: `14` }
         ]
@@ -2204,4 +2204,4 @@ export const mathStimuli: ITaskPatternMatchingObjectText[] = [
             { id: '4', content: `7` }
         ]
       },
-] as const;
+];

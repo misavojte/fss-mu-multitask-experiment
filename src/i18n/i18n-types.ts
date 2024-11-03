@@ -134,7 +134,7 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​V​ ​z​á​c​v​i​č​n​é​ ​ú​l​o​z​e​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​"​P​a​r​e​t​t​o​"​,​ ​v​ ​h​l​a​v​n​í​ ​ú​l​o​z​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​K​o​n​k​r​é​t​n​ě​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​ ​a​ ​v​š​e​c​h​n​a​ ​o​d​v​o​z​e​n​á​ ​s​l​o​v​a​ ​(​t​e​d​y​ ​n​a​p​ř​.​ ​i​ ​p​ř​í​d​a​v​n​é​ ​j​m​é​n​o​ ​*​m​o​k​ř​a​d​n​í​*​)​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
 				 */
 				'2': string
 			}
@@ -252,7 +252,7 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​V​ ​z​á​c​v​i​č​n​é​ ​ú​l​o​z​e​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​"​P​a​r​e​t​t​o​"​,​ ​v​ ​h​l​a​v​n​í​ ​ú​l​o​z​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
+				 * V​i​d​e​o​ ​n​ě​k​o​l​i​k​r​á​t​ ​z​m​í​n​í​ ​s​p​e​c​i​f​i​c​k​é​ ​s​l​o​v​o​ ​v​ ​r​ů​z​n​ý​c​h​ ​s​v​ý​c​h​ ​t​v​a​r​e​c​h​.​ ​P​o​k​a​ž​d​é​,​ ​k​d​y​ž​ ​s​l​o​v​o​ ​u​s​l​y​š​í​t​e​,​ ​z​m​á​č​k​n​ě​t​e​ ​t​l​a​č​í​t​k​o​ ​u​v​n​i​t​ř​ ​v​i​d​e​a​.​ ​K​o​n​k​r​é​t​n​ě​ ​j​d​e​ ​o​ ​s​l​o​v​o​ ​*​*​"​m​o​k​ř​a​d​"​*​*​ ​a​ ​v​š​e​c​h​n​a​ ​o​d​v​o​z​e​n​á​ ​s​l​o​v​a​ ​(​t​e​d​y​ ​n​a​p​ř​.​ ​i​ ​p​ř​í​d​a​v​n​é​ ​j​m​é​n​o​ ​*​m​o​k​ř​a​d​n​í​*​)​.​ ​P​o​k​u​d​ ​o​d​p​o​v​í​t​e​ ​d​o​s​t​a​t​e​č​n​ě​ ​r​y​c​h​l​e​ ​a​ ​s​p​r​á​v​n​ě​,​ ​z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​.
 				 */
 				'2': string
 			}
@@ -434,7 +434,7 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
+				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. Konkrétně jde o slovo **"mokřad"** a všechna odvozená slova (tedy např. i přídavné jméno *mokřadní*). Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
 				 */
 				'2': () => LocalizedString
 			}
@@ -552,7 +552,7 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. V zácvičné úloze jde o slovo "Paretto", v hlavní úloze o slovo **"mokřad"**. Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
+				 * Video několikrát zmíní specifické slovo v různých svých tvarech. Pokaždé, když slovo uslyšíte, zmáčkněte tlačítko uvnitř videa. Konkrétně jde o slovo **"mokřad"** a všechna odvozená slova (tedy např. i přídavné jméno *mokřadní*). Pokud odpovíte dostatečně rychle a správně, získáte jeden bod.
 				 */
 				'2': () => LocalizedString
 			}

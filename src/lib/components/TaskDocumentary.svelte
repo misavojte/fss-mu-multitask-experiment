@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher, onDestroy } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import TaskDocumentaryButton from './TaskDocumentaryButton.svelte';
 	import { AnimationTargetHandler } from './AnimationTarget.handler';
@@ -7,6 +7,7 @@
 	export let videoDocumentarySrc: string;
 	export let width: number = 400;
 	export let height: number = 300;
+	export let videoStartTime: number = 0;
 	export const hideAllControls: boolean = true;
 	export let play: boolean = false;
 	export let muted: boolean = false;
@@ -32,7 +33,7 @@
 		}
 	};
 
-	let video: HTMLVideoElement | null = null;
+	let video: HTMLVideoElement;
 
 	const dispatch = createEventDispatcher();
 	let abortController = new AbortController();
@@ -87,6 +88,11 @@
 
 	onDestroy(() => {
 		abortController.abort();
+	});
+
+	onMount(() => {
+		// watchout... startTime is in ms!
+		video.currentTime = videoStartTime / 1000;
 	});
 </script>
 
