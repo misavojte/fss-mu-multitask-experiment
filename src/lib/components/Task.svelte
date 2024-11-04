@@ -227,10 +227,10 @@
 	});
 
 	const handleDocumentaryResponse = (
-		e: CustomEvent<{ correct: boolean; videoTime: number; timestampTime?: number }>
+		e: CustomEvent<{ correctness: boolean; videoTime: number; timestampTime?: number }>
 	) => {
-		const { correct, videoTime, timestampTime } = e.detail;
-		taskHandler.handleDocumentaryResponse(correct, videoTime, timestampTime);
+		const { correctness, videoTime, timestampTime } = e.detail;
+		taskHandler.handleDocumentaryResponse(correctness, videoTime, timestampTime);
 	};
 </script>
 
