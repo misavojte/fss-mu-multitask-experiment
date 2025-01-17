@@ -59,5 +59,8 @@
 		"extends": [
 			"plugin:storybook/recommended"
 		]
+	},
+	"dependencies": {
+		"vite-plugin-pwa": "^0.21.1"
 	}
 }
