@@ -34,6 +34,13 @@ export default defineConfig({
 			},
 			workbox: {
 				globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg}'],
+				globIgnores: [
+					'**/storybook/**',
+					'**/storybook-static/**',
+					'**/*.stories.{js,ts,svelte}',
+					'**/node_modules/@storybook/**',
+					'**/storybook.*'
+				],
 				runtimeCaching: [
 					{
 						urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
