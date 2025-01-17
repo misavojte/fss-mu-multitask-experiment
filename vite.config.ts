@@ -39,7 +39,8 @@ export default defineConfig({
 					'**/storybook-static/**',
 					'**/*.stories.{js,ts,svelte}',
 					'**/node_modules/@storybook/**',
-					'**/storybook.*'
+					'**/storybook.*',
+					'**/assets/ZoomOutSolid-*.js'
 				],
 				runtimeCaching: [
 					{
