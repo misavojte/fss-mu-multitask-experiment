@@ -42,7 +42,7 @@ jobs:
         run: npm cache clean --force
 
       - name: Install dependencies
-        run: npm install --force
+        run: npm install --omit=integrity
 
       - name: Build with SvelteKit
         run: npm run build
