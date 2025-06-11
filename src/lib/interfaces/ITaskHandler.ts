@@ -32,6 +32,7 @@ export abstract class ATaskHandler {
 	removeOnEndHandler() {
 		this.onEnd = () => {};
 	}
+	sentiment: 'negative' | 'positive' = 'negative';
 	scoringType: 'prioritize' | 'even' = 'prioritize';
 	score = 0;
 	get pointsOnCorrectPatternMatching(): number {
@@ -97,8 +98,9 @@ export abstract class ATaskHandler {
 	handleLoadFinish(): void {
 		this.logAction('task-load-finish', '');
 	}
-	logScoringType() {
+	logScoringTypeAndSentiment() {
 		this.logAction('task-version', this.scoringType);
+		this.logAction('task-sentiment', this.sentiment);
 	}
 	handleDocumentaryResponse(
 		isCorrect: boolean,

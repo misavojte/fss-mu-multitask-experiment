@@ -74,17 +74,60 @@
 	};
 
 	let variant: 'prioritize' | 'even';
+	let sentiment: 'negative' | 'positive';
+
+	let taskVariants:
+		| 'prioritize-negative'
+		| 'prioritize-positive'
+		| 'even-negative'
+		| 'even-positive';
 
 	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
 	// "prioritize" or "even"
 	// if it is not set, set it to "prioritize"
 	// set the opposite variant to the variant
-	const obtainVariant = () => {
-		const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
-		if (variant === 'prioritize') {
-			return 'even';
+	// const obtainVariant = () => {
+	// 	const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
+	// 	if (variant === 'prioritize') {
+	// 		return 'even';
+	// 	} else {
+	// 		return 'prioritize';
+	// 	}
+	// };
+
+	const obtainTaskVariants = ():
+		| 'prioritize-negative'
+		| 'prioritize-positive'
+		| 'even-negative'
+		| 'even-positive' => {
+		const currentTaskVariants = localStorage.getItem('multitaskingExperimentFSSMUTaskVariants');
+
+		// If no previous value, start with first variant
+		if (!currentTaskVariants) {
+			return 'prioritize-negative';
+		}
+
+		// Rotate through the variants in order: prioritize-negative -> prioritize-positive -> even-negative -> even-positive -> back to prioritize-negative
+		switch (currentTaskVariants) {
+			case 'prioritize-negative':
+				return 'prioritize-positive';
+			case 'prioritize-positive':
+				return 'even-negative';
+			case 'even-negative':
+				return 'even-positive';
+			case 'even-positive':
+				return 'prioritize-negative';
+			default:
+				return 'prioritize-negative';
+		}
+	};
+
+	const obtainSentiment = () => {
+		const sentiment = localStorage.getItem('multitaskingExperimentFSSMUSentiment');
+		if (sentiment === 'negative') {
+			return 'positive';
 		} else {
-			return 'prioritize';
+			return 'negative';
 		}
 	};
 
@@ -92,11 +135,38 @@
 		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
 	};
 
+	const setSentiment = (sentiment: 'negative' | 'positive') => {
+		localStorage.setItem('multitaskingExperimentFSSMUSentiment', sentiment);
+	};
+
+	const setTaskVariants = (
+		taskVariants: 'prioritize-negative' | 'prioritize-positive' | 'even-negative' | 'even-positive'
+	) => {
+		localStorage.setItem('multitaskingExperimentFSSMUTaskVariants', taskVariants);
+	};
+
 	onMount(() => {
-		variant = obtainVariant();
+		taskVariants = obtainTaskVariants();
+
+		// Extract variant and sentiment from taskVariants
+		if (taskVariants.startsWith('prioritize')) {
+			variant = 'prioritize';
+		} else {
+			variant = 'even';
+		}
+
+		if (taskVariants.endsWith('negative')) {
+			sentiment = 'negative';
+		} else {
+			sentiment = 'positive';
+		}
+
 		taskHandler.scoringType = variant;
+		taskHandler.sentiment = sentiment;
+		setTaskVariants(taskVariants);
 		setVariant(variant);
-		taskHandler.logScoringType();
+		setSentiment(sentiment);
+		taskHandler.logScoringTypeAndSentiment();
 	});
 </script>
 
