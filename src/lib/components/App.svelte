@@ -19,8 +19,12 @@
 	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
 	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
 	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
-	import { createFinalMediaStimuli } from '$lib/utils/createMediaStimuli';
+	import {
+		createFinalMediaStimuli,
+		createTrainingMediaStimuli
+	} from '$lib/utils/createMediaStimuli';
 	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
+	import AppTaskPracticeSentimentVariant from './AppTaskPracticeSentimentVariant.svelte';
 
 	let stage:
 		| 'connect'
@@ -153,6 +157,8 @@
 	let nonexcludedNS: string[];
 	let excludedAS: string[];
 	let excludedNS: string[];
+	let trainingAS: string[];
+	let trainingNS: string[];
 
 	onMount(() => {
 		taskVariants = obtainTaskVariants();
@@ -184,6 +190,9 @@
 		const excludedStimuli = createFinalMediaStimuli(sentiment, idsToExclude);
 		excludedAS = excludedStimuli.AS;
 		excludedNS = excludedStimuli.NS;
+		const trainingStimuli = createTrainingMediaStimuli(sentiment);
+		trainingAS = trainingStimuli.AS;
+		trainingNS = trainingStimuli.NS;
 	});
 </script>
 
@@ -207,7 +216,12 @@
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPractice on:taskEnd={triggerQuestions2} {taskHandler} />
+			<AppTaskPracticeSentimentVariant
+				on:taskEnd={triggerQuestions2}
+				{taskHandler}
+				AS={trainingAS}
+				NS={trainingNS}
+			/>
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
