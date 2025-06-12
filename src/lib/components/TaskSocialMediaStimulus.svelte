@@ -10,7 +10,7 @@
 	export let width: number = 300;
 	export let heightImage: number = 500;
 	export let heightInteractors: number = 150;
-	export let noStimulusMessage: string = 'Žádné novinky k zobrazení';
+	export let noStimulusMessage: string = 'Brzy se zobrazí nový příspěvek!';
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
