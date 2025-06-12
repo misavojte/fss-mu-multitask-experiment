@@ -59,15 +59,15 @@
 		{videoDocumentarySrc}
 		muted={false}
 		on:taskEnd
-		socialInitialDelay={5000}
-		socialBetweenDelay={5000}
+		socialInitialDelay={1000}
+		socialBetweenDelay={0}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
 		socialAdjustBetweenDelay={true}
 		wordOccurence="mokřad*"
 		wordOccurenceTolerance={10000}
 		wordOccurenceTimestamps={mokradyTimestamps}
-		endScenario={'timeout'}
+		endScenario={'social-media-finished'}
 		socialMediaOnly={true}
 		positionXSocial={786}
 		positionYSocial={203}
