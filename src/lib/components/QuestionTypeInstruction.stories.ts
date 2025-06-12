@@ -47,6 +47,6 @@ export const Default: Story = {
 			required: true,
 			type: 'instruction'
 		} as const,
-		value: ''
+		value: false
 	}
 };

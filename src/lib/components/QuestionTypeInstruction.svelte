@@ -6,11 +6,11 @@
 	export let question: IQuestionConfigInstruction;
 	const dispatch = createEventDispatcher();
 	const handleClick = () => {
-		value = 'true';
+		value = true;
 		dispatch('input');
 	};
 
-	export let value: string;
+	export let value: boolean = false;
 
 	function convertMarkdownToHtml(markdown: string): string {
 		// Convert bold (**) to <strong>
@@ -55,9 +55,7 @@
 		/>
 		<button
 			on:click|preventDefault={handleClick}
-			class="{value
-				? 'bg-blue-500'
-				: 'bg-neutral-300 hover:bg-neutral-400'} text-white font-bold rounded-md p-4 cursor-pointer w-fit mx-auto transition-colors"
+			class="bg-blue-500 text-white font-bold rounded-md p-4 cursor-pointer w-fit mx-auto transition-colors"
 			>{question.confirmText}</button
 		>
 	</form>
