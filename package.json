@@ -15,7 +15,6 @@
 		"typesafe-i18n": "typesafe-i18n"
 	},
 	"devDependencies": {
-		"@473783/develex-core": "0.1.2",
 		"@chromatic-com/storybook": "^1.6.1",
 		"@storybook/addon-essentials": "^8.2.6",
 		"@storybook/addon-interactions": "^8.2.6",
@@ -54,6 +53,7 @@
 		]
 	},
 	"dependencies": {
+		"develex-js-sdk": "^0.3.5",
 		"vite-plugin-pwa": "^0.21.1"
 	}
 }

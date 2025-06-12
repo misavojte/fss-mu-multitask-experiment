@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GazeInputConfig, GazeManager } from '@473783/develex-core';
+	import type { GazeInputConfig, GazeManager } from 'develex-js-sdk';
 	import GazeConnectButton from '$lib/components/GazeConnectButton.svelte';
 	import GazeConnectSelect from '$lib/components/GazeConnectSelect.svelte';
 	import { createEventDispatcher } from 'svelte';

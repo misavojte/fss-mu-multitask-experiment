@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import GazeValidate from './GazeValidate.svelte';
-import { GazeManager } from '@473783/develex-core';
+import { GazeManager } from 'develex-js-sdk';
 import { ConnectLoggerMock } from '$lib/services/ConnectLoggerMock';
 
 const gazeManager = new GazeManager();

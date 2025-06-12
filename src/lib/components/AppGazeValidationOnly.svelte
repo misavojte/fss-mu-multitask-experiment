@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GazeManager } from '@473783/develex-core';
+	import type { GazeManager } from 'develex-js-sdk';
 	import GazeCalibrationValidation from './GazeCalibrationValidation.svelte';
 	import InterfaceFooter from './InterfaceFooter.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';

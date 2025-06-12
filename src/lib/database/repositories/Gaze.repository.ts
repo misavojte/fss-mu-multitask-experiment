@@ -1,12 +1,12 @@
 // src/lib/db/repositories/actionLogRepository.ts
 import db from '../database';
 import type { Gaze } from '../models/Gaze.model';
-import type { GazeDataPoint } from '@473783/develex-core';
+import type { GazeDataPoint } from 'develex-js-sdk';
 
 type GazeInteractionEvent = {
 	type: string;
 	sessionId: string;
-	timestamp: number;
+	timestamp: string;
 };
 
 export type AcceptedIntersect = GazeInteractionEvent & {
@@ -19,7 +19,8 @@ export async function saveGazeInteraction(
 	interaction: AcceptedIntersect,
 	sessionId: string
 ): Promise<void> {
-	const { timestamp, target, gazeData } = interaction;
+	const { target, gazeData } = interaction;
+	const intersectTimestamp = interaction.timestamp;
 	const {
 		xL,
 		xLScreenRelative,
@@ -31,8 +32,9 @@ export async function saveGazeInteraction(
 		yRScreenRelative,
 		validityL,
 		validityR,
-		fixationDuration,
-		fixationId
+		timestamp,
+		deviceTimestamp,
+		deviceId
 	} = gazeData;
 	const aoi = target.map((el) => el.id).join(';');
 	await saveGaze({
@@ -40,6 +42,9 @@ export async function saveGazeInteraction(
 		gazeSessionId: interaction.sessionId,
 		timestamp,
 		ISOtimestamp: new Date(timestamp).toISOString(),
+		intersectTimestamp,
+		deviceTimestamp,
+		deviceId,
 		xL,
 		xLScreenRelative,
 		xR,
@@ -50,8 +55,6 @@ export async function saveGazeInteraction(
 		yRScreenRelative,
 		validityL,
 		validityR,
-		fixationDuration,
-		fixationId,
 		aoi
 	});
 }
@@ -150,6 +153,9 @@ function logsToCSV(logs: Gaze[]): string {
 			id,
 			timestamp,
 			ISOtimestamp,
+			intersectTimestamp,
+			deviceTimestamp,
+			deviceId,
 			sessionId,
 			gazeSessionId,
 			xL,
@@ -162,12 +168,10 @@ function logsToCSV(logs: Gaze[]): string {
 			yRScreenRelative,
 			validityL,
 			validityR,
-			fixationDuration,
-			fixationId,
 			aoi
 		} = log;
 		// Ensure values are properly escaped and formatted for CSV
-		return `${id},${timestamp},${ISOtimestamp},${sessionId},${gazeSessionId},${xL},${xLScreenRelative},${xR},${xRScreenRelative},${yL},${yLScreenRelative},${yR},${yRScreenRelative},${validityL},${validityR},${fixationDuration},${fixationId},${aoi}`;
+		return `${id},${timestamp},${ISOtimestamp},${intersectTimestamp},${deviceTimestamp},${deviceId},${sessionId},${gazeSessionId},${xL},${xLScreenRelative},${xR},${xRScreenRelative},${yL},${yLScreenRelative},${yR},${yRScreenRelative},${validityL},${validityR},${aoi}`;
 	});
 
 	// Join header and rows to form the final CSV string

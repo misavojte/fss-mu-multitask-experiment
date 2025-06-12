@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GazeManager, GazeInteractionObjectValidationSettings } from '@473783/develex-core';
+	import type { GazeManager, GazeInteractionObjectValidationSettings } from 'develex-js-sdk';
 	import GazeValidateCross from './GazeValidateCross.svelte';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';

@@ -3,8 +3,7 @@
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
-	import { GazeManager } from '@473783/develex-core';
+	import { GazeManager } from 'develex-js-sdk';
 	import AppGaze from './AppGaze.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
