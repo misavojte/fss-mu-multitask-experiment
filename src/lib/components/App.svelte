@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import { GazeManager } from 'develex-js-sdk';
@@ -10,8 +9,6 @@
 	import { onDestroy, onMount, setContext } from 'svelte';
 	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
 	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
-	import AppQuestionsPrePracticeA from '$lib/components/AppQuestionsPrePracticeA.svelte';
-	import AppQuestionsPostPracticeA from '$lib/components/AppQuestionsPostPracticeA.svelte';
 	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
@@ -90,67 +87,18 @@
 		gazeManager.off('intersect', onIntersect);
 	};
 
-	let variant: 'prioritize' | 'even';
+	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alterning variant was turned off
 	let sentiment: 'negative' | 'positive';
 
-	let taskVariants:
-		| 'prioritize-negative'
-		| 'prioritize-positive'
-		| 'even-negative'
-		| 'even-positive';
-
-	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
-	// "prioritize" or "even"
-	// if it is not set, set it to "prioritize"
-	// set the opposite variant to the variant
-	// const obtainVariant = () => {
-	// 	const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
-	// 	if (variant === 'prioritize') {
-	// 		return 'even';
-	// 	} else {
-	// 		return 'prioritize';
-	// 	}
-	// };
-
-	const obtainTaskVariants = ():
-		| 'prioritize-negative'
-		| 'prioritize-positive'
-		| 'even-negative'
-		| 'even-positive' => {
-		const currentTaskVariants = localStorage.getItem('multitaskingExperimentFSSMUTaskVariants');
-
-		// If no previous value, start with first variant
-		if (!currentTaskVariants) {
-			return 'prioritize-negative';
-		}
-
-		// Rotate through the variants in order: prioritize-negative -> prioritize-positive -> even-negative -> even-positive -> back to prioritize-negative
-		switch (currentTaskVariants) {
-			case 'prioritize-negative':
-				return 'prioritize-positive';
-			case 'prioritize-positive':
-				return 'even-negative';
-			case 'even-negative':
-				return 'even-positive';
-			case 'even-positive':
-				return 'prioritize-negative';
-			default:
-				return 'prioritize-negative';
-		}
-	};
-
-	const setVariant = (variant: 'prioritize' | 'even') => {
-		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
+	// Remove taskVariants variable and related functions
+	// obtain sentiment from localStorage, default to 'negative' if not set
+	const obtainSentiment = (): 'negative' | 'positive' => {
+		const storedSentiment = localStorage.getItem('multitaskingExperimentFSSMUSentiment');
+		return storedSentiment === 'positive' ? 'positive' : 'negative';
 	};
 
 	const setSentiment = (sentiment: 'negative' | 'positive') => {
 		localStorage.setItem('multitaskingExperimentFSSMUSentiment', sentiment);
-	};
-
-	const setTaskVariants = (
-		taskVariants: 'prioritize-negative' | 'prioritize-positive' | 'even-negative' | 'even-positive'
-	) => {
-		localStorage.setItem('multitaskingExperimentFSSMUTaskVariants', taskVariants);
 	};
 
 	let nonexcludedAS: string[];
@@ -161,25 +109,10 @@
 	let trainingNS: string[];
 
 	onMount(() => {
-		taskVariants = obtainTaskVariants();
-
-		// Extract variant and sentiment from taskVariants
-		if (taskVariants.startsWith('prioritize')) {
-			variant = 'prioritize';
-		} else {
-			variant = 'even';
-		}
-
-		if (taskVariants.endsWith('negative')) {
-			sentiment = 'negative';
-		} else {
-			sentiment = 'positive';
-		}
+		sentiment = obtainSentiment();
 
 		taskHandler.scoringType = variant;
 		taskHandler.sentiment = sentiment;
-		setTaskVariants(taskVariants);
-		setVariant(variant);
 		setSentiment(sentiment);
 		taskHandler.logScoringTypeAndSentiment();
 
@@ -208,11 +141,7 @@
 	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			{#if variant === 'prioritize'}
-				<AppQuestionsPrePracticeA {questionsService} on:startPractice={triggerPractice} />
-			{:else if variant === 'even'}
-				<AppQuestionsPrePracticeB {questionsService} on:startPractice={triggerPractice} />
-			{/if}
+			<AppQuestionsPrePracticeB {questionsService} on:startPractice={triggerPractice} />
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -225,19 +154,11 @@
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			{#if variant === 'prioritize'}
-				<AppQuestionsPostPracticeA
-					{questionsService}
-					on:startPractice={triggerPractice}
-					on:startTrial={triggerTrial}
-				/>
-			{:else if variant === 'even'}
-				<AppQuestionsPostPracticeB
-					{questionsService}
-					on:startPractice={triggerPractice}
-					on:startTrial={triggerTrial}
-				/>
-			{/if}
+			<AppQuestionsPostPracticeB
+				{questionsService}
+				on:startPractice={triggerPractice}
+				on:startTrial={triggerTrial}
+			/>
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
