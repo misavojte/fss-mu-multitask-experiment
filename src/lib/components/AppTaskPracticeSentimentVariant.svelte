@@ -2,23 +2,22 @@
 	import Task from '$lib/components/Task.svelte';
 	import { base } from '$app/paths';
 	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
-	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import LL from '../../i18n/i18n-svelte';
+	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { get } from 'svelte/store';
-
 	export let taskHandler: ATaskHandler;
-	const patternMatchingObjects = fisherYatesShuffle(
-		taskHandler.getTaskPatternMatchingObjectsForTest()
-	);
+	export let AS: string[];
+	export let NS: string[];
+	const patternMatchingObjects = taskHandler.getTaskPatternMatchingObjectsForPractice();
 	const videoDocumentarySrc = base + '/video/trial.mp4';
 
-	const socialMediaStimuliAS = Array.from({ length: 8 }, (_, i) => ({
-		id: `AS_Image ${i + 1}`,
-		src: `${base}/task/3/trial/F_AS_Image ${i + 1}.PNG`
+	const socialMediaStimuliNS = NS.map((id) => ({
+		id: `${id}`,
+		src: base + `/task/3/training/${id}`
 	}));
-	const socialMediaStimuliNS = Array.from({ length: 8 }, (_, i) => ({
-		id: `NS_Image ${i + 1}`,
-		src: `${base}/task/3/trial/F_NS_Image ${i + 1}.PNG`
+	const socialMediaStimuliAS = AS.map((id) => ({
+		id: `${id}`,
+		src: base + `/task/3/training/${id}`
 	}));
 
 	const socialMediaButtons: {
@@ -43,8 +42,6 @@
 			html: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-hand-thumbs-down-fill" viewBox="0 0 16 16"><path d="M6.956 14.534c.065.936.952 1.659 1.908 1.42l.261-.065a1.38 1.38 0 0 0 1.012-.965c.22-.816.533-2.512.062-4.51q.205.03.443.051c.713.065 1.669.071 2.516-.211.518-.173.994-.68 1.2-1.272a1.9 1.9 0 0 0-.234-1.734c.058-.118.103-.242.138-.362.077-.27.113-.568.113-.856 0-.29-.036-.586-.113-.857a2 2 0 0 0-.16-.403c.169-.387.107-.82-.003-1.149a3.2 3.2 0 0 0-.488-.9c.054-.153.076-.313.076-.465a1.86 1.86 0 0 0-.253-.912C13.1.757 12.437.28 11.5.28H8c-.605 0-1.07.08-1.466.217a4.8 4.8 0 0 0-.97.485l-.048.029c-.504.308-.999.61-2.068.723C2.682 1.815 2 2.434 2 3.279v4c0 .851.685 1.433 1.357 1.616.849.232 1.574.787 2.132 1.41.56.626.914 1.28 1.039 1.638.199.575.356 1.54.428 2.591"/></svg>'
 		}
 	]);
-
-	const mokradyTimestamps = [16000, 72000, 83000, 157000, 169000, 423000, 749000];
 </script>
 
 <div class="flex flex-col items-center justify-center w-screen h-screen">
@@ -56,7 +53,6 @@
 		{socialMediaButtons}
 		{videoDocumentarySrc}
 		muted={false}
-		on:taskEnd
 		socialInitialDelay={5000}
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
@@ -64,7 +60,9 @@
 		socialAdjustBetweenDelay={true}
 		wordOccurence="mokřad*"
 		wordOccurenceTolerance={10000}
-		wordOccurenceTimestamps={mokradyTimestamps}
-		endScenario={'timeout'}
+		wordOccurenceTimestamps={[423000, 749000]}
+		videoStartTime={415000}
+		endScenario={'pattern-timeout'}
+		on:taskEnd
 	/>
 </div>

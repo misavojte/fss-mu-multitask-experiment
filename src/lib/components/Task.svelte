@@ -25,10 +25,10 @@
 		id: string;
 		color: string;
 		textColor: string;
-		html: string;
+		html?: string;
 	}> = [
-		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff', html: '' },
-		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff', html: '' }
+		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff' },
+		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff' }
 	];
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
@@ -144,7 +144,12 @@
 
 	export let taskHandler: ATaskHandler;
 
-	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
+	export let endScenario: 'timeout' | 'pattern-timeout' | 'social-media-finished' = 'timeout';
+
+	/**
+	 * When true, displays only the social media task and hides pattern matching and documentary tasks.
+	 */
+	export let socialMediaOnly: boolean = false;
 
 	let hasStarted = false;
 
@@ -177,16 +182,20 @@
 	const socialLoaded = new ControllablePromise<boolean>();
 
 	// Promise.all to wait for all resources to be loaded
-	const loadPromise = Promise.all([
-		videoLoaded.promise,
-		patternLoaded.promise,
-		socialLoaded.promise
-	]);
+	const loadPromise = socialMediaOnly
+		? socialLoaded.promise
+		: Promise.all([videoLoaded.promise, patternLoaded.promise, socialLoaded.promise]);
 
 	const shouldEndTask = writable(false);
 
 	const handlePatternEnd = () => {
 		if (endScenario === 'pattern-timeout') {
+			shouldEndTask.set(true);
+		} // else do nothing, timeout or something else will end the task
+	};
+
+	const handleSocialMediaFinished = () => {
+		if (endScenario === 'social-media-finished') {
 			shouldEndTask.set(true);
 		} // else do nothing, timeout or something else will end the task
 	};
@@ -202,6 +211,9 @@
 			console.error(error);
 		}
 		console.log('Task ended');
+		// Stop all processes before dispatching taskEnd
+		hasStarted = false; // Stop video playback
+		abortController.abort('Task ended'); // Abort all child processes
 		dispatch('taskEnd');
 	};
 
@@ -209,6 +221,13 @@
 
 	onMount(() => {
 		taskHandler.addOnEndHandler(handlePatternEnd);
+
+		// If socialMediaOnly is true, resolve the promises for components that won't be loaded
+		if (socialMediaOnly) {
+			videoLoaded.triggerResolve(true);
+			patternLoaded.triggerResolve(true);
+		}
+
 		// Scale the task to fit the parent element if it is smaller than the task
 		const parentElement = mainElement.parentElement;
 		if (parentElement) {
@@ -266,9 +285,10 @@
 				betweenDelay={socialBetweenDelay}
 				{hasStarted}
 				adjustBetweenDelay={socialAdjustBetweenDelay}
-				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
-					taskHandler
-				)}
+				on:socialMediaInteractorsCompleted={() => {
+					taskHandler.handleSocialMediaInteractorsCompleted.call(taskHandler);
+					handleSocialMediaFinished();
+				}}
 				on:socialMediaInteractorsShow={taskHandler.handleSocialMediaInteractorsShow.bind(
 					taskHandler
 				)}
@@ -285,44 +305,46 @@
 			/>
 		</Intersecter>
 	</div>
-	<div
-		class="absolute"
-		transition:fade={{ duration: 300 }}
-		style="top: {positionYPattern}px; left: {positionXPattern}px;"
-	>
-		<Intersecter id="task-pattern-matching">
-			<TaskPatternMatching
-				{patternMatchingObjects}
-				width={widthPattern}
-				height={heightPattern}
-				{taskHandler}
-				on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
-				on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
-				on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
-				on:loaded={() => patternLoaded.triggerResolve(true)}
-			/>
-		</Intersecter>
-	</div>
-	<div
-		class="absolute"
-		transition:fade={{ duration: 300 }}
-		style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
-	>
-		<Intersecter id="task-documentary">
-			<TaskDocumentary
-				{videoDocumentarySrc}
-				{videoStartTime}
-				hideAllControls={true}
-				play={hasStarted}
-				{muted}
-				width={widthDocumentary}
-				height={heightDocumentary}
-				{wordOccurence}
-				{wordOccurenceTolerance}
-				{wordOccurenceTimestamps}
-				on:loaded={() => videoLoaded.triggerResolve(true)}
-				on:response={handleDocumentaryResponse}
-			/>
-		</Intersecter>
-	</div>
+	{#if !socialMediaOnly}
+		<div
+			class="absolute"
+			transition:fade={{ duration: 300 }}
+			style="top: {positionYPattern}px; left: {positionXPattern}px;"
+		>
+			<Intersecter id="task-pattern-matching">
+				<TaskPatternMatching
+					{patternMatchingObjects}
+					width={widthPattern}
+					height={heightPattern}
+					{taskHandler}
+					on:patternMatchingCompleted={taskHandler.handlePatternMatchingCompleted.bind(taskHandler)}
+					on:patternMatchingNext={taskHandler.handlePatternMatchingNext.bind(taskHandler)}
+					on:patternMatchingResponse={taskHandler.handlePatternMatchingResponse.bind(taskHandler)}
+					on:loaded={() => patternLoaded.triggerResolve(true)}
+				/>
+			</Intersecter>
+		</div>
+		<div
+			class="absolute"
+			transition:fade={{ duration: 300 }}
+			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
+		>
+			<Intersecter id="task-documentary">
+				<TaskDocumentary
+					{videoDocumentarySrc}
+					{videoStartTime}
+					hideAllControls={true}
+					play={hasStarted}
+					{muted}
+					width={widthDocumentary}
+					height={heightDocumentary}
+					{wordOccurence}
+					{wordOccurenceTolerance}
+					{wordOccurenceTimestamps}
+					on:loaded={() => videoLoaded.triggerResolve(true)}
+					on:response={handleDocumentaryResponse}
+				/>
+			</Intersecter>
+		</div>
+	{/if}
 </div>

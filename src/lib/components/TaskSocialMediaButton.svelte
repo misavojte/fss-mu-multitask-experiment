@@ -4,7 +4,7 @@
 	export let id: string;
 	export let color: string = '#0088ff';
 	export let textColor: string = 'white';
-	export let html: string = '';
+	export let html: string | undefined = undefined;
 
 	const dispatch = createEventDispatcher();
 
@@ -43,7 +43,7 @@
 		class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md btn w-full inline-flex items-center justify-center h-full"
 		on:click={handleClick}
 	>
-		{#if html !== ''}
+		{#if html !== '' && html !== undefined}
 			<span class="mr-2"> {@html html}</span>
 		{/if}
 		{text}

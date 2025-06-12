@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { GazeInputConfig, GazeManager } from '@473783/develex-core';
+	import type { GazeInputConfig, GazeManager } from 'develex-js-sdk';
 	import GazeConnectButton from '$lib/components/GazeConnectButton.svelte';
 	import GazeConnectSelect from '$lib/components/GazeConnectSelect.svelte';
 	import { createEventDispatcher } from 'svelte';
@@ -12,13 +12,18 @@
 
 	const isLoading = writable(false);
 
-	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
+	let selected: 'gazepoint' | 'dummy' | 'eyelogic' = 'eyelogic';
 	let error = writable<string[]>([]);
 
-	const configs: Record<'gazepoint' | 'dummy', GazeInputConfig> = {
+	const configs: Record<'gazepoint' | 'dummy' | 'eyelogic', GazeInputConfig> = {
+		eyelogic: {
+			uri: 'ws://localhost:13892',
+			tracker: 'eyelogic',
+			fixationDetection: 'idt'
+		},
 		gazepoint: {
 			uri: 'ws://localhost:13892',
-			tracker: 'opengaze',
+			tracker: 'gazepoint',
 			fixationDetection: 'device'
 		},
 		dummy: {

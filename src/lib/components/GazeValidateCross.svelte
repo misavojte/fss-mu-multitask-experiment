@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onDestroy, SvelteComponent } from 'svelte';
-	import type { GazeInteractionObjectValidationSettings } from '@473783/develex-core';
+	import type { GazeInteractionObjectValidationSettings } from 'develex-js-sdk';
 	import GazeValidateCrossCircle from './GazeValidateCrossCircle.svelte';
-	import type { GazeInteractionObjectValidationEvent } from '@473783/develex-core';
-	import type { GazeManager } from '@473783/develex-core';
+	import type { GazeInteractionObjectValidationEvent } from 'develex-js-sdk';
+	import type { GazeManager } from 'develex-js-sdk';
 
 	export let validationSettings: Partial<GazeInteractionObjectValidationSettings> & {
 		validationDuration: number;

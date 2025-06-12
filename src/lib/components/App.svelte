@@ -3,8 +3,7 @@
 	import AppTaskPractice from '$lib/components/AppTaskPractice.svelte';
 	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppTaskTrial from '$lib/components/AppTaskTrial.svelte';
-	import { GazeManager } from '@473783/develex-core';
+	import { GazeManager } from 'develex-js-sdk';
 	import AppGaze from './AppGaze.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
@@ -17,8 +16,22 @@
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
+	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
+	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
+	import { createFinalMediaStimuli } from '$lib/utils/createMediaStimuli';
+	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
 
-	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
+	let stage:
+		| 'connect'
+		| 'questions-1'
+		| 'questions-2'
+		| 'practice'
+		| 'trial'
+		| 'presingle'
+		| 'gaze-validation'
+		| 'single'
+		| 'end' = 'connect';
 
 	const gazeManager = new GazeManager();
 
@@ -74,17 +87,51 @@
 	};
 
 	let variant: 'prioritize' | 'even';
+	let sentiment: 'negative' | 'positive';
+
+	let taskVariants:
+		| 'prioritize-negative'
+		| 'prioritize-positive'
+		| 'even-negative'
+		| 'even-positive';
 
 	// obtain from localStorage value of "multitaskingExperimentFSSMUVariant" which is either
 	// "prioritize" or "even"
 	// if it is not set, set it to "prioritize"
 	// set the opposite variant to the variant
-	const obtainVariant = () => {
-		const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
-		if (variant === 'prioritize') {
-			return 'even';
-		} else {
-			return 'prioritize';
+	// const obtainVariant = () => {
+	// 	const variant = localStorage.getItem('multitaskingExperimentFSSMUVariant');
+	// 	if (variant === 'prioritize') {
+	// 		return 'even';
+	// 	} else {
+	// 		return 'prioritize';
+	// 	}
+	// };
+
+	const obtainTaskVariants = ():
+		| 'prioritize-negative'
+		| 'prioritize-positive'
+		| 'even-negative'
+		| 'even-positive' => {
+		const currentTaskVariants = localStorage.getItem('multitaskingExperimentFSSMUTaskVariants');
+
+		// If no previous value, start with first variant
+		if (!currentTaskVariants) {
+			return 'prioritize-negative';
+		}
+
+		// Rotate through the variants in order: prioritize-negative -> prioritize-positive -> even-negative -> even-positive -> back to prioritize-negative
+		switch (currentTaskVariants) {
+			case 'prioritize-negative':
+				return 'prioritize-positive';
+			case 'prioritize-positive':
+				return 'even-negative';
+			case 'even-negative':
+				return 'even-positive';
+			case 'even-positive':
+				return 'prioritize-negative';
+			default:
+				return 'prioritize-negative';
 		}
 	};
 
@@ -92,11 +139,51 @@
 		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
 	};
 
+	const setSentiment = (sentiment: 'negative' | 'positive') => {
+		localStorage.setItem('multitaskingExperimentFSSMUSentiment', sentiment);
+	};
+
+	const setTaskVariants = (
+		taskVariants: 'prioritize-negative' | 'prioritize-positive' | 'even-negative' | 'even-positive'
+	) => {
+		localStorage.setItem('multitaskingExperimentFSSMUTaskVariants', taskVariants);
+	};
+
+	let nonexcludedAS: string[];
+	let nonexcludedNS: string[];
+	let excludedAS: string[];
+	let excludedNS: string[];
+
 	onMount(() => {
-		variant = obtainVariant();
+		taskVariants = obtainTaskVariants();
+
+		// Extract variant and sentiment from taskVariants
+		if (taskVariants.startsWith('prioritize')) {
+			variant = 'prioritize';
+		} else {
+			variant = 'even';
+		}
+
+		if (taskVariants.endsWith('negative')) {
+			sentiment = 'negative';
+		} else {
+			sentiment = 'positive';
+		}
+
 		taskHandler.scoringType = variant;
+		taskHandler.sentiment = sentiment;
+		setTaskVariants(taskVariants);
 		setVariant(variant);
-		taskHandler.logScoringType();
+		setSentiment(sentiment);
+		taskHandler.logScoringTypeAndSentiment();
+
+		const stimuli = createFinalMediaStimuli(sentiment);
+		nonexcludedAS = stimuli.AS;
+		nonexcludedNS = stimuli.NS;
+		const idsToExclude = [...stimuli.AS, ...stimuli.NS];
+		const excludedStimuli = createFinalMediaStimuli(sentiment, idsToExclude);
+		excludedAS = excludedStimuli.AS;
+		excludedNS = excludedStimuli.NS;
 	});
 </script>
 
@@ -140,7 +227,32 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrial on:taskEnd={() => (stage = 'end')} {taskHandler} />
+			<AppTaskTrialSentimentVariant
+				on:taskEnd={() => (stage = 'presingle')}
+				{taskHandler}
+				AS={nonexcludedAS}
+				NS={nonexcludedNS}
+			/>
+		</div>
+	{:else if stage === 'presingle'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppQuestionsPreSingle
+				{questionsService}
+				on:startSingle={() => (stage = 'gaze-validation')}
+			/>
+		</div>
+	{:else if stage === 'gaze-validation'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppGazeValidationOnly {gazeManager} {connectLogger} on:continue={() => (stage = 'single')} />
+		</div>
+	{:else if stage === 'single'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppTaskTrialMediaOnlySentimentVariant
+				{taskHandler}
+				AS={excludedAS}
+				NS={excludedNS}
+				on:taskEnd={() => (stage = 'end')}
+			/>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">

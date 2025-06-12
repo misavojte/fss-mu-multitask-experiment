@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GazeManager } from '@473783/develex-core';
+	import { GazeManager } from 'develex-js-sdk';
 	import { getContext, onDestroy, onMount } from 'svelte';
 
 	export let id: string;

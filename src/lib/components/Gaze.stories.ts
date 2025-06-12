@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import Gaze from './Gaze.svelte';
-import { GazeManager } from '@473783/develex-core';
+import { GazeManager } from 'develex-js-sdk';
 
 const gazeManager = new GazeManager();
 

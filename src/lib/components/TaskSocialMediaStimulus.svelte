@@ -16,7 +16,7 @@
 		id: string;
 		color: string;
 		textColor: string;
-		html: string;
+		html?: string;
 	}>;
 
 	const dispatch = createEventDispatcher();

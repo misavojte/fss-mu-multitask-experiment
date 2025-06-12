@@ -32,13 +32,13 @@ type RootTranslation = {
 	pleaseWait: string
 	socialButtons: {
 		/**
-		 * L​í​b​í​ ​s​e​ ​m​i
+		 * R​e​a​g​o​v​a​t
 		 */
-		like: string
+		react: string
 		/**
-		 * N​e​l​í​b​í​ ​s​e​ ​m​i
+		 * P​ř​e​s​k​o​č​i​t
 		 */
-		dislike: string
+		ignore: string
 	}
 	reminder: {
 		/**
@@ -154,8 +154,8 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​c​h​c​e​t​e​ ​z​o​b​r​a​z​i​t​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​.​
-			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​a​ ​t​é​t​o​ ​z​d​i​ ​n​e​c​h​c​e​t​e​.​
+				 * -​ ​*​*​R​e​a​g​o​v​a​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.​
+			​-​ ​*​*​P​ř​e​s​k​o​č​i​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.​
 			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​K​a​ž​d​á​ ​r​e​a​k​c​e​,​ ​a​ť​ ​u​ž​ ​p​o​z​i​t​i​v​n​í​ ​n​e​b​o​ ​n​e​g​a​t​i​v​n​í​,​ ​v​á​m​ ​p​ř​i​n​e​s​e​ ​j​e​d​e​n​ ​b​o​d​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
 				 */
 				'2': string
@@ -293,6 +293,78 @@ type RootTranslation = {
 				'1': string
 			}
 		}
+		'presingle-1': {
+			/**
+			 * D​ě​k​u​j​e​m​e​!​ ​N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​p​o​s​l​e​d​n​í​ ​ú​l​o​h​a​.
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * D​o​k​o​n​č​i​l​i​ ​j​s​t​e​ ​p​ř​e​d​c​h​o​z​í​ ​ú​k​o​l​y​.​ ​P​ř​e​d​ ​t​o​u​t​o​ ​z​á​v​ě​r​e​č​n​o​u​ ​ú​l​o​h​o​u​ ​s​i​ ​p​e​č​l​i​v​ě​ ​p​ř​e​č​t​ě​t​e​ ​p​o​k​y​n​y​.
+				 */
+				'1': string
+				/**
+				 * Ú​č​a​s​t​n​í​t​e​ ​s​e​ ​s​t​u​d​i​e​,​ ​k​t​e​r​á​ ​s​i​m​u​l​u​j​e​ ​p​r​o​s​t​ř​e​d​í​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​.​ ​P​l​a​t​f​o​r​m​a​,​ ​k​t​e​r​o​u​ ​b​u​d​e​t​e​ ​p​o​u​ž​í​v​a​t​,​ ​s​e​ ​n​a​z​ý​v​á​ ​C​h​a​t​b​o​o​k​ ​a​ ​p​ř​i​p​o​m​í​n​á​ ​b​ě​ž​n​é​ ​p​l​a​t​f​o​r​m​y​ ​j​a​k​o​ ​F​a​c​e​b​o​o​k​.​ ​P​r​o​ ​t​u​t​o​ ​r​e​l​a​c​i​ ​m​á​t​e​ ​p​ř​i​ř​a​z​e​n​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.
+				 */
+				'2': string
+				/**
+				 * B​u​d​o​u​ ​V​á​m​ ​z​o​b​r​a​z​e​n​y​ ​p​ř​í​s​p​ě​v​k​y​ ​z​e​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​,​ ​k​t​e​r​é​ ​p​ř​i​p​o​m​í​n​a​j​í​ ​t​y​,​ ​s​e​ ​k​t​e​r​ý​m​i​ ​s​e​ ​m​ů​ž​e​t​e​ ​s​e​t​k​a​t​ ​o​d​ ​s​v​ý​c​h​ ​p​ř​á​t​e​l​ ​n​e​b​o​ ​k​o​l​e​g​ů​ ​b​ě​h​e​m​ ​b​ě​ž​n​é​h​o​ ​p​r​o​c​h​á​z​e​n​í​.
+				 */
+				'3': string
+				/**
+				 * V​ ​t​é​t​o​ ​ú​l​o​z​e​ ​s​e​ ​b​u​d​e​t​e​ ​v​ě​n​o​v​a​t​ ​p​o​u​z​e​ ​i​n​t​e​r​a​k​c​i​ ​s​e​ ​s​o​c​i​á​l​n​í​m​i​ ​m​é​d​i​i​ ​-​ ​ž​á​d​n​é​ ​d​a​l​š​í​ ​ú​k​o​l​y​ ​n​e​b​u​d​o​u​ ​z​o​b​r​a​z​e​n​y​.
+				 */
+				'4': string
+			}
+		}
+		'presingle-2': {
+			/**
+			 * V​á​š​ ​ú​k​o​l
+			 */
+			heading: string
+			/**
+			 * Z​a​č​í​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * P​r​o​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​s​i​ ​v​y​b​e​r​t​e​ ​j​e​d​n​u​ ​z​ ​n​á​s​l​e​d​u​j​í​c​í​c​h​ ​m​o​ž​n​o​s​t​í​:
+				 */
+				'1': string
+				/**
+				 * -​ ​*​*​R​e​a​g​o​v​a​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.
+				 */
+				'2': string
+				/**
+				 * -​ ​*​*​P​ř​e​s​k​o​č​i​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.
+				 */
+				'3': string
+				/**
+				 * *​*​U​p​o​z​o​r​n​ě​n​í​:​*​*
+				 */
+				'4': string
+				/**
+				 * -​ ​R​e​a​g​u​j​t​e​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​.
+				 */
+				'5': string
+				/**
+				 * -​ ​N​e​e​x​i​s​t​u​j​í​ ​s​p​r​á​v​n​é​ ​n​e​b​o​ ​š​p​a​t​n​é​ ​o​d​p​o​v​ě​d​i​.
+				 */
+				'6': string
+				/**
+				 * -​ ​P​e​č​l​i​v​ě​ ​s​i​ ​p​ř​e​č​t​ě​t​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​a​ ​u​d​ě​l​e​j​t​e​ ​s​v​o​u​ ​v​o​l​b​u​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​.
+				 */
+				'7': string
+				/**
+				 * -​ ​V​š​e​c​h​n​y​ ​o​d​p​o​v​ě​d​i​ ​j​s​o​u​ ​a​n​o​n​y​m​n​í​ ​a​ ​b​u​d​o​u​ ​p​o​u​ž​i​t​y​ ​v​ý​h​r​a​d​n​ě​ ​p​r​o​ ​v​ý​z​k​u​m​n​é​ ​ú​č​e​l​y​.
+				 */
+				'8': string
+			}
+		}
 	}
 	'pt-end': {
 		/**
@@ -332,13 +404,13 @@ export type TranslationFunctions = {
 	pleaseWait: () => LocalizedString
 	socialButtons: {
 		/**
-		 * Líbí se mi
+		 * Reagovat
 		 */
-		like: () => LocalizedString
+		react: () => LocalizedString
 		/**
-		 * Nelíbí se mi
+		 * Přeskočit
 		 */
-		dislike: () => LocalizedString
+		ignore: () => LocalizedString
 	}
 	reminder: {
 		/**
@@ -454,8 +526,8 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Líbí se mi:** Vyjadřujete, že příspěvek chcete zobrazit na veřejné zdi.
-			- **Nelíbí se mi:** Vyjadřujete, že příspěvek na této zdi nechcete.
+				 * - **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+			- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
 			- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
 				 */
 				'2': () => LocalizedString
@@ -591,6 +663,78 @@ export type TranslationFunctions = {
 				 * Ne, chci zopakovat zácvik
 				 */
 				'1': () => LocalizedString
+			}
+		}
+		'presingle-1': {
+			/**
+			 * Děkujeme! Nyní Vás čeká poslední úloha.
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Dokončili jste předchozí úkoly. Před touto závěrečnou úlohou si pečlivě přečtěte pokyny.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Účastníte se studie, která simuluje prostředí sociálních médií. Platforma, kterou budete používat, se nazývá Chatbook a připomíná běžné platformy jako Facebook. Pro tuto relaci máte přiřazen anonymní účet.
+				 */
+				'2': () => LocalizedString
+				/**
+				 * Budou Vám zobrazeny příspěvky ze sociálních médií, které připomínají ty, se kterými se můžete setkat od svých přátel nebo kolegů během běžného procházení.
+				 */
+				'3': () => LocalizedString
+				/**
+				 * V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.
+				 */
+				'4': () => LocalizedString
+			}
+		}
+		'presingle-2': {
+			/**
+			 * Váš úkol
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Začít
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Pro každý příspěvek si vyberte jednu z následujících možností:
+				 */
+				'1': () => LocalizedString
+				/**
+				 * - **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+				 */
+				'2': () => LocalizedString
+				/**
+				 * - **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+				 */
+				'3': () => LocalizedString
+				/**
+				 * **Upozornění:**
+				 */
+				'4': () => LocalizedString
+				/**
+				 * - Reagujte podle své první reakce na každý příspěvek.
+				 */
+				'5': () => LocalizedString
+				/**
+				 * - Neexistují správné nebo špatné odpovědi.
+				 */
+				'6': () => LocalizedString
+				/**
+				 * - Pečlivě si přečtěte každý příspěvek a udělejte svou volbu rychle a upřímně.
+				 */
+				'7': () => LocalizedString
+				/**
+				 * - Všechny odpovědi jsou anonymní a budou použity výhradně pro výzkumné účely.
+				 */
+				'8': () => LocalizedString
 			}
 		}
 	}

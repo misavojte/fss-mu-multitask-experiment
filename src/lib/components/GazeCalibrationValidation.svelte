@@ -2,7 +2,6 @@
 	import type { GazeManager } from 'develex-js-sdk';
 	import { createEventDispatcher } from 'svelte';
 	import GazeValidate from '$lib/components/GazeValidate.svelte';
-	import GazeConnect from '$lib/components/GazeConnect.svelte';
 	import { fade } from 'svelte/transition';
 	import GazeCheck from '$lib/components/GazeCheck.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
@@ -10,7 +9,7 @@
 	export let gazeManager: GazeManager;
 	export let connectLogger: IConnectLogger;
 
-	let stage: 'connect' | 'validate' | 'check' = 'connect';
+	let stage: 'validate' | 'check' = 'validate';
 
 	const dispatch = createEventDispatcher();
 
@@ -34,14 +33,7 @@
 </script>
 
 <div class="relative w-full h-full flex flex-col items-center justify-center min-h-60">
-	{#if stage === 'connect'}
-		<div
-			class="absolute top-0 w-full h-full flex flex-col items-center justify-center"
-			transition:fade
-		>
-			<GazeConnect {connectLogger} {gazeManager} on:trackerConnected={() => (stage = 'validate')} />
-		</div>
-	{:else if stage === 'validate'}
+	{#if stage === 'validate'}
 		<div class="absolute w-full h-full flex flex-col items-center justify-center" transition:fade>
 			<GazeValidate {connectLogger} {gazeManager} on:validated={handleGazeValidationDone} />
 		</div>

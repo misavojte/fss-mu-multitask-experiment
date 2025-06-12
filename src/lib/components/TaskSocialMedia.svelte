@@ -20,7 +20,7 @@
 		id: string;
 		color: string;
 		textColor: string;
-		html: string;
+		html?: string;
 	}>;
 	export let socialMediaStimuliAS: Array<{
 		src: string;
@@ -152,6 +152,15 @@
 	});
 
 	onDestroy(() => {
+		// Clean up audio elements before destroying
+		if (audioElement) {
+			audioElement.pause();
+			audioElement.currentTime = 0;
+		}
+		if (audioElement2) {
+			audioElement2.pause();
+			audioElement2.currentTime = 0;
+		}
 		abortController.abort('TaskSocialMedia was destroyed');
 	});
 

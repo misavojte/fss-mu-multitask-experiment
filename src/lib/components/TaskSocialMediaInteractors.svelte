@@ -5,7 +5,7 @@
 		id: string;
 		color: string;
 		textColor: string;
-		html: string;
+		html?: string;
 	}>;
 	export let height: number = 300;
 </script>

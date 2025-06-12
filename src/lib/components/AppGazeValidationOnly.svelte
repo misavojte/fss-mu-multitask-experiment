@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GazeManager } from 'develex-js-sdk';
-	import Gaze from './Gaze.svelte';
+	import GazeCalibrationValidation from './GazeCalibrationValidation.svelte';
 	import InterfaceFooter from './InterfaceFooter.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
@@ -9,6 +9,6 @@
 </script>
 
 <div class="w-full h-full p-8 mx-auto flex flex-col gap-8">
-	<Gaze {connectLogger} {gazeManager} on:continue />
+	<GazeCalibrationValidation {connectLogger} {gazeManager} on:continue />
 	<InterfaceFooter />
 </div>
