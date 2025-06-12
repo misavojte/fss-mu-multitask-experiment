@@ -17,8 +17,20 @@
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
+	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
+	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
+	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
+	import { createFinalMediaStimuli } from '$lib/utils/createMediaStimuli';
 
-	let stage: 'connect' | 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'connect';
+	let stage:
+		| 'connect'
+		| 'questions-1'
+		| 'questions-2'
+		| 'practice'
+		| 'trial'
+		| 'presingle'
+		| 'single'
+		| 'end' = 'connect';
 
 	const gazeManager = new GazeManager();
 
@@ -122,15 +134,6 @@
 		}
 	};
 
-	const obtainSentiment = () => {
-		const sentiment = localStorage.getItem('multitaskingExperimentFSSMUSentiment');
-		if (sentiment === 'negative') {
-			return 'positive';
-		} else {
-			return 'negative';
-		}
-	};
-
 	const setVariant = (variant: 'prioritize' | 'even') => {
 		localStorage.setItem('multitaskingExperimentFSSMUVariant', variant);
 	};
@@ -144,6 +147,11 @@
 	) => {
 		localStorage.setItem('multitaskingExperimentFSSMUTaskVariants', taskVariants);
 	};
+
+	let nonexcludedAS: string[];
+	let nonexcludedNS: string[];
+	let excludedAS: string[];
+	let excludedNS: string[];
 
 	onMount(() => {
 		taskVariants = obtainTaskVariants();
@@ -167,6 +175,14 @@
 		setVariant(variant);
 		setSentiment(sentiment);
 		taskHandler.logScoringTypeAndSentiment();
+
+		const stimuli = createFinalMediaStimuli(sentiment);
+		nonexcludedAS = stimuli.AS;
+		nonexcludedNS = stimuli.NS;
+		const idsToExclude = [...stimuli.AS, ...stimuli.NS];
+		const excludedStimuli = createFinalMediaStimuli(sentiment, idsToExclude);
+		excludedAS = excludedStimuli.AS;
+		excludedNS = excludedStimuli.NS;
 	});
 </script>
 
@@ -210,7 +226,20 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrial on:taskEnd={() => (stage = 'end')} {taskHandler} />
+			<AppTaskTrialSentimentVariant
+				on:taskEnd={() => (stage = 'presingle')}
+				{taskHandler}
+				AS={nonexcludedAS}
+				NS={nonexcludedNS}
+			/>
+		</div>
+	{:else if stage === 'presingle'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppQuestionsPreSingle {questionsService} on:startSingle={() => (stage = 'single')} />
+		</div>
+	{:else if stage === 'single'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppTaskTrialMediaOnlySentimentVariant {taskHandler} AS={excludedAS} NS={excludedNS} />
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
