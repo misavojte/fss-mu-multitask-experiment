@@ -21,6 +21,7 @@
 	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
 	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
 	import { createFinalMediaStimuli } from '$lib/utils/createMediaStimuli';
+	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
 
 	let stage:
 		| 'connect'
@@ -29,6 +30,7 @@
 		| 'practice'
 		| 'trial'
 		| 'presingle'
+		| 'gaze-validation'
 		| 'single'
 		| 'end' = 'connect';
 
@@ -235,11 +237,23 @@
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPreSingle {questionsService} on:startSingle={() => (stage = 'single')} />
+			<AppQuestionsPreSingle
+				{questionsService}
+				on:startSingle={() => (stage = 'gaze-validation')}
+			/>
+		</div>
+	{:else if stage === 'gaze-validation'}
+		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
+			<AppGazeValidationOnly {gazeManager} {connectLogger} on:continue={() => (stage = 'single')} />
 		</div>
 	{:else if stage === 'single'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrialMediaOnlySentimentVariant {taskHandler} AS={excludedAS} NS={excludedNS} />
+			<AppTaskTrialMediaOnlySentimentVariant
+				{taskHandler}
+				AS={excludedAS}
+				NS={excludedNS}
+				on:taskEnd={() => (stage = 'end')}
+			/>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
