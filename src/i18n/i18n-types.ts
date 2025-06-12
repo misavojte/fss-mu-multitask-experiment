@@ -78,7 +78,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​i​t​r​a​l​o​k​.​ ​P​r​i​o​r​i​t​n​í​ ​ú​l​o​h​o​u​ ​j​e​ ​ř​e​š​e​n​í​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​P​r​i​o​r​i​t​n​í​ ​ú​l​o​h​o​u​ ​j​e​ ​ř​e​š​e​n​í​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
 				 */
 				'1': string
 			}
@@ -150,7 +150,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * D​a​l​š​í​ ​a​k​t​i​v​i​t​a​ ​j​e​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​i​t​r​a​l​o​k​.​ ​B​u​d​e​m​e​ ​V​á​m​ ​z​o​b​r​a​z​o​v​a​t​ ​r​ů​z​n​é​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​j​s​o​u​ ​t​a​g​o​v​á​n​y​ ​(​c​í​l​e​n​y​)​ ​n​a​ ​d​a​l​š​í​ ​l​i​d​i​ ​-​ ​t​e​d​y​ ​n​e​ ​n​a​ ​V​á​s​.​ ​ ​Z​a​r​e​a​g​u​j​t​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​k​l​i​k​n​u​t​í​m​ ​n​a​ ​t​l​a​č​í​t​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​ ​n​e​b​o​ ​"​N​e​l​í​b​í​ ​s​e​ ​m​i​"​.​ ​P​ř​e​d​s​t​a​v​t​e​ ​s​i​,​ ​ž​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​k​t​e​r​ý​ ​o​z​n​a​č​í​t​e​ ​j​a​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​,​ ​s​e​ ​o​b​j​e​v​í​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​,​ ​k​t​e​r​á​ ​j​e​ ​v​ě​n​o​v​á​n​a​ ​v​a​š​i​m​ ​p​ř​á​t​e​l​ů​m​ ​a​ ​d​a​l​š​í​m​ ​l​i​d​e​m​.
+				 * D​a​l​š​í​ ​a​k​t​i​v​i​t​a​ ​j​e​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​B​u​d​e​m​e​ ​V​á​m​ ​z​o​b​r​a​z​o​v​a​t​ ​r​ů​z​n​é​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​j​s​o​u​ ​t​a​g​o​v​á​n​y​ ​(​c​í​l​e​n​y​)​ ​n​a​ ​d​a​l​š​í​ ​l​i​d​i​ ​-​ ​t​e​d​y​ ​n​e​ ​n​a​ ​V​á​s​.​ ​ ​Z​a​r​e​a​g​u​j​t​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​k​l​i​k​n​u​t​í​m​ ​n​a​ ​t​l​a​č​í​t​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​ ​n​e​b​o​ ​"​N​e​l​í​b​í​ ​s​e​ ​m​i​"​.​ ​P​ř​e​d​s​t​a​v​t​e​ ​s​i​,​ ​ž​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​k​t​e​r​ý​ ​o​z​n​a​č​í​t​e​ ​j​a​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​,​ ​s​e​ ​o​b​j​e​v​í​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​,​ ​k​t​e​r​á​ ​j​e​ ​v​ě​n​o​v​á​n​a​ ​v​a​š​i​m​ ​p​ř​á​t​e​l​ů​m​ ​a​ ​d​a​l​š​í​m​ ​l​i​d​e​m​.
 				 */
 				'1': string
 				/**
@@ -206,7 +206,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​i​t​r​a​l​o​k​.​ ​Ž​á​d​n​ý​ ​z​ ​ú​k​o​l​ů​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​ ​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​Ž​á​d​n​ý​ ​z​ ​ú​k​o​l​ů​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​ ​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
 				 */
 				'1': string
 			}
@@ -450,7 +450,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Prioritní úlohou je řešení matematických úloh. Na dalších snímcích následující podrobnější instrukce.
+				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Prioritní úlohou je řešení matematických úloh. Na dalších snímcích následující podrobnější instrukce.
 				 */
 				'1': () => LocalizedString
 			}
@@ -522,7 +522,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Další aktivita je na fiktivní sociální síti Chitralok. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.
+				 * Další aktivita je na fiktivní sociální síti Chatbook. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.
 				 */
 				'1': () => LocalizedString
 				/**
@@ -578,7 +578,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.
+				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.
 				 */
 				'1': () => LocalizedString
 			}

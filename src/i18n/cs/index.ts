@@ -30,14 +30,14 @@ const cs = {
 			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Prioritní úlohou je řešení matematických úloh. Na dalších snímcích následující podrobnější instrukce.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Prioritní úlohou je řešení matematických úloh. Na dalších snímcích následující podrobnější instrukce.'
 			}
 		},
 		'2b': {
 			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chitralok. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
 			}
 		},
 		3: {
@@ -86,7 +86,7 @@ const cs = {
 			heading: 'Úkol 3: Reakce na příspěvky na sociální síti',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Další aktivita je na fiktivní sociální síti Chitralok. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.',
+				1: 'Další aktivita je na fiktivní sociální síti Chatbook. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.',
 				2: `- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
 - **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
 - **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`,
