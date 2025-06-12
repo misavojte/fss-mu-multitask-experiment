@@ -7,8 +7,8 @@ const cs = {
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	socialButtons: {
-		react: 'Reagovat',
-		ignore: 'Přeskočit'
+		react: 'Zjistit víc',
+		ignore: 'Nemám zájem'
 	},
 	reminder: {
 		priority: 'Připomínáme, že **matematická úloha je prioritní**.',
@@ -87,8 +87,8 @@ const cs = {
 			confirm: 'Rozumím',
 			paragraphs: {
 				1: 'Další aktivita je na fiktivní sociální síti Chitralok. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.',
-				2: `- **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
-- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+				2: `- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
 - **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`,
 				3: 'Příspěvky se budou objevovat na obrazovce vlevo, doprovázené zvukem upozornění. Na každý příspěvek můžete reagovat jen několik sekund, než zmizí. Těsně před zmizením Vás na tuto skutečnost upozorní zvukový signál.'
 			}
@@ -131,8 +131,8 @@ const cs = {
 			confirm: 'Začít',
 			paragraphs: {
 				1: 'Pro každý příspěvek si vyberte jednu z následujících možností:',
-				2: '- **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
-				3: '- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.',
+				2: '- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
+				3: '- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.',
 				4: '**Upozornění:**',
 				5: '- Reagujte podle své první reakce na každý příspěvek.',
 				6: '- Neexistují správné nebo špatné odpovědi.',
