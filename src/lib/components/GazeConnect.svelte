@@ -12,7 +12,7 @@
 
 	const isLoading = writable(false);
 
-	let selected: 'gazepoint' | 'dummy' | 'eyelogic' = 'gazepoint';
+	let selected: 'gazepoint' | 'dummy' | 'eyelogic' = 'eyelogic';
 	let error = writable<string[]>([]);
 
 	const configs: Record<'gazepoint' | 'dummy' | 'eyelogic', GazeInputConfig> = {

@@ -154,8 +154,8 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​L​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​c​h​c​e​t​e​ ​z​o​b​r​a​z​i​t​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​.​
-			​-​ ​*​*​N​e​l​í​b​í​ ​s​e​ ​m​i​:​*​*​ ​V​y​j​a​d​ř​u​j​e​t​e​,​ ​ž​e​ ​p​ř​í​s​p​ě​v​e​k​ ​n​a​ ​t​é​t​o​ ​z​d​i​ ​n​e​c​h​c​e​t​e​.​
+				 * -​ ​*​*​R​e​a​g​o​v​a​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.​
+			​-​ ​*​*​P​ř​e​s​k​o​č​i​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.​
 			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​K​a​ž​d​á​ ​r​e​a​k​c​e​,​ ​a​ť​ ​u​ž​ ​p​o​z​i​t​i​v​n​í​ ​n​e​b​o​ ​n​e​g​a​t​i​v​n​í​,​ ​v​á​m​ ​p​ř​i​n​e​s​e​ ​j​e​d​e​n​ ​b​o​d​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
 				 */
 				'2': string
@@ -526,8 +526,8 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Líbí se mi:** Vyjadřujete, že příspěvek chcete zobrazit na veřejné zdi.
-			- **Nelíbí se mi:** Vyjadřujete, že příspěvek na této zdi nechcete.
+				 * - **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+			- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
 			- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
 				 */
 				'2': () => LocalizedString

@@ -9,9 +9,9 @@
 		eyelogic: 'Eyelogic Tracker'
 	};
 	let countries = [
+		{ value: 'eyelogic', name: locale.eyelogic },
 		{ value: 'gazepoint', name: locale.gazePoint },
-		{ value: 'dummy', name: locale.dummy },
-		{ value: 'eyelogic', name: locale.eyelogic }
+		{ value: 'dummy', name: locale.dummy }
 	];
 </script>
 

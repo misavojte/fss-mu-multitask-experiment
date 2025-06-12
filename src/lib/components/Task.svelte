@@ -25,10 +25,10 @@
 		id: string;
 		color: string;
 		textColor: string;
-		html: string;
+		html?: string;
 	}> = [
-		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff', html: '' },
-		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff', html: '' }
+		{ text: 'Like', id: 'like', color: '#3b5998', textColor: '#fff' },
+		{ text: 'Dislike', id: 'dislike', color: '#dd4b39', textColor: '#fff' }
 	];
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
@@ -144,7 +144,7 @@
 
 	export let taskHandler: ATaskHandler;
 
-	export let endScenario: 'timeout' | 'pattern-timeout' = 'timeout';
+	export let endScenario: 'timeout' | 'pattern-timeout' | 'social-media-finished' = 'timeout';
 
 	/**
 	 * When true, displays only the social media task and hides pattern matching and documentary tasks.
@@ -194,6 +194,12 @@
 		} // else do nothing, timeout or something else will end the task
 	};
 
+	const handleSocialMediaFinished = () => {
+		if (endScenario === 'social-media-finished') {
+			shouldEndTask.set(true);
+		} // else do nothing, timeout or something else will end the task
+	};
+
 	const abortController = new AbortController();
 
 	const logic = async () => {
@@ -205,6 +211,9 @@
 			console.error(error);
 		}
 		console.log('Task ended');
+		// Stop all processes before dispatching taskEnd
+		hasStarted = false; // Stop video playback
+		abortController.abort('Task ended'); // Abort all child processes
 		dispatch('taskEnd');
 	};
 
@@ -276,9 +285,10 @@
 				betweenDelay={socialBetweenDelay}
 				{hasStarted}
 				adjustBetweenDelay={socialAdjustBetweenDelay}
-				on:socialMediaInteractorsCompleted={taskHandler.handleSocialMediaInteractorsCompleted.bind(
-					taskHandler
-				)}
+				on:socialMediaInteractorsCompleted={() => {
+					taskHandler.handleSocialMediaInteractorsCompleted.call(taskHandler);
+					handleSocialMediaFinished();
+				}}
 				on:socialMediaInteractorsShow={taskHandler.handleSocialMediaInteractorsShow.bind(
 					taskHandler
 				)}
