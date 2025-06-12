@@ -7,8 +7,8 @@ const cs = {
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	socialButtons: {
-		like: 'Líbí se mi',
-		dislike: 'Nelíbí se mi'
+		react: 'Reagovat',
+		ignore: 'Přeskočit'
 	},
 	reminder: {
 		priority: 'Připomínáme, že **matematická úloha je prioritní**.',
@@ -131,7 +131,7 @@ const cs = {
 			confirm: 'Začít',
 			paragraphs: {
 				1: 'Pro každý příspěvek si vyberte jednu z následujících možností:',
-				2: '- **Jednat nyní:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
+				2: '- **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
 				3: '- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.',
 				4: '**Upozornění:**',
 				5: '- Reagujte podle své první reakce na každý příspěvek.',

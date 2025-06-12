@@ -32,13 +32,13 @@ type RootTranslation = {
 	pleaseWait: string
 	socialButtons: {
 		/**
-		 * L​í​b​í​ ​s​e​ ​m​i
+		 * R​e​a​g​o​v​a​t
 		 */
-		like: string
+		react: string
 		/**
-		 * N​e​l​í​b​í​ ​s​e​ ​m​i
+		 * P​ř​e​s​k​o​č​i​t
 		 */
-		dislike: string
+		ignore: string
 	}
 	reminder: {
 		/**
@@ -336,7 +336,7 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​J​e​d​n​a​t​ ​n​y​n​í​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.
+				 * -​ ​*​*​R​e​a​g​o​v​a​t​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.
 				 */
 				'2': string
 				/**
@@ -404,13 +404,13 @@ export type TranslationFunctions = {
 	pleaseWait: () => LocalizedString
 	socialButtons: {
 		/**
-		 * Líbí se mi
+		 * Reagovat
 		 */
-		like: () => LocalizedString
+		react: () => LocalizedString
 		/**
-		 * Nelíbí se mi
+		 * Přeskočit
 		 */
-		dislike: () => LocalizedString
+		ignore: () => LocalizedString
 	}
 	reminder: {
 		/**
@@ -708,7 +708,7 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Jednat nyní:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+				 * - **Reagovat:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
 				 */
 				'2': () => LocalizedString
 				/**

@@ -13,17 +13,31 @@
 	let questions: IQuestionBattery = [
 		{
 			id: 'presingle-1',
-			headingText: $LL['presingle-1']['heading'](),
-			confirmText: $LL['presingle-1']['confirm'](),
-			paragraphs: [get(LL)['presingle-1'].paragraphs[1]()],
+			headingText: get(LL).question['presingle-1']['heading'](),
+			confirmText: get(LL).question['presingle-1']['confirm'](),
+			paragraphs: [
+				get(LL).question['presingle-1'].paragraphs['1'](),
+				get(LL).question['presingle-1'].paragraphs['2'](),
+				get(LL).question['presingle-1'].paragraphs['3'](),
+				get(LL).question['presingle-1'].paragraphs['4']()
+			],
 			type: 'instruction',
 			required: true
 		},
 		{
 			id: 'presingle-2',
-			headingText: $LL['presingle-2']['heading'](),
-			confirmText: $LL['presingle-2']['confirm'](),
-			paragraphs: [get(LL)['presingle-2'].paragraphs[1]()],
+			headingText: $LL.question['presingle-2']['heading'](),
+			confirmText: $LL.question['presingle-2']['confirm'](),
+			paragraphs: [
+				get(LL).question['presingle-2'].paragraphs['1'](),
+				get(LL).question['presingle-2'].paragraphs['2'](),
+				get(LL).question['presingle-2'].paragraphs['3'](),
+				get(LL).question['presingle-2'].paragraphs['4'](),
+				get(LL).question['presingle-2'].paragraphs['5'](),
+				get(LL).question['presingle-2'].paragraphs['6'](),
+				get(LL).question['presingle-2'].paragraphs['7'](),
+				get(LL).question['presingle-2'].paragraphs['8']()
+			],
 			type: 'instruction',
 			required: true
 		}

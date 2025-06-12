@@ -12,13 +12,18 @@
 
 	const isLoading = writable(false);
 
-	let selected: 'gazepoint' | 'dummy' = 'gazepoint';
+	let selected: 'gazepoint' | 'dummy' | 'eyelogic' = 'gazepoint';
 	let error = writable<string[]>([]);
 
-	const configs: Record<'gazepoint' | 'dummy', GazeInputConfig> = {
+	const configs: Record<'gazepoint' | 'dummy' | 'eyelogic', GazeInputConfig> = {
+		eyelogic: {
+			uri: 'ws://localhost:13892',
+			tracker: 'eyelogic',
+			fixationDetection: 'idt'
+		},
 		gazepoint: {
 			uri: 'ws://localhost:13892',
-			tracker: 'opengaze',
+			tracker: 'gazepoint',
 			fixationDetection: 'device'
 		},
 		dummy: {
