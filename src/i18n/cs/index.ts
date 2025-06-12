@@ -115,6 +115,30 @@ const cs = {
 				0: 'Ano, pokračovat na ostrý test',
 				1: 'Ne, chci zopakovat zácvik'
 			}
+		},
+		'presingle-1': {
+			heading: 'Děkujeme! Nyní Vás čeká poslední úloha.',
+			confirm: 'Pokračovat',
+			paragraphs: {
+				1: 'Dokončili jste předchozí úkoly. Před touto závěrečnou úlohou si pečlivě přečtěte pokyny.',
+				2: 'Účastníte se studie, která simuluje prostředí sociálních médií. Platforma, kterou budete používat, se nazývá Chatbook a připomíná běžné platformy jako Facebook. Pro tuto relaci máte přiřazen anonymní účet.',
+				3: 'Budou Vám zobrazeny příspěvky ze sociálních médií, které připomínají ty, se kterými se můžete setkat od svých přátel nebo kolegů během běžného procházení.',
+				4: 'V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.'
+			}
+		},
+		'presingle-2': {
+			heading: 'Váš úkol',
+			confirm: 'Začít',
+			paragraphs: {
+				1: 'Pro každý příspěvek si vyberte jednu z následujících možností:',
+				2: '- **Jednat nyní:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
+				3: '- **Přeskočit:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.',
+				4: '**Upozornění:**',
+				5: '- Reagujte podle své první reakce na každý příspěvek.',
+				6: '- Neexistují správné nebo špatné odpovědi.',
+				7: '- Pečlivě si přečtěte každý příspěvek a udělejte svou volbu rychle a upřímně.',
+				8: '- Všechny odpovědi jsou anonymní a budou použity výhradně pro výzkumné účely.'
+			}
 		}
 	},
 	'pt-end': {
