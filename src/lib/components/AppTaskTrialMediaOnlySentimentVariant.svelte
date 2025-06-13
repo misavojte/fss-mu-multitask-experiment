@@ -59,8 +59,8 @@
 		{videoDocumentarySrc}
 		muted={false}
 		on:taskEnd
-		socialInitialDelay={1000}
-		socialBetweenDelay={0}
+		socialInitialDelay={5000}
+		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
 		socialAdjustBetweenDelay={true}
