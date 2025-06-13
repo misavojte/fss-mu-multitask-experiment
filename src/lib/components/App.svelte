@@ -40,6 +40,7 @@
 	export let taskHandler: ATaskHandler;
 	export let connectLogger: IConnectLogger;
 	export let gazeSaver: IGazeSaver;
+	export let sentiment: 'negative' | 'positive';
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -88,18 +89,6 @@
 	};
 
 	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alterning variant was turned off
-	let sentiment: 'negative' | 'positive';
-
-	// Remove taskVariants variable and related functions
-	// obtain sentiment from localStorage, default to 'negative' if not set
-	const obtainSentiment = (): 'negative' | 'positive' => {
-		const storedSentiment = localStorage.getItem('multitaskingExperimentFSSMUSentiment');
-		return storedSentiment === 'positive' ? 'positive' : 'negative';
-	};
-
-	const setSentiment = (sentiment: 'negative' | 'positive') => {
-		localStorage.setItem('multitaskingExperimentFSSMUSentiment', sentiment);
-	};
 
 	let nonexcludedAS: string[];
 	let nonexcludedNS: string[];
@@ -109,11 +98,8 @@
 	let trainingNS: string[];
 
 	onMount(() => {
-		sentiment = obtainSentiment();
-
 		taskHandler.scoringType = variant;
 		taskHandler.sentiment = sentiment;
-		setSentiment(sentiment);
 		taskHandler.logScoringTypeAndSentiment();
 
 		const stimuli = createFinalMediaStimuli(sentiment);
@@ -172,7 +158,7 @@
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPreSingle
-				taskHandler={taskHandler}
+				{taskHandler}
 				{questionsService}
 				on:startSingle={() => (stage = 'gaze-validation')}
 			/>
