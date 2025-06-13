@@ -64,56 +64,65 @@
 	};
 
 	const createShuffledStimuliAlongPresentationPattern = () => {
-		let shuffledStimuliNS = fisherYatesShuffle(socialMediaStimuliNS);
-		let shuffledStimuliAS = fisherYatesShuffle(socialMediaStimuliAS);
+		// Shuffle both arrays once
+		let shuffledStimuliNS = fisherYatesShuffle([...socialMediaStimuliNS]);
+		let shuffledStimuliAS = fisherYatesShuffle([...socialMediaStimuliAS]);
 		const shuffledStimuliAlongPresentationPattern: Array<{
 			src: string;
 			id: string;
 		}> = [];
 
-		let socialMediaStimuliNSPointer = 0;
-		let socialMediaStimuliASPointer = 0;
-
-		// Extend the pattern to the length of the both NS and AS stimuli
-		// if empty array is provided, pattern will be first set to ['NS', 'AS'] to prevent infinite loop
+		// If no pattern provided, use default
 		if (socialMediaStimuliPresentationPattern.length === 0) {
 			socialMediaStimuliPresentationPattern = ['NS', 'AS'];
 		}
-		while (
-			socialMediaStimuliPresentationPattern.length <
-			socialMediaStimuliAS.length + socialMediaStimuliNS.length
-		) {
-			socialMediaStimuliPresentationPattern.push(...socialMediaStimuliPresentationPattern);
+
+		// Calculate total stimuli and pattern length
+		const totalStimuli = socialMediaStimuliNS.length + socialMediaStimuliAS.length;
+		
+		// Create a pattern that ensures all stimuli are used
+		let currentPattern: Array<'NS' | 'AS'> = [];
+		let remainingNS = shuffledStimuliNS.length;
+		let remainingAS = shuffledStimuliAS.length;
+
+		// First, try to follow the original pattern as much as possible
+		for (const type of socialMediaStimuliPresentationPattern) {
+			if (type === 'NS' && remainingNS > 0) {
+				currentPattern.push('NS');
+				remainingNS--;
+			} else if (type === 'AS' && remainingAS > 0) {
+				currentPattern.push('AS');
+				remainingAS--;
+			}
 		}
 
-		socialMediaStimuliPresentationPattern.forEach((type) => {
-			if (type === 'NS') {
-				// if empty array of NS stimuli is provided, we skip this step
-				if (socialMediaStimuliNS.length === 0) return;
-				if (socialMediaStimuliNSPointer >= shuffledStimuliNS.length) {
-					// If we run out of NS, we reshuffle and start over
-					shuffledStimuliNS = fisherYatesShuffle(socialMediaStimuliNS);
-					socialMediaStimuliNSPointer = 0;
-				}
-				shuffledStimuliAlongPresentationPattern.push(
-					shuffledStimuliNS[socialMediaStimuliNSPointer]
-				);
-				socialMediaStimuliNSPointer++;
-			} else {
-				// if empty array of AS stimuli is provided, we skip this step
-				if (socialMediaStimuliAS.length === 0) return;
-				if (socialMediaStimuliASPointer >= shuffledStimuliAS.length) {
-					// If we run out of AS, we reshuffle and start over
-					shuffledStimuliAS = fisherYatesShuffle(socialMediaStimuliAS);
-					socialMediaStimuliASPointer = 0;
-				}
-				shuffledStimuliAlongPresentationPattern.push(
-					shuffledStimuliAS[socialMediaStimuliASPointer]
-				);
-				socialMediaStimuliASPointer++;
+		// Then add remaining stimuli in any order
+		while (remainingNS > 0 || remainingAS > 0) {
+			if (remainingNS > 0) {
+				currentPattern.push('NS');
+				remainingNS--;
 			}
-		});
+			if (remainingAS > 0) {
+				currentPattern.push('AS');
+				remainingAS--;
+			}
+		}
 
+		console.log('Total stimuli:', totalStimuli);
+		console.log('Final pattern length:', currentPattern.length);
+		console.log('NS stimuli used:', shuffledStimuliNS.length - remainingNS);
+		console.log('AS stimuli used:', shuffledStimuliAS.length - remainingAS);
+
+		// Create the sequence following the pattern
+		for (const type of currentPattern) {
+			if (type === 'NS') {
+				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliNS.pop()!);
+			} else {
+				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliAS.pop()!);
+			}
+		}
+
+		console.log('Final sequence length:', shuffledStimuliAlongPresentationPattern.length);
 		return shuffledStimuliAlongPresentationPattern;
 	};
 
@@ -188,7 +197,7 @@
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
-				// Calculate delay, but avoid negative cumulative adjustments by resetting remainingTime if it’s negative
+				// Calculate delay, but avoid negative cumulative adjustments by resetting remainingTime if it's negative
 				const calculatedBetweenDelay = adjustBetweenDelay
 					? Math.max(betweenDelay, betweenDelay + $remainingTime)
 					: betweenDelay;

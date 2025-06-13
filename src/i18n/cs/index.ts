@@ -136,10 +136,9 @@ const cs = {
 				4: `- **Zjistit víc:** Klikněte na toto tlačítko, pokud vás příspěvek zaujme nebo vás nutí reagovat - ať už pomoci, komentovat, sdílet nebo dozvědět se více.
 - **Nemám zájem:** Klikněte na toto tlačítko, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.`,
 				5: 'V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.',
-				6: 'Získáte jeden bod za každý příspěvek, na který zareagujete. Vaším cílem je získat co nejvíce bodů. Snažte se reagovat na každý příspěvek, abyste maximalizovali své skóre.',
-				7: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
+				6: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
 			}
-		},
+		}
 	},
 	'pt-end': {
 		heading: 'Děkujeme za účast!',

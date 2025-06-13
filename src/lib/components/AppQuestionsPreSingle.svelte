@@ -35,7 +35,6 @@
 				get(LL).question['presingle-2'].paragraphs['4'](),
 				get(LL).question['presingle-2'].paragraphs['5'](),
 				get(LL).question['presingle-2'].paragraphs['6'](),
-				get(LL).question['presingle-2'].paragraphs['7']()
 			],
 			type: 'instruction',
 			required: true

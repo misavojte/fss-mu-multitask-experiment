@@ -354,13 +354,9 @@ type RootTranslation = {
 				 */
 				'5': string
 				/**
-				 * Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​n​a​ ​k​t​e​r​ý​ ​z​a​r​e​a​g​u​j​e​t​e​.​ ​V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​m​a​x​i​m​a​l​i​z​o​v​a​l​i​ ​s​v​é​ ​s​k​ó​r​e​.
-				 */
-				'6': string
-				/**
 				 * P​ř​í​s​p​ě​v​k​y​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​v​e​ ​s​t​ř​e​d​u​ ​o​b​r​a​z​o​v​k​y​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​á​t​e​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​ ​n​a​ ​r​e​a​k​c​i​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​v​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.​ ​P​r​o​s​í​m​,​ ​r​e​a​g​u​j​t​e​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​.
 				 */
-				'7': string
+				'6': string
 			}
 		}
 	}
@@ -722,13 +718,9 @@ export type TranslationFunctions = {
 				 */
 				'5': () => LocalizedString
 				/**
-				 * Získáte jeden bod za každý příspěvek, na který zareagujete. Vaším cílem je získat co nejvíce bodů. Snažte se reagovat na každý příspěvek, abyste maximalizovali své skóre.
-				 */
-				'6': () => LocalizedString
-				/**
 				 * Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.
 				 */
-				'7': () => LocalizedString
+				'6': () => LocalizedString
 			}
 		}
 	}
