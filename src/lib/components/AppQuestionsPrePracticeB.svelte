@@ -62,7 +62,9 @@
 			paragraphs: [
 				get(LL).question[6].paragraphs[1](),
 				get(LL).question[6].paragraphs[2](),
-				get(LL).question[6].paragraphs[3]()
+				get(LL).question[6].paragraphs[3](),
+				get(LL).question[6].paragraphs[4](),
+				get(LL).question[6].paragraphs[5]()
 			],
 			required: true
 		},

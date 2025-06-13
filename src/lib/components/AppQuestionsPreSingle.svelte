@@ -1,12 +1,14 @@
 <script lang="ts">
 	import QuestionManager from '$lib/components/QuestionManager.svelte';
 	import type { IQuestionBattery, ITimestampQuestionService } from '$lib/interfaces/IQuestion';
+	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import LL from '../../i18n/i18n-svelte';
 	import { createEventDispatcher } from 'svelte';
 	import InterfaceFooter from './InterfaceFooter.svelte';
 	import { get } from 'svelte/store';
 
 	export let questionsService: ITimestampQuestionService;
+	export let taskHandler: ATaskHandler;
 
 	const dispatch = createEventDispatcher();
 
@@ -16,10 +18,8 @@
 			headingText: get(LL).question['presingle-1']['heading'](),
 			confirmText: get(LL).question['presingle-1']['confirm'](),
 			paragraphs: [
-				get(LL).question['presingle-1'].paragraphs['1'](),
-				get(LL).question['presingle-1'].paragraphs['2'](),
-				get(LL).question['presingle-1'].paragraphs['3'](),
-				get(LL).question['presingle-1'].paragraphs['4']()
+				get(LL).question['presingle-1'].paragraphs['1']({ points: taskHandler.score }),
+				get(LL).question['presingle-1'].paragraphs['2']()
 			],
 			type: 'instruction',
 			required: true
@@ -35,8 +35,7 @@
 				get(LL).question['presingle-2'].paragraphs['4'](),
 				get(LL).question['presingle-2'].paragraphs['5'](),
 				get(LL).question['presingle-2'].paragraphs['6'](),
-				get(LL).question['presingle-2'].paragraphs['7'](),
-				get(LL).question['presingle-2'].paragraphs['8']()
+				get(LL).question['presingle-2'].paragraphs['7']()
 			],
 			type: 'instruction',
 			required: true

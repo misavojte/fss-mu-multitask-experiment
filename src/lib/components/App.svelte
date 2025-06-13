@@ -172,6 +172,7 @@
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPreSingle
+				taskHandler={taskHandler}
 				{questionsService}
 				on:startSingle={() => (stage = 'gaze-validation')}
 			/>

@@ -20,10 +20,10 @@ const cs = {
 			next: 'Přeskočit na další sekci'
 		},
 		1: {
-			heading: 'Vítejte v Multitasking experimentu',
+			heading: 'Vítejte v experimentu mediálního multitaskingu',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Simulujeme typické digitální prostředí, kde je často vyžadován takzvaný “multitasking”, což nám pomůže pochopit, jak dobře lidé zvládají více úkolů současně. Předtím, než přejdete k cvičným úkolům a samotné multitaskingové úloze, si pečlivě přečtěte pokyny.'
+				1: 'Simulujeme typické digitální prostředí, kde je často vyžadován takzvaný "mediální multitasking", což nám pomůže pochopit, jak dobře lidé zvládají více úkolů současně. Předtím, než přejdete k cvičným úkolům a samotné mediální multitaskingové úloze, si pečlivě přečtěte pokyny.'
 			}
 		},
 		2: {
@@ -37,7 +37,7 @@ const cs = {
 			heading: 'Pokyny ke studii',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.'
+				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Získáte jeden bod za jakýkoliv úkol, který splníte. Vaším cílem je získat co nejvíce bodů plněním všech tří typů úkolů současně.'
 			}
 		},
 		3: {
@@ -86,11 +86,13 @@ const cs = {
 			heading: 'Úkol 3: Reakce na příspěvky na sociální síti',
 			confirm: 'Rozumím',
 			paragraphs: {
-				1: 'Další aktivita je na fiktivní sociální síti Chatbook. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.',
-				2: `- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+				1: 'V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.',
+				2: 'Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.',
+				3: 'Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:',
+				4: `- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
 - **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
-- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`,
-				3: 'Příspěvky se budou objevovat na obrazovce vlevo, doprovázené zvukem upozornění. Na každý příspěvek můžete reagovat jen několik sekund, než zmizí. Těsně před zmizením Vás na tuto skutečnost upozorní zvukový signál.'
+- **Bodování:** Získáte jeden bod za každou reakci - ať už zvolíte "Zjistit víc" nebo "Nemám zájem". Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`,
+				5: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
 			}
 		},
 		7: {
@@ -105,8 +107,8 @@ const cs = {
 			heading: 'Shrnutí',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
 			paragraphs: {
-				1: 'Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
-				2: 'Všechny úkoly jsou stejně důležité, takže se snažte získat co nejvíce bodů ve všech úkolech.'
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Snažte se tedy získat co nejvíce bodů napříč všemi třemi typy úkolů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
+				2: 'Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se všemi třemi typy úkolů zároveň.'
 			}
 		},
 		'ap-1': {
@@ -120,32 +122,30 @@ const cs = {
 			heading: 'Děkujeme! Nyní Vás čeká poslední úloha.',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Dokončili jste předchozí úkoly. Před touto závěrečnou úlohou si pečlivě přečtěte pokyny.',
-				2: 'Účastníte se studie, která simuluje prostředí sociálních médií. Platforma, kterou budete používat, se nazývá Chatbook a připomíná běžné platformy jako Facebook. Pro tuto relaci máte přiřazen anonymní účet.',
-				3: 'Budou Vám zobrazeny příspěvky ze sociálních médií, které připomínají ty, se kterými se můžete setkat od svých přátel nebo kolegů během běžného procházení.',
-				4: 'V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.'
+				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points:number} bodů.',
+				2: 'Nyní Vás čeká poslední úloha.'
 			}
 		},
 		'presingle-2': {
-			heading: 'Váš úkol',
-			confirm: 'Začít',
+			heading: 'Pouze reakce na příspěvky na sociální síti',
+			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Pro každý příspěvek si vyberte jednu z následujících možností:',
-				2: '- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).',
-				3: '- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.',
-				4: '**Upozornění:**',
-				5: '- Reagujte podle své první reakce na každý příspěvek.',
-				6: '- Neexistují správné nebo špatné odpovědi.',
-				7: '- Pečlivě si přečtěte každý příspěvek a udělejte svou volbu rychle a upřímně.',
-				8: '- Všechny odpovědi jsou anonymní a budou použity výhradně pro výzkumné účely.'
+				1: 'Účastníte se studie, která simuluje prostředí sociálních médií. V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.',
+				2: 'Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.',
+				3: 'Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:',
+				4: `- **Zjistit víc:** Klikněte na toto tlačítko, pokud vás příspěvek zaujme nebo vás nutí reagovat - ať už pomoci, komentovat, sdílet nebo dozvědět se více.
+- **Nemám zájem:** Klikněte na toto tlačítko, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.`,
+				5: 'V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.',
+				6: 'Získáte jeden bod za každý příspěvek, na který zareagujete. Vaším cílem je získat co nejvíce bodů. Snažte se reagovat na každý příspěvek, abyste maximalizovali své skóre.',
+				7: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
 			}
-		}
+		},
 	},
 	'pt-end': {
 		heading: 'Děkujeme za účast!',
 		confirm: 'Ukončit',
 		paragraphs: {
-			0: 'Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu! Vaše skóre činí {points:number} bodů.'
+			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Velmi děkujeme za Vaši účast!'
 		}
 	}
 } satisfies BaseTranslation;

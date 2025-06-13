@@ -53,7 +53,7 @@ type RootTranslation = {
 	question: {
 		'1': {
 			/**
-			 * V​í​t​e​j​t​e​ ​v​ ​M​u​l​t​i​t​a​s​k​i​n​g​ ​e​x​p​e​r​i​m​e​n​t​u
+			 * V​í​t​e​j​t​e​ ​v​ ​e​x​p​e​r​i​m​e​n​t​u​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u
 			 */
 			heading: string
 			/**
@@ -62,7 +62,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * S​i​m​u​l​u​j​e​m​e​ ​t​y​p​i​c​k​é​ ​d​i​g​i​t​á​l​n​í​ ​p​r​o​s​t​ř​e​d​í​,​ ​k​d​e​ ​j​e​ ​č​a​s​t​o​ ​v​y​ž​a​d​o​v​á​n​ ​t​a​k​z​v​a​n​ý​ ​“​m​u​l​t​i​t​a​s​k​i​n​g​”​,​ ​c​o​ž​ ​n​á​m​ ​p​o​m​ů​ž​e​ ​p​o​c​h​o​p​i​t​,​ ​j​a​k​ ​d​o​b​ř​e​ ​l​i​d​é​ ​z​v​l​á​d​a​j​í​ ​v​í​c​e​ ​ú​k​o​l​ů​ ​s​o​u​č​a​s​n​ě​.​ ​P​ř​e​d​t​í​m​,​ ​n​e​ž​ ​p​ř​e​j​d​e​t​e​ ​k​ ​c​v​i​č​n​ý​m​ ​ú​k​o​l​ů​m​ ​a​ ​s​a​m​o​t​n​é​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​é​ ​ú​l​o​z​e​,​ ​s​i​ ​p​e​č​l​i​v​ě​ ​p​ř​e​č​t​ě​t​e​ ​p​o​k​y​n​y​.
+				 * S​i​m​u​l​u​j​e​m​e​ ​t​y​p​i​c​k​é​ ​d​i​g​i​t​á​l​n​í​ ​p​r​o​s​t​ř​e​d​í​,​ ​k​d​e​ ​j​e​ ​č​a​s​t​o​ ​v​y​ž​a​d​o​v​á​n​ ​t​a​k​z​v​a​n​ý​ ​"​m​e​d​i​á​l​n​í​ ​m​u​l​t​i​t​a​s​k​i​n​g​"​,​ ​c​o​ž​ ​n​á​m​ ​p​o​m​ů​ž​e​ ​p​o​c​h​o​p​i​t​,​ ​j​a​k​ ​d​o​b​ř​e​ ​l​i​d​é​ ​z​v​l​á​d​a​j​í​ ​v​í​c​e​ ​ú​k​o​l​ů​ ​s​o​u​č​a​s​n​ě​.​ ​P​ř​e​d​t​í​m​,​ ​n​e​ž​ ​p​ř​e​j​d​e​t​e​ ​k​ ​c​v​i​č​n​ý​m​ ​ú​k​o​l​ů​m​ ​a​ ​s​a​m​o​t​n​é​ ​m​e​d​i​á​l​n​í​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​é​ ​ú​l​o​z​e​,​ ​s​i​ ​p​e​č​l​i​v​ě​ ​p​ř​e​č​t​ě​t​e​ ​p​o​k​y​n​y​.
 				 */
 				'1': string
 			}
@@ -150,19 +150,27 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * D​a​l​š​í​ ​a​k​t​i​v​i​t​a​ ​j​e​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​B​u​d​e​m​e​ ​V​á​m​ ​z​o​b​r​a​z​o​v​a​t​ ​r​ů​z​n​é​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​j​s​o​u​ ​t​a​g​o​v​á​n​y​ ​(​c​í​l​e​n​y​)​ ​n​a​ ​d​a​l​š​í​ ​l​i​d​i​ ​-​ ​t​e​d​y​ ​n​e​ ​n​a​ ​V​á​s​.​ ​ ​Z​a​r​e​a​g​u​j​t​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​k​l​i​k​n​u​t​í​m​ ​n​a​ ​t​l​a​č​í​t​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​ ​n​e​b​o​ ​"​N​e​l​í​b​í​ ​s​e​ ​m​i​"​.​ ​P​ř​e​d​s​t​a​v​t​e​ ​s​i​,​ ​ž​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​k​t​e​r​ý​ ​o​z​n​a​č​í​t​e​ ​j​a​k​o​ ​"​L​í​b​í​ ​s​e​ ​m​i​"​,​ ​s​e​ ​o​b​j​e​v​í​ ​n​a​ ​v​e​ř​e​j​n​é​ ​z​d​i​,​ ​k​t​e​r​á​ ​j​e​ ​v​ě​n​o​v​á​n​a​ ​v​a​š​i​m​ ​p​ř​á​t​e​l​ů​m​ ​a​ ​d​a​l​š​í​m​ ​l​i​d​e​m​.
+				 * V​ ​t​é​t​o​ ​a​k​t​i​v​i​t​ě​ ​b​u​d​e​t​e​ ​i​n​t​e​r​a​g​o​v​a​t​ ​s​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​í​ ​C​h​a​t​b​o​o​k​.​ ​C​h​a​t​b​o​o​k​ ​j​e​ ​n​a​v​r​ž​e​n​ ​t​a​k​,​ ​a​b​y​ ​z​o​b​r​a​z​o​v​a​l​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​o​d​r​á​ž​e​j​í​ ​r​ů​z​n​é​ ​k​a​ž​d​o​d​e​n​n​í​ ​z​á​j​m​y​,​ ​n​á​l​a​d​y​ ​a​ ​m​y​š​l​e​n​k​y​ ​-​ ​p​o​d​o​b​n​ě​ ​j​a​k​o​ ​b​y​s​t​e​ ​m​o​h​l​i​ ​p​o​t​k​a​t​ ​p​ř​i​ ​p​r​o​c​h​á​z​e​n​í​ ​s​k​u​t​e​č​n​ý​c​h​ ​s​o​c​i​á​l​n​í​c​h​ ​s​í​t​í​.
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​Z​j​i​s​t​i​t​ ​v​í​c​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.​
-			​-​ ​*​*​N​e​m​á​m​ ​z​á​j​e​m​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.​
-			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​K​a​ž​d​á​ ​r​e​a​k​c​e​,​ ​a​ť​ ​u​ž​ ​p​o​z​i​t​i​v​n​í​ ​n​e​b​o​ ​n​e​g​a​t​i​v​n​í​,​ ​v​á​m​ ​p​ř​i​n​e​s​e​ ​j​e​d​e​n​ ​b​o​d​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
+				 * P​r​o​ ​t​u​t​o​ ​r​e​l​a​c​i​ ​m​á​t​e​ ​p​ř​i​ř​a​z​e​n​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.​ ​B​ě​h​e​m​ ​ú​k​o​l​u​ ​u​v​i​d​í​t​e​ ​p​ř​í​s​p​ě​v​k​y​ ​p​o​d​o​b​n​é​ ​t​ě​m​,​ ​k​t​e​r​é​ ​b​y​ ​s​d​í​l​e​l​i​ ​p​ř​á​t​e​l​é​ ​n​e​b​o​ ​k​o​l​e​g​o​v​é​ ​p​ř​i​ ​b​ě​ž​n​é​m​ ​p​r​o​c​h​á​z​e​n​í​.
 				 */
 				'2': string
 				/**
-				 * P​ř​í​s​p​ě​v​k​y​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​n​a​ ​o​b​r​a​z​o​v​c​e​ ​v​l​e​v​o​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​ů​ž​e​t​e​ ​r​e​a​g​o​v​a​t​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​V​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.
+				 * P​ř​i​ ​z​o​b​r​a​z​e​n​í​ ​k​a​ž​d​é​h​o​ ​p​ř​í​s​p​ě​v​k​u​ ​j​e​d​n​o​d​u​š​e​ ​r​e​a​g​u​j​t​e​ ​p​o​d​l​e​ ​s​v​é​h​o​ ​o​s​o​b​n​í​h​o​ ​d​o​j​m​u​ ​v​ý​b​ě​r​e​m​ ​j​e​d​n​é​ ​z​ ​n​á​s​l​e​d​u​j​í​c​í​c​h​ ​m​o​ž​n​o​s​t​í​:
 				 */
 				'3': string
+				/**
+				 * -​ ​*​*​Z​j​i​s​t​i​t​ ​v​í​c​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.​
+			​-​ ​*​*​N​e​m​á​m​ ​z​á​j​e​m​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.​
+			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​k​a​ž​d​o​u​ ​r​e​a​k​c​i​ ​-​ ​a​ť​ ​u​ž​ ​z​v​o​l​í​t​e​ ​"​Z​j​i​s​t​i​t​ ​v​í​c​"​ ​n​e​b​o​ ​"​N​e​m​á​m​ ​z​á​j​e​m​"​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
+				 */
+				'4': string
+				/**
+				 * P​ř​í​s​p​ě​v​k​y​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​v​e​ ​s​t​ř​e​d​u​ ​o​b​r​a​z​o​v​k​y​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​á​t​e​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​ ​n​a​ ​r​e​a​k​c​i​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​v​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.​ ​P​r​o​s​í​m​,​ ​r​e​a​g​u​j​t​e​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​.
+				 */
+				'5': string
 			}
 		}
 		'7': {
@@ -206,7 +214,7 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​Ž​á​d​n​ý​ ​z​ ​ú​k​o​l​ů​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​ ​a​ ​v​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​.​ ​N​a​ ​d​a​l​š​í​c​h​ ​s​n​í​m​c​í​c​h​ ​n​á​s​l​e​d​u​j​í​c​í​ ​p​o​d​r​o​b​n​ě​j​š​í​ ​i​n​s​t​r​u​k​c​e​.
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​t​ř​í​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​,​ ​s​l​e​d​o​v​á​n​í​ ​d​o​k​u​m​e​n​t​u​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​j​a​k​ý​k​o​l​i​v​ ​ú​k​o​l​,​ ​k​t​e​r​ý​ ​s​p​l​n​í​t​e​.​ ​V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​p​l​n​ě​n​í​m​ ​v​š​e​c​h​ ​t​ř​í​ ​t​y​p​ů​ ​ú​k​o​l​ů​ ​s​o​u​č​a​s​n​ě​.
 				 */
 				'1': string
 			}
@@ -268,11 +276,11 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​K​a​ž​d​ý​ ​z​í​s​k​a​n​ý​ ​b​o​d​ ​r​e​f​l​e​k​t​u​j​e​ ​v​a​š​i​ ​s​c​h​o​p​n​o​s​t​ ​p​l​n​i​t​ ​d​a​n​ý​ ​ú​k​o​l​.​ ​S​n​a​ž​t​e​ ​s​e​ ​t​e​d​y​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​!​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​S​n​a​ž​t​e​ ​s​e​ ​t​e​d​y​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​n​a​p​ř​í​č​ ​v​š​e​m​i​ ​t​ř​e​m​i​ ​t​y​p​y​ ​ú​k​o​l​ů​!​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
 				 */
 				'1': string
 				/**
-				 * V​š​e​c​h​n​y​ ​ú​k​o​l​y​ ​j​s​o​u​ ​s​t​e​j​n​ě​ ​d​ů​l​e​ž​i​t​é​,​ ​t​a​k​ž​e​ ​s​e​ ​s​n​a​ž​t​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​v​e​ ​v​š​e​c​h​ ​ú​k​o​l​e​c​h​.
+				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​z​á​c​v​i​č​n​á​ ​ú​l​o​h​a​,​ ​k​t​e​r​á​ ​v​á​m​ ​p​o​m​ů​ž​e​ ​s​e​z​n​á​m​i​t​ ​s​e​ ​v​š​e​m​i​ ​t​ř​e​m​i​ ​t​y​p​y​ ​ú​k​o​l​ů​ ​z​á​r​o​v​e​ň​.
 				 */
 				'2': string
 			}
@@ -304,65 +312,55 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * D​o​k​o​n​č​i​l​i​ ​j​s​t​e​ ​p​ř​e​d​c​h​o​z​í​ ​ú​k​o​l​y​.​ ​P​ř​e​d​ ​t​o​u​t​o​ ​z​á​v​ě​r​e​č​n​o​u​ ​ú​l​o​h​o​u​ ​s​i​ ​p​e​č​l​i​v​ě​ ​p​ř​e​č​t​ě​t​e​ ​p​o​k​y​n​y​.
+				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​e​x​p​e​r​i​m​e​n​t​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
+				 * @param {number} points
 				 */
-				'1': string
+				'1': RequiredParams<'points'>
 				/**
-				 * Ú​č​a​s​t​n​í​t​e​ ​s​e​ ​s​t​u​d​i​e​,​ ​k​t​e​r​á​ ​s​i​m​u​l​u​j​e​ ​p​r​o​s​t​ř​e​d​í​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​.​ ​P​l​a​t​f​o​r​m​a​,​ ​k​t​e​r​o​u​ ​b​u​d​e​t​e​ ​p​o​u​ž​í​v​a​t​,​ ​s​e​ ​n​a​z​ý​v​á​ ​C​h​a​t​b​o​o​k​ ​a​ ​p​ř​i​p​o​m​í​n​á​ ​b​ě​ž​n​é​ ​p​l​a​t​f​o​r​m​y​ ​j​a​k​o​ ​F​a​c​e​b​o​o​k​.​ ​P​r​o​ ​t​u​t​o​ ​r​e​l​a​c​i​ ​m​á​t​e​ ​p​ř​i​ř​a​z​e​n​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.
+				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​p​o​s​l​e​d​n​í​ ​ú​l​o​h​a​.
 				 */
 				'2': string
-				/**
-				 * B​u​d​o​u​ ​V​á​m​ ​z​o​b​r​a​z​e​n​y​ ​p​ř​í​s​p​ě​v​k​y​ ​z​e​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​,​ ​k​t​e​r​é​ ​p​ř​i​p​o​m​í​n​a​j​í​ ​t​y​,​ ​s​e​ ​k​t​e​r​ý​m​i​ ​s​e​ ​m​ů​ž​e​t​e​ ​s​e​t​k​a​t​ ​o​d​ ​s​v​ý​c​h​ ​p​ř​á​t​e​l​ ​n​e​b​o​ ​k​o​l​e​g​ů​ ​b​ě​h​e​m​ ​b​ě​ž​n​é​h​o​ ​p​r​o​c​h​á​z​e​n​í​.
-				 */
-				'3': string
-				/**
-				 * V​ ​t​é​t​o​ ​ú​l​o​z​e​ ​s​e​ ​b​u​d​e​t​e​ ​v​ě​n​o​v​a​t​ ​p​o​u​z​e​ ​i​n​t​e​r​a​k​c​i​ ​s​e​ ​s​o​c​i​á​l​n​í​m​i​ ​m​é​d​i​i​ ​-​ ​ž​á​d​n​é​ ​d​a​l​š​í​ ​ú​k​o​l​y​ ​n​e​b​u​d​o​u​ ​z​o​b​r​a​z​e​n​y​.
-				 */
-				'4': string
 			}
 		}
 		'presingle-2': {
 			/**
-			 * V​á​š​ ​ú​k​o​l
+			 * P​o​u​z​e​ ​r​e​a​k​c​e​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i
 			 */
 			heading: string
 			/**
-			 * Z​a​č​í​t
+			 * P​o​k​r​a​č​o​v​a​t
 			 */
 			confirm: string
 			paragraphs: {
 				/**
-				 * P​r​o​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​s​i​ ​v​y​b​e​r​t​e​ ​j​e​d​n​u​ ​z​ ​n​á​s​l​e​d​u​j​í​c​í​c​h​ ​m​o​ž​n​o​s​t​í​:
+				 * Ú​č​a​s​t​n​í​t​e​ ​s​e​ ​s​t​u​d​i​e​,​ ​k​t​e​r​á​ ​s​i​m​u​l​u​j​e​ ​p​r​o​s​t​ř​e​d​í​ ​s​o​c​i​á​l​n​í​c​h​ ​m​é​d​i​í​.​ ​V​ ​t​é​t​o​ ​a​k​t​i​v​i​t​ě​ ​b​u​d​e​t​e​ ​i​n​t​e​r​a​g​o​v​a​t​ ​s​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​í​ ​C​h​a​t​b​o​o​k​.​ ​C​h​a​t​b​o​o​k​ ​j​e​ ​n​a​v​r​ž​e​n​ ​t​a​k​,​ ​a​b​y​ ​z​o​b​r​a​z​o​v​a​l​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​o​d​r​á​ž​e​j​í​ ​r​ů​z​n​é​ ​k​a​ž​d​o​d​e​n​n​í​ ​z​á​j​m​y​,​ ​n​á​l​a​d​y​ ​a​ ​m​y​š​l​e​n​k​y​ ​-​ ​p​o​d​o​b​n​ě​ ​j​a​k​o​ ​b​y​s​t​e​ ​m​o​h​l​i​ ​p​o​t​k​a​t​ ​p​ř​i​ ​p​r​o​c​h​á​z​e​n​í​ ​s​k​u​t​e​č​n​ý​c​h​ ​s​o​c​i​á​l​n​í​c​h​ ​s​í​t​í​.
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​Z​j​i​s​t​i​t​ ​v​í​c​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.
+				 * P​r​o​ ​t​u​t​o​ ​r​e​l​a​c​i​ ​m​á​t​e​ ​p​ř​i​ř​a​z​e​n​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.​ ​B​ě​h​e​m​ ​ú​k​o​l​u​ ​u​v​i​d​í​t​e​ ​p​ř​í​s​p​ě​v​k​y​ ​p​o​d​o​b​n​é​ ​t​ě​m​,​ ​k​t​e​r​é​ ​b​y​ ​s​d​í​l​e​l​i​ ​p​ř​á​t​e​l​é​ ​n​e​b​o​ ​k​o​l​e​g​o​v​é​ ​p​ř​i​ ​b​ě​ž​n​é​m​ ​p​r​o​c​h​á​z​e​n​í​.
 				 */
 				'2': string
 				/**
-				 * -​ ​*​*​N​e​m​á​m​ ​z​á​j​e​m​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.
+				 * P​ř​i​ ​z​o​b​r​a​z​e​n​í​ ​k​a​ž​d​é​h​o​ ​p​ř​í​s​p​ě​v​k​u​ ​j​e​d​n​o​d​u​š​e​ ​r​e​a​g​u​j​t​e​ ​p​o​d​l​e​ ​s​v​é​h​o​ ​o​s​o​b​n​í​h​o​ ​d​o​j​m​u​ ​v​ý​b​ě​r​e​m​ ​j​e​d​n​é​ ​z​ ​n​á​s​l​e​d​u​j​í​c​í​c​h​ ​m​o​ž​n​o​s​t​í​:
 				 */
 				'3': string
 				/**
-				 * *​*​U​p​o​z​o​r​n​ě​n​í​:​*​*
+				 * -​ ​*​*​Z​j​i​s​t​i​t​ ​v​í​c​:​*​*​ ​K​l​i​k​n​ě​t​e​ ​n​a​ ​t​o​t​o​ ​t​l​a​č​í​t​k​o​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​z​a​u​j​m​e​ ​n​e​b​o​ ​v​á​s​ ​n​u​t​í​ ​r​e​a​g​o​v​a​t​ ​-​ ​a​ť​ ​u​ž​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​ ​n​e​b​o​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​.​
+			​-​ ​*​*​N​e​m​á​m​ ​z​á​j​e​m​:​*​*​ ​K​l​i​k​n​ě​t​e​ ​n​a​ ​t​o​t​o​ ​t​l​a​č​í​t​k​o​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.
 				 */
 				'4': string
 				/**
-				 * -​ ​R​e​a​g​u​j​t​e​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​.
+				 * V​ ​t​é​t​o​ ​ú​l​o​z​e​ ​s​e​ ​b​u​d​e​t​e​ ​v​ě​n​o​v​a​t​ ​p​o​u​z​e​ ​i​n​t​e​r​a​k​c​i​ ​s​e​ ​s​o​c​i​á​l​n​í​m​i​ ​m​é​d​i​i​ ​-​ ​ž​á​d​n​é​ ​d​a​l​š​í​ ​ú​k​o​l​y​ ​n​e​b​u​d​o​u​ ​z​o​b​r​a​z​e​n​y​.
 				 */
 				'5': string
 				/**
-				 * -​ ​N​e​e​x​i​s​t​u​j​í​ ​s​p​r​á​v​n​é​ ​n​e​b​o​ ​š​p​a​t​n​é​ ​o​d​p​o​v​ě​d​i​.
+				 * Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​n​a​ ​k​t​e​r​ý​ ​z​a​r​e​a​g​u​j​e​t​e​.​ ​V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​m​a​x​i​m​a​l​i​z​o​v​a​l​i​ ​s​v​é​ ​s​k​ó​r​e​.
 				 */
 				'6': string
 				/**
-				 * -​ ​P​e​č​l​i​v​ě​ ​s​i​ ​p​ř​e​č​t​ě​t​e​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​a​ ​u​d​ě​l​e​j​t​e​ ​s​v​o​u​ ​v​o​l​b​u​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​.
+				 * P​ř​í​s​p​ě​v​k​y​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​v​e​ ​s​t​ř​e​d​u​ ​o​b​r​a​z​o​v​k​y​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​á​t​e​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​ ​n​a​ ​r​e​a​k​c​i​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​v​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.​ ​P​r​o​s​í​m​,​ ​r​e​a​g​u​j​t​e​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​.
 				 */
 				'7': string
-				/**
-				 * -​ ​V​š​e​c​h​n​y​ ​o​d​p​o​v​ě​d​i​ ​j​s​o​u​ ​a​n​o​n​y​m​n​í​ ​a​ ​b​u​d​o​u​ ​p​o​u​ž​i​t​y​ ​v​ý​h​r​a​d​n​ě​ ​p​r​o​ ​v​ý​z​k​u​m​n​é​ ​ú​č​e​l​y​.
-				 */
-				'8': string
 			}
 		}
 	}
@@ -377,10 +375,9 @@ type RootTranslation = {
 		confirm: string
 		paragraphs: {
 			/**
-			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​m​u​l​t​i​t​a​s​k​i​n​g​o​v​o​u​ ​ú​l​o​h​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
-			 * @param {number} points
+			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​c​e​l​ý​ ​e​x​p​e​r​i​m​e​n​t​!​ ​V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
 			 */
-			'0': RequiredParams<'points'>
+			'0': string
 		}
 	}
 }
@@ -425,7 +422,7 @@ export type TranslationFunctions = {
 	question: {
 		'1': {
 			/**
-			 * Vítejte v Multitasking experimentu
+			 * Vítejte v experimentu mediálního multitaskingu
 			 */
 			heading: () => LocalizedString
 			/**
@@ -434,7 +431,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Simulujeme typické digitální prostředí, kde je často vyžadován takzvaný “multitasking”, což nám pomůže pochopit, jak dobře lidé zvládají více úkolů současně. Předtím, než přejdete k cvičným úkolům a samotné multitaskingové úloze, si pečlivě přečtěte pokyny.
+				 * Simulujeme typické digitální prostředí, kde je často vyžadován takzvaný "mediální multitasking", což nám pomůže pochopit, jak dobře lidé zvládají více úkolů současně. Předtím, než přejdete k cvičným úkolům a samotné mediální multitaskingové úloze, si pečlivě přečtěte pokyny.
 				 */
 				'1': () => LocalizedString
 			}
@@ -522,19 +519,27 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Další aktivita je na fiktivní sociální síti Chatbook. Budeme Vám zobrazovat různé příspěvky, které jsou tagovány (cíleny) na další lidi - tedy ne na Vás.  Zareagujte na každý příspěvek kliknutím na tlačítko "Líbí se mi" nebo "Nelíbí se mi". Představte si, že každý příspěvek, který označíte jako "Líbí se mi", se objeví na veřejné zdi, která je věnována vašim přátelům a dalším lidem.
+				 * V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
-			- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
-			- **Bodování:** Každá reakce, ať už pozitivní nebo negativní, vám přinese jeden bod. Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
+				 * Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.
 				 */
 				'2': () => LocalizedString
 				/**
-				 * Příspěvky se budou objevovat na obrazovce vlevo, doprovázené zvukem upozornění. Na každý příspěvek můžete reagovat jen několik sekund, než zmizí. Těsně před zmizením Vás na tuto skutečnost upozorní zvukový signál.
+				 * Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:
 				 */
 				'3': () => LocalizedString
+				/**
+				 * - **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+			- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+			- **Bodování:** Získáte jeden bod za každou reakci - ať už zvolíte "Zjistit víc" nebo "Nemám zájem". Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
+				 */
+				'4': () => LocalizedString
+				/**
+				 * Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.
+				 */
+				'5': () => LocalizedString
 			}
 		}
 		'7': {
@@ -578,7 +583,7 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Žádný z úkolů není prioritní a všechny úkoly jsou stejně důležité. Na dalších snímcích následující podrobnější instrukce.
+				 * V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Získáte jeden bod za jakýkoliv úkol, který splníte. Vaším cílem je získat co nejvíce bodů plněním všech tří typů úkolů současně.
 				 */
 				'1': () => LocalizedString
 			}
@@ -640,11 +645,11 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Vaším cílem je nasbírat co nejvíce bodů. Každý získaný bod reflektuje vaši schopnost plnit daný úkol. Snažte se tedy získat co nejvíce bodů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
+				 * Vaším cílem je nasbírat co nejvíce bodů. Snažte se tedy získat co nejvíce bodů napříč všemi třemi typy úkolů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * Všechny úkoly jsou stejně důležité, takže se snažte získat co nejvíce bodů ve všech úkolech.
+				 * Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se všemi třemi typy úkolů zároveň.
 				 */
 				'2': () => LocalizedString
 			}
@@ -676,65 +681,54 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Dokončili jste předchozí úkoly. Před touto závěrečnou úlohou si pečlivě přečtěte pokyny.
+				 * Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points} bodů.
 				 */
-				'1': () => LocalizedString
+				'1': (arg: { points: number }) => LocalizedString
 				/**
-				 * Účastníte se studie, která simuluje prostředí sociálních médií. Platforma, kterou budete používat, se nazývá Chatbook a připomíná běžné platformy jako Facebook. Pro tuto relaci máte přiřazen anonymní účet.
+				 * Nyní Vás čeká poslední úloha.
 				 */
 				'2': () => LocalizedString
-				/**
-				 * Budou Vám zobrazeny příspěvky ze sociálních médií, které připomínají ty, se kterými se můžete setkat od svých přátel nebo kolegů během běžného procházení.
-				 */
-				'3': () => LocalizedString
-				/**
-				 * V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.
-				 */
-				'4': () => LocalizedString
 			}
 		}
 		'presingle-2': {
 			/**
-			 * Váš úkol
+			 * Pouze reakce na příspěvky na sociální síti
 			 */
 			heading: () => LocalizedString
 			/**
-			 * Začít
+			 * Pokračovat
 			 */
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Pro každý příspěvek si vyberte jednu z následujících možností:
+				 * Účastníte se studie, která simuluje prostředí sociálních médií. V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+				 * Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.
 				 */
 				'2': () => LocalizedString
 				/**
-				 * - **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+				 * Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:
 				 */
 				'3': () => LocalizedString
 				/**
-				 * **Upozornění:**
+				 * - **Zjistit víc:** Klikněte na toto tlačítko, pokud vás příspěvek zaujme nebo vás nutí reagovat - ať už pomoci, komentovat, sdílet nebo dozvědět se více.
+			- **Nemám zájem:** Klikněte na toto tlačítko, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
 				 */
 				'4': () => LocalizedString
 				/**
-				 * - Reagujte podle své první reakce na každý příspěvek.
+				 * V této úloze se budete věnovat pouze interakci se sociálními médii - žádné další úkoly nebudou zobrazeny.
 				 */
 				'5': () => LocalizedString
 				/**
-				 * - Neexistují správné nebo špatné odpovědi.
+				 * Získáte jeden bod za každý příspěvek, na který zareagujete. Vaším cílem je získat co nejvíce bodů. Snažte se reagovat na každý příspěvek, abyste maximalizovali své skóre.
 				 */
 				'6': () => LocalizedString
 				/**
-				 * - Pečlivě si přečtěte každý příspěvek a udělejte svou volbu rychle a upřímně.
+				 * Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.
 				 */
 				'7': () => LocalizedString
-				/**
-				 * - Všechny odpovědi jsou anonymní a budou použity výhradně pro výzkumné účely.
-				 */
-				'8': () => LocalizedString
 			}
 		}
 	}
@@ -749,9 +743,9 @@ export type TranslationFunctions = {
 		confirm: () => LocalizedString
 		paragraphs: {
 			/**
-			 * Blahopřejeme! Úspěšně jste dokončili multitaskingovou úlohu! Vaše skóre činí {points} bodů.
+			 * Blahopřejeme! Úspěšně jste dokončili celý experiment! Velmi děkujeme za Vaši účast!
 			 */
-			'0': (arg: { points: number }) => LocalizedString
+			'0': () => LocalizedString
 		}
 	}
 }
