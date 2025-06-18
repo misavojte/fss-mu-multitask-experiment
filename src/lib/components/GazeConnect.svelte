@@ -47,6 +47,7 @@
 		$isLoading = true;
 		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
 		try {
+			await gazeManager.open();
 			await gazeManager.connect();
 			console.log('Connected');
 			connectLogger.logConnect();
