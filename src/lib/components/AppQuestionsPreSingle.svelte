@@ -18,11 +18,20 @@
 			headingText: get(LL).question['presingle-1']['heading'](),
 			confirmText: get(LL).question['presingle-1']['confirm'](),
 			paragraphs: [
-				get(LL).question['presingle-1'].paragraphs['1']({
-					points: taskHandler.score,
-					maxPoints: taskHandler.maxScore
+				get(LL).question['presingle-1'].paragraphs['1'](),
+				get(LL).question['presingle-1'].paragraphs['2']({
+					patternMatchingPoints: taskHandler.patternMatchingScore,
+					maxPatternMatchingPoints: taskHandler.maxPatternMatchingScore
 				}),
-				get(LL).question['presingle-1'].paragraphs['2']()
+				get(LL).question['presingle-1'].paragraphs['3']({
+					documentaryPoints: taskHandler.documentaryScore,
+					maxDocumentaryPoints: taskHandler.maxDocumentaryScore
+				}),
+				get(LL).question['presingle-1'].paragraphs['4']({
+					socialMediaPoints: taskHandler.socialMediaScore,
+					maxSocialMediaPoints: taskHandler.maxSocialMediaScore
+				}),
+				get(LL).question['presingle-1'].paragraphs['5']()
 			],
 			type: 'instruction',
 			required: true

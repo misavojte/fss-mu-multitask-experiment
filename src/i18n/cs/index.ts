@@ -122,8 +122,11 @@ const cs = {
 			heading: 'Děkujeme! Nyní Vás čeká poslední úloha.',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points:number} bodů z {maxPoints:number} možných bodů.',
-				2: 'Nyní Vás čeká poslední úloha.'
+				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše výsledky:',
+				2: '- **Matematické úlohy:** {patternMatchingPoints:number} bodů ({maxPatternMatchingPoints:number})',
+				3: '- **Dokumentární video:** {documentaryPoints:number} bodů ({maxDocumentaryPoints:number})',
+				4: '- **Sociální média:** {socialMediaPoints:number} bodů ({maxSocialMediaPoints:number})',
+				5: 'Nyní Vás čeká poslední úloha.'
 			}
 		},
 		'presingle-2': {
@@ -144,7 +147,9 @@ const cs = {
 		heading: 'Děkujeme za účast!',
 		confirm: 'Ukončit',
 		paragraphs: {
-			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! V poslední části jste získali {points:number} z {maxPoints:number} možných bodů. Velmi děkujeme za Vaši účast!'
+			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Vaše výsledky v poslední části:',
+			1: 'Sociální média: {socialMediaPoints:number} bodů ({maxSocialMediaPoints:number})',
+			2: 'Velmi děkujeme za Vaši účast!'
 		}
 	}
 } satisfies BaseTranslation;

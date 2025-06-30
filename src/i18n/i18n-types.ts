@@ -312,15 +312,31 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​e​x​p​e​r​i​m​e​n​t​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​ ​z​ ​{​m​a​x​P​o​i​n​t​s​}​ ​m​o​ž​n​ý​c​h​ ​b​o​d​ů​.
-				 * @param {number} maxPoints
-				 * @param {number} points
+				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​e​x​p​e​r​i​m​e​n​t​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u​!​ ​V​a​š​e​ ​v​ý​s​l​e​d​k​y​:
 				 */
-				'1': RequiredParams<'maxPoints' | 'points'>
+				'1': string
+				/**
+				 * -​ ​*​*​M​a​t​e​m​a​t​i​c​k​é​ ​ú​l​o​h​y​:​*​*​ ​{​p​a​t​t​e​r​n​M​a​t​c​h​i​n​g​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​P​a​t​t​e​r​n​M​a​t​c​h​i​n​g​P​o​i​n​t​s​}​)
+				 * @param {number} maxPatternMatchingPoints
+				 * @param {number} patternMatchingPoints
+				 */
+				'2': RequiredParams<'maxPatternMatchingPoints' | 'patternMatchingPoints'>
+				/**
+				 * -​ ​*​*​D​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​:​*​*​ ​{​d​o​c​u​m​e​n​t​a​r​y​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​D​o​c​u​m​e​n​t​a​r​y​P​o​i​n​t​s​}​)
+				 * @param {number} documentaryPoints
+				 * @param {number} maxDocumentaryPoints
+				 */
+				'3': RequiredParams<'documentaryPoints' | 'maxDocumentaryPoints'>
+				/**
+				 * -​ ​*​*​S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​*​*​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​S​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​)
+				 * @param {number} maxSocialMediaPoints
+				 * @param {number} socialMediaPoints
+				 */
+				'4': RequiredParams<'maxSocialMediaPoints' | 'socialMediaPoints'>
 				/**
 				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​p​o​s​l​e​d​n​í​ ​ú​l​o​h​a​.
 				 */
-				'2': string
+				'5': string
 			}
 		}
 		'presingle-2': {
@@ -372,11 +388,19 @@ type RootTranslation = {
 		confirm: string
 		paragraphs: {
 			/**
-			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​c​e​l​ý​ ​e​x​p​e​r​i​m​e​n​t​!​ ​V​ ​p​o​s​l​e​d​n​í​ ​č​á​s​t​i​ ​j​s​t​e​ ​z​í​s​k​a​l​i​ ​{​p​o​i​n​t​s​}​ ​z​ ​{​m​a​x​P​o​i​n​t​s​}​ ​m​o​ž​n​ý​c​h​ ​b​o​d​ů​.​ ​V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
-			 * @param {number} maxPoints
-			 * @param {number} points
+			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​c​e​l​ý​ ​e​x​p​e​r​i​m​e​n​t​!​ ​V​a​š​e​ ​v​ý​s​l​e​d​k​y​ ​v​ ​p​o​s​l​e​d​n​í​ ​č​á​s​t​i​:
 			 */
-			'0': RequiredParams<'maxPoints' | 'points'>
+			'0': string
+			/**
+			 * S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​S​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​)
+			 * @param {number} maxSocialMediaPoints
+			 * @param {number} socialMediaPoints
+			 */
+			'1': RequiredParams<'maxSocialMediaPoints' | 'socialMediaPoints'>
+			/**
+			 * V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
+			 */
+			'2': string
 		}
 	}
 }
@@ -680,13 +704,25 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points} bodů z {maxPoints} možných bodů.
+				 * Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše výsledky:
 				 */
-				'1': (arg: { maxPoints: number, points: number }) => LocalizedString
+				'1': () => LocalizedString
+				/**
+				 * - **Matematické úlohy:** {patternMatchingPoints} bodů ({maxPatternMatchingPoints})
+				 */
+				'2': (arg: { maxPatternMatchingPoints: number, patternMatchingPoints: number }) => LocalizedString
+				/**
+				 * - **Dokumentární video:** {documentaryPoints} bodů ({maxDocumentaryPoints})
+				 */
+				'3': (arg: { documentaryPoints: number, maxDocumentaryPoints: number }) => LocalizedString
+				/**
+				 * - **Sociální média:** {socialMediaPoints} bodů ({maxSocialMediaPoints})
+				 */
+				'4': (arg: { maxSocialMediaPoints: number, socialMediaPoints: number }) => LocalizedString
 				/**
 				 * Nyní Vás čeká poslední úloha.
 				 */
-				'2': () => LocalizedString
+				'5': () => LocalizedString
 			}
 		}
 		'presingle-2': {
@@ -738,9 +774,17 @@ export type TranslationFunctions = {
 		confirm: () => LocalizedString
 		paragraphs: {
 			/**
-			 * Blahopřejeme! Úspěšně jste dokončili celý experiment! V poslední části jste získali {points} z {maxPoints} možných bodů. Velmi děkujeme za Vaši účast!
+			 * Blahopřejeme! Úspěšně jste dokončili celý experiment! Vaše výsledky v poslední části:
 			 */
-			'0': (arg: { maxPoints: number, points: number }) => LocalizedString
+			'0': () => LocalizedString
+			/**
+			 * Sociální média: {socialMediaPoints} bodů ({maxSocialMediaPoints})
+			 */
+			'1': (arg: { maxSocialMediaPoints: number, socialMediaPoints: number }) => LocalizedString
+			/**
+			 * Velmi děkujeme za Vaši účast!
+			 */
+			'2': () => LocalizedString
 		}
 	}
 }
