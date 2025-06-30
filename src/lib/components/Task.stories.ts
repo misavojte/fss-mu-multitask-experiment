@@ -55,7 +55,7 @@ export const Default: Story = {
 				src: 'task/3/3.png'
 			}
 		],
-		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandler.taskPatternMatchingObjects,
 		videoDocumentarySrc: 'video/video.mp4',
 		taskHandler
 	}
@@ -83,7 +83,7 @@ export const Math: Story = {
 				src: '/task/3/practice/PT_NS_Image 2.png'
 			}
 		],
-		patternMatchingObjects: taskHandlerMath.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandlerMath.taskPatternMatchingObjects,
 		videoDocumentarySrc: 'video/video.mp4',
 		taskHandler: taskHandlerMath
 	}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import App from '$lib/components/App.svelte';
+	import AppDual from '$lib/components/AppDual.svelte';
 	import { ConnectLoggerIDB } from '$lib/services/ConnectLoggerIDB';
 	import { GazeSaverIDB } from '$lib/services/GazeSaverIDB';
 	import { TimestampQuestionServiceIDB } from '$lib/services/TimestampQuestionServiceIDB';
@@ -9,9 +9,9 @@
 	const connectLogger = new ConnectLoggerIDB(sessionId);
 	const gazeSaver = new GazeSaverIDB(sessionId);
 
-	let sentiment: 'negative' | 'positive' = 'negative';
+	let sentiment: 'negative' | 'positive' = 'positive';
 </script>
 
 {#if sentiment}
-	<App {gazeSaver} {connectLogger} {questionsService} {sessionId} {sentiment} />
+	<AppDual {gazeSaver} {connectLogger} {questionsService} {sessionId} {sentiment} />
 {/if}

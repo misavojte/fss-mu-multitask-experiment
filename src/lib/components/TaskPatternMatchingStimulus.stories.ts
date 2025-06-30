@@ -4,7 +4,7 @@ import { loadLocale } from '../../i18n/i18n-util.sync';
 import TaskPatternMatchingStimulus from './TaskPatternMatchingStimulus.svelte';
 import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
 
-const taskPatternMatchingService = new TaskHandlerIntelligenceMock('/', 'prioritize');
+const taskPatternMatchingService = new TaskHandlerIntelligenceMock();
 
 loadLocale('cs');
 setLocale('cs');
@@ -17,7 +17,7 @@ const meta = {
 	argTypes: {
 		patternMatchingObject: {
 			control: 'object',
-			defaultValue: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()[0]
+			defaultValue: taskPatternMatchingService.taskPatternMatchingObjects[0]
 		}
 	}
 } satisfies Meta<TaskPatternMatchingStimulus>;
@@ -28,6 +28,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
 	args: {
-		patternMatchingObject: taskPatternMatchingService.getTaskPatternMatchingObjectsForPractice()[0]
+		patternMatchingObject: taskPatternMatchingService.taskPatternMatchingObjects[0]
 	}
 };

@@ -7,10 +7,8 @@
 	import { get } from 'svelte/store';
 
 	export let taskHandler: ATaskHandler;
-	const patternMatchingObjects = fisherYatesShuffle(
-		taskHandler.getTaskPatternMatchingObjectsForTest()
-	);
-	const videoDocumentarySrc = base + '/video/trial.mp4';
+	const patternMatchingObjects = taskHandler.taskPatternMatchingObjects;
+	const videoDocumentarySrc = taskHandler.videoConfiguration.src;
 
 	const socialMediaStimuliAS = Array.from({ length: 8 }, (_, i) => ({
 		id: `AS_Image ${i + 1}`,

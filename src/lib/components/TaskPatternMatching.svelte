@@ -47,8 +47,8 @@
 	): void => {
 		if ($hasRespondedToCurrent) return;
 		// const isCorrect = event.detail === 'T1'; //
-		console.log('response', event.detail.response, taskHandler.correctResponseId);
-		const isCorrect = event.detail.response === taskHandler.correctResponseId;
+		console.log('response', event.detail.response, taskHandler.taskPatternCorrectResponseId);
+		const isCorrect = event.detail.response === taskHandler.taskPatternCorrectResponseId;
 		dispatch('patternMatchingResponse', event.detail.response);
 		if (showCorrectnessFeedback) {
 			animationTargetHandler.createAnimationTarget(

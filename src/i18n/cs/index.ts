@@ -40,6 +40,13 @@ const cs = {
 				1: 'V tomto experimentu se budete současně účastnit tří úkolů: řešení jednoduchých matematických úloh, sledování dokumentu a reagování na příspěvky na fiktivní sociální síti Chatbook. Získáte jeden bod za jakýkoliv úkol, který splníte. Vaším cílem je získat co nejvíce bodů plněním všech tří typů úkolů současně.'
 			}
 		},
+		'2b-dual': {
+			heading: 'Pokyny ke studii',
+			confirm: 'Pokračovat',
+			paragraphs: {
+				1: 'V tomto experimentu se budete současně účastnit dvou úkolů: řešení jednoduchých matematických úloh a reagování na příspěvky na fiktivní sociální síti Chatbook. Získáte jeden bod za jakýkoliv úkol, který splníte. Vaším cílem je získat co nejvíce bodů plněním obou typů úkolů současně.'
+			}
+		},
 		3: {
 			heading: 'Nejprve zadejte párovací ID pro experiemnt.',
 			confirm: 'Potvrdit'
@@ -95,6 +102,19 @@ const cs = {
 				5: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
 			}
 		},
+		'6-dual': {
+			heading: 'Úkol 2: Reakce na příspěvky na sociální síti',
+			confirm: 'Rozumím',
+			paragraphs: {
+				1: 'V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.',
+				2: 'Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.',
+				3: 'Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:',
+				4: `- **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+- **Bodování:** Získáte jeden bod za každou reakci - ať už zvolíte "Zjistit víc" nebo "Nemám zájem". Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.`,
+				5: 'Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.'
+			}
+		},
 		7: {
 			heading: 'Shrnutí',
 			confirm: 'Rozumím, začít zácvičnou úlohu',
@@ -111,6 +131,14 @@ const cs = {
 				2: 'Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se všemi třemi typy úkolů zároveň.'
 			}
 		},
+		'7b-dual': {
+			heading: 'Shrnutí',
+			confirm: 'Rozumím, začít zácvičnou úlohu',
+			paragraphs: {
+				1: 'Vaším cílem je nasbírat co nejvíce bodů. Snažte se tedy získat co nejvíce bodů napříč oběma typy úkolů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.',
+				2: 'Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se s oběma typy úkolů zároveň.'
+			}
+		},
 		'ap-1': {
 			heading: 'Chcete pokračovat na ostrý test?',
 			options: {
@@ -122,8 +150,11 @@ const cs = {
 			heading: 'Děkujeme! Nyní Vás čeká poslední úloha.',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points:number} bodů.',
-				2: 'Nyní Vás čeká poslední úloha.'
+				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše výsledky:',
+				2: '- **Matematické úlohy:** {patternMatchingPoints:number} bodů (z {patternMatchingDisplayed:number} zobrazených)',
+				3: '- **Dokumentární video:** {documentaryPoints:number} bodů (z {documentaryDisplayed:number} zobrazených)',
+				4: '- **Sociální média:** {socialMediaPoints:number} bodů (z {socialMediaDisplayed:number} zobrazených)',
+				5: 'Nyní Vás čeká poslední úloha.'
 			}
 		},
 		'presingle-2': {
@@ -144,7 +175,9 @@ const cs = {
 		heading: 'Děkujeme za účast!',
 		confirm: 'Ukončit',
 		paragraphs: {
-			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Velmi děkujeme za Vaši účast!'
+			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Vaše výsledky v poslední části:',
+			1: 'Sociální média: {socialMediaPoints:number} bodů (z {socialMediaDisplayed:number} zobrazených)',
+			2: 'Velmi děkujeme za Vaši účast!'
 		}
 	}
 } satisfies BaseTranslation;

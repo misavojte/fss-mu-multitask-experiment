@@ -85,71 +85,89 @@
 	});
 </script>
 
-<div class="w-full h-full flex flex-col gap-8 battery-layout">
-	<div class="flex flex-col justify-center items-center row-span-2 w-full h-8">
+<div class="w-full h-full relative">
+	<div
+		class="w-full h-full grid absolute top-0 left-0"
+		class:battery-layout-full={showProgress && showSkip}
+		class:battery-layout-progress-only={showProgress && !showSkip}
+		class:battery-layout-skip-only={!showProgress && showSkip}
+		class:battery-layout-content-only={!showProgress && !showSkip}
+	>
 		{#if showProgress}
-			<div class="w-full flex justify-center items-center" transition:fade>
-				<InterfaceProgress currentValue={$progressStore} maxValue={questions.length} />
+			<div class="grid place-items-center w-full h-8">
+				<div class="grid place-items-center w-full" transition:fade>
+					<InterfaceProgress currentValue={$progressStore} maxValue={questions.length} />
+				</div>
 			</div>
 		{/if}
-	</div>
-	<div
-		class="justify-center items-center relative grid grid-rows-1 grid-cols-1 overflow-hidden grow"
-	>
-		{#each questionSingleArray as question (question.id)}
-			<div
-				in:fly={{ delay: 500, x: inAnimationXValue() }}
-				out:fly={{ delay: 150, x: outAnimationXValue() }}
-				class=" w-full top-0 left-0 h-full row-start-1 row-end-2 col-start-1 col-end-2"
-			>
-				{#if question.type === 'text'}
-					<QuestionTypeText
-						{question}
-						on:input={handleOnInput}
-						bind:value={questionValues[$progressStore].value}
-					/>
-				{/if}
-				{#if question.type === 'instruction'}
-					<QuestionTypeInstruction
-						{question}
-						on:input={handleOnInput}
-						bind:value={questionValues[$progressStore].value}
-					/>
-				{/if}
-				{#if question.type === 'select'}
-					<QuestionTypeSelect
-						{question}
-						on:input={handleOnInput}
-						bind:value={questionValues[$progressStore].value}
-					/>
-				{/if}
-			</div>
-		{/each}
-	</div>
-	<div class="h-8">
+		<div class="grid place-items-center relative grid-rows-1 grid-cols-1 overflow-hidden">
+			{#each questionSingleArray as question (question.id)}
+				<div
+					in:fly={{ delay: 500, x: inAnimationXValue() }}
+					out:fly={{ delay: 150, x: outAnimationXValue() }}
+					class=" w-full top-0 left-0 h-full row-start-1 row-end-2 col-start-1 col-end-2 scroll-y-auto"
+				>
+					{#if question.type === 'text'}
+						<QuestionTypeText
+							{question}
+							on:input={handleOnInput}
+							bind:value={questionValues[$progressStore].value}
+						/>
+					{/if}
+					{#if question.type === 'instruction'}
+						<QuestionTypeInstruction
+							{question}
+							on:input={handleOnInput}
+							bind:value={questionValues[$progressStore].value}
+						/>
+					{/if}
+					{#if question.type === 'select'}
+						<QuestionTypeSelect
+							{question}
+							on:input={handleOnInput}
+							bind:value={questionValues[$progressStore].value}
+						/>
+					{/if}
+				</div>
+			{/each}
+		</div>
 		{#if showSkip}
-			<div class="flex justify-center items-center gap-4" transition:fade>
-				<button
-					class="border-0 text-neutral-700 text-sm disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
-					on:click={handleGoBack}
-					disabled={$progressStore === 0}
-				>
-					{$LL.question.battery.back()}
-				</button>
-				<button
-					class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
-					on:click={handleOnInput}
-					disabled={shouldSkipBeDisabled}
-				>
-					{$LL.question.battery.next()}
-				</button>
+			<div class="h-8">
+				<div class="grid grid-cols-2 place-items-center gap-4" transition:fade>
+					<button
+						class="border-0 text-neutral-700 text-sm disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
+						on:click={handleGoBack}
+						disabled={$progressStore === 0}
+					>
+						{$LL.question.battery.back()}
+					</button>
+					<button
+						class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
+						on:click={handleOnInput}
+						disabled={shouldSkipBeDisabled}
+					>
+						{$LL.question.battery.next()}
+					</button>
+				</div>
 			</div>
 		{/if}
 	</div>
 </div>
 
 <style>
-	.battery-layout {
-		grid-template-rows: 100px 1fr 100px;
+	.battery-layout-full {
+		grid-template-rows: auto 1fr auto;
+	}
+
+	.battery-layout-progress-only {
+		grid-template-rows: auto 1fr;
+	}
+
+	.battery-layout-skip-only {
+		grid-template-rows: 1fr auto;
+	}
+
+	.battery-layout-content-only {
+		grid-template-rows: 1fr;
 	}
 </style>

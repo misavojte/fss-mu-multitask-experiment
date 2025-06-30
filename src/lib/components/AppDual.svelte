@@ -8,14 +8,14 @@
 	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
 	import { onDestroy, onMount, setContext } from 'svelte';
 	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
-	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
-	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
+	import AppQuestionsPrePracticeBDual from './AppQuestionsPrePracticeBDual.svelte';
+	import AppQuestionsPostPracticeBDual from './AppQuestionsPostPracticeBDual.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
+	import AppQuestionsPreSingleDual from './AppQuestionsPreSingleDual.svelte';
 	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
-	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
+	import AppTaskTrialDual from './AppTaskTrialDual.svelte';
 	import {
 		createFinalMediaStimuli,
 		createTrainingMediaStimuli,
@@ -25,16 +25,14 @@
 		getFinalMediaStimuliSrcBase
 	} from '$lib/utils/createMediaStimuli';
 	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
-	import AppTaskPracticeSentimentVariant from './AppTaskPracticeSentimentVariant.svelte';
+	import AppTaskPracticeDual from './AppTaskPracticeDual.svelte';
 	import { get } from 'svelte/store';
 	import LL from '../../i18n/i18n-svelte';
 	import {
 		getMathTaskPatternMatchingObjectsForPractice,
 		getMathTaskPatternMatchingObjectsForTest
 	} from '$lib/utils/createPatterStimuli';
-	import { createPracticeVideoConfiguration } from '$lib/utils/createVideoStimuli';
 	import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
-	import { createTrialVideoConfiguration } from '$lib/utils/createVideoStimuli';
 
 	let stage:
 		| 'connect'
@@ -70,7 +68,7 @@
 
 	// Define the fade transition settings
 	const fadeInParams = {
-		delay: 400, // Delay of 200ms for the 'in' transition
+		delay: 400, // Delay of 400ms for the 'in' transition
 		duration: 400 // Duration of the transition (adjust as needed)
 	};
 
@@ -136,10 +134,10 @@
 		gazeManager.off('intersect', onIntersect);
 	};
 
-	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alterning variant was turned off
+	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alternating variant was turned off
 
 	// 1. TRAINING SET OF STIMULI
-	// 1.1 social media (dependant on the sentiment)
+	// 1.1 social media (dependent on the sentiment)
 	const trainingStimuli = createTrainingMediaStimuli(sentiment);
 	const trainingASIds = trainingStimuli.AS;
 	const trainingNSIds = trainingStimuli.NS;
@@ -153,26 +151,23 @@
 		get(LL).socialButtons['ignore']()
 	);
 
-	// 1.2 math (non dependant on the sentiment)
+	// 1.2 math (non dependent on the sentiment)
 	const trainingMathStimuli = getMathTaskPatternMatchingObjectsForPractice();
 
-	// 1.3 video
-	const trainingVideoConfiguration = createPracticeVideoConfiguration(base);
-
-	// 1.4 task handler
+	// 1.3 task handler (dual task - no video configuration)
 	const trainingTaskHandler = new TaskHandlerMathIDB(
 		sessionId,
 		trainingNS,
 		trainingAS,
 		socialMediaButtons,
-		trainingVideoConfiguration,
+		null, // No video configuration for dual task
 		trainingMathStimuli,
 		'2', // this is correct, math task correct response id is 2
 		'even'
 	);
 
-	// 2. FINAL SET OF STIMULI - PART 1
-	// 2.1 social media (dependant on the sentiment)
+	// 2. FINAL SET OF STIMULI - PART 1 (DUAL TASK)
+	// 2.1 social media (dependent on the sentiment)
 	const firstSocialMediaStimuliNSIds = createFinalMediaStimuli(sentiment).NS;
 	const firstSocialMediaStimuliASIds = createFinalMediaStimuli(sentiment).AS;
 
@@ -186,26 +181,23 @@
 		socialMediaSrcBase
 	);
 
-	// 2.2 math (non dependant on the sentiment)
+	// 2.2 math (non dependent on the sentiment)
 	const firstMathStimuli = getMathTaskPatternMatchingObjectsForTest();
 
-	// 2.3 video
-	const firstVideoConfiguration = createTrialVideoConfiguration(base);
-
-	// 2.4 task handler
+	// 2.3 task handler (dual task - no video configuration)
 	const firstTaskHandler = new TaskHandlerMathIDB(
 		sessionId,
 		socialMediaStimuliNS,
 		socialMediaStimuliAS,
 		socialMediaButtons,
-		firstVideoConfiguration,
+		null, // No video configuration for dual task
 		firstMathStimuli,
 		'2', // this is correct, math task correct response id is 2
 		'even'
 	);
 
-	// 3. FINAL SET OF STIMULI - PART 2
-	// 3.1 social media (dependant on the sentiment)
+	// 3. FINAL SET OF STIMULI - PART 2 (SINGLE TASK)
+	// 3.1 social media (dependent on the sentiment)
 	const idsToOmitFromSecondStimuli = [
 		...firstSocialMediaStimuliNSIds,
 		...firstSocialMediaStimuliASIds
@@ -228,19 +220,16 @@
 		getFinalMediaStimuliSrcBase(base)
 	);
 
-	// 3.2 math (non dependant on the sentiment) = this is gonna be void as this is only placeholder for compatibility
+	// 3.2 math (non dependent on the sentiment) = this is placeholder for compatibility
 	const secondMathStimuli = firstMathStimuli;
 
-	// 3.3 video = this is gonna be void as this is only placeholder for compatibility
-	const secondVideoConfiguration = firstVideoConfiguration;
-
-	// 3.4 task handler
+	// 3.3 task handler (single task - social media only)
 	const secondTaskHandler = new TaskHandlerMathIDB(
 		sessionId,
 		secondSocialMediaStimuliNS,
 		secondSocialMediaStimuliAS,
 		socialMediaButtons,
-		secondVideoConfiguration,
+		null, // No video configuration needed
 		secondMathStimuli,
 		'2', // this is correct, math task correct response id is 2
 		'even'
@@ -259,18 +248,15 @@
 	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPrePracticeB {questionsService} on:startPractice={startNextStage} />
+			<AppQuestionsPrePracticeBDual {questionsService} on:startPractice={startNextStage} />
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPracticeSentimentVariant
-				on:taskEnd={handleTaskEnd}
-				taskHandler={trainingTaskHandler}
-			/>
+			<AppTaskPracticeDual on:taskEnd={handleTaskEnd} taskHandler={trainingTaskHandler} />
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostPracticeB
+			<AppQuestionsPostPracticeBDual
 				{questionsService}
 				on:startPractice={() => (stage = 'practice')}
 				on:startTrial={startNextStage}
@@ -278,11 +264,11 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrialSentimentVariant on:taskEnd={handleTaskEnd} taskHandler={firstTaskHandler} />
+			<AppTaskTrialDual on:taskEnd={handleTaskEnd} taskHandler={firstTaskHandler} />
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPreSingle
+			<AppQuestionsPreSingleDual
 				taskHandler={firstTaskHandler}
 				{questionsService}
 				on:startSingle={startNextStage}

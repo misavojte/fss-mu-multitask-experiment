@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Task from '$lib/components/Task.svelte';
 	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
+
 	export let taskHandler: ATaskHandler;
 </script>
 
@@ -11,18 +12,22 @@
 		socialMediaStimuliNS={taskHandler.socialMediaStimuliNS}
 		socialMediaStimuliAS={taskHandler.socialMediaStimuliAS}
 		socialMediaButtons={taskHandler.socialMediaButtons}
-		videoDocumentarySrc={taskHandler.videoConfiguration.src}
+		videoDocumentarySrc=""
 		muted={false}
+		on:taskEnd
 		socialInitialDelay={5000}
 		socialBetweenDelay={5000}
 		socialStimulusMaxDuration={20000}
 		socialStimulusRemindAfter={15000}
 		socialAdjustBetweenDelay={true}
-		wordOccurence={taskHandler.videoConfiguration.wordOccurence}
-		wordOccurenceTolerance={taskHandler.videoConfiguration.wordOccurenceTolerance}
-		wordOccurenceTimestamps={taskHandler.videoConfiguration.wordOccurenceTimestamps}
-		videoStartTime={415000}
-		endScenario={'pattern-timeout'}
-		on:taskEnd
+		wordOccurence=""
+		wordOccurenceTolerance={0}
+		wordOccurenceTimestamps={[]}
+		endScenario={'timeout'}
+		dualTaskMode={true}
+		positionXSocial={200}
+		positionYSocial={200}
+		positionXPattern={1070}
+		positionYPattern={245}
 	/>
 </div>

@@ -23,10 +23,6 @@
 					patternMatchingPoints: taskHandler.patternMatchingScore,
 					patternMatchingDisplayed: taskHandler.patternMatchingStimuliDisplayedCount
 				}),
-				get(LL).question['presingle-1'].paragraphs['3']({
-					documentaryPoints: taskHandler.documentaryScore,
-					documentaryDisplayed: taskHandler.documentaryStimuliDisplayedCount
-				}),
 				get(LL).question['presingle-1'].paragraphs['4']({
 					socialMediaPoints: taskHandler.socialMediaScore,
 					socialMediaDisplayed: taskHandler.socialMediaStimuliDisplayedCount
