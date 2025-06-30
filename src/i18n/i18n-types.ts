@@ -386,23 +386,23 @@ type RootTranslation = {
 				 */
 				'1': string
 				/**
-				 * -​ ​*​*​M​a​t​e​m​a​t​i​c​k​é​ ​ú​l​o​h​y​:​*​*​ ​{​p​a​t​t​e​r​n​M​a​t​c​h​i​n​g​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​P​a​t​t​e​r​n​M​a​t​c​h​i​n​g​P​o​i​n​t​s​}​)
-				 * @param {number} maxPatternMatchingPoints
+				 * -​ ​*​*​M​a​t​e​m​a​t​i​c​k​é​ ​ú​l​o​h​y​:​*​*​ ​{​p​a​t​t​e​r​n​M​a​t​c​h​i​n​g​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​z​ ​{​p​a​t​t​e​r​n​M​a​t​c​h​i​n​g​D​i​s​p​l​a​y​e​d​}​ ​z​o​b​r​a​z​e​n​ý​c​h​)
+				 * @param {number} patternMatchingDisplayed
 				 * @param {number} patternMatchingPoints
 				 */
-				'2': RequiredParams<'maxPatternMatchingPoints' | 'patternMatchingPoints'>
+				'2': RequiredParams<'patternMatchingDisplayed' | 'patternMatchingPoints'>
 				/**
-				 * -​ ​*​*​D​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​:​*​*​ ​{​d​o​c​u​m​e​n​t​a​r​y​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​D​o​c​u​m​e​n​t​a​r​y​P​o​i​n​t​s​}​)
+				 * -​ ​*​*​D​o​k​u​m​e​n​t​á​r​n​í​ ​v​i​d​e​o​:​*​*​ ​{​d​o​c​u​m​e​n​t​a​r​y​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​z​ ​{​d​o​c​u​m​e​n​t​a​r​y​D​i​s​p​l​a​y​e​d​}​ ​z​o​b​r​a​z​e​n​ý​c​h​)
+				 * @param {number} documentaryDisplayed
 				 * @param {number} documentaryPoints
-				 * @param {number} maxDocumentaryPoints
 				 */
-				'3': RequiredParams<'documentaryPoints' | 'maxDocumentaryPoints'>
+				'3': RequiredParams<'documentaryDisplayed' | 'documentaryPoints'>
 				/**
-				 * -​ ​*​*​S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​*​*​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​S​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​)
-				 * @param {number} maxSocialMediaPoints
+				 * -​ ​*​*​S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​*​*​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​z​ ​{​s​o​c​i​a​l​M​e​d​i​a​D​i​s​p​l​a​y​e​d​}​ ​z​o​b​r​a​z​e​n​ý​c​h​)
+				 * @param {number} socialMediaDisplayed
 				 * @param {number} socialMediaPoints
 				 */
-				'4': RequiredParams<'maxSocialMediaPoints' | 'socialMediaPoints'>
+				'4': RequiredParams<'socialMediaDisplayed' | 'socialMediaPoints'>
 				/**
 				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​p​o​s​l​e​d​n​í​ ​ú​l​o​h​a​.
 				 */
@@ -462,11 +462,11 @@ type RootTranslation = {
 			 */
 			'0': string
 			/**
-			 * S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​{​m​a​x​S​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​)
-			 * @param {number} maxSocialMediaPoints
+			 * S​o​c​i​á​l​n​í​ ​m​é​d​i​a​:​ ​{​s​o​c​i​a​l​M​e​d​i​a​P​o​i​n​t​s​}​ ​b​o​d​ů​ ​(​z​ ​{​s​o​c​i​a​l​M​e​d​i​a​D​i​s​p​l​a​y​e​d​}​ ​z​o​b​r​a​z​e​n​ý​c​h​)
+			 * @param {number} socialMediaDisplayed
 			 * @param {number} socialMediaPoints
 			 */
-			'1': RequiredParams<'maxSocialMediaPoints' | 'socialMediaPoints'>
+			'1': RequiredParams<'socialMediaDisplayed' | 'socialMediaPoints'>
 			/**
 			 * V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
 			 */
@@ -848,17 +848,17 @@ export type TranslationFunctions = {
 				 */
 				'1': () => LocalizedString
 				/**
-				 * - **Matematické úlohy:** {patternMatchingPoints} bodů ({maxPatternMatchingPoints})
+				 * - **Matematické úlohy:** {patternMatchingPoints} bodů (z {patternMatchingDisplayed} zobrazených)
 				 */
-				'2': (arg: { maxPatternMatchingPoints: number, patternMatchingPoints: number }) => LocalizedString
+				'2': (arg: { patternMatchingDisplayed: number, patternMatchingPoints: number }) => LocalizedString
 				/**
-				 * - **Dokumentární video:** {documentaryPoints} bodů ({maxDocumentaryPoints})
+				 * - **Dokumentární video:** {documentaryPoints} bodů (z {documentaryDisplayed} zobrazených)
 				 */
-				'3': (arg: { documentaryPoints: number, maxDocumentaryPoints: number }) => LocalizedString
+				'3': (arg: { documentaryDisplayed: number, documentaryPoints: number }) => LocalizedString
 				/**
-				 * - **Sociální média:** {socialMediaPoints} bodů ({maxSocialMediaPoints})
+				 * - **Sociální média:** {socialMediaPoints} bodů (z {socialMediaDisplayed} zobrazených)
 				 */
-				'4': (arg: { maxSocialMediaPoints: number, socialMediaPoints: number }) => LocalizedString
+				'4': (arg: { socialMediaDisplayed: number, socialMediaPoints: number }) => LocalizedString
 				/**
 				 * Nyní Vás čeká poslední úloha.
 				 */
@@ -918,9 +918,9 @@ export type TranslationFunctions = {
 			 */
 			'0': () => LocalizedString
 			/**
-			 * Sociální média: {socialMediaPoints} bodů ({maxSocialMediaPoints})
+			 * Sociální média: {socialMediaPoints} bodů (z {socialMediaDisplayed} zobrazených)
 			 */
-			'1': (arg: { maxSocialMediaPoints: number, socialMediaPoints: number }) => LocalizedString
+			'1': (arg: { socialMediaDisplayed: number, socialMediaPoints: number }) => LocalizedString
 			/**
 			 * Velmi děkujeme za Vaši účast!
 			 */

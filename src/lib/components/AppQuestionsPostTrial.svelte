@@ -23,7 +23,7 @@
 				<p>
 					{$LL['pt-end'].paragraphs[1]({
 						socialMediaPoints: taskHandler.socialMediaScore,
-						maxSocialMediaPoints: taskHandler.maxSocialMediaScore
+						socialMediaDisplayed: taskHandler.socialMediaStimuliDisplayedCount
 					})}
 				</p>
 				<p>{$LL['pt-end'].paragraphs[2]()}</p>

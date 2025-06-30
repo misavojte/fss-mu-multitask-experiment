@@ -62,6 +62,15 @@ export abstract class ATaskHandler {
 	maxDocumentaryScore: number;
 	maxPatternMatchingScore: number;
 
+	// Tracking displayed/started stimuli counts
+	socialMediaStimuliDisplayedCount = 0;
+	patternMatchingStimuliDisplayedCount = 0;
+	documentaryStimuliDisplayedCount = 0;
+
+	// Track unique stimuli IDs to avoid double counting
+	private displayedPatternMatchingIds = new Set<string>();
+	private displayedDocumentaryTimestamps = new Set<number>();
+
 	// Social media and video configuration
 	socialMediaStimuliNS: ISocialMediaStimulus[];
 	socialMediaStimuliAS: ISocialMediaStimulus[];
@@ -144,6 +153,15 @@ export abstract class ATaskHandler {
 
 	handlePatternMatchingResponse(event: CustomEvent<string>) {
 		this.logAction('pattern-matching-response', event.detail);
+		// Increment display count only once per stimulus (when first response is made)
+		const currentStimulusIndex = this.patternMatchingStimuliDisplayedCount;
+		if (currentStimulusIndex < this.taskPatternMatchingObjects.length) {
+			const currentStimulusId = this.taskPatternMatchingObjects[currentStimulusIndex].id;
+			if (!this.displayedPatternMatchingIds.has(currentStimulusId)) {
+				this.displayedPatternMatchingIds.add(currentStimulusId);
+				this.patternMatchingStimuliDisplayedCount++;
+			}
+		}
 		if (event.detail === this.taskPatternCorrectResponseId) {
 			this.addPatternMatchingScore();
 		}
@@ -151,13 +169,16 @@ export abstract class ATaskHandler {
 
 	handlePatternMatchingNext(event: CustomEvent<string>) {
 		this.logAction('pattern-matching-next', event.detail);
+		// Count is handled in handlePatternMatchingResponse to avoid missing the first stimulus
 	}
 	handlePatternMatchingCompleted() {
 		this.logAction('pattern-matching-completed', '');
+		this.logFinalDisplayCounts();
 		this.onEnd();
 	}
 	handleSocialMediaInteractorsShow(event: CustomEvent<{ id: string; timestamp: number }>) {
 		this.logAction('social-media-interactors-show', event.detail.id);
+		this.socialMediaStimuliDisplayedCount++;
 	}
 	handleSocialMediaInteractorsClick(event: CustomEvent<{ buttonId: string; timestamp: number }>) {
 		this.logAction('social-media-interactors-click', event.detail.buttonId);
@@ -171,6 +192,7 @@ export abstract class ATaskHandler {
 	}
 	handleSocialMediaInteractorsCompleted() {
 		this.logAction('social-media-interactors-completed', '');
+		this.logFinalDisplayCounts();
 	}
 	handleLoadStart(): void {
 		this.logAction('task-load-start', '');
@@ -185,9 +207,33 @@ export abstract class ATaskHandler {
 			JSON.stringify(this.taskPatternMatchingObjects)
 		);
 		this.logAction('task-stimuli-video', JSON.stringify(this.videoConfiguration));
+		// Reset stimulus display counters at task start
+		this.socialMediaStimuliDisplayedCount = 0;
+		this.patternMatchingStimuliDisplayedCount = 0;
+		this.documentaryStimuliDisplayedCount = 0;
+		this.displayedPatternMatchingIds.clear();
+		this.displayedDocumentaryTimestamps.clear();
 	}
 	handleLoadFinish(): void {
 		this.logAction('task-load-finish', '');
+	}
+
+	/**
+	 * Log final stimulus display counts - call this when task ends
+	 */
+	logFinalDisplayCounts(): void {
+		this.logAction(
+			'task-stimuli-displayed-social-media',
+			this.socialMediaStimuliDisplayedCount.toString()
+		);
+		this.logAction(
+			'task-stimuli-displayed-pattern-matching',
+			this.patternMatchingStimuliDisplayedCount.toString()
+		);
+		this.logAction(
+			'task-stimuli-displayed-documentary',
+			this.documentaryStimuliDisplayedCount.toString()
+		);
 	}
 	handleDocumentaryResponse(
 		isCorrect: boolean,
@@ -201,6 +247,11 @@ export abstract class ATaskHandler {
 			timestampTime
 		});
 		this.logAction('documentary-response', JSONValue);
+		// Count unique documentary stimuli (word occurrences) only once
+		if (timestampTime !== undefined && !this.displayedDocumentaryTimestamps.has(timestampTime)) {
+			this.displayedDocumentaryTimestamps.add(timestampTime);
+			this.documentaryStimuliDisplayedCount++;
+		}
 		if (isCorrect) {
 			this.addDocumentaryQuestionnaireScore();
 		}

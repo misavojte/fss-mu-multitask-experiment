@@ -151,9 +151,9 @@ const cs = {
 			confirm: 'Pokračovat',
 			paragraphs: {
 				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše výsledky:',
-				2: '- **Matematické úlohy:** {patternMatchingPoints:number} bodů ({maxPatternMatchingPoints:number})',
-				3: '- **Dokumentární video:** {documentaryPoints:number} bodů ({maxDocumentaryPoints:number})',
-				4: '- **Sociální média:** {socialMediaPoints:number} bodů ({maxSocialMediaPoints:number})',
+				2: '- **Matematické úlohy:** {patternMatchingPoints:number} bodů (z {patternMatchingDisplayed:number} zobrazených)',
+				3: '- **Dokumentární video:** {documentaryPoints:number} bodů (z {documentaryDisplayed:number} zobrazených)',
+				4: '- **Sociální média:** {socialMediaPoints:number} bodů (z {socialMediaDisplayed:number} zobrazených)',
 				5: 'Nyní Vás čeká poslední úloha.'
 			}
 		},
@@ -176,7 +176,7 @@ const cs = {
 		confirm: 'Ukončit',
 		paragraphs: {
 			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Vaše výsledky v poslední části:',
-			1: 'Sociální média: {socialMediaPoints:number} bodů ({maxSocialMediaPoints:number})',
+			1: 'Sociální média: {socialMediaPoints:number} bodů (z {socialMediaDisplayed:number} zobrazených)',
 			2: 'Velmi děkujeme za Vaši účast!'
 		}
 	}

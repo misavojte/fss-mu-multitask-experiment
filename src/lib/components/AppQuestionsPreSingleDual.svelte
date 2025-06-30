@@ -21,11 +21,11 @@
 				get(LL).question['presingle-1'].paragraphs['1'](),
 				get(LL).question['presingle-1'].paragraphs['2']({
 					patternMatchingPoints: taskHandler.patternMatchingScore,
-					maxPatternMatchingPoints: taskHandler.maxPatternMatchingScore
+					patternMatchingDisplayed: taskHandler.patternMatchingStimuliDisplayedCount
 				}),
 				get(LL).question['presingle-1'].paragraphs['4']({
 					socialMediaPoints: taskHandler.socialMediaScore,
-					maxSocialMediaPoints: taskHandler.maxSocialMediaScore
+					socialMediaDisplayed: taskHandler.socialMediaStimuliDisplayedCount
 				}),
 				get(LL).question['presingle-1'].paragraphs['5']()
 			],
