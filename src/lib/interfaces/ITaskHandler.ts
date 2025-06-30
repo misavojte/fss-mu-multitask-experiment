@@ -35,6 +35,13 @@ export abstract class ATaskHandler {
 	sentiment: 'negative' | 'positive' = 'negative';
 	scoringType: 'prioritize' | 'even' = 'prioritize';
 	score = 0;
+	socialMediaScore = 0;
+	documentaryScore = 0;
+	patternMatchingScore = 0;
+	maxScore = 0;
+	maxSocialMediaScore = 0;
+	maxDocumentaryScore = 0;
+	maxPatternMatchingScore = 0;
 	get pointsOnCorrectPatternMatching(): number {
 		return this.scoringType === 'prioritize' ? 3 : 1;
 	}
@@ -52,19 +59,40 @@ export abstract class ATaskHandler {
 
 	private addPatternMatchingScore() {
 		this.score += this.pointsOnCorrectPatternMatching;
+		this.patternMatchingScore += this.pointsOnCorrectPatternMatching;
 	}
 
 	private addSocialMediaScore() {
 		this.score += this.pointsOnCorrectSocialMedia;
+		this.socialMediaScore += this.pointsOnCorrectSocialMedia;
 	}
 
 	private addDocumentaryQuestionnaireScore() {
 		this.score += this.pointsOnCorrectDocumentaryQuestionnaire;
+		this.documentaryScore += this.pointsOnCorrectDocumentaryQuestionnaire;
+	}
+
+	setMaxScores(
+		numberOfSocialMediaInteractors: number,
+		numberOfDocumentaryStops: number,
+		numberOfPatternMatchingObjects: number
+	) {
+		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
+		this.maxDocumentaryScore =
+			numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
+		this.maxPatternMatchingScore =
+			numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
+		this.maxScore =
+			this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
 	}
 
 	handlePatternMatchingResponse(event: CustomEvent<string>) {
 		this.logAction('pattern-matching-response', event.detail);
 		if (event.detail === 'T1') {
+			/**
+			 * The correct response is always the one with id T1
+			 * which can be placed in any position in the matrix
+			 */
 			this.addPatternMatchingScore();
 		}
 	}
@@ -120,6 +148,9 @@ export abstract class ATaskHandler {
 	}
 }
 
+/**
+ * The task handler for the math task instead of the intelligence task in the pattern matching task
+ */
 export abstract class ATaskHandlerMath extends ATaskHandler {
 	private base: string;
 
@@ -168,6 +199,9 @@ export abstract class ATaskHandlerMath extends ATaskHandler {
 	}
 }
 
+/**
+ * The task handler for the intelligence task in the pattern matching task
+ */
 export abstract class ATaskHandlerIntelligence extends ATaskHandler {
 	private base: string;
 
