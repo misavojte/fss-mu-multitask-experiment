@@ -57,10 +57,10 @@ export abstract class ATaskHandler {
 	socialMediaScore = 0;
 	documentaryScore = 0;
 	patternMatchingScore = 0;
-	maxScore = 0;
-	maxSocialMediaScore = 0;
-	maxDocumentaryScore = 0;
-	maxPatternMatchingScore = 0;
+	maxScore: number;
+	maxSocialMediaScore: number;
+	maxDocumentaryScore: number;
+	maxPatternMatchingScore: number;
 
 	// Social media and video configuration
 	socialMediaStimuliNS: ISocialMediaStimulus[];
@@ -100,6 +100,20 @@ export abstract class ATaskHandler {
 		this.taskPatternMatchingObjects = taskPatternMatchingObjects;
 		this.taskPatternCorrectResponseId = taskPatternCorrectResponseId;
 		this.scoringType = scoringType;
+
+		// Calculate maximum scores based on provided stimuli
+		const numberOfSocialMediaInteractors =
+			socialMediaStimuliNS.length + socialMediaStimuliAS.length;
+		const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
+		const numberOfPatternMatchingObjects = taskPatternMatchingObjects.length;
+
+		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
+		this.maxDocumentaryScore =
+			numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
+		this.maxPatternMatchingScore =
+			numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
+		this.maxScore =
+			this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
 	}
 
 	get pointsOnCorrectPatternMatching(): number {
@@ -126,20 +140,6 @@ export abstract class ATaskHandler {
 	private addDocumentaryQuestionnaireScore() {
 		this.score += this.pointsOnCorrectDocumentaryQuestionnaire;
 		this.documentaryScore += this.pointsOnCorrectDocumentaryQuestionnaire;
-	}
-
-	setMaxScores(
-		numberOfSocialMediaInteractors: number,
-		numberOfDocumentaryStops: number,
-		numberOfPatternMatchingObjects: number
-	) {
-		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
-		this.maxDocumentaryScore =
-			numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
-		this.maxPatternMatchingScore =
-			numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
-		this.maxScore =
-			this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
 	}
 
 	handlePatternMatchingResponse(event: CustomEvent<string>) {
