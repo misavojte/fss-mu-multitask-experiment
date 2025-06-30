@@ -219,6 +219,22 @@ type RootTranslation = {
 				'1': string
 			}
 		}
+		'2b-dual': {
+			/**
+			 * P​o​k​y​n​y​ ​k​e​ ​s​t​u​d​i​i
+			 */
+			heading: string
+			/**
+			 * P​o​k​r​a​č​o​v​a​t
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * V​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​ ​s​e​ ​b​u​d​e​t​e​ ​s​o​u​č​a​s​n​ě​ ​ú​č​a​s​t​n​i​t​ ​d​v​o​u​ ​ú​k​o​l​ů​:​ ​ř​e​š​e​n​í​ ​j​e​d​n​o​d​u​c​h​ý​c​h​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h​ ​a​ ​r​e​a​g​o​v​á​n​í​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i​ ​C​h​a​t​b​o​o​k​.​ ​Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​j​a​k​ý​k​o​l​i​v​ ​ú​k​o​l​,​ ​k​t​e​r​ý​ ​s​p​l​n​í​t​e​.​ ​V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​p​l​n​ě​n​í​m​ ​o​b​o​u​ ​t​y​p​ů​ ​ú​k​o​l​ů​ ​s​o​u​č​a​s​n​ě​.
+				 */
+				'1': string
+			}
+		}
 		'4b': {
 			/**
 			 * Ú​k​o​l​ ​1​:​ ​Ř​e​š​e​n​í​ ​m​a​t​e​m​a​t​i​c​k​ý​c​h​ ​ú​l​o​h
@@ -265,6 +281,40 @@ type RootTranslation = {
 				'2': string
 			}
 		}
+		'6-dual': {
+			/**
+			 * Ú​k​o​l​ ​2​:​ ​R​e​a​k​c​e​ ​n​a​ ​p​ř​í​s​p​ě​v​k​y​ ​n​a​ ​s​o​c​i​á​l​n​í​ ​s​í​t​i
+			 */
+			heading: string
+			/**
+			 * R​o​z​u​m​í​m
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * V​ ​t​é​t​o​ ​a​k​t​i​v​i​t​ě​ ​b​u​d​e​t​e​ ​i​n​t​e​r​a​g​o​v​a​t​ ​s​ ​f​i​k​t​i​v​n​í​ ​s​o​c​i​á​l​n​í​ ​s​í​t​í​ ​C​h​a​t​b​o​o​k​.​ ​C​h​a​t​b​o​o​k​ ​j​e​ ​n​a​v​r​ž​e​n​ ​t​a​k​,​ ​a​b​y​ ​z​o​b​r​a​z​o​v​a​l​ ​p​ř​í​s​p​ě​v​k​y​,​ ​k​t​e​r​é​ ​o​d​r​á​ž​e​j​í​ ​r​ů​z​n​é​ ​k​a​ž​d​o​d​e​n​n​í​ ​z​á​j​m​y​,​ ​n​á​l​a​d​y​ ​a​ ​m​y​š​l​e​n​k​y​ ​-​ ​p​o​d​o​b​n​ě​ ​j​a​k​o​ ​b​y​s​t​e​ ​m​o​h​l​i​ ​p​o​t​k​a​t​ ​p​ř​i​ ​p​r​o​c​h​á​z​e​n​í​ ​s​k​u​t​e​č​n​ý​c​h​ ​s​o​c​i​á​l​n​í​c​h​ ​s​í​t​í​.
+				 */
+				'1': string
+				/**
+				 * P​r​o​ ​t​u​t​o​ ​r​e​l​a​c​i​ ​m​á​t​e​ ​p​ř​i​ř​a​z​e​n​ ​a​n​o​n​y​m​n​í​ ​ú​č​e​t​.​ ​B​ě​h​e​m​ ​ú​k​o​l​u​ ​u​v​i​d​í​t​e​ ​p​ř​í​s​p​ě​v​k​y​ ​p​o​d​o​b​n​é​ ​t​ě​m​,​ ​k​t​e​r​é​ ​b​y​ ​s​d​í​l​e​l​i​ ​p​ř​á​t​e​l​é​ ​n​e​b​o​ ​k​o​l​e​g​o​v​é​ ​p​ř​i​ ​b​ě​ž​n​é​m​ ​p​r​o​c​h​á​z​e​n​í​.
+				 */
+				'2': string
+				/**
+				 * P​ř​i​ ​z​o​b​r​a​z​e​n​í​ ​k​a​ž​d​é​h​o​ ​p​ř​í​s​p​ě​v​k​u​ ​j​e​d​n​o​d​u​š​e​ ​r​e​a​g​u​j​t​e​ ​p​o​d​l​e​ ​s​v​é​h​o​ ​o​s​o​b​n​í​h​o​ ​d​o​j​m​u​ ​v​ý​b​ě​r​e​m​ ​j​e​d​n​é​ ​z​ ​n​á​s​l​e​d​u​j​í​c​í​c​h​ ​m​o​ž​n​o​s​t​í​:
+				 */
+				'3': string
+				/**
+				 * -​ ​*​*​Z​j​i​s​t​i​t​ ​v​í​c​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​c​í​t​í​t​e​ ​p​o​t​ř​e​b​u​ ​o​k​a​m​ž​i​t​ě​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​p​ř​í​s​p​ě​v​e​k​ ​(​n​a​p​ř​.​ ​p​o​m​o​c​i​,​ ​k​o​m​e​n​t​o​v​a​t​,​ ​s​d​í​l​e​t​,​ ​d​o​z​v​ě​d​ě​t​ ​s​e​ ​v​í​c​e​)​.​
+			​-​ ​*​*​N​e​m​á​m​ ​z​á​j​e​m​:​*​*​ ​V​y​b​e​r​t​e​ ​t​u​t​o​ ​m​o​ž​n​o​s​t​,​ ​p​o​k​u​d​ ​v​á​s​ ​p​ř​í​s​p​ě​v​e​k​ ​n​e​z​a​j​í​m​á​ ​n​e​b​o​ ​b​y​s​t​e​ ​h​o​ ​n​o​r​m​á​l​n​ě​ ​p​ř​e​s​c​r​o​l​l​o​v​a​l​i​.​
+			​-​ ​*​*​B​o​d​o​v​á​n​í​:​*​*​ ​Z​í​s​k​á​t​e​ ​j​e​d​e​n​ ​b​o​d​ ​z​a​ ​k​a​ž​d​o​u​ ​r​e​a​k​c​i​ ​-​ ​a​ť​ ​u​ž​ ​z​v​o​l​í​t​e​ ​"​Z​j​i​s​t​i​t​ ​v​í​c​"​ ​n​e​b​o​ ​"​N​e​m​á​m​ ​z​á​j​e​m​"​.​ ​S​n​a​ž​t​e​ ​s​e​ ​r​e​a​g​o​v​a​t​ ​n​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​,​ ​a​b​y​s​t​e​ ​z​í​s​k​a​l​i​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.
+				 */
+				'4': string
+				/**
+				 * P​ř​í​s​p​ě​v​k​y​ ​s​e​ ​b​u​d​o​u​ ​o​b​j​e​v​o​v​a​t​ ​v​e​ ​s​t​ř​e​d​u​ ​o​b​r​a​z​o​v​k​y​,​ ​d​o​p​r​o​v​á​z​e​n​é​ ​z​v​u​k​e​m​ ​u​p​o​z​o​r​n​ě​n​í​.​ ​N​a​ ​k​a​ž​d​ý​ ​p​ř​í​s​p​ě​v​e​k​ ​m​á​t​e​ ​j​e​n​ ​n​ě​k​o​l​i​k​ ​s​e​k​u​n​d​ ​n​a​ ​r​e​a​k​c​i​,​ ​n​e​ž​ ​z​m​i​z​í​.​ ​T​ě​s​n​ě​ ​p​ř​e​d​ ​z​m​i​z​e​n​í​m​ ​v​á​s​ ​n​a​ ​t​u​t​o​ ​s​k​u​t​e​č​n​o​s​t​ ​u​p​o​z​o​r​n​í​ ​z​v​u​k​o​v​ý​ ​s​i​g​n​á​l​.​ ​P​r​o​s​í​m​,​ ​r​e​a​g​u​j​t​e​ ​r​y​c​h​l​e​ ​a​ ​u​p​ř​í​m​n​ě​ ​p​o​d​l​e​ ​s​v​é​ ​p​r​v​n​í​ ​r​e​a​k​c​e​.
+				 */
+				'5': string
+			}
+		}
 		'7b': {
 			/**
 			 * S​h​r​n​u​t​í
@@ -281,6 +331,26 @@ type RootTranslation = {
 				'1': string
 				/**
 				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​z​á​c​v​i​č​n​á​ ​ú​l​o​h​a​,​ ​k​t​e​r​á​ ​v​á​m​ ​p​o​m​ů​ž​e​ ​s​e​z​n​á​m​i​t​ ​s​e​ ​v​š​e​m​i​ ​t​ř​e​m​i​ ​t​y​p​y​ ​ú​k​o​l​ů​ ​z​á​r​o​v​e​ň​.
+				 */
+				'2': string
+			}
+		}
+		'7b-dual': {
+			/**
+			 * S​h​r​n​u​t​í
+			 */
+			heading: string
+			/**
+			 * R​o​z​u​m​í​m​,​ ​z​a​č​í​t​ ​z​á​c​v​i​č​n​o​u​ ​ú​l​o​h​u
+			 */
+			confirm: string
+			paragraphs: {
+				/**
+				 * V​a​š​í​m​ ​c​í​l​e​m​ ​j​e​ ​n​a​s​b​í​r​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​.​ ​S​n​a​ž​t​e​ ​s​e​ ​t​e​d​y​ ​z​í​s​k​a​t​ ​c​o​ ​n​e​j​v​í​c​e​ ​b​o​d​ů​ ​n​a​p​ř​í​č​ ​o​b​ě​m​a​ ​t​y​p​y​ ​ú​k​o​l​ů​!​ ​P​ř​i​p​o​m​í​n​á​m​e​,​ ​ž​e​ ​*​*​ž​á​d​n​ý​ ​ú​k​o​l​ ​n​e​n​í​ ​p​r​i​o​r​i​t​n​í​*​*​.​ ​V​á​š​ ​v​ý​s​l​e​d​e​k​ ​b​u​d​e​ ​z​o​b​r​a​z​e​n​ ​n​a​ ​k​o​n​c​i​.
+				 */
+				'1': string
+				/**
+				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​z​á​c​v​i​č​n​á​ ​ú​l​o​h​a​,​ ​k​t​e​r​á​ ​v​á​m​ ​p​o​m​ů​ž​e​ ​s​e​z​n​á​m​i​t​ ​s​e​ ​s​ ​o​b​ě​m​a​ ​t​y​p​y​ ​ú​k​o​l​ů​ ​z​á​r​o​v​e​ň​.
 				 */
 				'2': string
 			}
@@ -611,6 +681,22 @@ export type TranslationFunctions = {
 				'1': () => LocalizedString
 			}
 		}
+		'2b-dual': {
+			/**
+			 * Pokyny ke studii
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Pokračovat
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * V tomto experimentu se budete současně účastnit dvou úkolů: řešení jednoduchých matematických úloh a reagování na příspěvky na fiktivní sociální síti Chatbook. Získáte jeden bod za jakýkoliv úkol, který splníte. Vaším cílem je získat co nejvíce bodů plněním obou typů úkolů současně.
+				 */
+				'1': () => LocalizedString
+			}
+		}
 		'4b': {
 			/**
 			 * Úkol 1: Řešení matematických úloh
@@ -657,6 +743,40 @@ export type TranslationFunctions = {
 				'2': () => LocalizedString
 			}
 		}
+		'6-dual': {
+			/**
+			 * Úkol 2: Reakce na příspěvky na sociální síti
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Rozumím
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * V této aktivitě budete interagovat s fiktivní sociální sítí Chatbook. Chatbook je navržen tak, aby zobrazoval příspěvky, které odrážejí různé každodenní zájmy, nálady a myšlenky - podobně jako byste mohli potkat při procházení skutečných sociálních sítí.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Pro tuto relaci máte přiřazen anonymní účet. Během úkolu uvidíte příspěvky podobné těm, které by sdíleli přátelé nebo kolegové při běžném procházení.
+				 */
+				'2': () => LocalizedString
+				/**
+				 * Při zobrazení každého příspěvku jednoduše reagujte podle svého osobního dojmu výběrem jedné z následujících možností:
+				 */
+				'3': () => LocalizedString
+				/**
+				 * - **Zjistit víc:** Vyberte tuto možnost, pokud cítíte potřebu okamžitě reagovat na příspěvek (např. pomoci, komentovat, sdílet, dozvědět se více).
+			- **Nemám zájem:** Vyberte tuto možnost, pokud vás příspěvek nezajímá nebo byste ho normálně přescrollovali.
+			- **Bodování:** Získáte jeden bod za každou reakci - ať už zvolíte "Zjistit víc" nebo "Nemám zájem". Snažte se reagovat na každý příspěvek, abyste získali co nejvíce bodů.
+				 */
+				'4': () => LocalizedString
+				/**
+				 * Příspěvky se budou objevovat ve středu obrazovky, doprovázené zvukem upozornění. Na každý příspěvek máte jen několik sekund na reakci, než zmizí. Těsně před zmizením vás na tuto skutečnost upozorní zvukový signál. Prosím, reagujte rychle a upřímně podle své první reakce.
+				 */
+				'5': () => LocalizedString
+			}
+		}
 		'7b': {
 			/**
 			 * Shrnutí
@@ -673,6 +793,26 @@ export type TranslationFunctions = {
 				'1': () => LocalizedString
 				/**
 				 * Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se všemi třemi typy úkolů zároveň.
+				 */
+				'2': () => LocalizedString
+			}
+		}
+		'7b-dual': {
+			/**
+			 * Shrnutí
+			 */
+			heading: () => LocalizedString
+			/**
+			 * Rozumím, začít zácvičnou úlohu
+			 */
+			confirm: () => LocalizedString
+			paragraphs: {
+				/**
+				 * Vaším cílem je nasbírat co nejvíce bodů. Snažte se tedy získat co nejvíce bodů napříč oběma typy úkolů! Připomínáme, že **žádný úkol není prioritní**. Váš výsledek bude zobrazen na konci.
+				 */
+				'1': () => LocalizedString
+				/**
+				 * Nyní Vás čeká zácvičná úloha, která vám pomůže seznámit se s oběma typy úkolů zároveň.
 				 */
 				'2': () => LocalizedString
 			}

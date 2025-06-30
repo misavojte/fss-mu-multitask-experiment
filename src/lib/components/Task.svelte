@@ -151,6 +151,11 @@
 	 */
 	export let socialMediaOnly: boolean = false;
 
+	/**
+	 * When true, displays social media and pattern matching tasks but hides documentary task.
+	 */
+	export let dualTaskMode: boolean = false;
+
 	let hasStarted = false;
 
 	const dispatch = createEventDispatcher();
@@ -184,7 +189,9 @@
 	// Promise.all to wait for all resources to be loaded
 	const loadPromise = socialMediaOnly
 		? socialLoaded.promise
-		: Promise.all([videoLoaded.promise, patternLoaded.promise, socialLoaded.promise]);
+		: dualTaskMode
+			? Promise.all([patternLoaded.promise, socialLoaded.promise])
+			: Promise.all([videoLoaded.promise, patternLoaded.promise, socialLoaded.promise]);
 
 	const shouldEndTask = writable(false);
 
@@ -228,6 +235,11 @@
 		if (socialMediaOnly) {
 			videoLoaded.triggerResolve(true);
 			patternLoaded.triggerResolve(true);
+		}
+
+		// If dualTaskMode is true, resolve the video promise since it won't be loaded
+		if (dualTaskMode) {
+			videoLoaded.triggerResolve(true);
 		}
 
 		// Scale the task to fit the parent element if it is smaller than the task
@@ -326,27 +338,29 @@
 				/>
 			</Intersecter>
 		</div>
-		<div
-			class="absolute"
-			transition:fade={{ duration: 300 }}
-			style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
-		>
-			<Intersecter id="task-documentary">
-				<TaskDocumentary
-					{videoDocumentarySrc}
-					{videoStartTime}
-					hideAllControls={true}
-					play={hasStarted}
-					{muted}
-					width={widthDocumentary}
-					height={heightDocumentary}
-					{wordOccurence}
-					{wordOccurenceTolerance}
-					{wordOccurenceTimestamps}
-					on:loaded={() => videoLoaded.triggerResolve(true)}
-					on:response={handleDocumentaryResponse}
-				/>
-			</Intersecter>
-		</div>
+		{#if !dualTaskMode}
+			<div
+				class="absolute"
+				transition:fade={{ duration: 300 }}
+				style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
+			>
+				<Intersecter id="task-documentary">
+					<TaskDocumentary
+						{videoDocumentarySrc}
+						{videoStartTime}
+						hideAllControls={true}
+						play={hasStarted}
+						{muted}
+						width={widthDocumentary}
+						height={heightDocumentary}
+						{wordOccurence}
+						{wordOccurenceTolerance}
+						{wordOccurenceTimestamps}
+						on:loaded={() => videoLoaded.triggerResolve(true)}
+						on:response={handleDocumentaryResponse}
+					/>
+				</Intersecter>
+			</div>
+		{/if}
 	{/if}
 </div>
