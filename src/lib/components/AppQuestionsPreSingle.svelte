@@ -18,7 +18,10 @@
 			headingText: get(LL).question['presingle-1']['heading'](),
 			confirmText: get(LL).question['presingle-1']['confirm'](),
 			paragraphs: [
-				get(LL).question['presingle-1'].paragraphs['1']({ points: taskHandler.score }),
+				get(LL).question['presingle-1'].paragraphs['1']({
+					points: taskHandler.score,
+					maxPoints: taskHandler.maxScore
+				}),
 				get(LL).question['presingle-1'].paragraphs['2']()
 			],
 			type: 'instruction',
@@ -34,7 +37,7 @@
 				get(LL).question['presingle-2'].paragraphs['3'](),
 				get(LL).question['presingle-2'].paragraphs['4'](),
 				get(LL).question['presingle-2'].paragraphs['5'](),
-				get(LL).question['presingle-2'].paragraphs['6'](),
+				get(LL).question['presingle-2'].paragraphs['6']()
 			],
 			type: 'instruction',
 			required: true

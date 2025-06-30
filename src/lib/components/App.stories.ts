@@ -3,7 +3,6 @@ import App from './App.svelte';
 import { setLocale } from '../../i18n/i18n-svelte';
 import { loadLocale } from '../../i18n/i18n-util.sync';
 import { TimestampQuestionServiceMock } from '$lib/services/TimestampQuestionServiceMock';
-import { TaskHandlerIntelligenceMock } from '$lib/services/TaskHandlerMock';
 import { GazeSaverMock } from '$lib/services/GazeSaverMock';
 import { ConnectLoggerMock } from '$lib/services/ConnectLoggerMock';
 
@@ -11,7 +10,6 @@ loadLocale('cs');
 setLocale('cs');
 
 const questionsService = new TimestampQuestionServiceMock();
-const taskHandler = new TaskHandlerIntelligenceMock('/', 'prioritize');
 const gazeSaver = new GazeSaverMock();
 const connectLogger = new ConnectLoggerMock();
 
@@ -31,8 +29,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		questionsService,
-		taskHandler,
 		gazeSaver,
-		connectLogger
+		connectLogger,
+		sessionId: 'storybook-session-123',
+		sentiment: 'negative'
 	}
 };

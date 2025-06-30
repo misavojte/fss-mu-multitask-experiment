@@ -18,7 +18,12 @@
 		<div class="flex flex-col gap-6 items-center justify-center flex-grow my-auto w-full h-full">
 			<h2 class="text-3xl font-bold">{$LL['pt-end']['heading']()}</h2>
 			<img src={`${base}/end.jpeg`} alt="End of the post-trial questionnaire" class="h-48 w-auto" />
-			<p class="text-lg">{$LL['pt-end'].paragraphs[0]({ points: taskHandler.score })}</p>
+			<p class="text-lg">
+				{$LL['pt-end'].paragraphs[0]({
+					points: taskHandler.score,
+					maxPoints: taskHandler.maxSocialMediaScore
+				})}
+			</p>
 			<button
 				class="bg-blue-500 text-white px-4 py-3 text-lg mt-1 rounded-md font-semibold hover:bg-blue-600"
 				on:click={handleAllDone}

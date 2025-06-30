@@ -122,7 +122,7 @@ const cs = {
 			heading: 'Děkujeme! Nyní Vás čeká poslední úloha.',
 			confirm: 'Pokračovat',
 			paragraphs: {
-				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points:number} bodů.',
+				1: 'Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points:number} bodů z {maxPoints:number} možných bodů.',
 				2: 'Nyní Vás čeká poslední úloha.'
 			}
 		},
@@ -144,7 +144,7 @@ const cs = {
 		heading: 'Děkujeme za účast!',
 		confirm: 'Ukončit',
 		paragraphs: {
-			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! Velmi děkujeme za Vaši účast!'
+			0: 'Blahopřejeme! Úspěšně jste dokončili celý experiment! V poslední části jste získali {points:number} z {maxPoints:number} možných bodů. Velmi děkujeme za Vaši účast!'
 		}
 	}
 } satisfies BaseTranslation;

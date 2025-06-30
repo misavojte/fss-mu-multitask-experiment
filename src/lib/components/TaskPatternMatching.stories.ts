@@ -18,7 +18,7 @@ const meta = {
 	argTypes: {
 		patternMatchingObjects: {
 			control: 'object',
-			defaultValue: taskHandler.getTaskPatternMatchingObjectsForPractice()
+			defaultValue: taskHandler.taskPatternMatchingObjects
 		}
 	}
 } satisfies Meta<TaskPatternMatching>;
@@ -29,14 +29,14 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Patterns: Story = {
 	args: {
-		patternMatchingObjects: taskHandler.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandler.taskPatternMatchingObjects,
 		taskHandler
 	}
 };
 
 export const Math: Story = {
 	args: {
-		patternMatchingObjects: taskHandlerMath.getTaskPatternMatchingObjectsForPractice(),
+		patternMatchingObjects: taskHandlerMath.taskPatternMatchingObjects,
 		taskHandler: taskHandlerMath
 	}
 };

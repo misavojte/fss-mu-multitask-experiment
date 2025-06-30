@@ -3,6 +3,7 @@ import type {
 	ITaskPatternMatchingObjectText,
 	ITaskPatternMatchingObjectImage
 } from '$lib/interfaces/ITaskHandler';
+import { fisherYatesShuffle } from './shuffle';
 
 // Math task functions
 export function getMathTaskPatternMatchingObject(id: string): ITaskPatternMatchingObjectText {
@@ -16,7 +17,9 @@ export function getMathTaskPatternMatchingObject(id: string): ITaskPatternMatchi
 
 export function getMathTaskPatternMatchingObjectsForPractice(): ITaskPatternMatchingObjectText[] {
 	const ids = ['1', '2', '3', '4'];
-	return ids.map((id) => getMathTaskPatternMatchingObject(id));
+	// shuffle
+	const shuffledIds = fisherYatesShuffle(ids);
+	return shuffledIds.map((id) => getMathTaskPatternMatchingObject(id));
 }
 
 export function getMathTaskPatternMatchingObjectsForTest(): ITaskPatternMatchingObjectText[] {
@@ -29,7 +32,8 @@ export function getMathTaskPatternMatchingObjectsForTest(): ITaskPatternMatching
 		return ids;
 	};
 	const ids = getIds(5, 200);
-	return ids.map((id) => getMathTaskPatternMatchingObject(id));
+	const shuffledIds = fisherYatesShuffle(ids);
+	return shuffledIds.map((id) => getMathTaskPatternMatchingObject(id));
 }
 
 // Intelligence task functions
@@ -73,8 +77,9 @@ export function getIntelligenceTaskPatternMatchingObjectsForPractice(
 	base: string
 ): ITaskPatternMatchingObjectImage[] {
 	const ids = ['1_ss3', '3_ss2', '35_ss1'];
+	const shuffledIds = fisherYatesShuffle(ids);
 	const basePath = base + 'task/1/intelligence/practice/tf1_';
-	return ids.map((id) => getIntelligenceTaskPatternMatchingObject(id, basePath));
+	return shuffledIds.map((id) => getIntelligenceTaskPatternMatchingObject(id, basePath));
 }
 
 export function getIntelligenceTaskPatternMatchingObjectsForTest(
@@ -160,7 +165,8 @@ export function getIntelligenceTaskPatternMatchingObjectsForTest(
 		'79_ss3',
 		'80_ss1'
 	];
+	const shuffledIds = fisherYatesShuffle(ids);
 
 	const basePath = base + 'task/1/intelligence/test/tf1_';
-	return ids.map((id) => getIntelligenceTaskPatternMatchingObject(id, basePath));
+	return shuffledIds.map((id) => getIntelligenceTaskPatternMatchingObject(id, basePath));
 }

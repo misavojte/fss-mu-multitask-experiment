@@ -47,6 +47,19 @@
 		| 'single'
 		| 'end' = 'connect';
 
+	// Define the stage order for navigation
+	const stageOrder = [
+		'connect',
+		'questions-1',
+		'practice',
+		'questions-2',
+		'trial',
+		'presingle',
+		'gaze-validation',
+		'single',
+		'end'
+	] as const;
+
 	const gazeManager = new GazeManager();
 
 	export let questionsService: ITimestampQuestionService;
@@ -66,20 +79,42 @@
 		duration: 400 // Duration of the transition (adjust as needed)
 	};
 
-	const triggerPractice = () => {
-		stage = 'practice';
+	// Centralized function to move to the next stage
+	let isManualAdvancement = false;
+
+	const startNextStage = () => {
+		const currentIndex = stageOrder.indexOf(stage);
+		if (currentIndex < stageOrder.length - 1) {
+			const nextStage = stageOrder[currentIndex + 1];
+			console.log(`[DEBUG] Advancing from '${stage}' to '${nextStage}'`);
+			stage = nextStage;
+		} else if (stage === 'end') {
+			// Handle the final stage - navigate to download
+			console.log(`[DEBUG] Final stage reached, navigating to download page`);
+			goto(`${base}/download`);
+		} else {
+			console.warn(`[DEBUG] Cannot advance from stage '${stage}' - no next stage defined`);
+		}
 	};
 
-	const triggerQuestions2 = () => {
-		stage = 'questions-2';
+	// Handler for task completion that checks if we're manually advancing
+	const handleTaskEnd = () => {
+		if (!isManualAdvancement) {
+			startNextStage();
+		} else {
+			console.log(`[DEBUG] Task end ignored due to manual advancement`);
+			isManualAdvancement = false; // Reset the flag
+		}
 	};
 
-	const triggerTrial = () => {
-		stage = 'trial';
-	};
-
-	const triggerQuestions1 = () => {
-		stage = 'questions-1';
+	// Keyboard event handler for Ctrl+X
+	const handleKeydown = (event: KeyboardEvent) => {
+		if (event.ctrlKey && event.key.toLowerCase() === 'x') {
+			event.preventDefault();
+			console.log(`[DEBUG] Ctrl+X pressed - Advancing from stage '${stage}' to next stage`);
+			isManualAdvancement = true; // Set flag before manual advancement
+			startNextStage();
+		}
 	};
 
 	const onIntersect = (entry: AcceptedIntersect) => {
@@ -186,11 +221,11 @@
 
 	const secondSocialMediaStimuliNS = createMediaStimuliObjects(
 		secondSocialMediaStimuliNSIds,
-		getTrainingMediaStimuliSrcBase(base)
+		getFinalMediaStimuliSrcBase(base)
 	);
 	const secondSocialMediaStimuliAS = createMediaStimuliObjects(
 		secondSocialMediaStimuliASIds,
-		getTrainingMediaStimuliSrcBase(base)
+		getFinalMediaStimuliSrcBase(base)
 	);
 
 	// 3.2 math (non dependant on the sentiment) = this is gonna be void as this is only placeholder for compatibility
@@ -212,24 +247,24 @@
 	);
 </script>
 
-<svelte:window on:beforeunload={onDestroyOrUnload} />
+<svelte:window on:beforeunload={onDestroyOrUnload} on:keydown={handleKeydown} />
 <!-- Add 'relative' to make the parent container the positioning context -->
 <div
 	class="w-screen h-screen grow overflow-hidden flex flex-col gap-4 items-center justify-center relative"
 >
 	{#if stage === 'connect'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppGaze {connectLogger} {gazeManager} on:continue={triggerQuestions1} />
+			<AppGaze {connectLogger} {gazeManager} on:continue={startNextStage} />
 		</div>
 	{:else if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPrePracticeB {questionsService} on:startPractice={triggerPractice} />
+			<AppQuestionsPrePracticeB {questionsService} on:startPractice={startNextStage} />
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppTaskPracticeSentimentVariant
-				on:taskEnd={triggerQuestions2}
+				on:taskEnd={handleTaskEnd}
 				taskHandler={trainingTaskHandler}
 			/>
 		</div>
@@ -237,44 +272,36 @@
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPostPracticeB
 				{questionsService}
-				on:startPractice={triggerPractice}
-				on:startTrial={triggerTrial}
+				on:startPractice={() => (stage = 'practice')}
+				on:startTrial={startNextStage}
 			/>
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrialSentimentVariant
-				on:taskEnd={() => (stage = 'presingle')}
-				taskHandler={firstTaskHandler}
-			/>
+			<AppTaskTrialSentimentVariant on:taskEnd={handleTaskEnd} taskHandler={firstTaskHandler} />
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPreSingle
 				taskHandler={firstTaskHandler}
 				{questionsService}
-				on:startSingle={() => (stage = 'gaze-validation')}
+				on:startSingle={startNextStage}
 			/>
 		</div>
 	{:else if stage === 'gaze-validation'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppGazeValidationOnly {gazeManager} {connectLogger} on:continue={() => (stage = 'single')} />
+			<AppGazeValidationOnly {gazeManager} {connectLogger} on:continue={startNextStage} />
 		</div>
 	{:else if stage === 'single'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppTaskTrialMediaOnlySentimentVariant
 				taskHandler={secondTaskHandler}
-				on:taskEnd={() => (stage = 'end')}
+				on:taskEnd={handleTaskEnd}
 			/>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostTrial
-				taskHandler={secondTaskHandler}
-				on:finish={() => {
-					goto(`${base}/download`);
-				}}
-			/>
+			<AppQuestionsPostTrial taskHandler={secondTaskHandler} on:finish={startNextStage} />
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">

@@ -312,10 +312,11 @@ type RootTranslation = {
 			confirm: string
 			paragraphs: {
 				/**
-				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​e​x​p​e​r​i​m​e​n​t​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​.
+				 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​e​x​p​e​r​i​m​e​n​t​ ​m​e​d​i​á​l​n​í​h​o​ ​m​u​l​t​i​t​a​s​k​i​n​g​u​!​ ​V​a​š​e​ ​s​k​ó​r​e​ ​č​i​n​í​ ​{​p​o​i​n​t​s​}​ ​b​o​d​ů​ ​z​ ​{​m​a​x​P​o​i​n​t​s​}​ ​m​o​ž​n​ý​c​h​ ​b​o​d​ů​.
+				 * @param {number} maxPoints
 				 * @param {number} points
 				 */
-				'1': RequiredParams<'points'>
+				'1': RequiredParams<'maxPoints' | 'points'>
 				/**
 				 * N​y​n​í​ ​V​á​s​ ​č​e​k​á​ ​p​o​s​l​e​d​n​í​ ​ú​l​o​h​a​.
 				 */
@@ -371,9 +372,11 @@ type RootTranslation = {
 		confirm: string
 		paragraphs: {
 			/**
-			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​c​e​l​ý​ ​e​x​p​e​r​i​m​e​n​t​!​ ​V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
+			 * B​l​a​h​o​p​ř​e​j​e​m​e​!​ ​Ú​s​p​ě​š​n​ě​ ​j​s​t​e​ ​d​o​k​o​n​č​i​l​i​ ​c​e​l​ý​ ​e​x​p​e​r​i​m​e​n​t​!​ ​V​ ​p​o​s​l​e​d​n​í​ ​č​á​s​t​i​ ​j​s​t​e​ ​z​í​s​k​a​l​i​ ​{​p​o​i​n​t​s​}​ ​z​ ​{​m​a​x​P​o​i​n​t​s​}​ ​m​o​ž​n​ý​c​h​ ​b​o​d​ů​.​ ​V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​!
+			 * @param {number} maxPoints
+			 * @param {number} points
 			 */
-			'0': string
+			'0': RequiredParams<'maxPoints' | 'points'>
 		}
 	}
 }
@@ -677,9 +680,9 @@ export type TranslationFunctions = {
 			confirm: () => LocalizedString
 			paragraphs: {
 				/**
-				 * Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points} bodů.
+				 * Blahopřejeme! Úspěšně jste dokončili experiment mediálního multitaskingu! Vaše skóre činí {points} bodů z {maxPoints} možných bodů.
 				 */
-				'1': (arg: { points: number }) => LocalizedString
+				'1': (arg: { maxPoints: number, points: number }) => LocalizedString
 				/**
 				 * Nyní Vás čeká poslední úloha.
 				 */
@@ -735,9 +738,9 @@ export type TranslationFunctions = {
 		confirm: () => LocalizedString
 		paragraphs: {
 			/**
-			 * Blahopřejeme! Úspěšně jste dokončili celý experiment! Velmi děkujeme za Vaši účast!
+			 * Blahopřejeme! Úspěšně jste dokončili celý experiment! V poslední části jste získali {points} z {maxPoints} možných bodů. Velmi děkujeme za Vaši účast!
 			 */
-			'0': () => LocalizedString
+			'0': (arg: { maxPoints: number, points: number }) => LocalizedString
 		}
 	}
 }
