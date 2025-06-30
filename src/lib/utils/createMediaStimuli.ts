@@ -1,5 +1,6 @@
 import { mediaStimuli } from '$lib/data/mediaStimuli.js';
 import { fisherYatesShuffle } from './shuffle.js';
+import type { ISocialMediaButton } from '$lib/interfaces/ITaskHandler';
 
 type Sentiment = 'positive' | 'negative';
 
@@ -56,4 +57,61 @@ export const createTrainingMediaStimuli = (
 		AS: fisherYatesShuffle(selectedEmotions),
 		NS: fisherYatesShuffle(selectedNeutrals)
 	};
+};
+
+export const getTrainingMediaStimuliSrcBase = (base: string) => {
+	return base + `/task/3/training/`;
+};
+
+export const getFinalMediaStimuliSrcBase = (base: string) => {
+	return base + `/task/3/final/`;
+};
+
+export const createMediaStimuliObjects = (ids: string[], src: string) => {
+	return ids.map((id) => ({
+		id: `${id}`,
+		src: src + `${id}`
+	}));
+};
+
+/**
+ * Creates social media buttons with standard styling
+ * @param reactText - Text for the positive reaction button (e.g., "Like", "React")
+ * @param ignoreText - Text for the ignore/negative button (e.g., "Ignore", "Skip")
+ * @param positiveActionId - ID for the positive action button (default: 'like')
+ * @returns Array of ISocialMediaButton objects
+ */
+export const createSocialMediaButtons = (
+	reactText: string,
+	ignoreText: string
+): ISocialMediaButton[] => {
+	return [
+		{
+			text: reactText,
+			id: 'like',
+			color: '#647AA3',
+			textColor: 'white'
+		},
+		{
+			text: ignoreText,
+			id: 'ignore',
+			color: '#6A7B76',
+			textColor: 'white'
+		}
+	];
+};
+
+/**
+ * Creates shuffled social media buttons with standard styling
+ * @param reactText - Text for the positive reaction button (e.g., "Like", "React")
+ * @param ignoreText - Text for the ignore/negative button (e.g., "Ignore", "Skip")
+ * @param positiveActionId - ID for the positive action button (default: 'like')
+ * @returns Randomly shuffled array of ISocialMediaButton objects
+ */
+export const createShuffledSocialMediaButtons = (
+	reactText: string,
+	ignoreText: string
+): ISocialMediaButton[] => {
+	const buttons = createSocialMediaButtons(reactText, ignoreText);
+	return fisherYatesShuffle(buttons); // TODO: log, which buttons there are
 };

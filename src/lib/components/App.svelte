@@ -18,10 +18,23 @@
 	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
 	import {
 		createFinalMediaStimuli,
-		createTrainingMediaStimuli
+		createTrainingMediaStimuli,
+		createMediaStimuliObjects,
+		getTrainingMediaStimuliSrcBase,
+		createShuffledSocialMediaButtons,
+		getFinalMediaStimuliSrcBase
 	} from '$lib/utils/createMediaStimuli';
 	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
 	import AppTaskPracticeSentimentVariant from './AppTaskPracticeSentimentVariant.svelte';
+	import { get } from 'svelte/store';
+	import LL from '../../i18n/i18n-svelte';
+	import {
+		getMathTaskPatternMatchingObjectsForPractice,
+		getMathTaskPatternMatchingObjectsForTest
+	} from '$lib/utils/createPatterStimuli';
+	import { createPracticeVideoConfiguration } from '$lib/utils/createVideoStimuli';
+	import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
+	import { createTrialVideoConfiguration } from '$lib/utils/createVideoStimuli';
 
 	let stage:
 		| 'connect'
@@ -37,7 +50,7 @@
 	const gazeManager = new GazeManager();
 
 	export let questionsService: ITimestampQuestionService;
-	export let taskHandler: ATaskHandler;
+	export let sessionId: string;
 	export let connectLogger: IConnectLogger;
 	export let gazeSaver: IGazeSaver;
 	export let sentiment: 'negative' | 'positive';
@@ -90,29 +103,113 @@
 
 	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alterning variant was turned off
 
-	let nonexcludedAS: string[];
-	let nonexcludedNS: string[];
-	let excludedAS: string[];
-	let excludedNS: string[];
-	let trainingAS: string[];
-	let trainingNS: string[];
+	// 1. TRAINING SET OF STIMULI
+	// 1.1 social media (dependant on the sentiment)
+	const trainingStimuli = createTrainingMediaStimuli(sentiment);
+	const trainingASIds = trainingStimuli.AS;
+	const trainingNSIds = trainingStimuli.NS;
 
-	onMount(() => {
-		taskHandler.scoringType = variant;
-		taskHandler.sentiment = sentiment;
-		taskHandler.logScoringTypeAndSentiment();
+	const trainingSrcBase = getTrainingMediaStimuliSrcBase(base);
+	const trainingAS = createMediaStimuliObjects(trainingASIds, trainingSrcBase);
+	const trainingNS = createMediaStimuliObjects(trainingNSIds, trainingSrcBase);
 
-		const stimuli = createFinalMediaStimuli(sentiment);
-		nonexcludedAS = stimuli.AS;
-		nonexcludedNS = stimuli.NS;
-		const idsToExclude = [...stimuli.AS, ...stimuli.NS];
-		const excludedStimuli = createFinalMediaStimuli(sentiment, idsToExclude);
-		excludedAS = excludedStimuli.AS;
-		excludedNS = excludedStimuli.NS;
-		const trainingStimuli = createTrainingMediaStimuli(sentiment);
-		trainingAS = trainingStimuli.AS;
-		trainingNS = trainingStimuli.NS;
-	});
+	const socialMediaButtons = createShuffledSocialMediaButtons(
+		get(LL).socialButtons['react'](),
+		get(LL).socialButtons['ignore']()
+	);
+
+	// 1.2 math (non dependant on the sentiment)
+	const trainingMathStimuli = getMathTaskPatternMatchingObjectsForPractice();
+
+	// 1.3 video
+	const trainingVideoConfiguration = createPracticeVideoConfiguration(base);
+
+	// 1.4 task handler
+	const trainingTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
+		trainingNS,
+		trainingAS,
+		socialMediaButtons,
+		trainingVideoConfiguration,
+		trainingMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
+
+	// 2. FINAL SET OF STIMULI - PART 1
+	// 2.1 social media (dependant on the sentiment)
+	const firstSocialMediaStimuliNSIds = createFinalMediaStimuli(sentiment).NS;
+	const firstSocialMediaStimuliASIds = createFinalMediaStimuli(sentiment).AS;
+
+	const socialMediaSrcBase = getFinalMediaStimuliSrcBase(base);
+	const socialMediaStimuliNS = createMediaStimuliObjects(
+		firstSocialMediaStimuliNSIds,
+		socialMediaSrcBase
+	);
+	const socialMediaStimuliAS = createMediaStimuliObjects(
+		firstSocialMediaStimuliASIds,
+		socialMediaSrcBase
+	);
+
+	// 2.2 math (non dependant on the sentiment)
+	const firstMathStimuli = getMathTaskPatternMatchingObjectsForTest();
+
+	// 2.3 video
+	const firstVideoConfiguration = createTrialVideoConfiguration(base);
+
+	// 2.4 task handler
+	const firstTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
+		socialMediaStimuliNS,
+		socialMediaStimuliAS,
+		socialMediaButtons,
+		firstVideoConfiguration,
+		firstMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
+
+	// 3. FINAL SET OF STIMULI - PART 2
+	// 3.1 social media (dependant on the sentiment)
+	const idsToOmitFromSecondStimuli = [
+		...firstSocialMediaStimuliNSIds,
+		...firstSocialMediaStimuliASIds
+	];
+	const secondSocialMediaStimuliNSIds = createFinalMediaStimuli(
+		sentiment,
+		idsToOmitFromSecondStimuli
+	).NS;
+	const secondSocialMediaStimuliASIds = createFinalMediaStimuli(
+		sentiment,
+		idsToOmitFromSecondStimuli
+	).AS;
+
+	const secondSocialMediaStimuliNS = createMediaStimuliObjects(
+		secondSocialMediaStimuliNSIds,
+		getTrainingMediaStimuliSrcBase(base)
+	);
+	const secondSocialMediaStimuliAS = createMediaStimuliObjects(
+		secondSocialMediaStimuliASIds,
+		getTrainingMediaStimuliSrcBase(base)
+	);
+
+	// 3.2 math (non dependant on the sentiment) = this is gonna be void as this is only placeholder for compatibility
+	const secondMathStimuli = firstMathStimuli;
+
+	// 3.3 video = this is gonna be void as this is only placeholder for compatibility
+	const secondVideoConfiguration = firstVideoConfiguration;
+
+	// 3.4 task handler
+	const secondTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
+		secondSocialMediaStimuliNS,
+		secondSocialMediaStimuliAS,
+		socialMediaButtons,
+		secondVideoConfiguration,
+		secondMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} />
@@ -133,9 +230,7 @@
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppTaskPracticeSentimentVariant
 				on:taskEnd={triggerQuestions2}
-				{taskHandler}
-				AS={trainingAS}
-				NS={trainingNS}
+				taskHandler={trainingTaskHandler}
 			/>
 		</div>
 	{:else if stage === 'questions-2'}
@@ -150,15 +245,13 @@
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppTaskTrialSentimentVariant
 				on:taskEnd={() => (stage = 'presingle')}
-				{taskHandler}
-				AS={nonexcludedAS}
-				NS={nonexcludedNS}
+				taskHandler={firstTaskHandler}
 			/>
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPreSingle
-				{taskHandler}
+				taskHandler={firstTaskHandler}
 				{questionsService}
 				on:startSingle={() => (stage = 'gaze-validation')}
 			/>
@@ -170,16 +263,14 @@
 	{:else if stage === 'single'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppTaskTrialMediaOnlySentimentVariant
-				{taskHandler}
-				AS={excludedAS}
-				NS={excludedNS}
+				taskHandler={secondTaskHandler}
 				on:taskEnd={() => (stage = 'end')}
 			/>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<AppQuestionsPostTrial
-				{taskHandler}
+				taskHandler={secondTaskHandler}
 				on:finish={() => {
 					goto(`${base}/download`);
 				}}

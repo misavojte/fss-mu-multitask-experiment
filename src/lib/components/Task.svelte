@@ -203,7 +203,9 @@
 	const abortController = new AbortController();
 
 	const logic = async () => {
+		taskHandler.handleLoadStart();
 		await loadPromise;
+		taskHandler.handleLoadFinish();
 		hasStarted = true;
 		try {
 			await waitForConditionCancellable(shouldEndTask, timeOut, abortController.signal);

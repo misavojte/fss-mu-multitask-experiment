@@ -1,5 +1,12 @@
 import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
-import { ATaskHandlerIntelligence, ATaskHandlerMath } from '$lib/interfaces/ITaskHandler';
+import {
+	ATaskHandlerIntelligence,
+	ATaskHandlerMath,
+	type ISocialMediaStimulus,
+	type ISocialMediaButton,
+	type IVideoConfiguration,
+	type ITaskPatternMatchingObject
+} from '$lib/interfaces/ITaskHandler';
 
 const logAction = (type: string, value: string, sessionId: string) => {
 	saveActionLog({
@@ -12,15 +19,27 @@ const logAction = (type: string, value: string, sessionId: string) => {
 
 export class TaskHandlerIntelligenceIDB extends ATaskHandlerIntelligence {
 	sessionId: string;
-	scoringType: 'prioritize' | 'even';
+
 	constructor(
 		sessionId: string,
-		base: string = '',
+		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
+		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
+		socialMediaButtons: ISocialMediaButton[] = [],
+		videoConfiguration: IVideoConfiguration | null = null,
+		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
+		taskPatternCorrectResponseId: string = 'T1',
 		scoringType: 'prioritize' | 'even' = 'prioritize'
 	) {
-		super(base);
+		super(
+			socialMediaStimuliNS,
+			socialMediaStimuliAS,
+			socialMediaButtons,
+			videoConfiguration,
+			taskPatternMatchingObjects,
+			taskPatternCorrectResponseId,
+			scoringType
+		);
 		this.sessionId = sessionId;
-		this.scoringType = scoringType;
 	}
 
 	logAction(type: string, value: string): void {
@@ -30,15 +49,27 @@ export class TaskHandlerIntelligenceIDB extends ATaskHandlerIntelligence {
 
 export class TaskHandlerMathIDB extends ATaskHandlerMath {
 	sessionId: string;
-	scoringType: 'prioritize' | 'even';
+
 	constructor(
 		sessionId: string,
-		base: string = '',
+		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
+		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
+		socialMediaButtons: ISocialMediaButton[] = [],
+		videoConfiguration: IVideoConfiguration | null = null,
+		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
+		taskPatternCorrectResponseId: string = '2',
 		scoringType: 'prioritize' | 'even' = 'prioritize'
 	) {
-		super(base);
+		super(
+			socialMediaStimuliNS,
+			socialMediaStimuliAS,
+			socialMediaButtons,
+			videoConfiguration,
+			taskPatternMatchingObjects,
+			taskPatternCorrectResponseId,
+			scoringType
+		);
 		this.sessionId = sessionId;
-		this.scoringType = scoringType;
 	}
 
 	logAction(type: string, value: string): void {
