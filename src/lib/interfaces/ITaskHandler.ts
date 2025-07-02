@@ -1,3 +1,5 @@
+import { toIdArrayJson } from '$lib/utils/taskLogging';
+
 export interface ITaskPatternMatchingObjectImage {
 	type: 'image';
 	id: string;
@@ -198,14 +200,11 @@ export abstract class ATaskHandler {
 		this.logAction('task-load-start', '');
 		this.logAction('task-version', this.scoringType);
 		this.logAction('task-sentiment', this.sentiment);
-		// log all stimuli, JSON stringified
-		this.logAction('task-stimuli-social-media-NS', JSON.stringify(this.socialMediaStimuliNS));
-		this.logAction('task-stimuli-social-media-AS', JSON.stringify(this.socialMediaStimuliAS));
-		this.logAction('task-stimuli-social-media-buttons', JSON.stringify(this.socialMediaButtons));
-		this.logAction(
-			'task-stimuli-pattern-matching',
-			JSON.stringify(this.taskPatternMatchingObjects)
-		);
+		// log all stimuli - for specified event types, save only arrays of IDs
+		this.logAction('task-stimuli-social-media-NS', toIdArrayJson(this.socialMediaStimuliNS));
+		this.logAction('task-stimuli-social-media-AS', toIdArrayJson(this.socialMediaStimuliAS));
+		this.logAction('task-stimuli-social-media-buttons', toIdArrayJson(this.socialMediaButtons));
+		this.logAction('task-stimuli-pattern-matching', toIdArrayJson(this.taskPatternMatchingObjects));
 		this.logAction('task-stimuli-video', JSON.stringify(this.videoConfiguration));
 		// Reset stimulus display counters at task start
 		this.socialMediaStimuliDisplayedCount = 0;

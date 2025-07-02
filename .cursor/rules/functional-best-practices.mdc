@@ -1,0 +1,111 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Functional Programming Best Practices and Code Quality Standards
+alwaysApply: true
+---
+
+# Functional Programming & Code Quality Standards
+
+## Core Principles
+- **Simplicity First**: Choose the simplest solution that works
+- **DRY (Don't Repeat Yourself)**: Extract common logic into reusable functions
+- **Pure Functions**: Prefer functions without side effects when possible
+- **Immutability**: Avoid mutating data, create new objects instead
+- **Single Responsibility**: Each function should do one thing well
+
+## Function Design
+```typescript
+/**
+ * Transforms user input data for experiment processing
+ * @param rawData - The raw input data from user interaction
+ * @param sessionId - Unique identifier for the current session
+ * @returns Processed data ready for storage
+ * @example
+ * const processed = processUserData({ answer: "yes" }, "session-123");
+ */
+const processUserData = (rawData: UserInput, sessionId: string): ProcessedData => {
+  return {
+    ...rawData,
+    sessionId,
+    timestamp: Date.now(),
+    processed: true
+  };
+};
+```
+
+## JSDoc Requirements
+- **Always** document public functions with JSDoc
+- Include `@param` for all parameters
+- Include `@returns` for return values
+- Add `@example` for complex functions
+- Use `@throws` if function can throw errors
+
+## Functional Patterns to Favor
+```typescript
+// ✅ Use pure functions
+const calculateScore = (responses: Response[]): number => 
+  responses.reduce((sum, r) => sum + r.value, 0);
+
+// ✅ Use function composition
+const processAndValidate = pipe(
+  validateInput,
+  transformData,
+  calculateScore
+);
+
+// ✅ Use immutable updates
+const addResponse = (state: ExperimentState, response: Response): ExperimentState => ({
+  ...state,
+  responses: [...state.responses, response]
+});
+
+// ✅ Extract reusable utilities
+const createTimestamp = (): number => Date.now();
+const generateSessionId = (): string => `session-${crypto.randomUUID()}`;
+```
+
+## Avoid These Patterns
+```typescript
+// ❌ Avoid functions with side effects
+const badFunction = (data: Data) => {
+  globalState.data = data; // Don't mutate global state
+  console.log(data); // Don't mix concerns
+  return data.id;
+};
+
+// ❌ Avoid deep nesting
+if (condition1) {
+  if (condition2) {
+    if (condition3) {
+      // too nested
+    }
+  }
+}
+
+// ✅ Use early returns instead
+if (!condition1) return;
+if (!condition2) return;
+if (!condition3) return;
+// main logic here
+```
+
+## Code Organization
+- **Utils**: Pure helper functions in `src/lib/utils/`
+- **Services**: Stateful operations with clear interfaces
+- **Types**: Shared TypeScript interfaces and types
+- **Constants**: Immutable configuration values
+
+## Testing Considerations
+- Pure functions are easier to test
+- Mock dependencies at service boundaries
+- Test edge cases and error conditions
+- Use descriptive test names that explain behavior
+
+## Performance Tips
+- Extract constants outside of component/function scope
+- Use object destructuring to avoid repeated property access
+

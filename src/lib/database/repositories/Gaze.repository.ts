@@ -2,6 +2,7 @@
 import db from '../database';
 import type { Gaze } from '../models/Gaze.model';
 import type { GazeDataPoint } from 'develex-js-sdk';
+import { gazesToCSV } from '$lib/utils/csvDownload';
 
 type GazeInteractionEvent = {
 	type: string;
@@ -139,43 +140,8 @@ export async function getAllGazesAsCSV(): Promise<string> {
  * @returns A CSV string representation of the logs.
  */
 function logsToCSV(logs: Gaze[]): string {
-	if (logs.length === 0) {
-		return '';
-	}
-
-	// Construct CSV header
-	const header =
-		'id,timestamp,ISOtimestamp,sessionId,gazeSessionId,xL,xLScreenRelative,xR,xRScreenRelative,yL,yLScreenRelative,yR,yRScreenRelative,validityL,validityR,fixationDuration,fixationId,aoi';
-
-	// Construct CSV rows from log entries
-	const rows = logs.map((log) => {
-		const {
-			id,
-			timestamp,
-			ISOtimestamp,
-			intersectTimestamp,
-			deviceTimestamp,
-			deviceId,
-			sessionId,
-			gazeSessionId,
-			xL,
-			xLScreenRelative,
-			xR,
-			xRScreenRelative,
-			yL,
-			yLScreenRelative,
-			yR,
-			yRScreenRelative,
-			validityL,
-			validityR,
-			aoi
-		} = log;
-		// Ensure values are properly escaped and formatted for CSV
-		return `${id},${timestamp},${ISOtimestamp},${intersectTimestamp},${deviceTimestamp},${deviceId},${sessionId},${gazeSessionId},${xL},${xLScreenRelative},${xR},${xRScreenRelative},${yL},${yLScreenRelative},${yR},${yRScreenRelative},${validityL},${validityR},${aoi}`;
-	});
-
-	// Join header and rows to form the final CSV string
-	return [header, ...rows].join('\n');
+	// Use the utility function to ensure consistent CSV formatting and fix header/data mismatch
+	return gazesToCSV(logs);
 }
 
 export async function deleteGazesBySessionId(sessionId: string): Promise<void> {

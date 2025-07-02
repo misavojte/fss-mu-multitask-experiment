@@ -1,6 +1,7 @@
 // src/lib/db/repositories/actionLogRepository.ts
 import db from '../database';
 import type { ActionLog } from '../models/ActionLog.model';
+import { actionLogsToCSV } from '$lib/utils/csvDownload';
 
 /**
  * Saves a new action log entry to the IndexedDB.
@@ -98,22 +99,8 @@ export async function getAllActionLogsAsCSV(): Promise<string> {
  * @returns A CSV string representation of the logs.
  */
 function logsToCSV(logs: ActionLog[]): string {
-	if (logs.length === 0) {
-		return '';
-	}
-
-	// Construct CSV header
-	const header = 'id,timestamp,sessionId,type,value';
-
-	// Construct CSV rows from log entries
-	const rows = logs.map((log) => {
-		const { id, timestamp, sessionId, type, value } = log;
-		// Ensure values are properly escaped and formatted for CSV
-		return `${id},${timestamp},"${sessionId}","${type}","${value.replace(/"/g, '""')}"`;
-	});
-
-	// Join header and rows to form the final CSV string
-	return [header, ...rows].join('\n');
+	// Use the utility function to ensure consistent CSV formatting
+	return actionLogsToCSV(logs);
 }
 
 export async function deleteActionLogsBySessionId(sessionId: string): Promise<void> {

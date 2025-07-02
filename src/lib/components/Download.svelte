@@ -1,54 +1,50 @@
 <script lang="ts">
 	import {
-		deleteActionLogsBySessionId,
-		getActionLogsAsCSV,
-		getAllActionLogsAsCSV,
 		getQuestionnaireLinkingValue,
 		getUniqueSessionIds
 	} from '$lib/database/repositories/ActionLog.repository';
 	import {
-		deleteGazesBySessionId,
-		getAllGazesAsCSV,
-		getGazesAsCSV
-	} from '$lib/database/repositories/Gaze.repository';
-
-	const parseSessionIdToDate = (sessionId: string) => {
-		const timestamp = parseInt(sessionId.split('-')[0]);
-		return new Date(timestamp).toLocaleString();
-	};
+		downloadActionLogs,
+		downloadGazes,
+		deleteSession,
+		generateActionLogsFilename,
+		generateGazesFilename
+	} from '$lib/services/downloadService';
+	import { parseSessionIdToDate } from '$lib/utils/csvDownload';
 
 	$: sessionIds = getUniqueSessionIds();
 
-	const downloadActionsStringAsCsv = async (filename: string, sessionId: string) => {
-		const string =
-			sessionId === 'all' ? await getAllActionLogsAsCSV() : await getActionLogsAsCSV(sessionId);
-		const blob = new Blob([string], { type: 'text/csv' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = filename;
-		a.click();
-		URL.revokeObjectURL(url);
+	const handleDownloadActions = async (sessionId: string) => {
+		try {
+			const filename = generateActionLogsFilename(sessionId);
+			await downloadActionLogs(sessionId, filename);
+		} catch (error) {
+			console.error('Failed to download actions:', error);
+			alert('Failed to download actions. Please try again.');
+		}
 	};
 
-	const downloadGazesStringAsCsv = async (filename: string, sessionId: string) => {
-		const string = sessionId === 'all' ? await getAllGazesAsCSV() : await getGazesAsCSV(sessionId);
-		const blob = new Blob([string], { type: 'text/csv' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = filename;
-		a.click();
-		URL.revokeObjectURL(url);
+	const handleDownloadGazes = async (sessionId: string) => {
+		try {
+			const filename = generateGazesFilename(sessionId);
+			await downloadGazes(sessionId, filename);
+		} catch (error) {
+			console.error('Failed to download gazes:', error);
+			alert('Failed to download gazes. Please try again.');
+		}
 	};
 
 	const handleDeleteSession = (sessionId: string) => async () => {
-		const response = await confirm('Are you sure you want to delete this session?');
+		const response = confirm('Are you sure you want to delete this session?');
 		if (response) {
-			void deleteActionLogsBySessionId(sessionId);
-			void deleteGazesBySessionId(sessionId);
-			// requery the session ids
-			sessionIds = getUniqueSessionIds();
+			try {
+				await deleteSession(sessionId);
+				// requery the session ids
+				sessionIds = getUniqueSessionIds();
+			} catch (error) {
+				console.error('Failed to delete session:', error);
+				alert('Failed to delete session. Please try again.');
+			}
 		}
 	};
 </script>
@@ -58,13 +54,13 @@
 	<div class="flex flex-row gap-4 mb-8">
 		<button
 			class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-			on:click={() => downloadActionsStringAsCsv('multitask_action_allSessions.csv', 'all')}
+			on:click={() => handleDownloadActions('all')}
 		>
 			Download Actions
 		</button>
 		<button
 			class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-			on:click={() => downloadGazesStringAsCsv('multitask_gaze_allSessions.csv', 'all')}
+			on:click={() => handleDownloadGazes('all')}
 		>
 			Download Gazes
 		</button>
@@ -103,15 +99,13 @@
 					<div class="ml-auto">
 						<button
 							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-							on:click={() =>
-								downloadActionsStringAsCsv('multitask_action_' + sessionId + '.csv', sessionId)}
+							on:click={() => handleDownloadActions(sessionId)}
 						>
 							Actions
 						</button>
 						<button
 							class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-							on:click={() =>
-								downloadGazesStringAsCsv('multitask_gaze_' + sessionId + '.csv', sessionId)}
+							on:click={() => handleDownloadGazes(sessionId)}
 						>
 							Gaze
 						</button>

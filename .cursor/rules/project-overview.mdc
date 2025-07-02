@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: FSS Multitask Experiment - Project Overview and Architecture
+alwaysApply: true
+---
+
+# FSS Multitask Experiment Project
+
+This is a psychological research application built with SvelteKit for conducting multitask cognitive experiments with eye-tracking capabilities.
+
+## Project Purpose
+- Conduct psychological experiments involving multitasking scenarios
+- Collect eye-tracking data using the Develex JS SDK
+- Measure cognitive performance across different tasks (social media, pattern matching, video watching)
+- Manipulate sentiment conditions (positive/negative)
+- Gather questionnaire responses and behavioral data
+
+## Architecture Overview
+- **Frontend**: SvelteKit with TypeScript
+- **Styling**: Tailwind CSS + Flowbite components
+- **Data Storage**: IndexedDB via Dexie
+- **Eye Tracking**: Develex JS SDK integration
+- **Internationalization**: typesafe-i18n
+- **Testing**: Vitest + Storybook
+- **PWA**: Service worker support
+
+## Key Concepts
+- **Experiment Flow**: Structured stages (connect → questions → practice → trial → single task → end)
+- **Sentiment Manipulation**: Positive/negative conditions affecting stimuli
+- **Task Types**: Social media interactions, pattern matching (math), video watching
+- **Data Collection**: Action logs, gaze data, questionnaire responses
+- **Session Management**: Unique session IDs for data tracking
+
+## File Organization
+- `src/lib/components/`: Reusable UI components and app screens
+- `src/lib/services/`: Data handling and business logic
+- `src/lib/database/`: IndexedDB models and repositories
+- `src/lib/utils/`: Helper functions and utilities
+- `src/routes/`: SvelteKit routing structure
+- `static/task/`: Experimental stimuli (images, videos)
+
+
+
