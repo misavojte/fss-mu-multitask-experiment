@@ -1341,7 +1341,7 @@ export const mathStimuli: ITaskPatternMatchingObjectText[] = [
         matrixContent: `88 - 18 = ?`,
         responses: [
             { id: '1', content: `48` },
-            { id: '2', content: `60` },
+            { id: '2', content: `70` },
             { id: '3', content: `65` },
             { id: '4', content: `62` }
         ]
@@ -2020,10 +2020,10 @@ export const mathStimuli: ITaskPatternMatchingObjectText[] = [
   {
         type: 'text',
         id: '184',
-        matrixContent: `12 - ( 4 + 2) = ?`,
+        matrixContent: `15 - ( 1 + 3) = ?`,
         responses: [
             { id: '1', content: `9` },
-            { id: '2', content: `6` },
+            { id: '2', content: `11` },
             { id: '3', content: `35` },
             { id: '4', content: `45` }
         ]
@@ -2199,7 +2199,7 @@ export const mathStimuli: ITaskPatternMatchingObjectText[] = [
         matrixContent: `7 + (10 - 2) ÷ 2 = ?`,
         responses: [
             { id: '1', content: `9` },
-            { id: '2', content: `8` },
+            { id: '2', content: `11` },
             { id: '3', content: `21` },
             { id: '4', content: `7` }
         ]
