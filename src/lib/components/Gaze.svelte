@@ -5,12 +5,13 @@
 	import GazeConnect from '$lib/components/GazeConnect.svelte';
 	import { fade } from 'svelte/transition';
 	import GazeCheck from '$lib/components/GazeCheck.svelte';
+	import GazeFullscreenCheck from '$lib/components/GazeFullscreenCheck.svelte';
 	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
 
 	export let gazeManager: GazeManager;
 	export let connectLogger: IConnectLogger;
 
-	let stage: 'connect' | 'validate' | 'check' = 'connect';
+	let stage: 'fullscreen-check' | 'connect' | 'validate' | 'check' = 'fullscreen-check';
 
 	const dispatch = createEventDispatcher();
 
@@ -34,7 +35,14 @@
 </script>
 
 <div class="relative w-full h-full flex flex-col items-center justify-center min-h-60">
-	{#if stage === 'connect'}
+	{#if stage === 'fullscreen-check'}
+		<div
+			class="absolute top-0 w-full h-full flex flex-col items-center justify-center"
+			transition:fade
+		>
+			<GazeFullscreenCheck on:continue={() => (stage = 'connect')} />
+		</div>
+	{:else if stage === 'connect'}
 		<div
 			class="absolute top-0 w-full h-full flex flex-col items-center justify-center"
 			transition:fade

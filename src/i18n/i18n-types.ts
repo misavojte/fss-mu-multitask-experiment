@@ -50,6 +50,28 @@ type RootTranslation = {
 		 */
 		even: string
 	}
+	fullscreen: {
+		/**
+		 * R​e​ž​i​m​ ​c​e​l​é​ ​o​b​r​a​z​o​v​k​y
+		 */
+		heading: string
+		/**
+		 * Z​k​o​n​t​r​o​l​u​j​t​e​,​ ​z​d​a​ ​j​e​ ​a​p​l​i​k​a​c​e​ ​v​ ​r​e​ž​i​m​u​ ​c​e​l​é​ ​o​b​r​a​z​o​v​k​y​.
+		 */
+		instruction: string
+		/**
+		 * P​o​k​u​d​ ​n​e​,​ ​s​t​i​s​k​n​ě​t​e​ ​F​1​1​ ​n​e​b​o​ ​k​l​i​k​n​ě​t​e​ ​n​a​ ​t​l​a​č​í​t​k​o​.
+		 */
+		helpText: string
+		/**
+		 * S​p​u​s​t​i​t​ ​c​e​l​o​u​ ​o​b​r​a​z​o​v​k​u
+		 */
+		enterFullscreen: string
+		/**
+		 * P​o​k​r​a​č​o​v​a​t
+		 */
+		'continue': string
+	}
 	question: {
 		'1': {
 			/**
@@ -511,6 +533,28 @@ export type TranslationFunctions = {
 		 * Připomínáme, že **žádný úkol není prioritní**.
 		 */
 		even: () => LocalizedString
+	}
+	fullscreen: {
+		/**
+		 * Režim celé obrazovky
+		 */
+		heading: () => LocalizedString
+		/**
+		 * Zkontrolujte, zda je aplikace v režimu celé obrazovky.
+		 */
+		instruction: () => LocalizedString
+		/**
+		 * Pokud ne, stiskněte F11 nebo klikněte na tlačítko.
+		 */
+		helpText: () => LocalizedString
+		/**
+		 * Spustit celou obrazovku
+		 */
+		enterFullscreen: () => LocalizedString
+		/**
+		 * Pokračovat
+		 */
+		'continue': () => LocalizedString
 	}
 	question: {
 		'1': {

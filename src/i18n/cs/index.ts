@@ -14,6 +14,13 @@ const cs = {
 		priority: 'Připomínáme, že **matematická úloha je prioritní**.',
 		even: 'Připomínáme, že **žádný úkol není prioritní**.'
 	},
+	fullscreen: {
+		heading: 'Režim celé obrazovky',
+		instruction: 'Zkontrolujte, zda je aplikace v režimu celé obrazovky.',
+		helpText: 'Pokud ne, stiskněte F11 nebo klikněte na tlačítko.',
+		enterFullscreen: 'Spustit celou obrazovku',
+		continue: 'Pokračovat'
+	},
 	question: {
 		battery: {
 			back: 'Předchozí sekce',
