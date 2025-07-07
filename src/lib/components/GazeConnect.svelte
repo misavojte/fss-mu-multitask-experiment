@@ -47,6 +47,24 @@
 		$isLoading = true;
 		gazeManager.setWindowCalibration(e.detail.mouseEventObject, e.detail.windowObject);
 		try {
+			// THIS IS A BIT HACKY ... IF THE TRACKER IS ALREADY CONNECTED, WE NEED TO DISCONNECT IT
+			// sorry Adame, tohle jsem sem prostě pedla, ať je klid :D
+			const manager = await gazeManager.status();
+			const trackerStatus = manager.lastStatus?.tracker.status;
+
+			if (trackerStatus === 'trackerEmitting') {
+				await gazeManager.stop();
+			}
+			if (
+				trackerStatus === 'trackerEmitting' ||
+				trackerStatus === 'trackerCalibrating' ||
+				trackerStatus === 'trackerConnecting' ||
+				trackerStatus === 'trackerConnected'
+			) {
+				await gazeManager.disconnect();
+				await gazeManager.close();
+			}
+			// END OF HACKY PART
 			await gazeManager.open();
 			await gazeManager.connect();
 			console.log('Connected');
