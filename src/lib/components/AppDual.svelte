@@ -80,11 +80,22 @@
 	// Centralized function to move to the next stage
 	let isManualAdvancement = false;
 
-	const startNextStage = () => {
+	const startNextStage = async () => {
 		const currentIndex = stageOrder.indexOf(stage);
 		if (currentIndex < stageOrder.length - 1) {
 			const nextStage = stageOrder[currentIndex + 1];
 			console.log(`[DEBUG] Advancing from '${stage}' to '${nextStage}'`);
+
+			// Reset WebSocket connection before gaze-validation to prevent blocking
+			if (nextStage === 'gaze-validation') {
+				console.log(`[DEBUG] Resetting gaze connection before validation stage`);
+				try {
+					await resetGazeConnection();
+				} catch (error) {
+					console.error('[DEBUG] Failed to reset gaze connection, continuing anyway:', error);
+				}
+			}
+
 			stage = nextStage;
 		} else if (stage === 'end') {
 			// Handle the final stage - navigate to download
@@ -92,6 +103,27 @@
 			goto(`${base}/download`);
 		} else {
 			console.warn(`[DEBUG] Cannot advance from stage '${stage}' - no next stage defined`);
+		}
+	};
+
+	// Reset gaze connection to prevent WebSocket blocking issues
+	const resetGazeConnection = async () => {
+		try {
+			console.log('[DEBUG] Disconnecting gazeManager...');
+			gazeManager.off('intersect', onIntersect);
+			await gazeManager.disconnect();
+
+			// Small delay to ensure clean disconnection
+			await new Promise((resolve) => setTimeout(resolve, 1000));
+
+			console.log('[DEBUG] Reconnecting gazeManager...');
+			await gazeManager.connect();
+			await gazeManager.start();
+			gazeManager.on('intersect', onIntersect);
+
+			console.log('[DEBUG] GazeManager reset complete');
+		} catch (error) {
+			console.error('[DEBUG] Error resetting gaze connection:', error);
 		}
 	};
 
