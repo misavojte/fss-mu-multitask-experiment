@@ -19,7 +19,7 @@
 		eyelogic: {
 			uri: 'ws://localhost:13892',
 			tracker: 'eyelogic',
-			fixationDetection: 'idt'
+			fixationDetection: 'device'
 		},
 		gazepoint: {
 			uri: 'ws://localhost:13892',
