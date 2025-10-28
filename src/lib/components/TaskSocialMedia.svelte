@@ -142,32 +142,55 @@
 				timestamp: performance.now()
 			});
 
-			try {
-				await waitForConditionCancellable(wasClicked, stimulusRemindAfter, abortController.signal);
-			} catch (error) {
-				if (error === 'TaskSocialMedia was destroyed') {
-					return; // stop the task, no logging
-				}
-				dispatch('socialMediaInteractorsReminder');
-				audioElement2.play();
+			// Handle reminder logic: if stimulusRemindAfter is < 0, disable reminders
+			if (stimulusRemindAfter < 0) {
+				// No reminder: wait for click or max duration timeout
 				try {
 					await waitForConditionCancellable(
 						wasClicked,
-						stimulusMaxDuration - stimulusRemindAfter,
+						stimulusMaxDuration,
 						abortController.signal
 					);
 				} catch (error) {
 					if (error === 'TaskSocialMedia was destroyed') {
 						return; // stop the task, no logging
 					}
-					animationTargetHandler.createAnimationTarget(
-						getCenterCoordinates(divElement),
-						'red',
-						'Věnujte pozornost úloze!',
-						abortController.signal,
-						2000
-					);
+					// Timeout reached - stimulus should disappear
 					dispatch('socialMediaInteractorsTimeout');
+				}
+			} else {
+				// Original reminder logic
+				try {
+					await waitForConditionCancellable(
+						wasClicked,
+						stimulusRemindAfter,
+						abortController.signal
+					);
+				} catch (error) {
+					if (error === 'TaskSocialMedia was destroyed') {
+						return; // stop the task, no logging
+					}
+					dispatch('socialMediaInteractorsReminder');
+					audioElement2.play();
+					try {
+						await waitForConditionCancellable(
+							wasClicked,
+							stimulusMaxDuration - stimulusRemindAfter,
+							abortController.signal
+						);
+					} catch (error) {
+						if (error === 'TaskSocialMedia was destroyed') {
+							return; // stop the task, no logging
+						}
+						animationTargetHandler.createAnimationTarget(
+							getCenterCoordinates(divElement),
+							'red',
+							'Věnujte pozornost úloze!',
+							abortController.signal,
+							2000
+						);
+						dispatch('socialMediaInteractorsTimeout');
+					}
 				}
 			}
 

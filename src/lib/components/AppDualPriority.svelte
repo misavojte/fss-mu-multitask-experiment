@@ -190,8 +190,8 @@
 					socialMediaButtons={trainingTaskHandler.socialMediaButtons}
 					socialInitialDelay={5000}
 					socialBetweenDelay={5000}
-					socialStimulusMaxDuration={20000}
-					socialStimulusRemindAfter={15000}
+					socialStimulusMaxDuration={10000}
+					socialStimulusRemindAfter={-1}
 					socialAdjustBetweenDelay={true}
 					endScenario={'pattern-timeout'}
 					positionXSocial={150}
@@ -225,8 +225,8 @@
 					socialMediaButtons={firstTaskHandler.socialMediaButtons}
 					socialInitialDelay={5000}
 					socialBetweenDelay={5000}
-					socialStimulusMaxDuration={20000}
-					socialStimulusRemindAfter={15000}
+					socialStimulusMaxDuration={10000}
+					socialStimulusRemindAfter={-1}
 					socialAdjustBetweenDelay={true}
 					endScenario={'timeout'}
 					positionXSocial={150}
