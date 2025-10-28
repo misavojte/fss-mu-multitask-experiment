@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
+	import { TimestampQuestionServiceHTTP } from '$lib/services/TimestampQuestionServiceHTTP';
 	import AppInstructionsDualPriority from './AppInstructionsDualPriority.svelte';
 	import AppQuestionsPostPracticeDualOctober from './AppQuestionsPostPracticeDualOctober.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
@@ -21,16 +21,19 @@
 		getMathTaskPatternMatchingObjectsForPractice,
 		getMathTaskPatternMatchingObjectsForTest
 	} from '$lib/utils/createPatterStimuli';
-	import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
+	import { TaskHandlerMathHTTP } from '$lib/services/TaskHandlerHTTP';
 
 	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'questions-1';
 
 	// Define the stage order for navigation
 	const stageOrder = ['questions-1', 'practice', 'questions-2', 'trial', 'end'] as const;
 
-	export let questionsService: ITimestampQuestionService;
 	export let sessionId: string;
 	export let priority: 'math' | 'social' | 'none';
+	export let endpoint: string = 'https://your-endpoint.com/api/logs';
+
+	// Create the question service here
+	const questionsService = new TimestampQuestionServiceHTTP(sessionId, endpoint);
 
 	// Define the fade transition settings
 	const fadeInParams = {
@@ -112,18 +115,22 @@
 	const trainingMathStimuli = getMathTaskPatternMatchingObjectsForPractice();
 
 	// 1.3 task handler (dual task - no video configuration)
-	const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
-		socialMediaStimuliNS: trainingNS,
-		socialMediaStimuliAS: trainingAS,
-		socialMediaButtons,
-		videoConfiguration: null, // No video configuration for dual task
-		taskPatternMatchingObjects: trainingMathStimuli,
-		taskPatternCorrectResponseId: '2',
-		pointsPatternMatching: getPoints('pattern'),
-		pointsSocialMedia: getPoints('social'),
-		pointsDocumentary: getPoints('documentary'),
-		socialMediaStimuliPresentationPattern: [] // DELIBERATELY ABSOLUTELY RANDOM
-	});
+	const trainingTaskHandler = new TaskHandlerMathHTTP(
+		sessionId,
+		{
+			socialMediaStimuliNS: trainingNS,
+			socialMediaStimuliAS: trainingAS,
+			socialMediaButtons,
+			videoConfiguration: null, // No video configuration for dual task
+			taskPatternMatchingObjects: trainingMathStimuli,
+			taskPatternCorrectResponseId: '2',
+			pointsPatternMatching: getPoints('pattern'),
+			pointsSocialMedia: getPoints('social'),
+			pointsDocumentary: getPoints('documentary'),
+			socialMediaStimuliPresentationPattern: [] // DELIBERATELY ABSOLUTELY RANDOM
+		},
+		endpoint
+	);
 
 	// 2. TRIAL SET OF STIMULI - PART 1 (DUAL TASK)
 	// 2.1 social media (using October 25 trial stimuli)
@@ -145,18 +152,22 @@
 	const firstMathStimuli = getMathTaskPatternMatchingObjectsForTest();
 
 	// 2.3 task handler (dual task - no video configuration)
-	const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
-		socialMediaStimuliNS,
-		socialMediaStimuliAS,
-		socialMediaButtons,
-		videoConfiguration: null, // No video configuration for dual task
-		taskPatternMatchingObjects: firstMathStimuli,
-		taskPatternCorrectResponseId: '2',
-		pointsPatternMatching: getPoints('pattern'),
-		pointsSocialMedia: getPoints('social'),
-		pointsDocumentary: getPoints('documentary'),
-		socialMediaStimuliPresentationPattern: [] // DELIBERATELY ABSOLUTELY RANDOM
-	});
+	const firstTaskHandler = new TaskHandlerMathHTTP(
+		sessionId,
+		{
+			socialMediaStimuliNS,
+			socialMediaStimuliAS,
+			socialMediaButtons,
+			videoConfiguration: null, // No video configuration for dual task
+			taskPatternMatchingObjects: firstMathStimuli,
+			taskPatternCorrectResponseId: '2',
+			pointsPatternMatching: getPoints('pattern'),
+			pointsSocialMedia: getPoints('social'),
+			pointsDocumentary: getPoints('documentary'),
+			socialMediaStimuliPresentationPattern: [] // DELIBERATELY ABSOLUTELY RANDOM
+		},
+		endpoint
+	);
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
