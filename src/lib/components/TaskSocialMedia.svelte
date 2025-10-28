@@ -2,7 +2,8 @@
 	import {
 		getCancellableAsync,
 		waitForConditionCancellable,
-		waitForTimeoutCancellable
+		waitForTimeoutCancellable,
+		AbortError
 	} from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
@@ -83,7 +84,14 @@
 	const abortController = new AbortController();
 
 	onMount(() => {
-		getCancellableAsync(infiniteLogic, abortController.signal);
+		getCancellableAsync(infiniteLogic, abortController.signal).catch((error) => {
+			// AbortError is expected when component is destroyed - silently ignore it
+			if (error instanceof AbortError) {
+				return;
+			}
+			// Log other errors
+			console.error('[TaskSocialMedia] Unexpected error in infinite logic:', error);
+		});
 	});
 
 	onDestroy(() => {

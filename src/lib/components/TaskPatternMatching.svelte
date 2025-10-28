@@ -12,7 +12,8 @@
 	import {
 		getCancellableAsync,
 		waitForConditionCancellable,
-		waitForTimeoutCancellable
+		waitForTimeoutCancellable,
+		AbortError
 	} from '$lib/utils/waitForCondition';
 	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
@@ -115,7 +116,14 @@
 	};
 
 	onMount(() => {
-		getCancellableAsync(infiniteLoopLogic, abortController.signal);
+		getCancellableAsync(infiniteLoopLogic, abortController.signal).catch((error) => {
+			// AbortError is expected when component is destroyed - silently ignore it
+			if (error instanceof AbortError) {
+				return;
+			}
+			// Log other errors
+			console.error('[TaskPatternMatching] Unexpected error in infinite loop logic:', error);
+		});
 	});
 
 	onDestroy(() => {

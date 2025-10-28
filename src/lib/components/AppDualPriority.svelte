@@ -24,9 +24,6 @@
 
 	let stage: 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end' = 'questions-1';
 
-	// Define the stage order for navigation
-	const stageOrder = ['questions-1', 'practice', 'questions-2', 'trial', 'end'] as const;
-
 	export let sessionId: string;
 	export let priority: 'math' | 'social' | 'none';
 	export let endpoint: string;
@@ -46,41 +43,107 @@
 		duration: 400 // Duration of the transition (adjust as needed)
 	};
 
-	// Centralized function to move to the next stage
-	let isManualAdvancement = false;
+	/**
+	 * ROBUST STAGE MANAGEMENT SYSTEM
+	 * Prevents race conditions and ensures explicit, controlled transitions
+	 */
 
-	const startNextStage = async () => {
-		const currentIndex = stageOrder.indexOf(stage);
-		if (currentIndex < stageOrder.length - 1) {
-			const nextStage = stageOrder[currentIndex + 1];
-			console.log(`[DEBUG] Advancing from '${stage}' to '${nextStage}'`);
-			stage = nextStage;
-		} else if (stage === 'end') {
-			// Handle the final stage - experiment is complete
-			console.log(`[DEBUG] Final stage reached, experiment complete`);
-			// No further action needed - AppFinalScore handles the redirect
-		} else {
-			console.warn(`[DEBUG] Cannot advance from stage '${stage}' - no next stage defined`);
+	// Guard to prevent multiple simultaneous transitions
+	let isTransitioning = false;
+
+	/**
+	 * Safely transitions to a specific stage with guards against race conditions
+	 * @param targetStage - The exact stage to transition to
+	 * @param source - Description of what triggered this transition (for debugging)
+	 */
+	const transitionToStage = (
+		targetStage: 'questions-1' | 'questions-2' | 'practice' | 'trial' | 'end',
+		source: string
+	) => {
+		if (isTransitioning) {
+			console.warn(
+				`[STAGE] Blocked transition to '${targetStage}' from ${source} - already transitioning`
+			);
+			return;
 		}
+
+		if (stage === targetStage) {
+			console.warn(
+				`[STAGE] Blocked transition to '${targetStage}' from ${source} - already at target stage`
+			);
+			return;
+		}
+
+		isTransitioning = true;
+		console.log(`[STAGE] Transitioning: '${stage}' -> '${targetStage}' (${source})`);
+		stage = targetStage;
+
+		// Reset transition guard after transition completes
+		setTimeout(() => {
+			isTransitioning = false;
+		}, 500);
 	};
 
-	// Handler for task completion that checks if we're manually advancing
-	const handleTaskEnd = () => {
-		if (!isManualAdvancement) {
-			startNextStage();
-		} else {
-			console.log(`[DEBUG] Task end ignored due to manual advancement`);
-			isManualAdvancement = false; // Reset the flag
-		}
+	// EXPLICIT STAGE TRANSITION HANDLERS
+	// Each handler knows exactly where it should go
+
+	/**
+	 * Handles completion of questions-1 stage
+	 * Always goes to practice
+	 */
+	const handleQuestions1Complete = () => {
+		transitionToStage('practice', 'questions-1 complete');
 	};
 
-	// Keyboard event handler for Ctrl+X
+	/**
+	 * Handles completion of practice task
+	 * Always goes to questions-2
+	 */
+	const handlePracticeComplete = () => {
+		transitionToStage('questions-2', 'practice complete');
+	};
+
+	/**
+	 * Handles user choice from questions-2 to restart practice
+	 */
+	const handleRestartPractice = () => {
+		transitionToStage('practice', 'restart practice from questions-2');
+	};
+
+	/**
+	 * Handles user choice from questions-2 to start trial
+	 */
+	const handleStartTrial = () => {
+		transitionToStage('trial', 'start trial from questions-2');
+	};
+
+	/**
+	 * Handles completion of trial task
+	 * Always goes to end
+	 */
+	const handleTrialComplete = () => {
+		transitionToStage('end', 'trial complete');
+	};
+
+	/**
+	 * Handles Ctrl+X keyboard shortcut for debugging/skipping
+	 * Explicitly defines where to go from each stage
+	 */
 	const handleKeydown = (event: KeyboardEvent) => {
 		if (event.ctrlKey && event.key.toLowerCase() === 'x') {
 			event.preventDefault();
-			console.log(`[DEBUG] Ctrl+X pressed - Advancing from stage '${stage}' to next stage`);
-			isManualAdvancement = true; // Set flag before manual advancement
-			startNextStage();
+
+			// Explicit mapping of where Ctrl+X should go from each stage
+			const skipMap: Record<typeof stage, typeof stage> = {
+				'questions-1': 'practice',
+				practice: 'questions-2',
+				'questions-2': 'trial',
+				trial: 'end',
+				end: 'end' // Already at the end
+			};
+
+			const targetStage = skipMap[stage];
+			transitionToStage(targetStage, 'Ctrl+X manual skip');
 		}
 	};
 
@@ -178,13 +241,19 @@
 	{#if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppInstructionsDualPriority {questionsService} {priority} on:continue={startNextStage} />
+			<AppInstructionsDualPriority
+				{questionsService}
+				{priority}
+				on:continue={handleQuestions1Complete}
+			/>
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<div class="flex flex-col items-center justify-center w-screen h-screen">
+				<!-- 185 seconds (3 minutes and 5 seconds) -->
+				<!-- This is the practice task -->
 				<Task
-					on:taskEnd={handleTaskEnd}
+					on:taskEnd={handlePracticeComplete}
 					taskHandler={trainingTaskHandler}
 					patternMatchingObjects={trainingTaskHandler.taskPatternMatchingObjects}
 					socialMediaButtons={trainingTaskHandler.socialMediaButtons}
@@ -203,6 +272,7 @@
 					heightSocialOptions={160}
 					widthPattern={800}
 					heightPattern={700}
+					timeOut={185000}
 				/>
 			</div>
 		</div>
@@ -211,15 +281,17 @@
 			<AppQuestionsPostPracticeDualOctober
 				{questionsService}
 				{priority}
-				on:startPractice={() => (stage = 'practice')}
-				on:startTrial={startNextStage}
+				on:startPractice={handleRestartPractice}
+				on:startTrial={handleStartTrial}
 			/>
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
 			<div class="flex flex-col items-center justify-center w-screen h-screen">
+				<!-- 185 seconds (3 minutes and 5 seconds) -->
+				<!-- This is the trial, MAIN TASK -->
 				<Task
-					on:taskEnd={handleTaskEnd}
+					on:taskEnd={handleTrialComplete}
 					taskHandler={firstTaskHandler}
 					patternMatchingObjects={firstTaskHandler.taskPatternMatchingObjects}
 					socialMediaButtons={firstTaskHandler.socialMediaButtons}
@@ -238,12 +310,13 @@
 					heightSocialOptions={160}
 					widthPattern={800}
 					heightPattern={700}
+					timeOut={185000}
 				/>
 			</div>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppFinalScore taskHandler={firstTaskHandler} {returnUrl} on:finish={startNextStage} />
+			<AppFinalScore taskHandler={firstTaskHandler} {returnUrl} />
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
