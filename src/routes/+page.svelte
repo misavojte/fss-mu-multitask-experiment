@@ -1,33 +1,19 @@
 <script lang="ts">
-	import App from '$lib/components/App.svelte';
-	import { ConnectLoggerIDB } from '$lib/services/ConnectLoggerIDB';
-	import { GazeSaverIDB } from '$lib/services/GazeSaverIDB';
-	import { TimestampQuestionServiceIDB } from '$lib/services/TimestampQuestionServiceIDB';
-	import { onMount } from 'svelte';
-	const sessionId = new Date().getTime() + '-' + Math.floor(1000 + Math.random() * 9000);
-
-	const questionsService = new TimestampQuestionServiceIDB(sessionId);
-	const connectLogger = new ConnectLoggerIDB(sessionId);
-	const gazeSaver = new GazeSaverIDB(sessionId);
-
-	// obtain sentiment from localStorage, default to 'negative' if not set
-	const obtainSentiment = (): 'negative' | 'positive' => {
-		const storedSentiment = localStorage.getItem('multitaskingExperimentFSSMUSentiment');
-		return storedSentiment === 'positive' ? 'positive' : 'negative';
-	};
-
-	const setSentiment = (sentiment: 'negative' | 'positive') => {
-		localStorage.setItem('multitaskingExperimentFSSMUSentiment', sentiment);
-	};
-
-	let sentiment: 'negative' | 'positive'; // default value for SSR
-
-	onMount(() => {
-		sentiment = obtainSentiment();
-		setSentiment(sentiment);
-	});
+	import { fade } from 'svelte/transition';
 </script>
 
-{#if sentiment}
-	<App {gazeSaver} {connectLogger} {questionsService} {sessionId} {sentiment} />
-{/if}
+<div
+	class="w-screen h-screen flex items-center justify-center bg-red-50"
+	in:fade={{ duration: 300 }}
+	out:fade={{ duration: 300 }}
+>
+	<div class="text-center max-w-md mx-auto p-6">
+		<div class="text-red-600 text-6xl mb-4">⚠️</div>
+		<h1 class="text-xl font-bold text-red-800 mb-4">Chyba přístupu</h1>
+		<p class="text-red-700 mb-4">
+			Pro přístup k této stránce musíte použít odkaz s identifikátorem relace (sessionId) z
+			externího dotazníku.
+		</p>
+		<p class="text-sm text-red-600">Kontaktujte prosím administrátora experimentu.</p>
+	</div>
+</div>
