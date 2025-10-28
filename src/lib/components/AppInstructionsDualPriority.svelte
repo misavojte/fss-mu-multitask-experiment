@@ -26,12 +26,15 @@
 
 		const baseSlide2 = {
 			id: 'instructions-2',
-			headingText: 'Popis úkolů',
+			headingText: 'Pokyny ke studii',
 			confirmText: 'Další',
 			paragraphs: [
-				`Budete současně plnit dva úkoly:`,
-				`- Matematický úkol (řešení příkladů)`,
-				`- Reagování na příspěvky na sociálních sítích`
+				`Budete současně plnit dva úkoly: Matematický úkol (řešení příkladů) a reagování na příspěvky na sociálních sítích.`,
+				priority === 'math'
+					? `Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích.`
+					: priority === 'social'
+						? `Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích.`
+						: `Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích. Žádný z úkolů nemá prioritu a řešení obou je stejně důležité. Vaším cílem je věnovat oběma stejnou pozornost, věnovat se najednou jak "práci", tak reakci na sociální média.`
 			],
 			type: 'instruction' as const,
 			required: true
@@ -39,10 +42,10 @@
 
 		const mathDescription =
 			priority === 'math'
-				? `Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích.`
+				? `Toto je váš hlavní úkol, proto mu věnujte většinu pozornosti.`
 				: priority === 'social'
-					? `(Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích.)`
-					: `(Představte si to jako typickou situaci, kdy musíte dokončit důležitou práci a zároveň reagujete na příspěvky na sociálních sítích.) Žádný z úkolů nemá prioritu a řešení obou je stejně důležité. Vaším cílem je věnovat oběma stejnou pozornost, věnovat se najednou jak "práci", tak reakci na sociální média.`;
+					? ``
+					: ``;
 
 		const mathPoints = priority === 'math' ? '3' : '1';
 		const socialPoints = priority === 'social' ? '3' : '1';
@@ -67,11 +70,14 @@
 			headingText: 'Reakce na sociální média',
 			confirmText: 'Další',
 			paragraphs: [
+				priority === 'social'
+					? `Toto je váš hlavní úkol, proto mu věnujte většinu pozornosti. `
+					: ``,
 				`Čas od času se na obrazovce objeví příspěvek ze sociálních sítí. Představte si, že pomáháte umělé inteligenci učit se rozhodovat, které příspěvky by měli ostatní lidé vidět ve svém kanálu příspěvků.`,
 				`U každého příspěvku se rozhodněte, zda:`,
 				`- ho **ponecháte** (objeví se ostatním v kanálu příspěvků), nebo`,
-				`- ho **odstraníte** (nechcete, aby ho ostatní viděli)`,
-				`Pamatujte, že ostatní nemají čas sledovat všechno, a příliš mnoho sdílených příspěvků může jejich kanál příspěvků zahlcovat. Snažte se tedy ponechat jen ty příspěvky, které opravdu stojí za pozornost.`,
+				`- ho **odstraníte** (nechcete, aby ho ostatní viděli).`,
+				`Pamatujte, že ostatní nemají čas sledovat všechno, a příliš mnoho sdílených příspěvků může jejich kanál příspěvků zahlcovat. Snažte se tedy ponechat jen ty příspěvky, které opravdu stojí za pozornost. Každé vaše rozhodnutí pomáhá formovat celkový obsah kanálu příspěvků – vybírejte proto pečlivě a usilujte o kvalitní, nepřehlcený přehled příspěvků.`,
 				`- Za každý vyhodnocený příspěvek získáte *${socialPoints} bod${socialPoints === '1' ? '' : 'y'}*`,
 				`- Pokud neodpovíte, AI se nemůže naučit, které příspěvky jsou podle vás hodnotné`
 			],

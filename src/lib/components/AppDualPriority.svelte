@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import AppInstructionsDualPriority from './AppInstructionsDualPriority.svelte';
-	import AppQuestionsPostPracticeBDual from './AppQuestionsPostPracticeBDual.svelte';
+	import AppQuestionsPostPracticeDualOctober from './AppQuestionsPostPracticeDualOctober.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
@@ -183,17 +183,23 @@
 					socialStimulusRemindAfter={15000}
 					socialAdjustBetweenDelay={true}
 					endScenario={'pattern-timeout'}
-					positionXSocial={200}
-					positionYSocial={200}
-					positionXPattern={1070}
-					positionYPattern={245}
+					positionXSocial={150}
+					positionYSocial={150}
+					positionXPattern={950}
+					positionYPattern={195}
+					widthSocial={450}
+					heightSocialImage={600}
+					heightSocialOptions={160}
+					widthPattern={800}
+					heightPattern={700}
 				/>
 			</div>
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostPracticeBDual
+			<AppQuestionsPostPracticeDualOctober
 				{questionsService}
+				{priority}
 				on:startPractice={() => (stage = 'practice')}
 				on:startTrial={startNextStage}
 			/>
@@ -212,10 +218,15 @@
 					socialStimulusRemindAfter={15000}
 					socialAdjustBetweenDelay={true}
 					endScenario={'timeout'}
-					positionXSocial={200}
-					positionYSocial={200}
-					positionXPattern={1070}
-					positionYPattern={245}
+					positionXSocial={150}
+					positionYSocial={150}
+					positionXPattern={950}
+					positionYPattern={195}
+					widthSocial={450}
+					heightSocialImage={600}
+					heightSocialOptions={160}
+					widthPattern={800}
+					heightPattern={700}
 				/>
 			</div>
 		</div>

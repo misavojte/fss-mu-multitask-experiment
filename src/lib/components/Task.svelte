@@ -23,12 +23,12 @@
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
-// Video configuration is read from taskHandler.videoConfiguration directly
+	// Video configuration is read from taskHandler.videoConfiguration directly
 
 	/**
 	 * Point configuration for correct responses. Defaults to 1 each.
 	 */
-// Point configuration is now set directly on the task handler where it is created
+	// Point configuration is now set directly on the task handler where it is created
 
 	/**
 	 * The time in milliseconds before the task times out.
@@ -123,8 +123,8 @@
 	/**
 	 * When true, displays social media and pattern matching tasks but hides documentary task.
 	 */
-// Dual task mode is derived: when there is no videoConfiguration on the task handler
-const isDualTaskMode: boolean = taskHandler.videoConfiguration == null;
+	// Dual task mode is derived: when there is no videoConfiguration on the task handler
+	const isDualTaskMode: boolean = taskHandler.videoConfiguration == null;
 
 	let hasStarted = false;
 
@@ -157,7 +157,7 @@ const isDualTaskMode: boolean = taskHandler.videoConfiguration == null;
 	const socialLoaded = new ControllablePromise<boolean>();
 
 	// Promise.all to wait for all resources to be loaded
-const loadPromise = socialMediaOnly
+	const loadPromise = socialMediaOnly
 		? socialLoaded.promise
 		: isDualTaskMode
 			? Promise.all([patternLoaded.promise, socialLoaded.promise])
@@ -198,7 +198,7 @@ const loadPromise = socialMediaOnly
 
 	let mainElement: HTMLDivElement;
 
-onMount(() => {
+	onMount(() => {
 		taskHandler.addOnEndHandler(handlePatternEnd);
 
 		// If socialMediaOnly is true, resolve the promises for components that won't be loaded
@@ -207,8 +207,8 @@ onMount(() => {
 			patternLoaded.triggerResolve(true);
 		}
 
-	// If isDualTaskMode is true, resolve the video promise since it won't be loaded
-	if (isDualTaskMode) {
+		// If isDualTaskMode is true, resolve the video promise since it won't be loaded
+		if (isDualTaskMode) {
 			videoLoaded.triggerResolve(true);
 		}
 
@@ -311,7 +311,8 @@ onMount(() => {
 			<div
 				class="absolute"
 				transition:fade={{ duration: 300 }}
-				style="top: {taskHandler.videoConfiguration.positionYDocumentary}px; left: {taskHandler.videoConfiguration.positionXDocumentary}px"
+				style="top: {taskHandler.videoConfiguration.positionYDocumentary}px; left: {taskHandler
+					.videoConfiguration.positionXDocumentary}px"
 			>
 				<Intersecter id="task-documentary">
 					{#if taskHandler.videoConfiguration}

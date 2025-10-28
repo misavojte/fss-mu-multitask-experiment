@@ -128,7 +128,7 @@ export const getFinalMediaStimuliSrcBase = (base: string) => {
 export const createMediaStimuliObjects = (ids: string[], src: string) => {
 	return ids.map((id) => ({
 		id: `${id}`,
-		src: src + `${id}`
+		src: src + `${id}.png`
 	}));
 };
 

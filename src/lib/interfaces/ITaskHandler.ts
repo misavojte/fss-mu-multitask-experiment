@@ -131,18 +131,7 @@ export abstract class ATaskHandler {
 		this.socialMediaStimuliNS = config.socialMediaStimuliNS || [];
 		this.socialMediaStimuliAS = config.socialMediaStimuliAS || [];
 		this.socialMediaButtons = config.socialMediaButtons || [];
-		this.videoConfiguration = config.videoConfiguration || {
-			src: '',
-			wordOccurence: '',
-			wordOccurenceTolerance: 0,
-			wordOccurenceTimestamps: [],
-			startTime: 0,
-			positionXDocumentary: 825,
-			positionYDocumentary: 640,
-			widthDocumentary: 650,
-			heightDocumentary: 366,
-			muted: true
-		};
+		this.videoConfiguration = config.videoConfiguration || null;
 		this.taskPatternMatchingObjects = config.taskPatternMatchingObjects || [];
 		this.taskPatternCorrectResponseId = config.taskPatternCorrectResponseId;
 		this.socialMediaStimuliPresentationPattern = config.socialMediaStimuliPresentationPattern || ['NS', 'NS', 'AS', 'AS'];
