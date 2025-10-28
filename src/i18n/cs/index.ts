@@ -7,8 +7,8 @@ const cs = {
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	socialButtons: {
-		react: 'Zjistit víc',
-		ignore: 'Nemám zájem'
+		react: 'Ponechat',
+		ignore: 'Odstranit'
 	},
 	reminder: {
 		priority: 'Připomínáme, že **matematická úloha je prioritní**.',
