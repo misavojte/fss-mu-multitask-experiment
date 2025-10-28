@@ -21,8 +21,14 @@
 	}>;
 
 	/**
-	 * Presentation pattern for social media stimuli. Defaults to the original
-	 * sequence used across existing routes to preserve behavior.
+	 * Presentation pattern for social media stimuli.
+	 *
+	 * - Purpose: Controls the order in which NS (non-sentiment) and AS (affective/sentiment)
+	 *   stimuli are presented in the social media task.
+	 * - Non-empty value: The underlying component will follow this pattern as far as
+	 *   available counts allow, then append any remaining stimuli.
+	 * - Empty array: Triggers absolute random order — NS and AS pools are merged and a
+	 *   Fisher–Yates shuffle is applied across the combined list (no alternation enforced).
 	 */
 	export let socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'> = ['NS', 'NS', 'AS', 'AS'];
 

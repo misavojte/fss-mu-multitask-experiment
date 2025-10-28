@@ -72,9 +72,12 @@
 			id: string;
 		}> = [];
 
-		// If no pattern provided, use default
+		// If no pattern provided, return an absolute random shuffle across both pools
 		if (socialMediaStimuliPresentationPattern.length === 0) {
-			socialMediaStimuliPresentationPattern = ['NS', 'AS'];
+			return fisherYatesShuffle([
+				...socialMediaStimuliNS,
+				...socialMediaStimuliAS
+			]);
 		}
 
 		// Calculate total stimuli and pattern length
