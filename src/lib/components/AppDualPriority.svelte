@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import AppQuestionsPrePracticeBDual from './AppQuestionsPrePracticeBDual.svelte';
+	import AppInstructionsDualPriority from './AppInstructionsDualPriority.svelte';
 	import AppQuestionsPostPracticeBDual from './AppQuestionsPostPracticeBDual.svelte';
 	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
@@ -167,7 +167,7 @@
 	{#if stage === 'questions-1'}
 		<!-- Use 'absolute inset-0' to make the wrapper fill the parent -->
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPrePracticeBDual {questionsService} on:startPractice={startNextStage} />
+			<AppInstructionsDualPriority {questionsService} {priority} on:continue={startNextStage} />
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
