@@ -10,16 +10,6 @@
 	import Intersecter from './Intersecter.svelte';
 	import { writable } from 'svelte/store';
 
-	export let socialMediaStimuliAS: Array<{
-		src: string;
-		id: string;
-	}>;
-
-	export let socialMediaStimuliNS: Array<{
-		src: string;
-		id: string;
-	}>;
-
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
@@ -33,7 +23,7 @@
 
 	export let patternMatchingObjects: ITaskPatternMatchingObject[];
 
-	export let videoDocumentarySrc: string;
+// Video configuration is read from taskHandler.videoConfiguration directly
 
 	/**
 	 * Point configuration for correct responses. Defaults to 1 each.
@@ -101,30 +91,7 @@
 	 */
 	export let heightPattern: number = 550;
 
-	/**
-	 * The position of the documentary task on the x-axis in pixels.
-	 */
-	export let positionXDocumentary: number = 825;
-
-	/**
-	 * The position of the documentary task on the y-axis in pixels.
-	 */
-	export let positionYDocumentary: number = 640;
-
-	/**
-	 * The width of the documentary task.
-	 */
-	export let widthDocumentary: number = 650;
-
-	/**
-	 * The height of the documentary task. 16:9 aspect ratio is recommended.
-	 */
-	export let heightDocumentary: number = 366;
-
-	/**
-	 * Muted state of the documentary task.
-	 */
-	export let muted: boolean = true;
+	// Documentary positioning and sizing are now sourced from taskHandler.videoConfiguration
 
 	/**
 	 * The initial delay before the first social media task is shown.
@@ -142,10 +109,7 @@
 
 	export let socialAdjustBetweenDelay: boolean = false;
 
-	export let videoStartTime: number = 0;
-	export let wordOccurence: string = 'SLOVO';
-	export let wordOccurenceTolerance: number = 10000;
-	export let wordOccurenceTimestamps: number[] = [7000, 7100];
+	// These are sourced from taskHandler.videoConfiguration
 
 	export let taskHandler: ATaskHandler;
 
@@ -159,7 +123,8 @@
 	/**
 	 * When true, displays social media and pattern matching tasks but hides documentary task.
 	 */
-	export let dualTaskMode: boolean = false;
+// Dual task mode is derived: when there is no videoConfiguration on the task handler
+const isDualTaskMode: boolean = taskHandler.videoConfiguration == null;
 
 	let hasStarted = false;
 
@@ -192,9 +157,9 @@
 	const socialLoaded = new ControllablePromise<boolean>();
 
 	// Promise.all to wait for all resources to be loaded
-	const loadPromise = socialMediaOnly
+const loadPromise = socialMediaOnly
 		? socialLoaded.promise
-		: dualTaskMode
+		: isDualTaskMode
 			? Promise.all([patternLoaded.promise, socialLoaded.promise])
 			: Promise.all([videoLoaded.promise, patternLoaded.promise, socialLoaded.promise]);
 
@@ -242,8 +207,8 @@ onMount(() => {
 			patternLoaded.triggerResolve(true);
 		}
 
-		// If dualTaskMode is true, resolve the video promise since it won't be loaded
-		if (dualTaskMode) {
+	// If isDualTaskMode is true, resolve the video promise since it won't be loaded
+	if (isDualTaskMode) {
 			videoLoaded.triggerResolve(true);
 		}
 
@@ -342,27 +307,34 @@ onMount(() => {
 				/>
 			</Intersecter>
 		</div>
-		{#if !dualTaskMode}
+		{#if taskHandler.videoConfiguration !== null}
 			<div
 				class="absolute"
 				transition:fade={{ duration: 300 }}
-				style="top: {positionYDocumentary}px; left: {positionXDocumentary}px"
+				style="top: {taskHandler.videoConfiguration.positionYDocumentary}px; left: {taskHandler.videoConfiguration.positionXDocumentary}px"
 			>
 				<Intersecter id="task-documentary">
-					<TaskDocumentary
-						{videoDocumentarySrc}
-						{videoStartTime}
-						hideAllControls={true}
-						play={hasStarted}
-						{muted}
-						width={widthDocumentary}
-						height={heightDocumentary}
-						{wordOccurence}
-						{wordOccurenceTolerance}
-						{wordOccurenceTimestamps}
-						on:loaded={() => videoLoaded.triggerResolve(true)}
-						on:response={handleDocumentaryResponse}
-					/>
+					{#if taskHandler.videoConfiguration}
+						<TaskDocumentary
+							videoDocumentarySrc={taskHandler.videoConfiguration.src}
+							videoStartTime={taskHandler.videoConfiguration.startTime}
+							hideAllControls={true}
+							play={hasStarted}
+							muted={taskHandler.videoConfiguration.muted}
+							width={taskHandler.videoConfiguration.widthDocumentary}
+							height={taskHandler.videoConfiguration.heightDocumentary}
+							wordOccurence={taskHandler.videoConfiguration.wordOccurence}
+							wordOccurenceTolerance={taskHandler.videoConfiguration.wordOccurenceTolerance}
+							wordOccurenceTimestamps={taskHandler.videoConfiguration.wordOccurenceTimestamps}
+							on:loaded={() => videoLoaded.triggerResolve(true)}
+							on:response={handleDocumentaryResponse}
+						/>
+					{:else}
+						<!-- No video configuration; resolve as loaded -->
+						{#key 'no-video'}
+							{() => videoLoaded.triggerResolve(true)}
+						{/key}
+					{/if}
 				</Intersecter>
 			</div>
 		{/if}

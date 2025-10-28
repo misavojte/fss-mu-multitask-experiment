@@ -43,6 +43,11 @@ export interface IVideoConfiguration {
 	wordOccurenceTolerance: number;
 	wordOccurenceTimestamps: number[];
 	startTime: number;
+	positionXDocumentary?: number;
+	positionYDocumentary?: number;
+	widthDocumentary?: number;
+	heightDocumentary?: number;
+	muted?: boolean;
 }
 
 export interface ITaskHandlerConfig {
@@ -104,7 +109,7 @@ export abstract class ATaskHandler {
 	socialMediaStimuliNS: ISocialMediaStimulus[];
 	socialMediaStimuliAS: ISocialMediaStimulus[];
 	socialMediaButtons: ISocialMediaButton[];
-	videoConfiguration: IVideoConfiguration;
+	videoConfiguration: IVideoConfiguration | null;
 
 	// Pattern matching configuration
 	taskPatternMatchingObjects: ITaskPatternMatchingObject[];
@@ -131,7 +136,12 @@ export abstract class ATaskHandler {
 			wordOccurence: '',
 			wordOccurenceTolerance: 0,
 			wordOccurenceTimestamps: [],
-			startTime: 0
+			startTime: 0,
+			positionXDocumentary: 825,
+			positionYDocumentary: 640,
+			widthDocumentary: 650,
+			heightDocumentary: 366,
+			muted: true
 		};
 		this.taskPatternMatchingObjects = config.taskPatternMatchingObjects || [];
 		this.taskPatternCorrectResponseId = config.taskPatternCorrectResponseId;
@@ -173,7 +183,7 @@ export abstract class ATaskHandler {
 	recalculateMaxScores(): void {
 		const numberOfSocialMediaInteractors =
 			this.socialMediaStimuliNS.length + this.socialMediaStimuliAS.length;
-		const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
+		const numberOfDocumentaryStops = this.videoConfiguration?.wordOccurenceTimestamps?.length || 0;
 		const numberOfPatternMatchingObjects = this.taskPatternMatchingObjects.length;
 
 		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;

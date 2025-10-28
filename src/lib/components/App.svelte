@@ -1,39 +1,39 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
-	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
-	import { GazeManager } from 'develex-js-sdk';
-	import AppGaze from './AppGaze.svelte';
-	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
-	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
-	import { onDestroy, onMount, setContext } from 'svelte';
-	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
-	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
-	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
-	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
-	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
-	import AppTaskTrialSentimentVariant from './AppTaskTrialSentimentVariant.svelte';
+	import type { AcceptedIntersect } from '$lib/database/repositories/Gaze.repository';
+	import type { IConnectLogger } from '$lib/interfaces/IConnectLogger';
+	import type { IGazeSaver } from '$lib/interfaces/IGazeSaver';
+	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
+	import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
 	import {
 		createFinalMediaStimuli,
-		createTrainingMediaStimuli,
 		createMediaStimuliObjects,
-		getTrainingMediaStimuliSrcBase,
 		createShuffledSocialMediaButtons,
-		getFinalMediaStimuliSrcBase
+		createTrainingMediaStimuli,
+		getFinalMediaStimuliSrcBase,
+		getTrainingMediaStimuliSrcBase
 	} from '$lib/utils/createMediaStimuli';
-	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
-	import AppTaskPracticeSentimentVariant from './AppTaskPracticeSentimentVariant.svelte';
-	import { get } from 'svelte/store';
-	import LL from '../../i18n/i18n-svelte';
 	import {
 		getMathTaskPatternMatchingObjectsForPractice,
 		getMathTaskPatternMatchingObjectsForTest
 	} from '$lib/utils/createPatterStimuli';
-	import { createPracticeVideoConfiguration } from '$lib/utils/createVideoStimuli';
-import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
-	import { createTrialVideoConfiguration } from '$lib/utils/createVideoStimuli';
+	import {
+		createPracticeVideoConfiguration,
+		createTrialVideoConfiguration
+	} from '$lib/utils/createVideoStimuli';
+	import { GazeManager } from 'develex-js-sdk';
+	import { onDestroy, onMount, setContext } from 'svelte';
+	import { get } from 'svelte/store';
+	import { fade } from 'svelte/transition';
+	import LL from '../../i18n/i18n-svelte';
+	import AppGaze from './AppGaze.svelte';
+	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
+	import AppQuestionsPostPracticeB from './AppQuestionsPostPracticeB.svelte';
+	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
+	import AppQuestionsPrePracticeB from './AppQuestionsPrePracticeB.svelte';
+	import AppQuestionsPreSingle from './AppQuestionsPreSingle.svelte';
+	import Task from './Task.svelte';
 
 	let stage:
 		| 'connect'
@@ -135,7 +135,7 @@ import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
 		gazeManager.off('intersect', onIntersect);
 	};
 
-// Scoring type removed; Task.svelte sets point values on the handler before start
+	// Scoring type removed; Task.svelte sets point values on the handler before start
 
 	// 1. TRAINING SET OF STIMULI
 	// 1.1 social media (dependant on the sentiment)
@@ -159,18 +159,18 @@ import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
 	const trainingVideoConfiguration = createPracticeVideoConfiguration(base);
 
 	// 1.4 task handler
-const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
-	socialMediaStimuliNS: trainingNS,
-	socialMediaStimuliAS: trainingAS,
-	socialMediaButtons,
-	videoConfiguration: trainingVideoConfiguration,
-	taskPatternMatchingObjects: trainingMathStimuli,
-	taskPatternCorrectResponseId: '2',
-	pointsPatternMatching: 1,
-	pointsSocialMedia: 1,
-	pointsDocumentary: 1,
-	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-});
+	const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
+		socialMediaStimuliNS: trainingNS,
+		socialMediaStimuliAS: trainingAS,
+		socialMediaButtons,
+		videoConfiguration: trainingVideoConfiguration,
+		taskPatternMatchingObjects: trainingMathStimuli,
+		taskPatternCorrectResponseId: '2',
+		pointsPatternMatching: 1,
+		pointsSocialMedia: 1,
+		pointsDocumentary: 1,
+		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
+	});
 
 	// 2. FINAL SET OF STIMULI - PART 1
 	// 2.1 social media (dependant on the sentiment)
@@ -194,18 +194,18 @@ const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
 	const firstVideoConfiguration = createTrialVideoConfiguration(base);
 
 	// 2.4 task handler
-const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
-	socialMediaStimuliNS,
-	socialMediaStimuliAS,
-	socialMediaButtons,
-	videoConfiguration: firstVideoConfiguration,
-	taskPatternMatchingObjects: firstMathStimuli,
-	taskPatternCorrectResponseId: '2',
-	pointsPatternMatching: 1,
-	pointsSocialMedia: 1,
-	pointsDocumentary: 1,
-	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-});
+	const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
+		socialMediaStimuliNS,
+		socialMediaStimuliAS,
+		socialMediaButtons,
+		videoConfiguration: firstVideoConfiguration,
+		taskPatternMatchingObjects: firstMathStimuli,
+		taskPatternCorrectResponseId: '2',
+		pointsPatternMatching: 1,
+		pointsSocialMedia: 1,
+		pointsDocumentary: 1,
+		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
+	});
 
 	// 3. FINAL SET OF STIMULI - PART 2
 	// 3.1 social media (dependant on the sentiment)
@@ -238,18 +238,18 @@ const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
 	const secondVideoConfiguration = firstVideoConfiguration;
 
 	// 3.4 task handler
-const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
-	socialMediaStimuliNS: secondSocialMediaStimuliNS,
-	socialMediaStimuliAS: secondSocialMediaStimuliAS,
-	socialMediaButtons,
-	videoConfiguration: secondVideoConfiguration,
-	taskPatternMatchingObjects: secondMathStimuli,
-	taskPatternCorrectResponseId: '2',
-	pointsPatternMatching: 1,
-	pointsSocialMedia: 1,
-	pointsDocumentary: 1,
-	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-});
+	const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
+		socialMediaStimuliNS: secondSocialMediaStimuliNS,
+		socialMediaStimuliAS: secondSocialMediaStimuliAS,
+		socialMediaButtons,
+		videoConfiguration: secondVideoConfiguration,
+		taskPatternMatchingObjects: secondMathStimuli,
+		taskPatternCorrectResponseId: '2',
+		pointsPatternMatching: 1,
+		pointsSocialMedia: 1,
+		pointsDocumentary: 1,
+		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
+	});
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} on:keydown={handleKeydown} />
@@ -268,10 +268,20 @@ const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskPracticeSentimentVariant
-				on:taskEnd={handleTaskEnd}
-				taskHandler={trainingTaskHandler}
-			/>
+			<div class="flex flex-col items-center justify-center w-screen h-screen">
+				<Task
+					on:taskEnd={handleTaskEnd}
+					taskHandler={trainingTaskHandler}
+					patternMatchingObjects={trainingTaskHandler.taskPatternMatchingObjects}
+					socialMediaButtons={trainingTaskHandler.socialMediaButtons}
+					socialInitialDelay={5000}
+					socialBetweenDelay={5000}
+					socialStimulusMaxDuration={20000}
+					socialStimulusRemindAfter={15000}
+					socialAdjustBetweenDelay={true}
+					endScenario={'pattern-timeout'}
+				/>
+			</div>
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -283,7 +293,20 @@ const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrialSentimentVariant on:taskEnd={handleTaskEnd} taskHandler={firstTaskHandler} />
+			<div class="flex flex-col items-center justify-center w-screen h-screen">
+				<Task
+					on:taskEnd={handleTaskEnd}
+					taskHandler={firstTaskHandler}
+					patternMatchingObjects={firstTaskHandler.taskPatternMatchingObjects}
+					socialMediaButtons={firstTaskHandler.socialMediaButtons}
+					socialInitialDelay={5000}
+					socialBetweenDelay={5000}
+					socialStimulusMaxDuration={20000}
+					socialStimulusRemindAfter={15000}
+					socialAdjustBetweenDelay={true}
+					endScenario={'timeout'}
+				/>
+			</div>
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -299,10 +322,23 @@ const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
 		</div>
 	{:else if stage === 'single'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppTaskTrialMediaOnlySentimentVariant
-				taskHandler={secondTaskHandler}
-				on:taskEnd={handleTaskEnd}
-			/>
+			<div class="flex flex-col items-center justify-center w-screen h-screen">
+				<Task
+					taskHandler={secondTaskHandler}
+					patternMatchingObjects={secondTaskHandler.taskPatternMatchingObjects}
+					socialMediaButtons={secondTaskHandler.socialMediaButtons}
+					on:taskEnd={handleTaskEnd}
+					socialInitialDelay={5000}
+					socialBetweenDelay={5000}
+					socialStimulusMaxDuration={20000}
+					socialStimulusRemindAfter={15000}
+					socialAdjustBetweenDelay={true}
+					endScenario={'social-media-finished'}
+					socialMediaOnly={true}
+					positionXSocial={786}
+					positionYSocial={203}
+				/>
+			</div>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
