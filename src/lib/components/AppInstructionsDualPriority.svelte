@@ -30,8 +30,8 @@
 			confirmText: 'Další',
 			paragraphs: [
 				`Budete současně plnit dva úkoly:`,
-				`Matematický úkol (řešení příkladů)`,
-				`Reagování na příspěvky na sociálních sítích`
+				`- Matematický úkol (řešení příkladů)`,
+				`- Reagování na příspěvky na sociálních sítích`
 			],
 			type: 'instruction' as const,
 			required: true
@@ -47,21 +47,33 @@
 		const mathPoints = priority === 'math' ? '3' : '1';
 		const socialPoints = priority === 'social' ? '3' : '1';
 
-		const slide3 = {
-			id: 'instructions-3',
-			headingText: 'Detailní instrukce',
+		const mathSlide = {
+			id: 'instructions-math',
+			headingText: 'Matematický úkol',
 			confirmText: 'Další',
 			paragraphs: [
 				mathDescription,
-				`Matematický úkol`,
-				`Na obrazovce se budou objevovat jednoduché matematické příklady. Klikněte na správnou odpověď z nabízených možností. Za každou správnou odpověď získáte ${mathPoints} bod${mathPoints === '1' ? '' : 'y'}. Časový limit není stanoven – další příklad se zobrazí po odeslání odpovědi.`,
-				`Reakce na sociální média`,
+				`Na obrazovce se budou objevovat jednoduché matematické příklady.`,
+				`- Klikněte na správnou odpověď z nabízených možností`,
+				`- Za každou správnou odpověď získáte *${mathPoints} bod${mathPoints === '1' ? '' : 'y'}*`,
+				`- Časový limit není stanoven – další příklad se zobrazí po odeslání odpovědi`
+			],
+			type: 'instruction' as const,
+			required: true
+		};
+
+		const socialSlide = {
+			id: 'instructions-social',
+			headingText: 'Reakce na sociální média',
+			confirmText: 'Další',
+			paragraphs: [
 				`Čas od času se na obrazovce objeví příspěvek ze sociálních sítí. Představte si, že pomáháte umělé inteligenci učit se rozhodovat, které příspěvky by měli ostatní lidé vidět ve svém kanálu příspěvků.`,
 				`U každého příspěvku se rozhodněte, zda:`,
-				`ho ponecháte (objeví se ostatním v kanálu příspěvků), nebo`,
-				`ho odstraníte (nechcete, aby ho ostatní viděli).`,
+				`- ho **ponecháte** (objeví se ostatním v kanálu příspěvků), nebo`,
+				`- ho **odstraníte** (nechcete, aby ho ostatní viděli)`,
 				`Pamatujte, že ostatní nemají čas sledovat všechno, a příliš mnoho sdílených příspěvků může jejich kanál příspěvků zahlcovat. Snažte se tedy ponechat jen ty příspěvky, které opravdu stojí za pozornost.`,
-				`Za každý vyhodnocený příspěvek získáte ${socialPoints} bod${socialPoints === '1' ? '' : 'y'}. Pokud neodpovíte, AI se nemůže naučit, které příspěvky jsou podle vás hodnotné.`
+				`- Za každý vyhodnocený příspěvek získáte *${socialPoints} bod${socialPoints === '1' ? '' : 'y'}*`,
+				`- Pokud neodpovíte, AI se nemůže naučit, které příspěvky jsou podle vás hodnotné`
 			],
 			type: 'instruction' as const,
 			required: true
@@ -80,15 +92,15 @@
 			confirmText: 'Pokračovat',
 			paragraphs: [
 				priorityText,
-				`Usilujte o co nejlepší výsledek a snažte se dosáhnout svého maxima!`,
-				`Vaše konečné skóre se zobrazí na konci.`,
-				`Pokud těmto instrukcím rozumíte, klikněte na "Pokračovat" pro zahájení cvičných úloh.`
+				`**Usilujte o co nejlepší výsledek a snažte se dosáhnout svého maxima!**`,
+				`- Vaše konečné skóre se zobrazí na konci`,
+				`- Pokud těmto instrukcím rozumíte, klikněte na "Pokračovat" pro zahájení cvičných úloh`
 			],
 			type: 'instruction' as const,
 			required: true
 		};
 
-		return [baseSlide1, baseSlide2, slide3, finalSlide];
+		return [baseSlide1, baseSlide2, mathSlide, socialSlide, finalSlide];
 	};
 
 	let questions: IQuestionBattery = getInstructionSlides(priority);
