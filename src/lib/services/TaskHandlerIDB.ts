@@ -2,10 +2,6 @@ import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
 import {
 	ATaskHandlerIntelligence,
 	ATaskHandlerMath,
-	type ISocialMediaStimulus,
-	type ISocialMediaButton,
-	type IVideoConfiguration,
-	type ITaskPatternMatchingObject,
 	type ITaskHandlerConfig
 } from '$lib/interfaces/ITaskHandler';
 
@@ -27,6 +23,7 @@ export class TaskHandlerIntelligenceIDB extends ATaskHandlerIntelligence {
             socialMediaStimuliAS: config.socialMediaStimuliAS,
             socialMediaButtons: config.socialMediaButtons,
             videoConfiguration: config.videoConfiguration,
+            socialMediaStimuliPresentationPattern: config.socialMediaStimuliPresentationPattern,
             taskPatternMatchingObjects: config.taskPatternMatchingObjects,
             taskPatternCorrectResponseId: config.taskPatternCorrectResponseId ?? 'T1',
             pointsPatternMatching: config.pointsPatternMatching,
@@ -45,17 +42,7 @@ export class TaskHandlerMathIDB extends ATaskHandlerMath {
 	sessionId: string;
 
 	constructor(sessionId: string, config: ITaskHandlerConfig) {
-        super({
-            socialMediaStimuliNS: config.socialMediaStimuliNS,
-            socialMediaStimuliAS: config.socialMediaStimuliAS,
-            socialMediaButtons: config.socialMediaButtons,
-            videoConfiguration: config.videoConfiguration,
-            taskPatternMatchingObjects: config.taskPatternMatchingObjects,
-            taskPatternCorrectResponseId: config.taskPatternCorrectResponseId ?? '2',
-            pointsPatternMatching: config.pointsPatternMatching,
-            pointsSocialMedia: config.pointsSocialMedia,
-            pointsDocumentary: config.pointsDocumentary
-        });
+		super(config);
 		this.sessionId = sessionId;
 	}
 

@@ -65,7 +65,7 @@ export interface ITaskHandlerConfig {
 	 * - Empty array: Triggers absolute random order — NS and AS pools are merged and a
 	 *   Fisher–Yates shuffle is applied across the combined list (no alternation enforced).
 	 */
-	socialMediaStimuliPresentationPattern?: Array<'NS' | 'AS'>;
+	socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'>;
 }
 
 export abstract class ATaskHandler {
