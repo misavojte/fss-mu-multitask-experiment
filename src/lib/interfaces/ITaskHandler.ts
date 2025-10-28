@@ -45,6 +45,18 @@ export interface IVideoConfiguration {
 	startTime: number;
 }
 
+export interface ITaskHandlerConfig {
+    socialMediaStimuliNS?: ISocialMediaStimulus[];
+    socialMediaStimuliAS?: ISocialMediaStimulus[];
+    socialMediaButtons?: ISocialMediaButton[];
+    videoConfiguration?: IVideoConfiguration | null;
+    taskPatternMatchingObjects?: ITaskPatternMatchingObject[];
+    taskPatternCorrectResponseId: string;
+    pointsPatternMatching: number;
+    pointsSocialMedia: number;
+    pointsDocumentary: number;
+}
+
 export abstract class ATaskHandler {
 	onEnd: () => void = () => {};
 	addOnEndHandler(handler: () => void) {
@@ -53,16 +65,20 @@ export abstract class ATaskHandler {
 	removeOnEndHandler() {
 		this.onEnd = () => {};
 	}
-	sentiment: 'negative' | 'positive' = 'negative';
-	scoringType: 'prioritize' | 'even' = 'prioritize';
+    sentiment: 'negative' | 'positive' = 'negative';
 	score = 0;
 	socialMediaScore = 0;
 	documentaryScore = 0;
 	patternMatchingScore = 0;
-	maxScore: number;
-	maxSocialMediaScore: number;
-	maxDocumentaryScore: number;
-	maxPatternMatchingScore: number;
+    maxScore: number = 0;
+    maxSocialMediaScore: number = 0;
+    maxDocumentaryScore: number = 0;
+    maxPatternMatchingScore: number = 0;
+
+    // Explicit point configuration per task type
+    pointsPatternMatching: number = 1;
+    pointsSocialMedia: number = 1;
+    pointsDocumentary: number = 1;
 
 	// Tracking displayed/started stimuli counts
 	socialMediaStimuliDisplayedCount = 0;
@@ -89,54 +105,64 @@ export abstract class ATaskHandler {
 	 */
 	taskPatternCorrectResponseId: string;
 
-	constructor(
-		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
-		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
-		socialMediaButtons: ISocialMediaButton[] = [],
-		videoConfiguration: IVideoConfiguration | null = null,
-		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
-		taskPatternCorrectResponseId: string,
-		scoringType: 'prioritize' | 'even' = 'prioritize'
-	) {
-		this.socialMediaStimuliNS = socialMediaStimuliNS;
-		this.socialMediaStimuliAS = socialMediaStimuliAS;
-		this.socialMediaButtons = socialMediaButtons;
-		this.videoConfiguration = videoConfiguration || {
+	constructor(config: ITaskHandlerConfig) {
+		this.socialMediaStimuliNS = config.socialMediaStimuliNS || [];
+		this.socialMediaStimuliAS = config.socialMediaStimuliAS || [];
+		this.socialMediaButtons = config.socialMediaButtons || [];
+		this.videoConfiguration = config.videoConfiguration || {
 			src: '',
 			wordOccurence: '',
 			wordOccurenceTolerance: 0,
 			wordOccurenceTimestamps: [],
 			startTime: 0
 		};
-		this.taskPatternMatchingObjects = taskPatternMatchingObjects;
-		this.taskPatternCorrectResponseId = taskPatternCorrectResponseId;
-		this.scoringType = scoringType;
+		this.taskPatternMatchingObjects = config.taskPatternMatchingObjects || [];
+		this.taskPatternCorrectResponseId = config.taskPatternCorrectResponseId;
 
-		// Calculate maximum scores based on provided stimuli
-		const numberOfSocialMediaInteractors =
-			socialMediaStimuliNS.length + socialMediaStimuliAS.length;
-		const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
-		const numberOfPatternMatchingObjects = taskPatternMatchingObjects.length;
-
-		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
-		this.maxDocumentaryScore =
-			numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
-		this.maxPatternMatchingScore =
-			numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
-		this.maxScore =
-			this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
+		// Set points from config
+		this.pointsPatternMatching = config.pointsPatternMatching;
+		this.pointsSocialMedia = config.pointsSocialMedia;
+		this.pointsDocumentary = config.pointsDocumentary;
+        this.recalculateMaxScores();
 	}
 
-	get pointsOnCorrectPatternMatching(): number {
-		return this.scoringType === 'prioritize' ? 3 : 1;
-	}
-	get pointsOnCorrectSocialMedia(): number {
-		return 1;
-	}
-	get pointsOnCorrectDocumentaryQuestionnaire(): number {
-		return 1;
-	}
+    get pointsOnCorrectPatternMatching(): number {
+        return this.pointsPatternMatching;
+    }
+    get pointsOnCorrectSocialMedia(): number {
+        return this.pointsSocialMedia;
+    }
+    get pointsOnCorrectDocumentaryQuestionnaire(): number {
+        return this.pointsDocumentary;
+    }
 	abstract logAction(type: string, value: string): void;
+
+    /**
+     * Update the point configuration for correctness scoring.
+     */
+    setPointValues(points: { pattern: number; social: number; documentary: number }): void {
+        this.pointsPatternMatching = points.pattern;
+        this.pointsSocialMedia = points.social;
+        this.pointsDocumentary = points.documentary;
+    }
+
+    /**
+     * Recalculate maximum attainable scores based on stimuli counts and point config.
+     */
+    recalculateMaxScores(): void {
+        const numberOfSocialMediaInteractors =
+            this.socialMediaStimuliNS.length + this.socialMediaStimuliAS.length;
+        const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
+        const numberOfPatternMatchingObjects = this.taskPatternMatchingObjects.length;
+
+        this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
+        this.maxDocumentaryScore =
+            numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
+        this.maxPatternMatchingScore =
+            numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
+        this.maxScore =
+            this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
+    }
 
 	private addPatternMatchingScore() {
 		this.score += this.pointsOnCorrectPatternMatching;
@@ -196,10 +222,13 @@ export abstract class ATaskHandler {
 		this.logAction('social-media-interactors-completed', '');
 		this.logFinalDisplayCounts();
 	}
-	handleLoadStart(): void {
+    handleLoadStart(): void {
 		this.logAction('task-load-start', '');
-		this.logAction('task-version', this.scoringType);
 		this.logAction('task-sentiment', this.sentiment);
+        // Log numeric point configuration
+        this.logAction('task-points-pattern', String(this.pointsPatternMatching));
+        this.logAction('task-points-social', String(this.pointsSocialMedia));
+        this.logAction('task-points-documentary', String(this.pointsDocumentary));
 		// log all stimuli - for specified event types, save only arrays of IDs
 		this.logAction('task-stimuli-social-media-NS', toIdArrayJson(this.socialMediaStimuliNS));
 		this.logAction('task-stimuli-social-media-AS', toIdArrayJson(this.socialMediaStimuliAS));
@@ -263,24 +292,8 @@ export abstract class ATaskHandler {
  */
 export abstract class ATaskHandlerMath extends ATaskHandler {
 	// Correct response is always the second one
-	constructor(
-		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
-		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
-		socialMediaButtons: ISocialMediaButton[] = [],
-		videoConfiguration: IVideoConfiguration | null = null,
-		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
-		taskPatternCorrectResponseId: string,
-		scoringType: 'prioritize' | 'even' = 'prioritize'
-	) {
-		super(
-			socialMediaStimuliNS,
-			socialMediaStimuliAS,
-			socialMediaButtons,
-			videoConfiguration,
-			taskPatternMatchingObjects,
-			taskPatternCorrectResponseId,
-			scoringType
-		);
+	constructor(config: ITaskHandlerConfig) {
+		super(config);
 	}
 }
 
@@ -289,23 +302,7 @@ export abstract class ATaskHandlerMath extends ATaskHandler {
  * Now, the stimuli are handled outside of the task handler
  */
 export abstract class ATaskHandlerIntelligence extends ATaskHandler {
-	constructor(
-		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
-		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
-		socialMediaButtons: ISocialMediaButton[] = [],
-		videoConfiguration: IVideoConfiguration | null = null,
-		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
-		taskPatternCorrectResponseId: string,
-		scoringType: 'prioritize' | 'even' = 'prioritize'
-	) {
-		super(
-			socialMediaStimuliNS,
-			socialMediaStimuliAS,
-			socialMediaButtons,
-			videoConfiguration,
-			taskPatternMatchingObjects,
-			taskPatternCorrectResponseId,
-			scoringType
-		);
+	constructor(config: ITaskHandlerConfig) {
+		super(config);
 	}
 }

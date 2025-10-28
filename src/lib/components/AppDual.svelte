@@ -186,17 +186,18 @@
 	// 1.2 math (non dependent on the sentiment)
 	const trainingMathStimuli = getMathTaskPatternMatchingObjectsForPractice();
 
-	// 1.3 task handler (dual task - no video configuration)
-	const trainingTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		trainingNS,
-		trainingAS,
-		socialMediaButtons,
-		null, // No video configuration for dual task
-		trainingMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+// 1.3 task handler (dual task - no video configuration)
+const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS: trainingNS,
+	socialMediaStimuliAS: trainingAS,
+	socialMediaButtons,
+	videoConfiguration: null, // No video configuration for dual task
+	taskPatternMatchingObjects: trainingMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 
 	// 2. FINAL SET OF STIMULI - PART 1 (DUAL TASK)
 	// 2.1 social media (dependent on the sentiment)
@@ -216,17 +217,18 @@
 	// 2.2 math (non dependent on the sentiment)
 	const firstMathStimuli = getMathTaskPatternMatchingObjectsForTest();
 
-	// 2.3 task handler (dual task - no video configuration)
-	const firstTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		socialMediaStimuliNS,
-		socialMediaStimuliAS,
-		socialMediaButtons,
-		null, // No video configuration for dual task
-		firstMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+// 2.3 task handler (dual task - no video configuration)
+const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS,
+	socialMediaStimuliAS,
+	socialMediaButtons,
+	videoConfiguration: null, // No video configuration for dual task
+	taskPatternMatchingObjects: firstMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 
 	// 3. FINAL SET OF STIMULI - PART 2 (SINGLE TASK)
 	// 3.1 social media (dependent on the sentiment)
@@ -256,16 +258,17 @@
 	const secondMathStimuli = firstMathStimuli;
 
 	// 3.3 task handler (single task - social media only)
-	const secondTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		secondSocialMediaStimuliNS,
-		secondSocialMediaStimuliAS,
-		socialMediaButtons,
-		null, // No video configuration needed
-		secondMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS: secondSocialMediaStimuliNS,
+	socialMediaStimuliAS: secondSocialMediaStimuliAS,
+	socialMediaButtons,
+	videoConfiguration: null, // No video configuration needed
+	taskPatternMatchingObjects: secondMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} on:keydown={handleKeydown} />

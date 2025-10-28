@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import type { ATaskHandler } from '$lib/interfaces/ITaskHandler';
 	import type { ITimestampQuestionService } from '$lib/interfaces/IQuestion';
 	import { GazeManager } from 'develex-js-sdk';
 	import AppGaze from './AppGaze.svelte';
@@ -33,7 +32,7 @@
 		getMathTaskPatternMatchingObjectsForTest
 	} from '$lib/utils/createPatterStimuli';
 	import { createPracticeVideoConfiguration } from '$lib/utils/createVideoStimuli';
-	import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
+import { TaskHandlerMathIDB } from '$lib/services/TaskHandlerIDB';
 	import { createTrialVideoConfiguration } from '$lib/utils/createVideoStimuli';
 
 	let stage:
@@ -136,7 +135,7 @@
 		gazeManager.off('intersect', onIntersect);
 	};
 
-	const variant: 'prioritize' | 'even' = 'even'; // changed recently to const as the alterning variant was turned off
+// Scoring type removed; Task.svelte sets point values on the handler before start
 
 	// 1. TRAINING SET OF STIMULI
 	// 1.1 social media (dependant on the sentiment)
@@ -160,16 +159,17 @@
 	const trainingVideoConfiguration = createPracticeVideoConfiguration(base);
 
 	// 1.4 task handler
-	const trainingTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		trainingNS,
-		trainingAS,
-		socialMediaButtons,
-		trainingVideoConfiguration,
-		trainingMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS: trainingNS,
+	socialMediaStimuliAS: trainingAS,
+	socialMediaButtons,
+	videoConfiguration: trainingVideoConfiguration,
+	taskPatternMatchingObjects: trainingMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 
 	// 2. FINAL SET OF STIMULI - PART 1
 	// 2.1 social media (dependant on the sentiment)
@@ -193,16 +193,17 @@
 	const firstVideoConfiguration = createTrialVideoConfiguration(base);
 
 	// 2.4 task handler
-	const firstTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		socialMediaStimuliNS,
-		socialMediaStimuliAS,
-		socialMediaButtons,
-		firstVideoConfiguration,
-		firstMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS,
+	socialMediaStimuliAS,
+	socialMediaButtons,
+	videoConfiguration: firstVideoConfiguration,
+	taskPatternMatchingObjects: firstMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 
 	// 3. FINAL SET OF STIMULI - PART 2
 	// 3.1 social media (dependant on the sentiment)
@@ -235,16 +236,17 @@
 	const secondVideoConfiguration = firstVideoConfiguration;
 
 	// 3.4 task handler
-	const secondTaskHandler = new TaskHandlerMathIDB(
-		sessionId,
-		secondSocialMediaStimuliNS,
-		secondSocialMediaStimuliAS,
-		socialMediaButtons,
-		secondVideoConfiguration,
-		secondMathStimuli,
-		'2', // this is correct, math task correct response id is 2
-		'even'
-	);
+const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	socialMediaStimuliNS: secondSocialMediaStimuliNS,
+	socialMediaStimuliAS: secondSocialMediaStimuliAS,
+	socialMediaButtons,
+	videoConfiguration: secondVideoConfiguration,
+	taskPatternMatchingObjects: secondMathStimuli,
+	taskPatternCorrectResponseId: '2',
+	pointsPatternMatching: 1,
+	pointsSocialMedia: 1,
+	pointsDocumentary: 1
+});
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} on:keydown={handleKeydown} />

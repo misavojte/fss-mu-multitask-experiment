@@ -48,6 +48,11 @@
 	export let videoDocumentarySrc: string;
 
 	/**
+	 * Point configuration for correct responses. Defaults to 1 each.
+	 */
+// Point configuration is now set directly on the task handler where it is created
+
+	/**
 	 * The time in milliseconds before the task times out.
 	 * Default is 410 seconds (6 minutes and 50 seconds).
 	 */
@@ -240,7 +245,7 @@
 
 	let mainElement: HTMLDivElement;
 
-	onMount(() => {
+onMount(() => {
 		taskHandler.addOnEndHandler(handlePatternEnd);
 
 		// If socialMediaOnly is true, resolve the promises for components that won't be loaded
