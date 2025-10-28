@@ -46,15 +46,16 @@ export interface IVideoConfiguration {
 }
 
 export interface ITaskHandlerConfig {
-    socialMediaStimuliNS?: ISocialMediaStimulus[];
-    socialMediaStimuliAS?: ISocialMediaStimulus[];
-    socialMediaButtons?: ISocialMediaButton[];
-    videoConfiguration?: IVideoConfiguration | null;
-    taskPatternMatchingObjects?: ITaskPatternMatchingObject[];
-    taskPatternCorrectResponseId: string;
-    pointsPatternMatching: number;
-    pointsSocialMedia: number;
-    pointsDocumentary: number;
+	socialMediaStimuliNS?: ISocialMediaStimulus[];
+	socialMediaStimuliAS?: ISocialMediaStimulus[];
+	socialMediaButtons?: ISocialMediaButton[];
+	videoConfiguration?: IVideoConfiguration | null;
+	taskPatternMatchingObjects?: ITaskPatternMatchingObject[];
+	taskPatternCorrectResponseId: string;
+	pointsPatternMatching: number;
+	pointsSocialMedia: number;
+	pointsDocumentary: number;
+	socialMediaStimuliPresentationPattern?: Array<'NS' | 'AS'>;
 }
 
 export abstract class ATaskHandler {
@@ -98,6 +99,12 @@ export abstract class ATaskHandler {
 	// Pattern matching configuration
 	taskPatternMatchingObjects: ITaskPatternMatchingObject[];
 
+	// Social media presentation pattern
+	socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'>;
+
+	// Ordered social media stimuli (computed from pattern)
+	orderedSocialMediaStimuli: ISocialMediaStimulus[] = [];
+
 	/**
 	 * The ID of the correct response for pattern matching tasks.
 	 * This should be consistent for all pattern matching objects within a single task handler instance.
@@ -118,12 +125,16 @@ export abstract class ATaskHandler {
 		};
 		this.taskPatternMatchingObjects = config.taskPatternMatchingObjects || [];
 		this.taskPatternCorrectResponseId = config.taskPatternCorrectResponseId;
+		this.socialMediaStimuliPresentationPattern = config.socialMediaStimuliPresentationPattern || ['NS', 'NS', 'AS', 'AS'];
 
 		// Set points from config
 		this.pointsPatternMatching = config.pointsPatternMatching;
 		this.pointsSocialMedia = config.pointsSocialMedia;
 		this.pointsDocumentary = config.pointsDocumentary;
-        this.recalculateMaxScores();
+		
+		// Create ordered stimuli from pattern
+		this.createOrderedSocialMediaStimuli();
+		this.recalculateMaxScores();
 	}
 
     get pointsOnCorrectPatternMatching(): number {
@@ -146,23 +157,85 @@ export abstract class ATaskHandler {
         this.pointsDocumentary = points.documentary;
     }
 
-    /**
-     * Recalculate maximum attainable scores based on stimuli counts and point config.
-     */
-    recalculateMaxScores(): void {
-        const numberOfSocialMediaInteractors =
-            this.socialMediaStimuliNS.length + this.socialMediaStimuliAS.length;
-        const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
-        const numberOfPatternMatchingObjects = this.taskPatternMatchingObjects.length;
+	/**
+	 * Recalculate maximum attainable scores based on stimuli counts and point config.
+	 */
+	recalculateMaxScores(): void {
+		const numberOfSocialMediaInteractors =
+			this.socialMediaStimuliNS.length + this.socialMediaStimuliAS.length;
+		const numberOfDocumentaryStops = this.videoConfiguration.wordOccurenceTimestamps.length;
+		const numberOfPatternMatchingObjects = this.taskPatternMatchingObjects.length;
 
-        this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
-        this.maxDocumentaryScore =
-            numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
-        this.maxPatternMatchingScore =
-            numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
-        this.maxScore =
-            this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
-    }
+		this.maxSocialMediaScore = numberOfSocialMediaInteractors * this.pointsOnCorrectSocialMedia;
+		this.maxDocumentaryScore =
+			numberOfDocumentaryStops * this.pointsOnCorrectDocumentaryQuestionnaire;
+		this.maxPatternMatchingScore =
+			numberOfPatternMatchingObjects * this.pointsOnCorrectPatternMatching;
+		this.maxScore =
+			this.maxSocialMediaScore + this.maxDocumentaryScore + this.maxPatternMatchingScore;
+	}
+
+	/**
+	 * Create ordered social media stimuli based on presentation pattern.
+	 * Moves the complex shuffling logic from TaskSocialMedia component to here.
+	 */
+	private createOrderedSocialMediaStimuli(): void {
+		// Shuffle both arrays once
+		const shuffledStimuliNS = [...this.socialMediaStimuliNS].sort(() => Math.random() - 0.5);
+		const shuffledStimuliAS = [...this.socialMediaStimuliAS].sort(() => Math.random() - 0.5);
+		
+		// If no pattern provided, return an absolute random shuffle across both pools
+		if (this.socialMediaStimuliPresentationPattern.length === 0) {
+			this.orderedSocialMediaStimuli = [...this.socialMediaStimuliNS, ...this.socialMediaStimuliAS]
+				.sort(() => Math.random() - 0.5);
+			return;
+		}
+
+		// Create a pattern that ensures all stimuli are used
+		let currentPattern: Array<'NS' | 'AS'> = [];
+		let remainingNS = shuffledStimuliNS.length;
+		let remainingAS = shuffledStimuliAS.length;
+
+		// First, try to follow the original pattern as much as possible
+		for (const type of this.socialMediaStimuliPresentationPattern) {
+			if (type === 'NS' && remainingNS > 0) {
+				currentPattern.push('NS');
+				remainingNS--;
+			} else if (type === 'AS' && remainingAS > 0) {
+				currentPattern.push('AS');
+				remainingAS--;
+			}
+		}
+
+		// Then add remaining stimuli in any order
+		while (remainingNS > 0 || remainingAS > 0) {
+			if (remainingNS > 0) {
+				currentPattern.push('NS');
+				remainingNS--;
+			}
+			if (remainingAS > 0) {
+				currentPattern.push('AS');
+				remainingAS--;
+			}
+		}
+
+		// Create the sequence following the pattern
+		const orderedStimuli: ISocialMediaStimulus[] = [];
+		let nsIndex = 0;
+		let asIndex = 0;
+
+		for (const type of currentPattern) {
+			if (type === 'NS' && nsIndex < shuffledStimuliNS.length) {
+				orderedStimuli.push(shuffledStimuliNS[nsIndex]);
+				nsIndex++;
+			} else if (type === 'AS' && asIndex < shuffledStimuliAS.length) {
+				orderedStimuli.push(shuffledStimuliAS[asIndex]);
+				asIndex++;
+			}
+		}
+
+		this.orderedSocialMediaStimuli = orderedStimuli;
+	}
 
 	private addPatternMatchingScore() {
 		this.score += this.pointsOnCorrectPatternMatching;
@@ -230,8 +303,7 @@ export abstract class ATaskHandler {
         this.logAction('task-points-social', String(this.pointsSocialMedia));
         this.logAction('task-points-documentary', String(this.pointsDocumentary));
 		// log all stimuli - for specified event types, save only arrays of IDs
-		this.logAction('task-stimuli-social-media-NS', toIdArrayJson(this.socialMediaStimuliNS));
-		this.logAction('task-stimuli-social-media-AS', toIdArrayJson(this.socialMediaStimuliAS));
+		this.logAction('task-stimuli-social-media-ordered', toIdArrayJson(this.orderedSocialMediaStimuli));
 		this.logAction('task-stimuli-social-media-buttons', toIdArrayJson(this.socialMediaButtons));
 		this.logAction('task-stimuli-pattern-matching', toIdArrayJson(this.taskPatternMatchingObjects));
 		this.logAction('task-stimuli-video', JSON.stringify(this.videoConfiguration));

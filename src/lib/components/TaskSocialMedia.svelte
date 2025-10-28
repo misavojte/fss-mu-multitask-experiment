@@ -9,7 +9,6 @@
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
-	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { base } from '$app/paths';
 	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
@@ -22,15 +21,10 @@
 		textColor: string;
 		html?: string;
 	}>;
-	export let socialMediaStimuliAS: Array<{
+	export let socialMediaStimuli: Array<{
 		src: string;
 		id: string;
 	}>;
-	export let socialMediaStimuliNS: Array<{
-		src: string;
-		id: string;
-	}>;
-	export let socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'> = ['NS', 'NS', 'AS', 'AS'];
 	export let initialDelay: number = 5000;
 	export let betweenDelay: number = 15000;
 	export let stimulusMaxDuration: number = 15000;
@@ -51,7 +45,7 @@
 
 	let errorMessages: string[] = [];
 
-	if (socialMediaStimuliAS.length === 0 && socialMediaStimuliNS.length === 0) {
+	if (socialMediaStimuli.length === 0) {
 		errorMessages.push('Error! No stimuli provided');
 	}
 
@@ -62,77 +56,6 @@
 			dispatch('loaded');
 		}
 	};
-
-	const createShuffledStimuliAlongPresentationPattern = () => {
-		// Shuffle both arrays once
-		let shuffledStimuliNS = fisherYatesShuffle([...socialMediaStimuliNS]);
-		let shuffledStimuliAS = fisherYatesShuffle([...socialMediaStimuliAS]);
-		const shuffledStimuliAlongPresentationPattern: Array<{
-			src: string;
-			id: string;
-		}> = [];
-
-		// If no pattern provided, return an absolute random shuffle across both pools
-		if (socialMediaStimuliPresentationPattern.length === 0) {
-			return fisherYatesShuffle([
-				...socialMediaStimuliNS,
-				...socialMediaStimuliAS
-			]);
-		}
-
-		// Calculate total stimuli and pattern length
-		const totalStimuli = socialMediaStimuliNS.length + socialMediaStimuliAS.length;
-		
-		// Create a pattern that ensures all stimuli are used
-		let currentPattern: Array<'NS' | 'AS'> = [];
-		let remainingNS = shuffledStimuliNS.length;
-		let remainingAS = shuffledStimuliAS.length;
-
-		// First, try to follow the original pattern as much as possible
-		for (const type of socialMediaStimuliPresentationPattern) {
-			if (type === 'NS' && remainingNS > 0) {
-				currentPattern.push('NS');
-				remainingNS--;
-			} else if (type === 'AS' && remainingAS > 0) {
-				currentPattern.push('AS');
-				remainingAS--;
-			}
-		}
-
-		// Then add remaining stimuli in any order
-		while (remainingNS > 0 || remainingAS > 0) {
-			if (remainingNS > 0) {
-				currentPattern.push('NS');
-				remainingNS--;
-			}
-			if (remainingAS > 0) {
-				currentPattern.push('AS');
-				remainingAS--;
-			}
-		}
-
-		console.log('Total stimuli:', totalStimuli);
-		console.log('Final pattern length:', currentPattern.length);
-		console.log('NS stimuli used:', shuffledStimuliNS.length - remainingNS);
-		console.log('AS stimuli used:', shuffledStimuliAS.length - remainingAS);
-
-		// Create the sequence following the pattern
-		for (const type of currentPattern) {
-			if (type === 'NS') {
-				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliNS.pop()!);
-			} else {
-				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliAS.pop()!);
-			}
-		}
-
-		console.log('Final sequence length:', shuffledStimuliAlongPresentationPattern.length);
-		return shuffledStimuliAlongPresentationPattern;
-	};
-
-	const shuffledStimuliAlongPresentationPattern: Array<{
-		src: string;
-		id: string;
-	}> = createShuffledStimuliAlongPresentationPattern();
 
 	const wasClicked = writable(false);
 
@@ -178,8 +101,8 @@
 
 	const preloadNextStimulusImage = (index: number) => {
 		const nextIndex = index + 1;
-		if (nextIndex < shuffledStimuliAlongPresentationPattern.length) {
-			const nextStimulus = shuffledStimuliAlongPresentationPattern[nextIndex];
+		if (nextIndex < socialMediaStimuli.length) {
+			const nextStimulus = socialMediaStimuli[nextIndex];
 			preloadMedia([{ type: 'img', src: nextStimulus.src }]);
 		}
 	};
@@ -196,7 +119,7 @@
 	let isInitialIteration = true;
 
 	const logic = async () => {
-		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
+		for await (const loopStimulus of socialMediaStimuli) {
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
@@ -254,7 +177,7 @@
 			audioElement2.pause();
 			audioElement2.currentTime = 0;
 			dispatch('socialMediaInteractorsHidden');
-			preloadNextStimulusImage(shuffledStimuliAlongPresentationPattern.indexOf(loopStimulus));
+			preloadNextStimulusImage(socialMediaStimuli.indexOf(loopStimulus));
 		}
 		dispatch('socialMediaInteractorsCompleted');
 	};

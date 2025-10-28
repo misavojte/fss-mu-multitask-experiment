@@ -168,7 +168,8 @@ const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
 	taskPatternCorrectResponseId: '2',
 	pointsPatternMatching: 1,
 	pointsSocialMedia: 1,
-	pointsDocumentary: 1
+	pointsDocumentary: 1,
+	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
 });
 
 	// 2. FINAL SET OF STIMULI - PART 1
@@ -202,7 +203,8 @@ const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
 	taskPatternCorrectResponseId: '2',
 	pointsPatternMatching: 1,
 	pointsSocialMedia: 1,
-	pointsDocumentary: 1
+	pointsDocumentary: 1,
+	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
 });
 
 	// 3. FINAL SET OF STIMULI - PART 2
@@ -245,7 +247,8 @@ const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
 	taskPatternCorrectResponseId: '2',
 	pointsPatternMatching: 1,
 	pointsSocialMedia: 1,
-	pointsDocumentary: 1
+	pointsDocumentary: 1,
+	socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
 });
 </script>
 

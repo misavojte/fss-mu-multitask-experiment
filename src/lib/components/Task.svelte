@@ -308,9 +308,7 @@ onMount(() => {
 				heightInteractors={heightSocialOptions}
 				width={widthSocial}
 				{socialMediaButtons}
-				{socialMediaStimuliAS}
-				{socialMediaStimuliNS}
-				{socialMediaStimuliPresentationPattern}
+				socialMediaStimuli={taskHandler.orderedSocialMediaStimuli}
 				stimulusRemindAfter={socialStimulusRemindAfter}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}
