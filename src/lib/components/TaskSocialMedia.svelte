@@ -2,14 +2,14 @@
 	import {
 		getCancellableAsync,
 		waitForConditionCancellable,
-		waitForTimeoutCancellable
+		waitForTimeoutCancellable,
+		AbortError
 	} from '$lib/utils/waitForCondition';
 	import { writable } from 'svelte/store';
 	import TaskSocialMediaStimulus from './TaskSocialMediaStimulus.svelte';
 	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
 	import InterfaceFrame from './InterfaceFrame.svelte';
 	import { preloadMedia } from '$lib/utils/preloadMedia';
-	import { fisherYatesShuffle } from '$lib/utils/shuffle';
 	import { base } from '$app/paths';
 	import { AnimationTargetHandler } from './AnimationTarget.handler';
 
@@ -22,15 +22,10 @@
 		textColor: string;
 		html?: string;
 	}>;
-	export let socialMediaStimuliAS: Array<{
+	export let socialMediaStimuli: Array<{
 		src: string;
 		id: string;
 	}>;
-	export let socialMediaStimuliNS: Array<{
-		src: string;
-		id: string;
-	}>;
-	export let socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'> = ['NS', 'NS', 'AS', 'AS'];
 	export let initialDelay: number = 5000;
 	export let betweenDelay: number = 15000;
 	export let stimulusMaxDuration: number = 15000;
@@ -51,7 +46,7 @@
 
 	let errorMessages: string[] = [];
 
-	if (socialMediaStimuliAS.length === 0 && socialMediaStimuliNS.length === 0) {
+	if (socialMediaStimuli.length === 0) {
 		errorMessages.push('Error! No stimuli provided');
 	}
 
@@ -62,74 +57,6 @@
 			dispatch('loaded');
 		}
 	};
-
-	const createShuffledStimuliAlongPresentationPattern = () => {
-		// Shuffle both arrays once
-		let shuffledStimuliNS = fisherYatesShuffle([...socialMediaStimuliNS]);
-		let shuffledStimuliAS = fisherYatesShuffle([...socialMediaStimuliAS]);
-		const shuffledStimuliAlongPresentationPattern: Array<{
-			src: string;
-			id: string;
-		}> = [];
-
-		// If no pattern provided, use default
-		if (socialMediaStimuliPresentationPattern.length === 0) {
-			socialMediaStimuliPresentationPattern = ['NS', 'AS'];
-		}
-
-		// Calculate total stimuli and pattern length
-		const totalStimuli = socialMediaStimuliNS.length + socialMediaStimuliAS.length;
-		
-		// Create a pattern that ensures all stimuli are used
-		let currentPattern: Array<'NS' | 'AS'> = [];
-		let remainingNS = shuffledStimuliNS.length;
-		let remainingAS = shuffledStimuliAS.length;
-
-		// First, try to follow the original pattern as much as possible
-		for (const type of socialMediaStimuliPresentationPattern) {
-			if (type === 'NS' && remainingNS > 0) {
-				currentPattern.push('NS');
-				remainingNS--;
-			} else if (type === 'AS' && remainingAS > 0) {
-				currentPattern.push('AS');
-				remainingAS--;
-			}
-		}
-
-		// Then add remaining stimuli in any order
-		while (remainingNS > 0 || remainingAS > 0) {
-			if (remainingNS > 0) {
-				currentPattern.push('NS');
-				remainingNS--;
-			}
-			if (remainingAS > 0) {
-				currentPattern.push('AS');
-				remainingAS--;
-			}
-		}
-
-		console.log('Total stimuli:', totalStimuli);
-		console.log('Final pattern length:', currentPattern.length);
-		console.log('NS stimuli used:', shuffledStimuliNS.length - remainingNS);
-		console.log('AS stimuli used:', shuffledStimuliAS.length - remainingAS);
-
-		// Create the sequence following the pattern
-		for (const type of currentPattern) {
-			if (type === 'NS') {
-				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliNS.pop()!);
-			} else {
-				shuffledStimuliAlongPresentationPattern.push(shuffledStimuliAS.pop()!);
-			}
-		}
-
-		console.log('Final sequence length:', shuffledStimuliAlongPresentationPattern.length);
-		return shuffledStimuliAlongPresentationPattern;
-	};
-
-	const shuffledStimuliAlongPresentationPattern: Array<{
-		src: string;
-		id: string;
-	}> = createShuffledStimuliAlongPresentationPattern();
 
 	const wasClicked = writable(false);
 
@@ -157,7 +84,14 @@
 	const abortController = new AbortController();
 
 	onMount(() => {
-		getCancellableAsync(infiniteLogic, abortController.signal);
+		getCancellableAsync(infiniteLogic, abortController.signal).catch((error) => {
+			// AbortError is expected when component is destroyed - silently ignore it
+			if (error instanceof AbortError) {
+				return;
+			}
+			// Log other errors
+			console.error('[TaskSocialMedia] Unexpected error in infinite logic:', error);
+		});
 	});
 
 	onDestroy(() => {
@@ -175,8 +109,8 @@
 
 	const preloadNextStimulusImage = (index: number) => {
 		const nextIndex = index + 1;
-		if (nextIndex < shuffledStimuliAlongPresentationPattern.length) {
-			const nextStimulus = shuffledStimuliAlongPresentationPattern[nextIndex];
+		if (nextIndex < socialMediaStimuli.length) {
+			const nextStimulus = socialMediaStimuli[nextIndex];
 			preloadMedia([{ type: 'img', src: nextStimulus.src }]);
 		}
 	};
@@ -193,7 +127,7 @@
 	let isInitialIteration = true;
 
 	const logic = async () => {
-		for await (const loopStimulus of shuffledStimuliAlongPresentationPattern) {
+		for await (const loopStimulus of socialMediaStimuli) {
 			if (isInitialIteration) {
 				await waitForTimeoutCancellable(initialDelay, abortController.signal);
 			} else {
@@ -216,32 +150,55 @@
 				timestamp: performance.now()
 			});
 
-			try {
-				await waitForConditionCancellable(wasClicked, stimulusRemindAfter, abortController.signal);
-			} catch (error) {
-				if (error === 'TaskSocialMedia was destroyed') {
-					return; // stop the task, no logging
-				}
-				dispatch('socialMediaInteractorsReminder');
-				audioElement2.play();
+			// Handle reminder logic: if stimulusRemindAfter is < 0, disable reminders
+			if (stimulusRemindAfter < 0) {
+				// No reminder: wait for click or max duration timeout
 				try {
 					await waitForConditionCancellable(
 						wasClicked,
-						stimulusMaxDuration - stimulusRemindAfter,
+						stimulusMaxDuration,
 						abortController.signal
 					);
 				} catch (error) {
 					if (error === 'TaskSocialMedia was destroyed') {
 						return; // stop the task, no logging
 					}
-					animationTargetHandler.createAnimationTarget(
-						getCenterCoordinates(divElement),
-						'red',
-						'Věnujte pozornost úloze!',
-						abortController.signal,
-						2000
-					);
+					// Timeout reached - stimulus should disappear
 					dispatch('socialMediaInteractorsTimeout');
+				}
+			} else {
+				// Original reminder logic
+				try {
+					await waitForConditionCancellable(
+						wasClicked,
+						stimulusRemindAfter,
+						abortController.signal
+					);
+				} catch (error) {
+					if (error === 'TaskSocialMedia was destroyed') {
+						return; // stop the task, no logging
+					}
+					dispatch('socialMediaInteractorsReminder');
+					audioElement2.play();
+					try {
+						await waitForConditionCancellable(
+							wasClicked,
+							stimulusMaxDuration - stimulusRemindAfter,
+							abortController.signal
+						);
+					} catch (error) {
+						if (error === 'TaskSocialMedia was destroyed') {
+							return; // stop the task, no logging
+						}
+						animationTargetHandler.createAnimationTarget(
+							getCenterCoordinates(divElement),
+							'red',
+							'Věnujte pozornost úloze!',
+							abortController.signal,
+							2000
+						);
+						dispatch('socialMediaInteractorsTimeout');
+					}
 				}
 			}
 
@@ -251,7 +208,7 @@
 			audioElement2.pause();
 			audioElement2.currentTime = 0;
 			dispatch('socialMediaInteractorsHidden');
-			preloadNextStimulusImage(shuffledStimuliAlongPresentationPattern.indexOf(loopStimulus));
+			preloadNextStimulusImage(socialMediaStimuli.indexOf(loopStimulus));
 		}
 		dispatch('socialMediaInteractorsCompleted');
 	};

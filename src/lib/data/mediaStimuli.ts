@@ -7,11 +7,11 @@ export const mediaStimuli = {
 	 */
 	training: {
 		/** 4 negative training stimuli */
-		negative: ['Neg23.png', 'Neg11.png', 'Neg5.png', 'Neg4.png'],
+		negative: ['Neg23', 'Neg11', 'Neg5', 'Neg4'],
 		/** 4 neutral training stimuli */
-		neutral: ['N21.png', 'N20.png', 'N19.png', 'N11.png'],
+		neutral: ['N21', 'N20', 'N19', 'N11'],
 		/** 4 positive training stimuli */
-		positive: ['P23.png', 'P11.png', 'P5.png', 'P4.png']
+		positive: ['P23', 'P11', 'P5', 'P4']
 	},
 	/**
 	 * Final stimuli from /static/task/3/final/
@@ -19,48 +19,48 @@ export const mediaStimuli = {
 	final: {
 		/** 10 negative final stimuli */
 		negative: [
-			'Neg20.png',
-			'Neg19.png',
-			'Neg18.png',
-			'Neg17.png',
-			'Neg14.png',
-			'Neg13.png',
-			'Neg10.png',
-			'Neg8.png',
-			'Neg7.png',
-			'Neg24.png'
+			'Neg20',
+			'Neg19',
+			'Neg18',
+			'Neg17',
+			'Neg14',
+			'Neg13',
+			'Neg10',
+			'Neg8',
+			'Neg7',
+			'Neg24'
 		],
 		/** 16 neutral final stimuli */
 		neutral: [
-			'N24.png',
-			'N23.png',
-			'N21.png',
-			'N20.png',
-			'N18.png',
-			'N17.png',
-			'N16.png',
-			'N14.png',
-			'N12.png',
-			'N10.png',
-			'N7.png',
-			'N6.png',
-			'N5.png',
-			'N4.png',
-			'N3.png',
-			'N2.png'
+			'N24',
+			'N23',
+			'N21',
+			'N20',
+			'N18',
+			'N17',
+			'N16',
+			'N14',
+			'N12',
+			'N10',
+			'N7',
+			'N6',
+			'N5',
+			'N4',
+			'N3',
+			'N2'
 		],
 		/** 10 positive final stimuli */
 		positive: [
-			'P20.png',
-			'P19.png',
-			'P18.png',
-			'P17.png',
-			'P14.png',
-			'P13.png',
-			'P10.png',
-			'P8.png',
-			'P7.png',
-			'P24.png'
+			'P20',
+			'P19',
+			'P18',
+			'P17',
+			'P14',
+			'P13',
+			'P10',
+			'P8',
+			'P7',
+			'P24'
 		]
 	}
 } as const;

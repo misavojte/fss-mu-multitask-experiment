@@ -7,12 +7,21 @@
 	import { get } from 'svelte/store';
 
 	export let questionsService: ITimestampQuestionService;
+	export let priority: 'math' | 'social' | 'none';
 
 	$: showProgress = false;
 
 	const dispatch = createEventDispatcher();
 
-	let questions: IQuestionBattery = [
+	// Priority-based reminder text generation
+	$: priorityReminderText =
+		priority === 'math'
+			? `Připomínáme, že **matematická úloha je prioritní**.`
+			: priority === 'social'
+				? `Připomínáme, že **reakce na sociální média je prioritní**.`
+				: `Připomínáme, že **žádný úkol není prioritní**.`;
+
+	$: questions = [
 		{
 			id: 'ap-1',
 			headingText: $LL.question['ap-1'].heading(),
@@ -28,53 +37,10 @@
 				}
 			],
 			required: true,
-			paragraphs: [$LL.reminder.even()],
+			paragraphs: [priorityReminderText],
 			preliminaryEndAnswer: '0'
-		},
-		{
-			id: 'ap-2',
-			headingText: $LL.question['2b-dual'].heading(),
-			confirmText: $LL.question['2b-dual'].confirm(),
-			type: 'instruction',
-			paragraphs: [get(LL).question['2b-dual'].paragraphs[1]()],
-			required: true
-		},
-		{
-			id: 'ap-4',
-			headingText: $LL.question['4b'].heading(),
-			confirmText: $LL.question['4b'].confirm(),
-			type: 'instruction',
-			paragraphs: [
-				get(LL).question['4b'].paragraphs[1](),
-				get(LL).question['4b'].paragraphs[2](),
-				get(LL).question['4b'].paragraphs[3]()
-			],
-			required: true
-		},
-		{
-			id: 'ap-6',
-			headingText: $LL.question['6-dual'].heading(),
-			confirmText: $LL.question['6-dual'].confirm(),
-			type: 'instruction',
-			paragraphs: [
-				get(LL).question['6-dual'].paragraphs[1](),
-				get(LL).question['6-dual'].paragraphs[2](),
-				get(LL).question['6-dual'].paragraphs[3]()
-			],
-			required: true
-		},
-		{
-			id: 'ap-7',
-			headingText: $LL.question['7b-dual'].heading(),
-			confirmText: $LL.question['7b-dual'].confirm(),
-			type: 'instruction',
-			paragraphs: [
-				get(LL).question['7b-dual'].paragraphs[1](),
-				get(LL).question['7b-dual'].paragraphs[2]()
-			],
-			required: true
 		}
-	];
+	] as IQuestionBattery;
 
 	const handlePreliminaryQuestionnaireDone = async (data: any) => {
 		console.log('[DEBUG] handlePreliminaryQuestionnaireDone called');

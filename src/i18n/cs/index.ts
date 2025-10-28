@@ -7,8 +7,8 @@ const cs = {
 	loading: 'Načítání',
 	pleaseWait: 'Prosím, čekejte na načtení dat.',
 	socialButtons: {
-		react: 'Zjistit víc',
-		ignore: 'Nemám zájem'
+		react: 'Ponechat',
+		ignore: 'Odstranit'
 	},
 	reminder: {
 		priority: 'Připomínáme, že **matematická úloha je prioritní**.',
@@ -186,6 +186,16 @@ const cs = {
 			1: 'Sociální média: {socialMediaPoints:number} bodů (z {socialMediaDisplayed:number} zobrazených)',
 			2: 'Velmi děkujeme za Vaši účast!'
 		}
+	},
+	finalScore: {
+		heading: 'Děkujeme za účast!',
+		scoreMessage: 'Získali jste celkem {totalPoints:number} bodů.',
+		thankYou: 'Velmi děkujeme za Vaši účast v tomto experimentu!',
+		confirm: 'Ukončit',
+		redirectMessage: 'Budete automaticky přesměrováni zpět na dotazník.',
+		countdownMessage: 'Přesměrování za {seconds:number} sekund...',
+		redirectNow: 'Přesměrovat nyní',
+		stayHere: 'Zůstat zde'
 	}
 } satisfies BaseTranslation;
 

@@ -2,10 +2,7 @@ import { saveActionLog } from '$lib/database/repositories/ActionLog.repository';
 import {
 	ATaskHandlerIntelligence,
 	ATaskHandlerMath,
-	type ISocialMediaStimulus,
-	type ISocialMediaButton,
-	type IVideoConfiguration,
-	type ITaskPatternMatchingObject
+	type ITaskHandlerConfig
 } from '$lib/interfaces/ITaskHandler';
 
 const logAction = (type: string, value: string, sessionId: string) => {
@@ -20,25 +17,19 @@ const logAction = (type: string, value: string, sessionId: string) => {
 export class TaskHandlerIntelligenceIDB extends ATaskHandlerIntelligence {
 	sessionId: string;
 
-	constructor(
-		sessionId: string,
-		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
-		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
-		socialMediaButtons: ISocialMediaButton[] = [],
-		videoConfiguration: IVideoConfiguration | null = null,
-		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
-		taskPatternCorrectResponseId: string = 'T1',
-		scoringType: 'prioritize' | 'even' = 'prioritize'
-	) {
-		super(
-			socialMediaStimuliNS,
-			socialMediaStimuliAS,
-			socialMediaButtons,
-			videoConfiguration,
-			taskPatternMatchingObjects,
-			taskPatternCorrectResponseId,
-			scoringType
-		);
+	constructor(sessionId: string, config: ITaskHandlerConfig) {
+        super({
+            socialMediaStimuliNS: config.socialMediaStimuliNS,
+            socialMediaStimuliAS: config.socialMediaStimuliAS,
+            socialMediaButtons: config.socialMediaButtons,
+            videoConfiguration: config.videoConfiguration,
+            socialMediaStimuliPresentationPattern: config.socialMediaStimuliPresentationPattern,
+            taskPatternMatchingObjects: config.taskPatternMatchingObjects,
+            taskPatternCorrectResponseId: config.taskPatternCorrectResponseId ?? 'T1',
+            pointsPatternMatching: config.pointsPatternMatching,
+            pointsSocialMedia: config.pointsSocialMedia,
+            pointsDocumentary: config.pointsDocumentary
+        });
 		this.sessionId = sessionId;
 	}
 
@@ -50,25 +41,8 @@ export class TaskHandlerIntelligenceIDB extends ATaskHandlerIntelligence {
 export class TaskHandlerMathIDB extends ATaskHandlerMath {
 	sessionId: string;
 
-	constructor(
-		sessionId: string,
-		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
-		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
-		socialMediaButtons: ISocialMediaButton[] = [],
-		videoConfiguration: IVideoConfiguration | null = null,
-		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
-		taskPatternCorrectResponseId: string = '2',
-		scoringType: 'prioritize' | 'even' = 'prioritize'
-	) {
-		super(
-			socialMediaStimuliNS,
-			socialMediaStimuliAS,
-			socialMediaButtons,
-			videoConfiguration,
-			taskPatternMatchingObjects,
-			taskPatternCorrectResponseId,
-			scoringType
-		);
+	constructor(sessionId: string, config: ITaskHandlerConfig) {
+		super(config);
 		this.sessionId = sessionId;
 	}
 

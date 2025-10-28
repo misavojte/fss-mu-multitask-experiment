@@ -32,11 +32,11 @@ type RootTranslation = {
 	pleaseWait: string
 	socialButtons: {
 		/**
-		 * Z​j​i​s​t​i​t​ ​v​í​c
+		 * P​o​n​e​c​h​a​t
 		 */
 		react: string
 		/**
-		 * N​e​m​á​m​ ​z​á​j​e​m
+		 * O​d​s​t​r​a​n​i​t
 		 */
 		ignore: string
 	}
@@ -495,6 +495,42 @@ type RootTranslation = {
 			'2': string
 		}
 	}
+	finalScore: {
+		/**
+		 * D​ě​k​u​j​e​m​e​ ​z​a​ ​ú​č​a​s​t​!
+		 */
+		heading: string
+		/**
+		 * Z​í​s​k​a​l​i​ ​j​s​t​e​ ​c​e​l​k​e​m​ ​{​t​o​t​a​l​P​o​i​n​t​s​}​ ​b​o​d​ů​.
+		 * @param {number} totalPoints
+		 */
+		scoreMessage: RequiredParams<'totalPoints'>
+		/**
+		 * V​e​l​m​i​ ​d​ě​k​u​j​e​m​e​ ​z​a​ ​V​a​š​i​ ​ú​č​a​s​t​ ​v​ ​t​o​m​t​o​ ​e​x​p​e​r​i​m​e​n​t​u​!
+		 */
+		thankYou: string
+		/**
+		 * U​k​o​n​č​i​t
+		 */
+		confirm: string
+		/**
+		 * B​u​d​e​t​e​ ​a​u​t​o​m​a​t​i​c​k​y​ ​p​ř​e​s​m​ě​r​o​v​á​n​i​ ​z​p​ě​t​ ​n​a​ ​d​o​t​a​z​n​í​k​.
+		 */
+		redirectMessage: string
+		/**
+		 * P​ř​e​s​m​ě​r​o​v​á​n​í​ ​z​a​ ​{​s​e​c​o​n​d​s​}​ ​s​e​k​u​n​d​.​.​.
+		 * @param {number} seconds
+		 */
+		countdownMessage: RequiredParams<'seconds'>
+		/**
+		 * P​ř​e​s​m​ě​r​o​v​a​t​ ​n​y​n​í
+		 */
+		redirectNow: string
+		/**
+		 * Z​ů​s​t​a​t​ ​z​d​e
+		 */
+		stayHere: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -516,11 +552,11 @@ export type TranslationFunctions = {
 	pleaseWait: () => LocalizedString
 	socialButtons: {
 		/**
-		 * Zjistit víc
+		 * Ponechat
 		 */
 		react: () => LocalizedString
 		/**
-		 * Nemám zájem
+		 * Odstranit
 		 */
 		ignore: () => LocalizedString
 	}
@@ -970,6 +1006,40 @@ export type TranslationFunctions = {
 			 */
 			'2': () => LocalizedString
 		}
+	}
+	finalScore: {
+		/**
+		 * Děkujeme za účast!
+		 */
+		heading: () => LocalizedString
+		/**
+		 * Získali jste celkem {totalPoints} bodů.
+		 */
+		scoreMessage: (arg: { totalPoints: number }) => LocalizedString
+		/**
+		 * Velmi děkujeme za Vaši účast v tomto experimentu!
+		 */
+		thankYou: () => LocalizedString
+		/**
+		 * Ukončit
+		 */
+		confirm: () => LocalizedString
+		/**
+		 * Budete automaticky přesměrováni zpět na dotazník.
+		 */
+		redirectMessage: () => LocalizedString
+		/**
+		 * Přesměrování za {seconds} sekund...
+		 */
+		countdownMessage: (arg: { seconds: number }) => LocalizedString
+		/**
+		 * Přesměrovat nyní
+		 */
+		redirectNow: () => LocalizedString
+		/**
+		 * Zůstat zde
+		 */
+		stayHere: () => LocalizedString
 	}
 }
 
