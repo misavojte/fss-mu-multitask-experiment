@@ -20,6 +20,12 @@
 		id: string;
 	}>;
 
+	/**
+	 * Presentation pattern for social media stimuli. Defaults to the original
+	 * sequence used across existing routes to preserve behavior.
+	 */
+	export let socialMediaStimuliPresentationPattern: Array<'NS' | 'AS'> = ['NS', 'NS', 'AS', 'AS'];
+
 	export let socialMediaButtons: Array<{
 		text: string;
 		id: string;
@@ -293,6 +299,7 @@
 				{socialMediaButtons}
 				{socialMediaStimuliAS}
 				{socialMediaStimuliNS}
+				{socialMediaStimuliPresentationPattern}
 				stimulusRemindAfter={socialStimulusRemindAfter}
 				initialDelay={socialInitialDelay}
 				stimulusMaxDuration={socialStimulusMaxDuration}

@@ -36,6 +36,30 @@ export const createFinalMediaStimuli = (
 	};
 };
 
+/**
+ * Creates a balanced and fully randomized set of final-phase media stimuli.
+ * Selects an equal number of negatives, positives, and neutrals, returning
+ * neutrals under NS and all emotions (negatives + positives) under AS.
+ *
+ * For a 12-stimuli block, selects 4 neutral, 4 negative, 4 positive.
+ */
+export const createFinalMediaStimuliBalancedRandom = (
+    omitTheseIdsFromSelection: string[] = []
+): { AS: string[]; NS: string[] } => {
+    const availableNeutrals = [...mediaStimuli.final.neutral].filter((id) => !omitTheseIdsFromSelection.includes(id));
+    const availableNegatives = [...mediaStimuli.final.negative].filter((id) => !omitTheseIdsFromSelection.includes(id));
+    const availablePositives = [...mediaStimuli.final.positive].filter((id) => !omitTheseIdsFromSelection.includes(id));
+
+    const neutrals = fisherYatesShuffle(availableNeutrals).slice(0, 4);
+    const negatives = fisherYatesShuffle(availableNegatives).slice(0, 4);
+    const positives = fisherYatesShuffle(availablePositives).slice(0, 4);
+
+    return {
+        NS: fisherYatesShuffle(neutrals),
+        AS: fisherYatesShuffle([...negatives, ...positives])
+    };
+};
+
 export const createTrainingMediaStimuli = (
 	sentiment: Sentiment,
 	omitTheseIdsFromSelection: string[] = []

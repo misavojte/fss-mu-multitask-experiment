@@ -32,11 +32,11 @@ type RootTranslation = {
 	pleaseWait: string
 	socialButtons: {
 		/**
-		 * Z​j​i​s​t​i​t​ ​v​í​c
+		 * P​o​n​e​c​h​a​t
 		 */
 		react: string
 		/**
-		 * N​e​m​á​m​ ​z​á​j​e​m
+		 * O​d​s​t​r​a​n​i​t
 		 */
 		ignore: string
 	}
@@ -516,11 +516,11 @@ export type TranslationFunctions = {
 	pleaseWait: () => LocalizedString
 	socialButtons: {
 		/**
-		 * Zjistit víc
+		 * Ponechat
 		 */
 		react: () => LocalizedString
 		/**
-		 * Nemám zájem
+		 * Odstranit
 		 */
 		ignore: () => LocalizedString
 	}
