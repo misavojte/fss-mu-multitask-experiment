@@ -3,8 +3,7 @@
 	import { TimestampQuestionServiceHTTP } from '$lib/services/TimestampQuestionServiceHTTP';
 	import AppInstructionsDualPriority from './AppInstructionsDualPriority.svelte';
 	import AppQuestionsPostPracticeDualOctober from './AppQuestionsPostPracticeDualOctober.svelte';
-	import AppQuestionsPostTrial from './AppQuestionsPostTrial.svelte';
-	import { goto } from '$app/navigation';
+	import AppFinalScore from './AppFinalScore.svelte';
 	import { base } from '$app/paths';
 	import Task from './Task.svelte';
 	import {
@@ -30,7 +29,8 @@
 
 	export let sessionId: string;
 	export let priority: 'math' | 'social' | 'none';
-	export let endpoint: string = 'https://your-endpoint.com/api/logs';
+	export let endpoint: string;
+	export let returnUrl: string;
 
 	// Create the question service here
 	const questionsService = new TimestampQuestionServiceHTTP(sessionId, endpoint);
@@ -56,9 +56,9 @@
 			console.log(`[DEBUG] Advancing from '${stage}' to '${nextStage}'`);
 			stage = nextStage;
 		} else if (stage === 'end') {
-			// Handle the final stage - navigate to download
-			console.log(`[DEBUG] Final stage reached, navigating to download page`);
-			goto(`${base}/download`);
+			// Handle the final stage - experiment is complete
+			console.log(`[DEBUG] Final stage reached, experiment complete`);
+			// No further action needed - AppFinalScore handles the redirect
 		} else {
 			console.warn(`[DEBUG] Cannot advance from stage '${stage}' - no next stage defined`);
 		}
@@ -243,7 +243,7 @@
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<AppQuestionsPostTrial taskHandler={firstTaskHandler} on:finish={startNextStage} />
+			<AppFinalScore taskHandler={firstTaskHandler} {returnUrl} on:finish={startNextStage} />
 		</div>
 	{:else}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
