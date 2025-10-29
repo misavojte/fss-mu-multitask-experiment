@@ -55,7 +55,7 @@
 		/>
 		<button
 			on:click|preventDefault={handleClick}
-			class="bg-blue-500 text-white font-bold rounded-md p-4 cursor-pointer w-fit mx-auto transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:bg-blue-600 transform"
+			class="bg-blue-500 text-white font-bold rounded-md p-4 cursor-pointer w-fit mx-auto transition-colors"
 			>{question.confirmText}</button
 		>
 	</form>

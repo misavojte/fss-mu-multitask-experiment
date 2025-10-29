@@ -14,7 +14,8 @@
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
 	import AppQuestionsPreSingleDual from './AppQuestionsPreSingleDual.svelte';
-	import Task from './Task.svelte';
+	import AppTaskTrialMediaOnlySentimentVariant from './AppTaskTrialMediaOnlySentimentVariant.svelte';
+	import AppTaskTrialDual from './AppTaskTrialDual.svelte';
 	import {
 		createFinalMediaStimuli,
 		createTrainingMediaStimuli,
@@ -24,6 +25,7 @@
 		getFinalMediaStimuliSrcBase
 	} from '$lib/utils/createMediaStimuli';
 	import AppGazeValidationOnly from './AppGazeValidationOnly.svelte';
+	import AppTaskPracticeDual from './AppTaskPracticeDual.svelte';
 	import { get } from 'svelte/store';
 	import LL from '../../i18n/i18n-svelte';
 	import {
@@ -185,18 +187,16 @@
 	const trainingMathStimuli = getMathTaskPatternMatchingObjectsForPractice();
 
 	// 1.3 task handler (dual task - no video configuration)
-	const trainingTaskHandler = new TaskHandlerMathIDB(sessionId, {
-		socialMediaStimuliNS: trainingNS,
-		socialMediaStimuliAS: trainingAS,
+	const trainingTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
+		trainingNS,
+		trainingAS,
 		socialMediaButtons,
-		videoConfiguration: null, // No video configuration for dual task
-		taskPatternMatchingObjects: trainingMathStimuli,
-		taskPatternCorrectResponseId: '2',
-		pointsPatternMatching: 1,
-		pointsSocialMedia: 1,
-		pointsDocumentary: 1,
-		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-	});
+		null, // No video configuration for dual task
+		trainingMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
 
 	// 2. FINAL SET OF STIMULI - PART 1 (DUAL TASK)
 	// 2.1 social media (dependent on the sentiment)
@@ -217,18 +217,16 @@
 	const firstMathStimuli = getMathTaskPatternMatchingObjectsForTest();
 
 	// 2.3 task handler (dual task - no video configuration)
-	const firstTaskHandler = new TaskHandlerMathIDB(sessionId, {
+	const firstTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
 		socialMediaStimuliNS,
 		socialMediaStimuliAS,
 		socialMediaButtons,
-		videoConfiguration: null, // No video configuration for dual task
-		taskPatternMatchingObjects: firstMathStimuli,
-		taskPatternCorrectResponseId: '2',
-		pointsPatternMatching: 1,
-		pointsSocialMedia: 1,
-		pointsDocumentary: 1,
-		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-	});
+		null, // No video configuration for dual task
+		firstMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
 
 	// 3. FINAL SET OF STIMULI - PART 2 (SINGLE TASK)
 	// 3.1 social media (dependent on the sentiment)
@@ -258,18 +256,16 @@
 	const secondMathStimuli = firstMathStimuli;
 
 	// 3.3 task handler (single task - social media only)
-	const secondTaskHandler = new TaskHandlerMathIDB(sessionId, {
-		socialMediaStimuliNS: secondSocialMediaStimuliNS,
-		socialMediaStimuliAS: secondSocialMediaStimuliAS,
+	const secondTaskHandler = new TaskHandlerMathIDB(
+		sessionId,
+		secondSocialMediaStimuliNS,
+		secondSocialMediaStimuliAS,
 		socialMediaButtons,
-		videoConfiguration: null, // No video configuration needed
-		taskPatternMatchingObjects: secondMathStimuli,
-		taskPatternCorrectResponseId: '2',
-		pointsPatternMatching: 1,
-		pointsSocialMedia: 1,
-		pointsDocumentary: 1,
-		socialMediaStimuliPresentationPattern: ['NS', 'NS', 'AS', 'AS']
-	});
+		null, // No video configuration needed
+		secondMathStimuli,
+		'2', // this is correct, math task correct response id is 2
+		'even'
+	);
 </script>
 
 <svelte:window on:beforeunload={onDestroyOrUnload} on:keydown={handleKeydown} />
@@ -288,24 +284,7 @@
 		</div>
 	{:else if stage === 'practice'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<div class="flex flex-col items-center justify-center w-screen h-screen">
-				<Task
-					on:taskEnd={handleTaskEnd}
-					taskHandler={trainingTaskHandler}
-					patternMatchingObjects={trainingTaskHandler.taskPatternMatchingObjects}
-					socialMediaButtons={trainingTaskHandler.socialMediaButtons}
-					socialInitialDelay={5000}
-					socialBetweenDelay={5000}
-					socialStimulusMaxDuration={20000}
-					socialStimulusRemindAfter={15000}
-					socialAdjustBetweenDelay={true}
-					endScenario={'pattern-timeout'}
-					positionXSocial={200}
-					positionYSocial={200}
-					positionXPattern={1070}
-					positionYPattern={245}
-				/>
-			</div>
+			<AppTaskPracticeDual on:taskEnd={handleTaskEnd} taskHandler={trainingTaskHandler} />
 		</div>
 	{:else if stage === 'questions-2'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -317,24 +296,7 @@
 		</div>
 	{:else if stage === 'trial'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<div class="flex flex-col items-center justify-center w-screen h-screen">
-				<Task
-					on:taskEnd={handleTaskEnd}
-					taskHandler={firstTaskHandler}
-					patternMatchingObjects={firstTaskHandler.taskPatternMatchingObjects}
-					socialMediaButtons={firstTaskHandler.socialMediaButtons}
-					socialInitialDelay={5000}
-					socialBetweenDelay={5000}
-					socialStimulusMaxDuration={20000}
-					socialStimulusRemindAfter={15000}
-					socialAdjustBetweenDelay={true}
-					endScenario={'timeout'}
-					positionXSocial={200}
-					positionYSocial={200}
-					positionXPattern={1070}
-					positionYPattern={245}
-				/>
-			</div>
+			<AppTaskTrialDual on:taskEnd={handleTaskEnd} taskHandler={firstTaskHandler} />
 		</div>
 	{:else if stage === 'presingle'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
@@ -350,23 +312,10 @@
 		</div>
 	{:else if stage === 'single'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">
-			<div class="flex flex-col items-center justify-center w-screen h-screen">
-				<Task
-					taskHandler={secondTaskHandler}
-					patternMatchingObjects={secondTaskHandler.taskPatternMatchingObjects}
-					socialMediaButtons={secondTaskHandler.socialMediaButtons}
-					on:taskEnd={handleTaskEnd}
-					socialInitialDelay={5000}
-					socialBetweenDelay={5000}
-					socialStimulusMaxDuration={20000}
-					socialStimulusRemindAfter={15000}
-					socialAdjustBetweenDelay={true}
-					endScenario={'social-media-finished'}
-					socialMediaOnly={true}
-					positionXSocial={786}
-					positionYSocial={203}
-				/>
-			</div>
+			<AppTaskTrialMediaOnlySentimentVariant
+				taskHandler={secondTaskHandler}
+				on:taskEnd={handleTaskEnd}
+			/>
 		</div>
 	{:else if stage === 'end'}
 		<div in:fade={fadeInParams} out:fade={fadeOutParams} class="absolute inset-0">

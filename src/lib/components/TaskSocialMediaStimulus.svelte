@@ -24,9 +24,12 @@
 
 	$: {
 		if (stimulus !== null) {
-			src = stimulus.src;
-			// Dispatch loaded event immediately since we're using preloaded images
-			dispatch('loaded', { id: stimulus.id });
+			const img = new Image();
+			img.src = stimulus.src;
+			img.onload = () => {
+				dispatch('loaded', { id: stimulus.id });
+				src = stimulus.src;
+			};
 		} else {
 			src = null;
 		}

@@ -1,7 +1,10 @@
 import {
 	ATaskHandlerIntelligence,
 	ATaskHandlerMath,
-	type ITaskHandlerConfig
+	type ISocialMediaStimulus,
+	type ISocialMediaButton,
+	type IVideoConfiguration,
+	type ITaskPatternMatchingObject
 } from '$lib/interfaces/ITaskHandler';
 
 const logAction = (type: string, value: string) => {
@@ -9,8 +12,24 @@ const logAction = (type: string, value: string) => {
 };
 
 export class TaskHandlerIntelligenceMock extends ATaskHandlerIntelligence {
-	constructor(config: ITaskHandlerConfig) {
-        super(config);
+	constructor(
+		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
+		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
+		socialMediaButtons: ISocialMediaButton[] = [],
+		videoConfiguration: IVideoConfiguration | null = null,
+		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
+		taskPatternCorrectResponseId: string = 'T1',
+		scoringType: 'prioritize' | 'even' = 'prioritize'
+	) {
+		super(
+			socialMediaStimuliNS,
+			socialMediaStimuliAS,
+			socialMediaButtons,
+			videoConfiguration,
+			taskPatternMatchingObjects,
+			taskPatternCorrectResponseId,
+			scoringType
+		);
 	}
 
 	logAction(type: string, value: string): void {
@@ -19,8 +38,24 @@ export class TaskHandlerIntelligenceMock extends ATaskHandlerIntelligence {
 }
 
 export class TaskHandlerMathMock extends ATaskHandlerMath {
-	constructor(config: ITaskHandlerConfig) {
-        super(config);
+	constructor(
+		socialMediaStimuliNS: ISocialMediaStimulus[] = [],
+		socialMediaStimuliAS: ISocialMediaStimulus[] = [],
+		socialMediaButtons: ISocialMediaButton[] = [],
+		videoConfiguration: IVideoConfiguration | null = null,
+		taskPatternMatchingObjects: ITaskPatternMatchingObject[] = [],
+		taskPatternCorrectResponseId: string = '2',
+		scoringType: 'prioritize' | 'even' = 'prioritize'
+	) {
+		super(
+			socialMediaStimuliNS,
+			socialMediaStimuliAS,
+			socialMediaButtons,
+			videoConfiguration,
+			taskPatternMatchingObjects,
+			taskPatternCorrectResponseId,
+			scoringType
+		);
 	}
 
 	logAction(type: string, value: string): void {

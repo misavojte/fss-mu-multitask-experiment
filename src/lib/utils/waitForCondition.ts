@@ -8,34 +8,17 @@ const cleanup = (...unsubscribers: Array<() => void>) => {
 	unsubscribers.forEach((unsubscribe) => unsubscribe && unsubscribe());
 };
 
-/**
- * Error thrown when a wait condition times out
- */
-export class TimeoutError extends Error {
+class TimeoutError extends Error {
 	constructor(message: string) {
 		super(message);
 		this.name = 'TimeoutError';
 	}
 }
 
-/**
- * Error thrown when an instant fail condition is met
- */
-export class InstantFailError extends Error {
+class InstantFailError extends Error {
 	constructor(message: string) {
 		super(message);
 		this.name = 'InstantFailError';
-	}
-}
-
-/**
- * Error thrown when an async operation is aborted
- * This is an expected error during component cleanup and can be safely ignored
- */
-export class AbortError extends Error {
-	constructor(message: string) {
-		super(message);
-		this.name = 'AbortError';
 	}
 }
 
@@ -97,7 +80,6 @@ export const waitForTimeout = (maxTimeout: number): Promise<void> =>
  * @param asyncFunction - The async function to wrap and make cancellable
  * @param signal - An AbortSignal used to cancel the operation
  * @returns A Promise that is cancellable via the provided AbortSignal
- * @throws {AbortError} When the operation is aborted (expected during component cleanup)
  * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortController
  */
 export const getCancellableAsync = <T>(
@@ -105,15 +87,9 @@ export const getCancellableAsync = <T>(
 	signal: AbortSignal
 ): Promise<T> =>
 	new Promise((resolve, reject) => {
-		if (signal.aborted) {
-			const reason = typeof signal.reason === 'string' ? signal.reason : 'Operation aborted';
-			return reject(new AbortError(reason));
-		}
+		if (signal.aborted) return reject(signal.reason);
 
-		const onAbort = () => {
-			const reason = typeof signal.reason === 'string' ? signal.reason : 'Operation aborted';
-			reject(new AbortError(reason));
-		};
+		const onAbort = () => reject(signal.reason);
 		signal.addEventListener('abort', onAbort);
 
 		asyncFunction()
@@ -131,7 +107,6 @@ export const getCancellableAsync = <T>(
  * @returns Promise that resolves when the success condition is met, rejects if the timeout is reached or the instant fail condition is met, or if the signal is aborted.
  * @throws {TimeoutError} When the timeout is reached
  * @throws {InstantFailError} When the instant fail condition is met
- * @throws {AbortError} When the operation is aborted (expected during component cleanup)
  */
 export const waitForConditionCancellable = (
 	store: Readable<boolean>,

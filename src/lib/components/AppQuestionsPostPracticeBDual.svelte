@@ -77,7 +77,6 @@
 	];
 
 	const handlePreliminaryQuestionnaireDone = async (data: any) => {
-		console.log('[DEBUG] handlePreliminaryQuestionnaireDone called');
 		dispatch('loading');
 		console.log('loading');
 		console.log('done');
@@ -85,7 +84,6 @@
 	};
 
 	const handleQuestionnaireDone = async (data: any) => {
-		console.log('[DEBUG] handleQuestionnaireDone called');
 		dispatch('loading');
 		console.log('loading');
 		console.log('done');

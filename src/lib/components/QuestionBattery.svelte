@@ -142,7 +142,7 @@
 						{$LL.question.battery.back()}
 					</button>
 					<button
-						class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:bg-blue-600 hover:text-white transform"
+						class="border-0 blue-button text-sm text-neutral-700 disabled:text-neutral-300 disabled:cursor-not-allowed transition-colors"
 						on:click={handleOnInput}
 						disabled={shouldSkipBeDisabled}
 					>
